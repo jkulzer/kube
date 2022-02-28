@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  project: gensocluster
+  source:
+    chart: gitea
+    repoURL: https://dl.gitea.io/charts/
+    targetRevision: latest
+    helm:
+      releaseName: gitea-charts
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitea
+
