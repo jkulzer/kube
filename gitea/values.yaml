@@ -25,7 +25,7 @@ ingress:
     flame.pawelmalak/type: application # "app" works too
     flame.pawelmalak/name: Gitea
     flame.pawelmalak/url: https://git.2hu.net
-    flame.pawelmalak/icon: git
+    flame.pawelmalak/icon: https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/gitea.svg
   hosts:
     - host: git.2hu.net
       paths:
