@@ -1,0 +1,110 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: diun
+  labels:
+    app: diun
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: diun
+  name: diun
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: diun
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
+      - watch
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: diun
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: diun
+subjects:
+  - kind: ServiceAccount
+    name: diun
+    namespace: diun
+---
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: diun
+  namespace: diun
+  annotations:
+    volume.alpha.kubernetes.io/storage-class: "generic"
+  labels:
+    app.kubernetes.io/name: diun
+spec:
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: "1Gi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: diun
+  name: diun
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diun
+  template:
+    metadata:
+      labels:
+        app: diun
+      annotations:
+        diun.enable: "true"
+    spec:
+      serviceAccountName: diun
+      containers:
+        - name: diun
+          image: crazymax/diun:latest
+          imagePullPolicy: Always
+          args: ["serve"]
+          env:
+            - name: TZ
+              value: "Europe/Berlin"
+            - name: LOG_LEVEL
+              value: "info"
+            - name: LOG_JSON
+              value: "false"
+            - name: DIUN_WATCH_WORKERS
+              value: "20"
+            - name: DIUN_WATCH_SCHEDULE
+              value: "0 */6 * * *"
+            - name: DIUN_PROVIDERS_KUBERNETES
+              value: "true"
+            - name: DIUN_NOTIF_GOTIFY_ENDPOINT
+              value: "https://push.youmu.2hu.net"
+            - name: DIUN_NOTIF_GOTIFY_TOKEN
+              value: "AM_24zWZiuP45KD"
+            - name: DIUN_NOTIF_GOTIFY_PRIORITY
+              value: "5"
+          volumeMounts:
+            - mountPath: "/data"
+              name: "data"
+      restartPolicy: Always
+      volumes:
+        # Set up a data directory for diun
+        # For production usage, you should consider using PV/PVC instead(or simply using storage like NAS)
+        # For more details, please see https://kubernetes.io/docs/concepts/storage/volumes/
+        - name: "data"
+          persistentVolumeClaim:
+            claimName: diun
