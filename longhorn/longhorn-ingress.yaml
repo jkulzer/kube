@@ -5,6 +5,10 @@ metadata:
   name: longhorn-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    flame.pawelmalak/type: application # "app" works too
+    flame.pawelmalak/name: Longhorn
+    flame.pawelmalak/url: https://longhorn.2hu.net
+    flame.pawelmalak/icon: harddisk
 spec:
   rules:
   - host: longhorn.2hu.net
