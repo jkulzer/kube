@@ -1,0 +1,110 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: flame
+  labels:
+    namespace: flame
+    goldilocks.fairwinds.com/enabled: "true"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: flame
+  namespace: flame
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: flame
+  name: flame
+rules:
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: flame
+  namespace: flame
+subjects:
+- kind: ServiceAccount
+  name: flame
+  namespace: flame
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: flame
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: flame
+  namespace: flame
+spec:
+  selector:
+    matchLabels:
+      app: flame
+  template:
+    metadata:
+      labels:
+        app: flame
+    spec:
+      serviceAccountName: flame
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: flame
+          image: shokohsc/flame
+          ports:
+            - name: http
+              containerPort: 5005
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flame
+  namespace: flame
+  labels:
+    app: flame
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 5005
+      protocol: TCP
+      name: http
+  selector:
+    app: flame
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flame
+  namespace: flame
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    flame.pawelmalak/type: application # "app" works too
+    flame.pawelmalak/name: Flame
+    flame.pawelmalak/url: https://flame.2hu.net
+    flame.pawelmalak/icon: fire
+  labels:
+    app: flame
+spec:
+  rules:
+  - host: flame.2hu.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: flame
+            port:
+              name: http
