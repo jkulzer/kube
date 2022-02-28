@@ -70,9 +70,16 @@ spec:
       serviceAccountName: flame
       securityContext:
         fsGroup: 1000
+      volumes:
+          - name: "data"
+            persistentVolumeClaim:
+              claimName: flame
       containers:
         - name: flame
           image: shokohsc/flame
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
           ports:
             - name: http
               containerPort: 5005
