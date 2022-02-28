@@ -59,6 +59,7 @@ metadata:
   name: flame
   namespace: flame
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: flame
