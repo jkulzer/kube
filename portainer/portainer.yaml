@@ -141,7 +141,7 @@ metadata:
     flame.pawelmalak/type: application # "app" works too
     flame.pawelmalak/name: Portainer
     flame.pawelmalak/url: https://portainer.2hu.net
-    flame.pawelmalak/icon: docker
+    flame.pawelmalak/icon: https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/portainer.svg
 spec:
   rules:
   - host: portainer.2hu.net
