@@ -8,7 +8,7 @@ spec:
   destination:
     namespace: gitea
     server: https://kubernetes.default.svc
-  project: gensonet
+  project: gensocluster
   source:
     chart: gitea
     repoURL: https://dl.gitea.io/charts/
