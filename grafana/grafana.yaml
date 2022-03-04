@@ -4,6 +4,7 @@ kind: Namespace
 metadata:
   name: grafana
   labels:
+    app: grafana
     namespace: grafana
 ---
 apiVersion: v1
@@ -21,10 +22,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: grafana
+  namespace: grafana
   labels:
     app: grafana
-  name: grafana
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: grafana
@@ -81,13 +84,14 @@ metadata:
   name: grafana
   namespace: grafana
   labels:
-    app: flame
+    app: grafana
 spec:
   type: ClusterIP
   ports:
     - port: 3000
       protocol: TCP
       targetPort: http-grafana
+      name: http
   selector:
     app: grafana
 ---
