@@ -77,7 +77,7 @@ spec:
               claimName: flame
       containers:
         - name: flame
-          image: shokohsc/flame
+          image: shokohsc/flame:latest
           volumeMounts:
             - name: data
               mountPath: /app/data
