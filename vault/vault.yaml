@@ -516,6 +516,36 @@ webhooks:
         resources: ["pods"]
     failurePolicy: Ignore
 ---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: issuer
+  namespace: vault
+spec:
+  vault:
+    server: http://vault-internal.vault.svc.cluster.local:8200
+    path: internal-certs/sign/2hu-net
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: demo
+        secretRef:
+          name: issuer-token-j5g4q
+          key: token
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault-2hu-net
+  namespace: vault
+spec:
+  secretName: vault-2hu-net-tls
+  issuerRef:
+    name: issuer
+  commonName: vault.2hu.net
+  dnsNames:
+  - vault.2hu.net
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -523,6 +553,7 @@ metadata:
   namespace: vault
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/issuer: "vault-issuer"
     flame.pawelmalak/type: application # "app" works too
     flame.pawelmalak/name: Vault
     flame.pawelmalak/url: https://vault.2hu.net
@@ -530,6 +561,10 @@ metadata:
   labels:
     app: vault
 spec:
+  tls:
+  - hosts:
+    - vault.2hu.net
+    secretName: vault-2hu-net-tls
   rules:
   - host: vault.2hu.net
     http:
