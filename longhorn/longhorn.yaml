@@ -838,7 +838,7 @@ metadata:
   namespace: longhorn-system
 data:
   default-setting.yaml: |-
-    backup-target:
+    backup-target: nfs://youmu.2hu.net:/srv/dev-disk-by-label-F/F/K3SBackup
     backup-target-credential-secret:
     allow-recurring-job-while-volume-detached:
     create-default-disk-labeled-nodes:
@@ -869,7 +869,7 @@ data:
     system-managed-pods-image-pull-policy:
     allow-volume-creation-with-degraded-availability:
     auto-cleanup-system-generated-snapshot:
-    concurrent-automatic-engine-upgrade-per-node-limit:
+    concurrent-automatic-engine-upgrade-per-node-limit: 1
     backing-image-cleanup-wait-interval:
     backing-image-recovery-wait-interval:
     guaranteed-engine-manager-cpu:
