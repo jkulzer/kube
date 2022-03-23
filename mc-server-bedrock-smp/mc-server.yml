@@ -12,6 +12,7 @@ metadata:
   name: minecraft-bedrock
   namespace: minecraft-servers
   labels:
+    instance: minecraft-smp
     role: service-config
     app: bds
 data:
@@ -43,7 +44,7 @@ data:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: bds
+  name: data-bds-0
   namespace: minecraft-servers
 spec:
   accessModes:
@@ -56,6 +57,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
+    instance: minecraft-smp
     app: bds
   name: bds
   namespace: minecraft-servers
@@ -69,6 +71,7 @@ spec:
   template:
     metadata:
       labels:
+        instance: minecraft-smp
         app: bds
     spec:
       containers:
@@ -118,3 +121,4 @@ spec:
     - port: 19132
       protocol: UDP
         # nodePort: 319132
+
