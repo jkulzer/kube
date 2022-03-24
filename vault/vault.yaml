@@ -154,10 +154,10 @@ metadata:
   name: vault-internal
   namespace: vault
   labels:
+    app: vault
     name: vault
     instance: vault
   annotations:
-
 spec:
   clusterIP: None
   publishNotReadyAddresses: true
@@ -488,63 +488,6 @@ spec:
         resources:
           requests:
             storage: 10Gi
----
-# Source: vault/templates/injector-mutating-webhook.yaml
-apiVersion: admissionregistration.k8s.io/v1
-kind: MutatingWebhookConfiguration
-metadata:
-  name: vault-agent-injector-cfg
-  labels:
-    name: vault-agent-injector
-    instance: vault
-webhooks:
-  - name: vault.hashicorp.com
-    sideEffects: None
-    admissionReviewVersions:
-    - "v1beta1"
-    - "v1"
-    clientConfig:
-      service:
-        name: vault-agent-injector-svc
-        namespace: vault
-        path: "/mutate"
-      caBundle: ""
-    rules:
-      - operations: ["CREATE", "UPDATE"]
-        apiGroups: [""]
-        apiVersions: ["v1"]
-        resources: ["pods"]
-    failurePolicy: Ignore
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: issuer
-  namespace: vault
-spec:
-  vault:
-    server: http://vault-internal.vault.svc.cluster.local:8200
-    path: internal-certs/sign/2hu-net
-    auth:
-      kubernetes:
-        mountPath: /v1/auth/kubernetes
-        role: demo
-        secretRef:
-          name: issuer-token-j5g4q
-          key: token
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: vault-2hu-net
-  namespace: vault
-spec:
-  secretName: vault-2hu-net-tls
-  issuerRef:
-    name: issuer
-  commonName: vault.2hu.net
-  dnsNames:
-  - vault.2hu.net
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

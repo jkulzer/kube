@@ -109,6 +109,9 @@ metadata:
   labels:
     app: grafana
 spec:
+  tls:
+  - hosts:
+    - grafana.2hu.net
   rules:
   - host: grafana.2hu.net
     http:

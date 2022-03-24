@@ -121,6 +121,9 @@ metadata:
   labels:
     app: flame
 spec:
+  tls:
+  - hosts:
+    - flame.2hu.net
   rules:
   - host: flame.2hu.net
     http:

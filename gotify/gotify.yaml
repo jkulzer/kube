@@ -94,6 +94,9 @@ metadata:
   labels:
     app: gotify
 spec:
+  tls:
+  - hosts:
+    - push.2hu.net
   rules:
   - host: push.2hu.net
     http:

@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: issuer
+  namespace: kube-system
+  labels:
+    name: issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: issuer
+  namespace: kube-system
+spec:
+  vault:
+    server: http://vault-internal.vault.svc.cluster.local:8200
+    path: internal-certs/sign/2hu-net
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: 2hu-net
+        secretRef:
+          name: issuer-token-kj2gx
+          key: token
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: star-2hu-net
+  namespace: kube-system
+spec:
+  secretName: star-2hu-net-tls
+  issuerRef:
+    name: issuer
+  commonName: '*.2hu.net'
+  dnsNames:
+  - '*.2hu.net'

@@ -143,6 +143,9 @@ metadata:
     flame.pawelmalak/url: https://portainer.2hu.net
     flame.pawelmalak/icon: https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/portainer.svg
 spec:
+  tls:
+  - hosts:
+    - portainer.2hu.net
   rules:
   - host: portainer.2hu.net
     http:

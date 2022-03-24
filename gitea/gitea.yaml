@@ -792,6 +792,9 @@ metadata:
     flame.pawelmalak/url: https://git.2hu.net
     kubernetes.io/ingress.class: nginx
 spec:
+  tls:
+  - hosts:
+    - git.2hu.net
   rules:
     - host: "git.2hu.net"
       http:
