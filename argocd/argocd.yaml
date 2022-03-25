@@ -3887,6 +3887,10 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    flame.pawelmalak/type: application # "app" works too
+    flame.pawelmalak/name: ArgoCD
+    flame.pawelmalak/url: https://argocd.2hu.net
+    flame.pawelmalak/icon: https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/git.svg
 spec:
   tls:
   - hosts:
