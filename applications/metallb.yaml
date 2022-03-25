@@ -1,14 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: diun
+  name: metallb
   namespace: argocd
 spec:
   destination:
-    namespace: diun
+    namespace: metallb-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: diun
-    repoURL: https://git.2hu.net/johannes/kube
-    targetRevision: HEAD
+    chart: metallb
+    repoURL: https://metallb.github.io/metallb
+    targetRevision: 0.0.0
+    helm:
+      releaseName: metallb
+      values: |
+        address-pools:
+          - addresses:
+            - 192.168.69.2 - 192.168.69.32
+            name: default
+            protocol: layer2
