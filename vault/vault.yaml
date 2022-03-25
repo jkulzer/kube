@@ -507,7 +507,6 @@ spec:
   tls:
   - hosts:
     - vault.2hu.net
-    secretName: vault-2hu-net-tls
   rules:
   - host: vault.2hu.net
     http:
