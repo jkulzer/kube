@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: diun
+  name: gotify
   namespace: argocd
 spec:
   destination:
-    namespace: diun
+    namespace: gotify
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: diun
+    path: gotify
     repoURL: https://git.2hu.net/johannes/kube
     targetRevision: HEAD

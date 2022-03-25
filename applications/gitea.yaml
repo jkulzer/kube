@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: diun
+  name: gitea
   namespace: argocd
 spec:
   destination:
-    namespace: diun
+    namespace: gitea
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: diun
+    path: gitea
     repoURL: https://git.2hu.net/johannes/kube
     targetRevision: HEAD

@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: diun
+  name: vault
   namespace: argocd
 spec:
   destination:
-    namespace: diun
+    namespace: vault
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: diun
+    path: vault
     repoURL: https://git.2hu.net/johannes/kube
     targetRevision: HEAD
