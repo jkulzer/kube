@@ -1,0 +1,323 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: authentik
+  labels:
+    app: authentik
+---
+# Source: authentik/templates/rbac.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: authentik
+  namespace: authentik
+---
+# Source: authentik/templates/rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: authentik
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+      - services
+      - configmaps
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - extensions
+      - apps
+    resources:
+      - deployments
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - extensions
+      - networking.k8s.io
+    resources:
+      - ingresses
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - traefik.containo.us
+    resources:
+      - middlewares
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - monitoring.coreos.com
+    resources:
+      - servicemonitors
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - list
+---
+# Source: authentik/templates/rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: authentik
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: authentik
+subjects:
+  - kind: ServiceAccount
+    name: authentik
+    namespace: authentik
+---
+# Source: authentik/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentik
+  labels:
+    app.kubernetes.io/name: authentik
+    app.kubernetes.io/instance: authentik
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9100
+      name: http-metrics
+      protocol: TCP
+      targetPort: http-metrics
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: authentik
+    app.kubernetes.io/instance: authentik
+    app.kubernetes.io/component: "server"
+---
+# Source: authentik/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik-server
+  labels:
+    app.kubernetes.io/name: authentik
+    app.kubernetes.io/instance: authentik
+    app.kubernetes.io/component: "server"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: authentik
+      app.kubernetes.io/instance: authentik
+      app.kubernetes.io/component: "server"
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'authentik'
+        vault.hashicorp.com/agent-inject-secret-authentik-postgrespass: 'kv/authentik'
+        vault.hashicorp.com/agent-inject-template-authentik-postgrespass: |
+          {{- with secret "kv/authentik" -}}
+          {{ .Data.postgrespass }}
+          {{- end -}}
+        vault.hashicorp.com/agent-inject-secret-authentik-secretkey: 'kv/authentik'
+        vault.hashicorp.com/agent-inject-template-authentik-secretkey: |
+          {{- with secret "kv/authentik" -}}
+          {{ .Data.secretkey }}
+          {{- end -}}
+
+      labels:
+        app.kubernetes.io/name: authentik
+        app.kubernetes.io/instance: authentik
+        app.kubernetes.io/component: "server"
+    spec:
+      serviceAccountName: authentik
+      enableServiceLinks: true
+      priorityClassName: 
+      containers:
+        - name: authentik
+          image: "ghcr.io/goauthentik/server:latest"
+          imagePullPolicy: "IfNotPresent"
+          args: ["server"]
+          env:            
+            - name: AUTHENTIK_SECRET_KEY
+              value: "file:///vault/secrets/authentik-secretkey"
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              value: "file:///vault/secrets/authentik-postgrespass"
+            - name: AUTHENTIK_AVATARS
+              value: "gravatar"
+            - name: AUTHENTIK_EMAIL__PORT
+              value: "587"
+            - name: AUTHENTIK_EMAIL__TIMEOUT
+              value: "30"
+            - name: AUTHENTIK_EMAIL__USE_SSL
+              value: "false"
+            - name: AUTHENTIK_EMAIL__USE_TLS
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENABLED
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENVIRONMENT
+              value: "k8s"
+            - name: AUTHENTIK_ERROR_REPORTING__SEND_PII
+              value: "false"
+            - name: AUTHENTIK_GEOIP
+              value: "/geoip/GeoLite2-City.mmdb"
+            - name: AUTHENTIK_LOG_LEVEL
+              value: "info"
+            - name: AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE
+              value: "ghcr.io/goauthentik/%(type)s:%(version)s"
+            - name: AUTHENTIK_POSTGRESQL__HOST
+              value: "authentik-postgresql"
+            - name: AUTHENTIK_POSTGRESQL__NAME
+              value: "authentik"
+            - name: AUTHENTIK_POSTGRESQL__PORT
+              value: "5432"
+            - name: AUTHENTIK_POSTGRESQL__S3_BACKUP__INSECURE_SKIP_VERIFY
+              value: "false"
+            - name: AUTHENTIK_POSTGRESQL__USER
+              value: "authentik"
+            - name: AUTHENTIK_REDIS__HOST
+              value: "authentik-redis-master"
+          volumeMounts:
+            - name: geoip-db
+              mountPath: /geoip
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+            - name: http-metrics
+              containerPort: 9300
+              protocol: TCP
+            - name: https
+              containerPort: 9443
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /-/health/live/
+              port: http
+            initialDelaySeconds: 50
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /-/health/ready/
+              port: http
+            initialDelaySeconds: 50
+            periodSeconds: 10
+      volumes:
+        - name: geoip-db
+          emptyDir: {}
+---
+# Source: authentik/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik-worker
+  labels:
+    app.kubernetes.io/name: authentik
+    app.kubernetes.io/instance: authentik
+    app.kubernetes.io/component: "worker"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: authentik
+      app.kubernetes.io/instance: authentik
+      app.kubernetes.io/component: "worker"
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'authentik'
+        vault.hashicorp.com/agent-inject-secret-authentik-postgrespass: 'kv/authentik'
+        vault.hashicorp.com/agent-inject-template-authentik-postgrespass: |
+          {{- with secret "kv/authentik" -}}
+          {{ .Data.postgrespass}}
+          {{- end -}}
+        vault.hashicorp.com/agent-inject-secret-authentik-secretkey: 'kv/authentik'
+        vault.hashicorp.com/agent-inject-template-authentik-secretkey: |
+          {{- with secret "kv/authentik" -}}
+          {{ .Data.secretkey}}
+          {{- end -}}
+
+      labels:
+        app.kubernetes.io/name: authentik
+        app.kubernetes.io/instance: authentik
+        app.kubernetes.io/component: "worker"
+    spec:
+      serviceAccountName: authentik
+      enableServiceLinks: true
+      priorityClassName: 
+      containers:
+        - name: authentik
+          image: "ghcr.io/goauthentik/server:latest"
+          imagePullPolicy: "IfNotPresent"
+          args: ["worker"]
+          env:            
+            - name: AUTHENTIK_AVATARS
+              value: "gravatar"
+            - name: AUTHENTIK_EMAIL__PORT
+              value: "587"
+            - name: AUTHENTIK_EMAIL__TIMEOUT
+              value: "30"
+            - name: AUTHENTIK_EMAIL__USE_SSL
+              value: "false"
+            - name: AUTHENTIK_EMAIL__USE_TLS
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENABLED
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENVIRONMENT
+              value: "k8s"
+            - name: AUTHENTIK_ERROR_REPORTING__SEND_PII
+              value: "false"
+            - name: AUTHENTIK_GEOIP
+              value: "/geoip/GeoLite2-City.mmdb"
+            - name: AUTHENTIK_LOG_LEVEL
+              value: "info"
+            - name: AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE
+              value: "ghcr.io/goauthentik/%(type)s:%(version)s"
+            - name: AUTHENTIK_POSTGRESQL__HOST
+              value: "authentik-postgresql"
+            - name: AUTHENTIK_POSTGRESQL__NAME
+              value: "authentik"
+            - name: AUTHENTIK_POSTGRESQL__PORT
+              value: "5432"
+            - name: AUTHENTIK_POSTGRESQL__S3_BACKUP__INSECURE_SKIP_VERIFY
+              value: "false"
+            - name: AUTHENTIK_POSTGRESQL__USER
+              value: "authentik"
+            - name: AUTHENTIK_REDIS__HOST
+              value: "authentik-redis-master"
+            - name: AUTHENTIK_SECRET_KEY
+              value: "file:///vault/secrets/authentik-secretkey"
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              value: "file:///vault/secrets/authentik-postgrespass"
+          volumeMounts:
+            - name: geoip-db
+              mountPath: /geoip
+      volumes:
+        - name: geoip-db
+          emptyDir: {}
