@@ -1,0 +1,42 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: internal-issuer
+  namespace: kube-system
+  labels:
+    name: internal-issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: internal-issuer
+  namespace: kube-system
+spec:
+  vault:
+    server: http://vault-internal.vault.svc.cluster.local:8200
+    path: internal-certs/sign/kube-internal
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: kube-internal
+        secretRef:
+          name: internal-issuer-token-z5h4l
+          key: token
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kube-internal
+  namespace: kube-system
+spec:
+  secretName: kube-internal
+  issuerRef:
+    name: internal-issuer
+  commonName: 'cluster.local'
+  dnsNames:
+  - 'kubernetes'
+  - 'kubernetes.default'
+  - 'kubernetes.default.svc'
+  - 'kubernetes.default.svc.cluster'
+  - 'kubernetes.default.svc.cluster.local'
