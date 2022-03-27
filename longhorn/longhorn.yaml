@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: longhorn-system
+  namespace: longhorn-system
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -838,17 +839,17 @@ metadata:
   namespace: longhorn-system
 data:
   default-setting.yaml: |-
-    backup-target: nfs://youmu.2hu.net:/srv/dev-disk-by-label-F/F/K3SBackup
+    backup-target:
     backup-target-credential-secret:
     allow-recurring-job-while-volume-detached:
     create-default-disk-labeled-nodes:
     default-data-path:
     replica-soft-anti-affinity:
     replica-auto-balance:
-    storage-over-provisioning-percentage:
-    storage-minimal-available-percentage:
+    storage-over-provisioning-percentage: 300
+    storage-minimal-available-percentage: 1
     upgrade-checker:
-    default-replica-count:
+    default-replica-count: 1
     default-data-locality:
     default-longhorn-static-storage-class:
     backupstore-poll-interval:
@@ -867,9 +868,9 @@ data:
     concurrent-replica-rebuild-per-node-limit:
     disable-revision-counter:
     system-managed-pods-image-pull-policy:
-    allow-volume-creation-with-degraded-availability:
+    allow-volume-creation-with-degraded-availability: true
     auto-cleanup-system-generated-snapshot:
-    concurrent-automatic-engine-upgrade-per-node-limit: 1
+    concurrent-automatic-engine-upgrade-per-node-limit:
     backing-image-cleanup-wait-interval:
     backing-image-recovery-wait-interval:
     guaranteed-engine-manager-cpu:
@@ -995,7 +996,7 @@ spec:
         - --engine-image
         - longhornio/longhorn-engine:v1.2.4
         - --instance-manager-image
-        - longhornio/longhorn-instance-manager:v1_20211210
+        - longhornio/longhorn-instance-manager:v1_20220303
         - --share-manager-image
         - longhornio/longhorn-share-manager:v1_20211020
         - --backing-image-manager-image
@@ -1125,14 +1126,26 @@ spec:
       - name: longhorn-ui
         image: longhornio/longhorn-ui:v1.2.4
         imagePullPolicy: IfNotPresent
-        securityContext:
-          runAsUser: 0
+        volumeMounts:
+        - name : nginx-cache
+          mountPath: /var/cache/nginx/
+        - name : nginx-config
+          mountPath: /var/config/nginx/
+        - name: var-run
+          mountPath: /var/run/
         ports:
         - containerPort: 8000
           name: http
         env:
           - name: LONGHORN_MANAGER_IP
             value: "http://longhorn-backend:9500"
+      volumes:
+      - emptyDir: {}
+        name: nginx-cache
+      - emptyDir: {}
+        name: nginx-config
+      - emptyDir: {}
+        name: var-run
 #      imagePullSecrets:
 #        - name: ""
 #      priorityClassName:
@@ -1222,15 +1235,15 @@ spec:
           #- name: CSI_SNAPSHOTTER_IMAGE
           #  value: PREFIX/csi-snapshotter:v3.0.3
           # Manually specify number of CSI attacher replicas
-          #- name: CSI_ATTACHER_REPLICA_COUNT
-          #  value: "3"
+          - name: CSI_ATTACHER_REPLICA_COUNT
+            value: "1"
           # Manually specify number of CSI provisioner replicas
-          #- name: CSI_PROVISIONER_REPLICA_COUNT
-          #  value: "3"
-          #- name: CSI_RESIZER_REPLICA_COUNT
-          #  value: "3"
-          #- name: CSI_SNAPSHOTTER_REPLICA_COUNT
-          #  value: "3"
+          - name: CSI_PROVISIONER_REPLICA_COUNT
+            value: "1"
+          - name: CSI_RESIZER_REPLICA_COUNT
+            value: "1"
+          - name: CSI_SNAPSHOTTER_REPLICA_COUNT
+            value: "1"
 #      imagePullSecrets:
 #        - name: ""
 #      priorityClassName:
