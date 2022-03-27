@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     chart: gitea
-    targetRevision: 1.16.5
+    targetRevision: 5.0.4
     repoURL: https://dl.gitea.io/charts/
     helm:
       releaseName: gitea
