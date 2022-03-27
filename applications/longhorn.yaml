@@ -149,7 +149,7 @@ spec:
         resources: {}
         ingress:
           enabled: true
-          ingressClassName: ~
+          ingressClassName: nginx
           host: longhorn.2hu.net
           tls: true
           annotations:
