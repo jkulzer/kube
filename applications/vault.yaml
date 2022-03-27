@@ -9,6 +9,24 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: vault
-    repoURL: https://git.2hu.net/johannes/kube
-    targetRevision: HEAD
+    chart: vault
+    repoURL: https://helm.releases.hashicorp.com
+    helm:
+      releaseName: vault
+      values: |
+        injector:
+          enabled: true
+        server:
+            ingress:
+              enabled: true
+              ingressClassName: "nginx"
+              annotations:
+                flame.pawelmalak/type: "application" # "app" works too
+                flame.pawelmalak/name: "Vault"
+                flame.pawelmalak/url: "https://vault.2hu.net"
+                flame.pawelmalak/icon: "flame"
+              hosts:
+              - host: &host "vault.2hu.net"
+
+        ui:
+          enabled: true
