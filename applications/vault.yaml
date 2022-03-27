@@ -11,6 +11,7 @@ spec:
   source:
     chart: vault
     repoURL: https://helm.releases.hashicorp.com
+    targetRevision: 0.19.0
     helm:
       releaseName: vault
       values: |
@@ -27,6 +28,5 @@ spec:
                 flame.pawelmalak/icon: "flame"
               hosts:
               - host: &host "vault.2hu.net"
-
         ui:
           enabled: true
