@@ -157,3 +157,14 @@ spec:
             name: portainer
             port:
               name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portainer-port
+spec:
+  type: LoadBalancer
+  selector:
+    app: portainer
+  ports:
+    - port: 9000
