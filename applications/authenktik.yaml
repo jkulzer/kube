@@ -15,10 +15,10 @@ spec:
     helm:
       releaseName: authentik
       values: |
+        annotations:
+          vault.security.banzaicloud.io/vault-addr: https://vault-internal.vault.default.svc.cluster.local:8200
+          vault.security.banzaicloud.io/vault-role: authentik
         authentik:
-          annotations:
-            vault.security.banzaicloud.io/vault-addr: https://vault-internal.vault.default.svc.cluster.local:8200
-            vault.security.banzaicloud.io/vault-role: authentik
 
           secret_key: "env://secretkey"
           error_reporting:
