@@ -1,28 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metallb
+  name: authentik
   namespace: argocd
 spec:
   destination:
-    namespace: metallb-system
+    namespace: authentik
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: metallb
-    targetRevision: 0.12.1
-    repoURL: https://metallb.github.io/metallb
+    chart: 
+    targetRevision: 2022.3.1
+    repoURL: https://charts.goauthentik.io
     helm:
-      releaseName: metallb
+      releaseName: authentik
       values: |
+        env:
+          - name: postgrespass
+            value: "vault:kv/authentik#postgrespass"
         authentik:
           annotations:
-            vault.hashicorp.com/agent-inject: 'true'
-            vault.hashicorp.com/role: 'internal-app'
-            vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
-          secret_key: ""
-          # This sends anonymous usage-data, stack traces on errors and
-          # performance data to sentry.beryju.org, and is fully opt-in
+            vault.security.banzaicloud.io/vault-addr: "https://vault-internal.vault.default.svc.cluster.local:8200"
+            vault.security.banzaicloud.io/vault-role: "authentik"
+
+          secret_key: "env://postgrespass"
           error_reporting:
             enabled: true
           postgresql:
@@ -37,8 +38,14 @@ spec:
               pathType: Prefix
 
         postgresql:
+          podAnnotations: 
+            vault.security.banzaicloud.io/vault-addr: "https://vault-internal.vault.default.svc.cluster.local:8200"
+            vault.security.banzaicloud.io/vault-role: "authentik"
+          extraEnvVars:
+            - name: postgrespass
+              value: "vault:kv/authentik#postgrespass"
           enabled: true
-          postgresqlPassword: "ThisIsNotASecurePassword"
+          postgresqlPassword: "env://postgrespass"
         redis:
           enabled: true
 
