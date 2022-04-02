@@ -116,9 +116,14 @@ spec:
 
           additionalConfigSources: []
 
-          additionalConfigFromEnvs: []
+          additionalConfigFromEnvs:
+                - name: ENV_TO_INI__DATABASE__PASSWD
+                  value: "vault:kv/kube/gitea/#postgrespass"
 
-          podAnnotations: {}
+          podAnnotations:
+            annotations:
+              vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200" 
+              vault.security.banzaicloud.io/vault-role: "gitea" 
 
           livenessProbe:
             tcpSocket:
@@ -149,10 +154,13 @@ spec:
             postgresql:
               postgresqlDatabase: gitea
               postgresqlUsername: gitea
-              postgresqlPassword: gitea
+              postgresqlPassword: test
               servicePort: 5432
           persistence:
             size: 10Gi
+          podAnnotations:
+            annotations:
+              vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200" 
+              vault.security.banzaicloud.io/vault-role: "gitea" 
 
         checkDeprecation: true
-
