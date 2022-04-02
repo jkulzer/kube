@@ -16,7 +16,7 @@ spec:
       releaseName: authentik
       values: |
         env:
-          - name: postgrespass
+          - name: "postgrespass"
             value: "vault:kv/authentik#postgrespass"
         authentik:
           annotations:
