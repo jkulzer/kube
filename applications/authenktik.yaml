@@ -16,8 +16,9 @@ spec:
       releaseName: authentik
       values: |
         env:
-          - name: "postgrespass"
-            value: "vault:kv/authentik#postgrespass"
+        - name: "postgrespass"
+          value: "vault:kv/authentik#postgrespass"
+
         authentik:
           annotations:
             vault.security.banzaicloud.io/vault-addr: "https://vault-internal.vault.default.svc.cluster.local:8200"
