@@ -21,18 +21,6 @@ data:
   PUID: "1000"
   STEAMBETA: "false"
 ---
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: data-satisfactory-0
-  namespace: game-servers
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -70,6 +58,15 @@ spec:
               protocol: UDP
           tty: true
           stdin: true
+  volumeClaimTemplates:
+    - metadata:
+        name: data-satisfactory-0
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        ressources:
+          requests:
+            storage: 25Gi
 ---
 apiVersion: v1
 kind: Service
