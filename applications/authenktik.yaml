@@ -34,9 +34,6 @@ spec:
           enabled: true
           hosts:
           - host: authentik.2hu.net
-            paths:
-            - path: "/"
-              pathType: Prefix
 
         postgresql:
           podAnnotations: 
