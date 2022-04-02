@@ -121,9 +121,8 @@ spec:
                   value: "vault:kv/kube/gitea/#postgrespass"
 
           podAnnotations:
-            annotations:
-              vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200" 
-              vault.security.banzaicloud.io/vault-role: "gitea" 
+            vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200" 
+            vault.security.banzaicloud.io/vault-role: "gitea" 
 
           livenessProbe:
             tcpSocket:
@@ -159,8 +158,7 @@ spec:
           persistence:
             size: 10Gi
           podAnnotations:
-            annotations:
-              vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200" 
-              vault.security.banzaicloud.io/vault-role: "gitea" 
+            vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200" 
+            vault.security.banzaicloud.io/vault-role: "gitea" 
 
         checkDeprecation: true
