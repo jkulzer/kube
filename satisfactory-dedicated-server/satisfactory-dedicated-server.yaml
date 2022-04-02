@@ -60,7 +60,7 @@ spec:
                 name: satisfactory-ds-config
           volumeMounts:
             - mountPath: /config
-              name: data
+              name: data-satisfactory-0
           ports:
             - containerPort: 7777
               protocol: UDP
