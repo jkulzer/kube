@@ -23,16 +23,16 @@ spec:
             vault.security.banzaicloud.io/vault-addr: "https://vault-internal.vault.default.svc.cluster.local:8200"
             vault.security.banzaicloud.io/vault-role: "authentik"
 
-          secret_key: "env://postgrespass"
+          secret_key: "env://secretkey"
           error_reporting:
             enabled: true
           postgresql:
-            password: "ThisIsNotASecurePassword"
+            password: "env://postgrespass"
 
         ingress:
           enabled: true
           hosts:
-          - host: authentik.domain.tld
+          - host: authentik.2hu.net
             paths:
             - path: "/"
               pathType: Prefix
