@@ -15,12 +15,13 @@ spec:
     helm:
       releaseName: gitea
       values: |
-        rbac:
-          create: true
+        global:
+          rbac:
+            create: true
 
-        serviceAccount:
-          create: true
-          name: gitea-secrets
+          serviceAccount:
+            create: true
+            name: gitea-secrets
 
         replicaCount: 1
         clusterDomain: cluster.local
