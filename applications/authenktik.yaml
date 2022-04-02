@@ -26,9 +26,8 @@ spec:
           postgresql:
             password: "env://postgrespass"
 
-
         env:
-        - name: postgrespass
+          name: postgrespass
           value: "vault:kv/authentik#postgrespass"
 
         ingress:
