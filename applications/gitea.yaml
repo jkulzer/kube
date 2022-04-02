@@ -18,6 +18,7 @@ spec:
         global:
           rbac:
             create: true
+
           serviceAccount:
             create: true
             name: gitea-secrets
@@ -96,33 +97,20 @@ spec:
           gpgHome: /data/git/.gnupg
 
         gitea:
-          admin:
-            username: johannes
-            password: changeme
-            email: "kulzer.johannes@tutanota.com"
+          # admin:
+          # username: johannes
+          # password: changeme
+          # email: "kulzer.johannes@tutanota.com"
 
           metrics:
             enabled: false
             serviceMonitor:
               enabled: false
 
-          ldap: []
-
-          oauth: []
-
           config:
             APP_NAME: "GensoNet Git Server"
 
           additionalConfigSources: []
-
-          additionalConfigFromEnvs:
-                - name: ENV_TO_INI__DATABASE__PASSWD
-                  value: "vault:kv/kube/gitea/#postgrespass"
-
-          podAnnotations:
-            vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
-            vault.security.banzaicloud.io/vault-role: "gitea"
-
           livenessProbe:
             tcpSocket:
               port: http
@@ -152,12 +140,8 @@ spec:
             postgresql:
               postgresqlDatabase: gitea
               postgresqlUsername: gitea
-              postgresqlPassword: test
               servicePort: 5432
           persistence:
             size: 10Gi
-          podAnnotations:
-            vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
-            vault.security.banzaicloud.io/vault-role: "gitea"
 
         checkDeprecation: true
