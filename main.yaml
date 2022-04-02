@@ -10,3 +10,7 @@ spec:
   source:
     path: applications
     repoURL: https://git.2hu.net/johannes/kube
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
