@@ -16,10 +16,10 @@ metadata:
     role: service-config
     app: satisfactory-ds
 data:
-  MAXPLAYERS: 3
-  PGID: 1000
-  PUID: 1000
-  STEAMBETA: false
+  MAXPLAYERS: "3"
+  PGID: "1000"
+  PUID: "1000"
+  STEAMBETA: "false"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
