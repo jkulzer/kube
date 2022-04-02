@@ -15,20 +15,21 @@ spec:
     helm:
       releaseName: authentik
       values: |
-        env:
-        - name: "postgrespass"
-          value: "vault:kv/authentik#postgrespass"
-
         authentik:
           annotations:
-            vault.security.banzaicloud.io/vault-addr: "https://vault-internal.vault.default.svc.cluster.local:8200"
-            vault.security.banzaicloud.io/vault-role: "authentik"
+            vault.security.banzaicloud.io/vault-addr: https://vault-internal.vault.default.svc.cluster.local:8200
+            vault.security.banzaicloud.io/vault-role: authentik
 
           secret_key: "env://secretkey"
           error_reporting:
             enabled: true
           postgresql:
             password: "env://postgrespass"
+
+
+        env:
+        - name: postgrespass
+          value: "vault:kv/authentik#postgrespass"
 
         ingress:
           enabled: true
@@ -43,10 +44,9 @@ spec:
             vault.security.banzaicloud.io/vault-addr: "https://vault-internal.vault.default.svc.cluster.local:8200"
             vault.security.banzaicloud.io/vault-role: "authentik"
           extraEnvVars:
-            - name: postgrespass
-              value: "vault:kv/authentik#postgrespass"
+          - name: postgrespass
+            value: "vault:kv/authentik#postgrespass"
           enabled: true
           postgresqlPassword: "env://postgrespass"
         redis:
           enabled: true
-
