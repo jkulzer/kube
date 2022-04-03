@@ -76,10 +76,10 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
+* [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
+* [K3S](https://k3s.io/)
+* [Gitea](https://docs.gitea.io/en-us/)
+* [Hashicorp Vault](https://vaultproject.io/)
 * [Svelte](https://svelte.dev/)
 * [Laravel](https://laravel.com)
 * [Bootstrap](https://getbootstrap.com)
