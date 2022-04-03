@@ -23,7 +23,7 @@ spec:
         mountPath: /v1/auth/kubernetes
         role: 2hu-net
         secretRef:
-          name: issuer-token-rvz99
+          name: issuer-token-8642n
           key: token
 ---
 apiVersion: cert-manager.io/v1
