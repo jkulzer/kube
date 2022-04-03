@@ -9,6 +9,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ingress-nginx
-    repoURL: https://git.2hu.net/johannes/kube
-    targetRevision: HEAD
+    chart: ingress-nginx
+    targetRevision: 4.0.19
+    repoURL: https://kubernetes.github.io/ingress-nginx
+    helm:
+      releaseName: ingress-nginx
+      values: |
+        controller:
+          extraArgs:
+            default-ssl-certificate: "ingress-nginx/star-2hu-net-tls"
