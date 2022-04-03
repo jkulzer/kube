@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: issuer
-  namespace: kube-system
+  namespace: ingress-nginx
   labels:
     name: issuer
 ---
@@ -11,7 +11,9 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: issuer
-  namespace: kube-system
+  namespace: ingress-nginx
+  labels:
+    name: issuer
 spec:
   vault:
     server: http://vault-internal.vault.svc.cluster.local:8200
@@ -21,14 +23,13 @@ spec:
         mountPath: /v1/auth/kubernetes
         role: 2hu-net
         secretRef:
-          name: issuer-token-kj2gx
+          name: issuer-token-rvz99
           key: token
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: star-2hu-net
-  namespace: kube-system
 spec:
   secretName: star-2hu-net-tls
   issuerRef:
