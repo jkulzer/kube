@@ -37,7 +37,7 @@ spec:
 
         postgresql:
           podAnnotations: 
-            vault.security.banzaicloud.io/vault-addr: "https://vault-internal.vault.default.svc.cluster.local:8200"
+            vault.security.banzaicloud.io/vault-addr: https://vault-internal.vault.default.svc.cluster.local:8200
             vault.security.banzaicloud.io/vault-role: "authentik"
           extraEnvVars:
           - name: postgrespass
