@@ -105,18 +105,18 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Create a Kubernetes cluster with [https://k3s.io](https://k3s.io)
 2. Clone the repo
    ```sh
-   git clone https://github.com/jkulzer/kube.git
+   git clone https://git.2hu.net/jkulzer/kube.git
    ```
-3. Install NPM packages
+3. cd into kube/argocd
    ```sh
-   npm install
+   cd kube/argocd
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Apply ArgoCD
+   ```sh
+   kubectl apply -f argocd.yaml -n argocd
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -138,9 +138,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 - [x] GitOps with ArgoCD
-- [ ] Automatic Certificate Management
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Automatic Certificate Management
+- [ ] SSO with Authentik
+- [ ] NFS
+    - [ ] Jellyfin
+- [ ] Longhorn Backups
+    - [ ] MinIO on Youmu
 
 See the [open issues](https://github.com/jkulzer/kube/issues) for a full list of proposed features (and known issues).
 
