@@ -1,10 +1,8 @@
----
 apiVersion: v1
 kind: Namespace
 metadata:
   name: authentik
-  labels:
-    app: authentik
+  namespace: authentik
 ---
 # Source: authentik/templates/rbac.yaml
 apiVersion: v1
@@ -137,19 +135,9 @@ spec:
   template:
     metadata:
       annotations:
-        vault.hashicorp.com/agent-inject: 'true'
-        vault.hashicorp.com/role: 'authentik'
-        vault.hashicorp.com/agent-inject-secret-authentik-postgrespass: 'kv/authentik'
-        vault.hashicorp.com/agent-inject-template-authentik-postgrespass: |
-          {{- with secret "kv/authentik" -}}
-          {{ .Data.postgrespass }}
-          {{- end -}}
-        vault.hashicorp.com/agent-inject-secret-authentik-secretkey: 'kv/authentik'
-        vault.hashicorp.com/agent-inject-template-authentik-secretkey: |
-          {{- with secret "kv/authentik" -}}
-          {{ .Data.secretkey }}
-          {{- end -}}
-
+        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-role: "authentik"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
         app.kubernetes.io/name: authentik
         app.kubernetes.io/instance: authentik
@@ -164,10 +152,6 @@ spec:
           imagePullPolicy: "IfNotPresent"
           args: ["server"]
           env:            
-            - name: AUTHENTIK_SECRET_KEY
-              value: "file:///vault/secrets/authentik-secretkey"
-            - name: AUTHENTIK_POSTGRESQL__PASSWORD
-              value: "file:///vault/secrets/authentik-postgrespass"
             - name: AUTHENTIK_AVATARS
               value: "gravatar"
             - name: AUTHENTIK_EMAIL__PORT
@@ -202,6 +186,10 @@ spec:
               value: "authentik"
             - name: AUTHENTIK_REDIS__HOST
               value: "authentik-redis-master"
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              value: "vault:kv/kube/authentik/#postgrespass"
+            - name: AUTHENTIK_SECRET_KEY
+              value: "vault:kv/kube/authentik/#secret"
           volumeMounts:
             - name: geoip-db
               mountPath: /geoip
@@ -250,19 +238,9 @@ spec:
   template:
     metadata:
       annotations:
-        vault.hashicorp.com/agent-inject: 'true'
-        vault.hashicorp.com/role: 'authentik'
-        vault.hashicorp.com/agent-inject-secret-authentik-postgrespass: 'kv/authentik'
-        vault.hashicorp.com/agent-inject-template-authentik-postgrespass: |
-          {{- with secret "kv/authentik" -}}
-          {{ .Data.postgrespass}}
-          {{- end -}}
-        vault.hashicorp.com/agent-inject-secret-authentik-secretkey: 'kv/authentik'
-        vault.hashicorp.com/agent-inject-template-authentik-secretkey: |
-          {{- with secret "kv/authentik" -}}
-          {{ .Data.secretkey}}
-          {{- end -}}
-
+        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-role: "authentik"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
         app.kubernetes.io/name: authentik
         app.kubernetes.io/instance: authentik
@@ -311,10 +289,10 @@ spec:
               value: "authentik"
             - name: AUTHENTIK_REDIS__HOST
               value: "authentik-redis-master"
-            - name: AUTHENTIK_SECRET_KEY
-              value: "file:///vault/secrets/authentik-secretkey"
             - name: AUTHENTIK_POSTGRESQL__PASSWORD
-              value: "file:///vault/secrets/authentik-postgrespass"
+              value: "vault:kv/kube/authentik/#postgrespass"
+            - name: AUTHENTIK_SECRET_KEY
+              value: "vault:kv/kube/authentik/#secret"
           volumeMounts:
             - name: geoip-db
               mountPath: /geoip
