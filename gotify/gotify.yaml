@@ -56,9 +56,6 @@ spec:
               protocol: TCP
       restartPolicy: Always
       volumes:
-        # Set up a data directory for gotify
-        # For production usage, you should consider using PV/PVC instead(or simply using storage like NAS)
-        # For more details, please see https://kubernetes.io/docs/concepts/storage/volumes/
         - name: "data"
           persistentVolumeClaim:
             claimName: gotify
@@ -87,18 +84,14 @@ metadata:
   namespace: gotify
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    flame.pawelmalak/type: application # "app" works too
-    flame.pawelmalak/name: Gotify
-    flame.pawelmalak/url: https://push.2hu.net
-    flame.pawelmalak/icon: email-fast
   labels:
     app: gotify
 spec:
   tls:
   - hosts:
-    - push.2hu.net
+    - push.kube.home
   rules:
-  - host: push.2hu.net
+  - host: push.kube.home
     http:
       paths:
       - path: /
