@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path: applications
-    repoURL: https://git.2hu.net/johannes/kube
+    repoURL: https://git.kube.home/johannes/kube
   syncPolicy:
     automated:
       prune: true

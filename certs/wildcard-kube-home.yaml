@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: issuer
-  namespace: ingress-nginx
+  namespace: kube-system
   labels:
     name: issuer
 ---
@@ -11,29 +11,29 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: issuer
-  namespace: ingress-nginx
+  namespace: kube-system
   labels:
     name: issuer
 spec:
   vault:
     server: http://vault-internal.vault.svc.cluster.local:8200
-    path: internal-certs/sign/2hu-net
+    path: internal-certs/sign/kube-home
     auth:
       kubernetes:
         mountPath: /v1/auth/kubernetes
-        role: 2hu-net
+        role: kube-home
         secretRef:
-          name: issuer-token-8642n
+          name: issuer-token-hn9nf
           key: token
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: star-2hu-net
+  name: star-kube-home
 spec:
-  secretName: star-2hu-net-tls
+  secretName: star-kube-home-tls
   issuerRef:
     name: issuer
-  commonName: '*.2hu.net'
+  commonName: '*.kube.home'
   dnsNames:
-  - '*.2hu.net'
+  - '*.kube.home'

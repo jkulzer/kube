@@ -10,14 +10,14 @@ metadata:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: grafana-pvc
+  name: grafana
   namespace: grafana
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -72,11 +72,11 @@ spec:
               memory: 750Mi
           volumeMounts:
             - mountPath: /var/lib/grafana
-              name: grafana-pv
+              name: grafana-data
       volumes:
-        - name: grafana-pv
+        - name: grafana-data
           persistentVolumeClaim:
-            claimName: grafana-pvc
+            claimName: grafana
 ---
 apiVersion: v1
 kind: Service
@@ -102,18 +102,14 @@ metadata:
   namespace: grafana
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    flame.pawelmalak/type: application # "app" works too
-    flame.pawelmalak/name: Grafana
-    flame.pawelmalak/url: https://grafana.2hu.net
-    flame.pawelmalak/icon: https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/grafana.svg
   labels:
     app: grafana
 spec:
   tls:
   - hosts:
-    - grafana.2hu.net
+    - grafana.kube.home
   rules:
-  - host: grafana.2hu.net
+  - host: grafana.kube.home
     http:
       paths:
       - path: /
