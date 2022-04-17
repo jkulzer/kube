@@ -150,13 +150,8 @@ spec:
         ingress:
           enabled: true
           ingressClassName: nginx
-          host: longhorn.2hu.net
+          host: longhorn.kube.home
           tls: true
-          annotations:
-            flame.pawelmalak/type: application # "app" works too
-            flame.pawelmalak/name: Longhorn
-            flame.pawelmalak/url: https://longhorn.2hu.net
-            flame.pawelmalak/icon: harddisk
           secrets:
 
         enablePSP: true
