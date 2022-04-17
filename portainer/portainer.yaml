@@ -138,16 +138,12 @@ metadata:
   namespace: portainer
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    flame.pawelmalak/type: application # "app" works too
-    flame.pawelmalak/name: Portainer
-    flame.pawelmalak/url: https://portainer.2hu.net
-    flame.pawelmalak/icon: https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/portainer.svg
 spec:
   tls:
   - hosts:
-    - portainer.2hu.net
+    - portainer.kube.home
   rules:
-  - host: portainer.2hu.net
+  - host: portainer.kube.home
     http:
       paths:
       - path: /
@@ -157,14 +153,3 @@ spec:
             name: portainer
             port:
               name: http
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: portainer-port
-spec:
-  type: LoadBalancer
-  selector:
-    app: portainer
-  ports:
-    - port: 9000
