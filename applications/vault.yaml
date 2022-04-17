@@ -21,12 +21,7 @@ spec:
             ingress:
               enabled: true
               ingressClassName: "nginx"
-              annotations:
-                flame.pawelmalak/type: "application" # "app" works too
-                flame.pawelmalak/name: "Vault"
-                flame.pawelmalak/url: "https://vault.2hu.net"
-                flame.pawelmalak/icon: "flame"
               hosts:
-              - host: &host "vault.2hu.net"
+              - host: &host "vault.kube.home"
         ui:
           enabled: true
