@@ -68,8 +68,6 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `twitter_handle`, `linkedin_username`, `project_title`, `project_description`
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -80,10 +78,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [K3S](https://k3s.io/)
 * [Gitea](https://docs.gitea.io/en-us/)
 * [Hashicorp Vault](https://vaultproject.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [Authentik](https://goauthentik.io/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -143,7 +138,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] NFS
     - [x] Jellyfin
 - [ ] Longhorn Backups
-    - [ ] MinIO on Youmu
+    - [ ] MinIO on RasPi
 - [ ] Monitoring
 - [ ] Paperless-NGX
 
