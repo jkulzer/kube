@@ -139,11 +139,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [x] GitOps with ArgoCD
 - [x] Automatic Certificate Management
-- [ ] SSO with Authentik
-- [ ] NFS
-    - [ ] Jellyfin
+- [x] SSO with Authentik
+- [x] NFS
+    - [x] Jellyfin
 - [ ] Longhorn Backups
     - [ ] MinIO on Youmu
+- [ ] Monitoring
+- [ ] Paperless-NGX
 
 See the [open issues](https://github.com/jkulzer/kube/issues) for a full list of proposed features (and known issues).
 
@@ -161,8 +163,6 @@ Distributed under the GNU GPL v3 License. See `LICENSE.txt` for more information
 
 <!-- CONTACT -->
 ## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - kulzer.johannes@tutanota.com
 
 Project Link: [https://github.com/jkulzer/kube](https://github.com/jkulzer/kube)
 
