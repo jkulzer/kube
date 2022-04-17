@@ -10,5 +10,5 @@ spec:
   project: default
   source:
     path: diun
-    repoURL: https://git.2hu.net/johannes/kube
+    repoURL: https://git.kube.home/johannes/kube
     targetRevision: HEAD
