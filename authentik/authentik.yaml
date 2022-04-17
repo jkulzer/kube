@@ -451,10 +451,10 @@ metadata:
   namespace: authentik
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    flame.pawelmalak/type: application # "app" works too
-    flame.pawelmalak/name: Flame
-    flame.pawelmalak/url: https://authentik.kube.home
-    flame.pawelmalak/icon: https://raw.githubusercontent.com/goauthentik/authentik/master/website/static/img/icon.svg
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "account-lock"
+    hajimari.io/appName: "Authentik"
+    hajimari.io/url: "https://authentik.kube.home"
   labels:
     app: flame
 spec:

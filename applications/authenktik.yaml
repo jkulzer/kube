@@ -9,40 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: authentik
-    targetRevision: 2022.3.1
-    repoURL: https://charts.goauthentik.io
-    helm:
-      releaseName: authentik
-      values: |
-        annotations:
-          vault.security.banzaicloud.io/vault-addr: https://vault-internal.vault.default.svc.cluster.local:8200
-          vault.security.banzaicloud.io/vault-role: authentik
-        authentik:
-
-          secret_key: "env://secretkey"
-          error_reporting:
-            enabled: true
-          postgresql:
-            password: "env://postgrespass"
-
-        env:
-          name: postgrespass
-          value: "vault:kv/authentik#postgrespass"
-
-        ingress:
-          enabled: true
-          hosts:
-          - host: authentik.2hu.net
-
-        postgresql:
-          podAnnotations: 
-            vault.security.banzaicloud.io/vault-addr: https://vault-internal.vault.default.svc.cluster.local:8200
-            vault.security.banzaicloud.io/vault-role: "authentik"
-          extraEnvVars:
-          - name: postgrespass
-            value: "vault:kv/authentik#postgrespass"
-          enabled: true
-          postgresqlPassword: "env://postgrespass"
-        redis:
-          enabled: true
+    path: authentik
+    repoURL: https://git.kube.home/johannes/kube
+    targetRevision: HEAD
