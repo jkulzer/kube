@@ -7,6 +7,15 @@ metadata:
   labels:
     name: issuer
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: issuer-token
+  namespace: kube-system
+  annotations:
+    kubernetes.io/service-account.name: issuer
+type: kubernetes.io/service-account-token
+---
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
@@ -23,7 +32,7 @@ spec:
         mountPath: /v1/auth/kubernetes
         role: kube-home
         secretRef:
-          name: issuer-token-hn9nf
+          name: issuer-token
           key: token
 ---
 apiVersion: cert-manager.io/v1
