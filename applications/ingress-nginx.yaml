@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: ingress-nginx
+    namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -17,4 +17,4 @@ spec:
       values: |
         controller:
           extraArgs:
-            default-ssl-certificate: "ingress-nginx/star-2hu-net-tls"
+            default-ssl-certificate: "kube-system/star-kube-home-tls"
