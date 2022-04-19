@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dg-smp
+  namespace: argocd
+spec:
+  destination:
+    namespace: game-servers
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: mc-server-java
+    repoURL: https://git.kube.home/johannes/kube
+    targetRevision: HEAD

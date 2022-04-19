@@ -1,0 +1,169 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mc-dg-smp-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi # must match size from earlier
+---
+# Source: minecraft/templates/minecraft-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft
+  labels:
+    app: minecraft
+  annotations:
+    {}
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.69.11
+  ports:
+  - name: minecraft
+    port: 25565
+    targetPort: minecraft
+    protocol: TCP
+  selector:
+    app: minecraft
+---
+# Source: minecraft/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+  labels:
+    app: minecraft
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 2000
+      containers:
+      - name: minecraft
+        image: "itzg/minecraft-server:latest"
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        readinessProbe:
+          tcpSocket:
+            port: 25565
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          failureThreshold: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        livenessProbe:
+          tcpSocket:
+            port: 25565
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          failureThreshold: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        env:
+        - name: EULA
+          value: "TRUE"
+        - name: TYPE
+          value: "PAPER"
+        - name: PAPER_DOWNLOAD_URL
+          value: 
+        - name: VERSION
+          value: "LATEST"
+        - name: DIFFICULTY
+          value: "medium"
+        - name: WHITELIST
+          value: ""
+        - name: OPS
+          value: "AUVA_001"
+        - name: ICON
+          value: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/minecraft.svg"
+        - name: MAX_PLAYERS
+          value: "5"
+        - name: MAX_WORLD_SIZE
+          value: "100000"
+        - name: ALLOW_NETHER
+          value: "true"
+        - name: ANNOUNCE_PLAYER_ACHIEVEMENTS
+          value: "true"
+        - name: ENABLE_COMMAND_BLOCK
+          value: "true"
+        - name: FORCE_GAMEMODE
+          value: "false"
+        - name: GENERATE_STRUCTURES
+          value: "true"
+        - name: HARDCORE
+          value: "false"
+        - name: MAX_BUILD_HEIGHT
+          value: "256"
+        - name: MAX_TICK_TIME
+          value: "60000"
+        - name: SPAWN_ANIMALS
+          value: "true"
+        - name: SPAWN_MONSTERS
+          value: "true"
+        - name: SPAWN_NPCS
+          value: "true"
+        - name: SPAWN_PROTECTION
+          value: "16"
+        - name: VIEW_DISTANCE
+          value: "10"
+        - name: SEED
+          value: ""
+        - name: MODE
+          value: "survival"
+        - name: MOTD
+          value: "Welcome to DG-SMP on Kubernetes!"
+        - name: PVP
+          value: "true"
+        - name: LEVEL_TYPE
+          value: "DEFAULT"
+        - name: GENERATOR_SETTINGS
+          value: ""
+        - name: LEVEL
+          value: "world"
+        - name: ONLINE_MODE
+          value: "true"
+        - name: MEMORY
+          value: "1024M"
+        - name: JVM_OPTS
+          value: ""
+        - name: JVM_XX_OPTS
+          value: ""
+        - name: OVERRIDE_SERVER_PROPERTIES
+          value: "false"
+        - name: ENABLE_RCON
+          value: "false"
+
+        ports:
+        - name: minecraft
+          containerPort: 25565
+          protocol: TCP
+        volumeMounts:
+        - name: datadir
+          mountPath: /data
+        - name: backupdir
+          mountPath: /backups
+          readOnly: true
+      volumes:
+      - name: datadir
+        persistentVolumeClaim:
+          claimName: mc-dg-smp-data
+      - name: backupdir
+        emptyDir: {}
+

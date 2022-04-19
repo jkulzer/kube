@@ -13,7 +13,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://git.2hu.net/johannes/kube">
+  <a href="https://git.kube.home/johannes/kube">
     <img src="images/kubernetes.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -72,13 +72,14 @@
 
 
 
-### Built With
+### Uses:
 
 * [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
 * [K3S](https://k3s.io/)
 * [Gitea](https://docs.gitea.io/en-us/)
 * [Hashicorp Vault](https://vaultproject.io/)
 * [Authentik](https://goauthentik.io/)
+* [itzg Minecraft Server](https://https://github.com/itzg/docker-minecraft-server/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -103,7 +104,7 @@ This is an example of how to list things you need to use the software and how to
 1. Create a Kubernetes cluster with [https://k3s.io](https://k3s.io)
 2. Clone the repo
    ```sh
-   git clone https://git.2hu.net/jkulzer/kube.git
+   git clone https://git.kube.home/jkulzer/kube.git
    ```
 3. cd into kube/argocd
    ```sh
