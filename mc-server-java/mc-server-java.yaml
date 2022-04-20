@@ -10,7 +10,6 @@ spec:
     requests:
       storage: 10Gi # must match size from earlier
 ---
-# Source: minecraft/templates/minecraft-svc.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -19,7 +18,7 @@ metadata:
     app: minecraft
 spec:
   type: LoadBalancer
-    # loadBalancerIP: 192.168.69.11
+  loadBalancerIP: 192.168.69.11
   ports:
   - name: minecraft
     port: 25565
@@ -27,7 +26,6 @@ spec:
   selector:
     app: minecraft
 ---
-# Source: minecraft/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -87,7 +85,7 @@ spec:
         - name: WHITELIST
           value: ""
         - name: OPS
-          value: "AUVA_001"
+          value: "AUVA_001,Bogi165"
         - name: ICON
           value: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/minecraft.svg"
         - name: MAX_PLAYERS
