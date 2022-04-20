@@ -74,6 +74,11 @@
 
 ### Uses:
 
+<tr>
+<td><img width="32" src="https://cncf-branding.netlify.app/img/projects/k3s/icon/color/k3s-icon-color.svg"></td>
+<td><a href="https://k3s.io">K3s</a></td>
+<td>Lightweight Kubernetes distribution with ARM support</td>
+</tr>
 * [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
 * [K3S](https://k3s.io/)
 * [Gitea](https://docs.gitea.io/en-us/)

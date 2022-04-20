@@ -1,4 +1,9 @@
-path "kv/authentik"                        { capabilities = ["read", "list"] }
-path "kv/data/authentik"    { capabilities = ["read", "list"] }
-path "kv/authentik/secretkey"    { capabilities = ["read", "list"] }
-path "kv/authentik/postgrespass"    { capabilities = ["read", "list"] }
+path "kv/kube/authentik"                        { capabilities = ["read", "list"] }
+path "kv/data/kube/authentik"    { capabilities = ["read", "list"] }
+path "kv/data/kube/authentik/postgrespass/*"    { capabilities = ["read", "list"] }
+path "kv/kube/authentik/postgrespass"    { capabilities = ["read", "list"] }
+path "kv/kube/authentik/*"    { capabilities = ["read", "list"] }
+path "kv/kube/authentik/postgrespass/*"    { capabilities = ["read", "list"] }
+path "kv/kube/authentik/redispass/*"    { capabilities = ["read", "list"] }
+path "kv/data/kube/authentik/redispass/*"    { capabilities = ["read", "list"] }
+
