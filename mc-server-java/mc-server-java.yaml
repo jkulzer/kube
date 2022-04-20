@@ -17,15 +17,12 @@ metadata:
   name: minecraft
   labels:
     app: minecraft
-  annotations:
-    {}
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.69.11
+    # loadBalancerIP: 192.168.69.11
   ports:
   - name: minecraft
     port: 25565
-    targetPort: minecraft
     protocol: TCP
   selector:
     app: minecraft
@@ -166,4 +163,3 @@ spec:
           claimName: mc-dg-smp-data
       - name: backupdir
         emptyDir: {}
-
