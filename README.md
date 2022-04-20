@@ -95,13 +95,23 @@
 		<td><a href="https://cert-manager.io">cert-manager</a></td>
 		<td>Certificate Management for Kubernetes</td>
 	</tr>
+	<tr>
+		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
+		<td><a href="https://longhorn.io/">Longhorn</a></td>
+		<td>Uncomplicated distributed storage</td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://simpleicons.org/icons/vault.svg"></td>
+		<td><a href="https://vaultproject.io/">Hashicorp Vault</a></td>
+		<td>Easy secrets management with Service Account Auth</td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://goauthentik.io/img/icon_top_brand_colour.svg"></td>
+		<td><a href="https://goauthentik.io/">Authentik</a></td>
+		<td>All-in-one Auth system</td>
+	</tr>
 </table>
 
-* [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
-* [K3S](https://k3s.io/)
-* [Gitea](https://docs.gitea.io/en-us/)
-* [Hashicorp Vault](https://vaultproject.io/)
-* [Authentik](https://goauthentik.io/)
 * [itzg Minecraft Server](https://https://github.com/itzg/docker-minecraft-server/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
