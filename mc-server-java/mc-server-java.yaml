@@ -54,7 +54,7 @@ spec:
         resources:
           requests:
             cpu: 500m
-            memory: 512Mi
+            memory: 2048Mi
         readinessProbe:
           tcpSocket:
             port: 25565
@@ -123,7 +123,7 @@ spec:
         - name: MODE
           value: "survival"
         - name: MOTD
-          value: "Welcome to DG-SMP on Kubernetes!"
+          value: "When the impostor is SUS"
         - name: PVP
           value: "true"
         - name: LEVEL_TYPE
@@ -135,7 +135,7 @@ spec:
         - name: ONLINE_MODE
           value: "true"
         - name: MEMORY
-          value: "1024M"
+          value: "2048M"
         - name: JVM_OPTS
           value: ""
         - name: JVM_XX_OPTS
