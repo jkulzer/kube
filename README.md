@@ -78,21 +78,18 @@
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/kubernetes/icon/color/kubernetes-icon-color.svg"></td>
 		<td><a href="https://kubernetes.io">Kubernetes</a></td>
-		<td>Kubernetes.</td>
+		<td>Just Kubernetes</td>
 	</tr>
-
 	<tr>
 		<td><img width="64" src="https://k3s.io/images/logo-k3s.svg"></td>
 		<td><a href="https://k3s.io">K3s</a></td>
 		<td>Lightweight Kubernetes distribution with ARM support</td>
 	</tr>
-
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"></td>
 		<td><a href="https://argoproj.github.io/argo-cd">ArgoCD</a></td>
 		<td>Automatically deploys manifests from git repo</td>
 	</tr>
-
 	<tr>
 		<td><img width="64" src="https://github.com/jetstack/cert-manager/raw/master/logo/logo.png"></td>
 		<td><a href="https://cert-manager.io">cert-manager</a></td>
