@@ -81,7 +81,7 @@
 		<td>Just Kubernetes</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://k3s.io/images/logo-k3s.svg"></td>
+		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/k3s/icon/color/k3s-icon-color.svg"></td>
 		<td><a href="https://k3s.io">K3s</a></td>
 		<td>Lightweight Kubernetes distribution with ARM support</td>
 	</tr>
