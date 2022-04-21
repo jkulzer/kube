@@ -85,7 +85,7 @@ spec:
         - name: WHITELIST
           value: ""
         - name: OPS
-          value: "AUVA_001,Bogi165"
+          value: "AUVA_001,Bogi165,Wosemo"
         - name: ICON
           value: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/minecraft.svg"
         - name: MAX_PLAYERS
