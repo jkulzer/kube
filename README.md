@@ -14,7 +14,7 @@
 <br />
 <div align="center">
   <a href="https://git.kube.home/johannes/kube">
-    <img src="images/kubernetes.svg" alt="Logo" width="80" height="80">
+    <img src="https://cncf-branding.netlify.app/img/projects/kubernetes/icon/color/kubernetes-icon-color.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Kubernetes Cluster</h3>
