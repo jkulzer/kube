@@ -1,0 +1,222 @@
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    certSource: none
+  ingress:
+    hosts:
+      core: harbor.kube.home
+      notary: notary.kube.home
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      kubernetes.io/ingress.class: "nginx"
+  clusterIP:
+    name: harbor
+    ports:
+      httpPort: 80
+      httpsPort: 443
+      notaryPort: 4443
+externalURL: https://harbor.kube.home
+
+internalTLS:
+  enabled: false
+  certSource: "auto"
+
+ipFamily:
+  ipv6:
+    enabled: false
+  ipv4:
+    enabled: true
+
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    registry:
+      accessMode: ReadWriteOnce
+      size: 30Gi
+    chartmuseum:
+      accessMode: ReadWriteOnce
+      size: 10Gi
+    jobservice:
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    database:
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    redis:
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    trivy:
+      accessMode: ReadWriteOnce
+      size: 5Gi
+  imageChartStorage:
+    disableredirect: false
+    type: filesystem
+    filesystem:
+      rootdirectory: /storage
+
+imagePullPolicy: Always
+
+updateStrategy:
+  type: RollingUpdate
+
+# If service exposed via "ingress", the Nginx will not be used
+nginx:
+  image:
+    repository: goharbor/nginx-photon
+    tag: dev
+
+portal:
+  image:
+    repository: goharbor/harbor-portal
+    tag: dev
+
+core:
+  image:
+    repository: goharbor/harbor-core
+    tag: dev
+
+jobservice:
+  image:
+    repository: goharbor/harbor-jobservice
+    tag: dev
+  replicas: 1
+  maxJobWorkers: 10
+  jobLoggers:
+    - file
+  loggerSweeperDuration: 14 #days
+
+registry:
+  registry:
+    image:
+      repository: goharbor/registry-photon
+      tag: dev
+  controller:
+    image:
+      repository: goharbor/harbor-registryctl
+      tag: dev
+  relativeurls: false
+  middleware:
+    enabled: false
+    type: cloudFront
+  upload_purging:
+    enabled: true
+    age: 168h
+    interval: 24h
+    dryrun: false
+
+chartmuseum:
+  enabled: true
+  absoluteUrl: false
+  image:
+    repository: goharbor/chartmuseum-photon
+    tag: dev
+  replicas: 1
+
+trivy:
+  enabled: true
+  image:
+    repository: goharbor/trivy-adapter-photon
+    tag: dev
+  replicas: 1
+  debugMode: false
+  vulnType: "os,library"
+  severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+  ignoreUnfixed: false
+  insecure: false
+  skipUpdate: false
+  offlineScan: false
+  timeout: 5m0s
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+
+notary:
+  enabled: true
+  server:
+    image:
+      repository: goharbor/notary-server-photon
+      tag: dev
+    replicas: 1
+  signer:
+    image:
+      repository: goharbor/notary-signer-photon
+      tag: dev
+    replicas: 1
+
+database:
+  # if external database is used, set "type" to "external"
+  # and fill the connection informations in "external" section
+  type: internal
+  internal:
+    image:
+      repository: goharbor/harbor-db
+      tag: dev
+
+redis:
+  # if external Redis is used, set "type" to "external"
+  # and fill the connection informations in "external" section
+  type: internal
+  internal:
+    image:
+      repository: goharbor/redis-photon
+      tag: dev
+
+exporter:
+  replicas: 1
+  revisionHistoryLimit: 10
+  image:
+    repository: goharbor/harbor-exporter
+    tag: dev
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  cacheDuration: 23
+  cacheCleanInterval: 14400
+  ## The priority class to run the pod as
+  priorityClassName:
+
+metrics:
+  enabled: false
+  core:
+    path: /metrics
+    port: 8001
+  registry:
+    path: /metrics
+    port: 8001
+  jobservice:
+    path: /metrics
+    port: 8001
+  exporter:
+    path: /metrics
+    port: 8001
+  ## Create prometheus serviceMonitor to scrape harbor metrics.
+  ## This requires the monitoring.coreos.com/v1 CRD. Please see
+  ## https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/getting-started.md
+  ##
+  serviceMonitor:
+    enabled: false
+    additionalLabels: {}
+    # Scrape interval. If not set, the Prometheus default scrape interval is used.
+    interval: ""
+    # Metric relabel configs to apply to samples before ingestion.
+    metricRelabelings: []
+      # - action: keep
+      #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
+      #   sourceLabels: [__name__]
+    # Relabel configs to apply to samples before ingestion.
+    relabelings: []
+      # - sourceLabels: [__meta_kubernetes_pod_node_name]
+      #   separator: ;
+      #   regex: ^(.*)$
+      #   targetLabel: nodename
+      #   replacement: $1
+      #   action: replace
