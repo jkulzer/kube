@@ -14,7 +14,7 @@ metadata:
     app: authentik-postgres
 spec:
   accessModes:
-    - "ReadWriteOnce"
+    - "ReadWriteMany"
   resources:
     requests:
       storage: "5Gi"
@@ -217,9 +217,6 @@ spec:
               value: "vault:kv/kube/authentik/#secret"
             - name: AUTHENTIK_REDIS__PORT
               value: "6379"
-          volumeMounts:
-            - name: geoip-db
-              mountPath: /geoip
           ports:
             - name: http
               containerPort: 9000
@@ -242,9 +239,6 @@ spec:
               port: http
             initialDelaySeconds: 50
             periodSeconds: 10
-      volumes:
-        - name: geoip-db
-          emptyDir: {}
 ---
 # Source: authentik/templates/deployment.yaml
 apiVersion: apps/v1
