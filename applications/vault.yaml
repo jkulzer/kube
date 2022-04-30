@@ -17,7 +17,11 @@ spec:
       values: |
         injector:
           enabled: true
+          extraLabels: 
+            kuma.io/sidecar-injection: enabled
         server:
+            extraLabels:
+              kuma.io/sidecar-injection: enabled
             ingress:
               enabled: true
               ingressClassName: "nginx"
