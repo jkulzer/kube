@@ -18,3 +18,4 @@ spec:
         controller:
           extraArgs:
             default-ssl-certificate: "kube-system/star-kube-home-tls"
+            enable-ssl-passthrough: true
