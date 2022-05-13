@@ -10,5 +10,5 @@ spec:
   project: default
   source:
     path: certs
-    repoURL: https://git.kube.home/johannes/kube
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
     targetRevision: HEAD
