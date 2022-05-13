@@ -123,7 +123,7 @@ spec:
         - name: MODE
           value: "survival"
         - name: MOTD
-          value: "When the impostor is SUS"
+          value: "Welcome to DG-SMP on Kubernetes"
         - name: PVP
           value: "true"
         - name: LEVEL_TYPE
