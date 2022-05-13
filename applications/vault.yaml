@@ -16,7 +16,7 @@ spec:
       releaseName: vault
       values: |
         injector:
-          enabled: true
+          enabled: false
         server:
             ingress:
               enabled: true
