@@ -21,7 +21,7 @@ metadata:
     app: drone-server
 spec:
   accessModes:
-    - "ReadWriteOnce"
+    - "ReadWriteMany"
   resources:
     requests:
       storage: "10Gi"
