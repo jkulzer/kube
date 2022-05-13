@@ -9,6 +9,10 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: cert-manager
-    repoURL: https://git.kube.home/johannes/kube
-    targetRevision: HEAD
+    chart: cert-manager
+    targetRevision: 1.8.0
+    repoURL: https://charts.jetstack.io
+    helm:
+      releaseName: cert-manager
+      values: |
+        installCRDs: true
