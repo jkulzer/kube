@@ -13,7 +13,7 @@ spec:
     targetRevision: 4.6.0
     repoURL: https://argoproj.github.io/argo-helm
     helm:
-      releaseName: gitea
+      releaseName: argocd
       values: |
         global:
           image:
