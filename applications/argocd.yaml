@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: argocd
+    chart: argo-cd
     targetRevision: 4.6.0
     repoURL: https://argoproj.github.io/argo-helm
     helm:
