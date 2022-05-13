@@ -172,8 +172,15 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] NFS
     - [x] Jellyfin
 - [ ] Longhorn Backups
-    - [ ] MinIO on RasPi
+    - [ ] NFS on RasPi
 - [ ] Monitoring
+    - [ ] Secure Prometheus
+    - [ ] Create nice dashboard
+    - [ ] Configure alerting via Discord
+- [ ] Cilium
+    - [ ] Wireguard with Cilium
+    - [ ] Observability with Cilium
+- [ ] Renovate
 - [ ] Paperless-NGX
 
 See the [open issues](https://github.com/jkulzer/kube/issues) for a full list of proposed features (and known issues).
@@ -212,5 +219,3 @@ Project Link: [https://github.com/jkulzer/kube](https://github.com/jkulzer/kube)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/jkulzer/kube.svg?style=for-the-badge
-[product-screenshot]: images/screenshot.png
