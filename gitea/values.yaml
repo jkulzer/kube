@@ -1,0 +1,43 @@
+replicaCount: 1
+image: 
+  repository: gitea/gitea
+  tag: "latest"
+  pullPolicy: Always
+  rootless: true # only possible when running 1.14 or later
+
+persistence:
+  enabled: true
+  size: 20Gi
+  accessModes:
+    - ReadWriteOnce
+
+gitea:
+  admin:
+    username: johannes
+    password: changeme
+    email: "kulzer.johannes@tutanota.com"
+  metrics:
+    enabled: true
+    serviceMonitor: 
+      enabled: false
+  config:
+    APP_NAME: "KubeNet Git Server"
+
+memcached:
+  enabled: true
+  service:
+    port: 11211
+
+postgresql:
+  enabled: true
+  persistence:
+    size: 10Gi
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+  - host: git.kube.home
+    paths:
+      - path: /
+        pathType: Prefix
