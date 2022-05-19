@@ -110,7 +110,6 @@
 		<td><a href="https://goauthentik.io/">Authentik</a></td>
 		<td>All-in-one Auth system</td>
 	</tr>
-
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/prometheus/icon/color/prometheus-icon-color.svg"></td>
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
