@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lb-demo
+  namespace: default
+spec:
+  replicas: 40
+  selector:
+    matchLabels:
+      app: lb-demo
+  template:
+    metadata:
+      labels:
+        app: lb-demo
+    spec:
+      containers:
+      - env:
+        - name: COW_COLOR
+          value: purple
+        image: bashofmann/rancher-demo:1.0.0
+        name: lb-demo
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-demo
+  namespace: default
+  labels:
+    app: lb-demo
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: lb-demo
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lb-demo
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  labels:
+    app: lb-demo
+spec:
+  tls:
+  - hosts:
+    - lb-demo.kube.home
+  rules:
+  - host: lb-demo.kube.home
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: lb-demo
+            port:
+              name: http
