@@ -172,7 +172,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] NFS
     - [x] Jellyfin
 - [ ] Longhorn Backups
-    - [ ] NFS on RasPi
+    - [x] NFS on RasPi
+    - [ ] Automatic Backups weekly
 - [ ] Monitoring
     - [ ] Secure Prometheus
     - [ ] Create nice dashboard
