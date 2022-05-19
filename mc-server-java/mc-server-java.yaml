@@ -155,9 +155,79 @@ spec:
         - name: backupdir
           mountPath: /backups
           readOnly: true
+        - name: config
+          mountPath: /data/server.properties
+          subPath: server.properties
       volumes:
       - name: datadir
         persistentVolumeClaim:
           claimName: mc-dg-smp-data
       - name: backupdir
         emptyDir: {}
+      - name: config
+        configMap:
+          name: mc-dg-smp-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mc-dg-smp-config
+data:
+  server.properties: |
+    enable-jmx-monitoring=false
+    level-seed=
+    rcon.port=25575
+    enable-command-block=true
+    gamemode=survival
+    enable-query=false
+    generator-settings={}
+    level-name=world
+    motd=When the impostor is SUS
+    query.port=25565
+    texture-pack=
+    pvp=true
+    generate-structures=true
+    difficulty=easy
+    network-compression-threshold=256
+    max-tick-time=60000
+    require-resource-pack=false
+    max-players=5
+    use-native-transport=true
+    online-mode=true
+    enable-status=true
+    allow-flight=false
+    broadcast-rcon-to-ops=true
+    view-distance=10
+    max-build-height=256
+    server-ip=
+    resource-pack-prompt=
+    allow-nether=true
+    server-port=25565
+    enable-rcon=false
+    sync-chunk-writes=true
+    op-permission-level=4
+    prevent-proxy-connections=false
+    hide-online-players=false
+    resource-pack=
+    entity-broadcast-range-percentage=100
+    simulation-distance=10
+    player-idle-timeout=0
+    rcon.password=minecraft
+    force-gamemode=false
+    debug=false
+    rate-limit=0
+    hardcore=false
+    white-list=false
+    broadcast-console-to-ops=true
+    spawn-npcs=true
+    spawn-animals=true
+    snooper-enabled=true
+    function-permission-level=2
+    level-type=default
+    text-filtering-config=
+    spawn-monsters=true
+    enforce-whitelist=false
+    resource-pack-sha1=
+    spawn-protection=16
+    max-world-size=100000
+
