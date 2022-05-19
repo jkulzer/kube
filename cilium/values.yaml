@@ -1,0 +1,31 @@
+  # k8sServiceHost: sakuya.kube.home
+  # k8sServicePort: 6443
+
+kubeProxyReplacement: "strict"
+
+containerRuntime:
+  integration: containerd
+
+encryption:
+  enabled: true
+  type: wireguard
+  wireguard:
+    userspaceFallback: false
+
+
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+
+l7Proxy: false
+
+nodeinit:
+  enabled: true
+  removeCbrBridge: true
+
+nativeRoutingCIDR: 10.42.0.0/16
+
+MACAddressPolicy: none
