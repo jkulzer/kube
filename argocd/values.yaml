@@ -4,7 +4,6 @@ global:
     repository: quay.io/argoproj/argocd
   additionalLabels:
     app: argo-cd
-    istio-injection: enabled
 
 controller:
   metrics:
