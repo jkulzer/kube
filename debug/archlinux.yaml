@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: archlinux
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: archlinux
+  template:
+    metadata:
+      labels:
+        app: archlinux
+    spec:
+      containers:
+        - name: archlinux
+          image: archlinux
+          imagePullPolicy: Always
+          command: ["sh", "-c", "echo test && sleep 10000"]
