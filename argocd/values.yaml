@@ -46,6 +46,8 @@ server:
     ingressClassName: nginx
     hosts:
     - argocd.kube.home
+  config:
+    url: "https://argocd.kube.home"
 
 repoServer:
   metrics:
