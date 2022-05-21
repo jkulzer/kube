@@ -215,8 +215,8 @@ Project Link: [https://github.com/jkulzer/kube](https://github.com/jkulzer/kube)
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
+* [k8s@home](https://k8s-at-home.com/)
+* [khuedoan/homelab](https://github.com/khuedoan/homelab)
 * []()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
