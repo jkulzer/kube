@@ -42,6 +42,7 @@ server:
     enabled: true
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      ingress.kubernetes.io/force-ssl-redirect: "true"
     ingressClassName: nginx
     hosts:
     - argocd.kube.home
