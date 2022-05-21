@@ -1,113 +1,4 @@
-namespaceOverride: "prometheus"
-
-defaultRules:
-  create: true
-  rules:
-    alertmanager: true
-    etcd: true
-    configReloaders: true
-    general: true
-    k8s: true
-    kubeApiserver: true
-    kubeApiserverAvailability: true
-    kubeApiserverSlos: true
-    kubelet: true
-    kubeProxy: true
-    kubePrometheusGeneral: true
-    kubePrometheusNodeRecording: true
-    kubernetesApps: true
-    kubernetesResources: true
-    kubernetesStorage: true
-    kubernetesSystem: true
-    kubeScheduler: true
-    kubeStateMetrics: true
-    network: true
-    node: true
-    nodeExporterAlerting: true
-    nodeExporterRecording: true
-    prometheus: true
-    prometheusOperator: true
-
-  appNamespacesTarget: ".*"
-
-  runbookUrl: "https://runbooks.prometheus-operator.dev/runbooks"
-
-
-global:
-  rbac:
-    create: true
 alertmanager:
-  enabled: true
-  apiVersion: v2
-  serviceAccount:
-    create: true
-  config:
-    global:
-      resolve_timeout: 5m
-    route:
-      group_by: ['job']
-      group_wait: 30s
-      group_interval: 5m
-      repeat_interval: 12h
-      receiver: 'null'
-      routes:
-      - match:
-          alertname: Watchdog
-        receiver: 'null'
-    receivers:
-    - name: 'null'
-    templates:
-    - '/etc/alertmanager/config/*.tmpl'
-  ingress:
-    enabled: true
-    ingressClassName: nginx
-    hosts:
-      - alertmanager.kube.home
-
-  service:
-    port: 9093
-    targetPort: 9093
-    externalTrafficPolicy: Cluster
-    type: ClusterIP
-  serviceMonitor:
-    selfMonitor: true
-    image:
-      repository: quay.io/prometheus/alertmanager
-      tag: latest
-
-    storage:
-      volumeClaimTemplate:
-        spec:
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 5Gi
-
-    externalUrl: https://alertmanager.kube.home
-    routePrefix: /
-
-kubeApiServer:
-  enabled: true
-  tlsConfig:
-    serverName: kubernetes
-    insecureSkipVerify: false
-
-kubelet:
-  enabled: true
-  namespace: kube-system
-kubeControllerManager:
-  enabled: true
-
-coreDns:
-  enabled: true
-
-kubeEtcd:
-  enabled: true
-
-kubeScheduler:
-  enabled: true
-
-kubeProxy:
   enabled: true
 
 kubeStateMetrics:
@@ -115,29 +6,56 @@ kubeStateMetrics:
 
 nodeExporter:
   enabled: true
+  hostNetwork: true
 
-prometheus-node-exporter:
-  namespaceOverride: "prometheus"
+server:
+  enabled: true
+  global:
+    scrape_interval: 1m
+    scrape_timeout: 10s
+    evaluation_interval: 1m
+  retention: "7d"
 
-prometheusOperator:
+pushgateway:
   enabled: true
 
-prometheus:
-  enabled: true
-  ingress:
-    enabled: false
+alertmanagerFiles:
+  alertmanager.yml:
+    global: {}
+      # slack_api_url: ''
 
-  image:
-    repository: quay.io/prometheus/prometheus
-    tag: latest
-  replicas: 1
-  shards: 1
-  storageSpec:
-    volumeClaimTemplate:
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 20Gi
-grafana:
-  enabled: false
+    receivers:
+      - name: default-receiver
+        # slack_configs:
+        #  - channel: '@you'
+        #    send_resolved: true
+
+    route:
+      group_wait: 10s
+      group_interval: 5m
+      receiver: default-receiver
+      repeat_interval: 3h
+
+ruleFiles: {}
+
+extraScrapeConfigs:
+  # - job_name: 'prometheus-blackbox-exporter'
+  #   metrics_path: /probe
+  #   params:
+  #     module: [http_2xx]
+  #   static_configs:
+  #     - targets:
+  #       - https://example.com
+  #   relabel_configs:
+  #     - source_labels: [__address__]
+  #       target_label: __param_target
+  #     - source_labels: [__param_target]
+  #       target_label: instance
+  #     - target_label: __address__
+  #       replacement: prometheus-blackbox-exporter:9115
+
+alertRelabelConfigs:
+  # alert_relabel_configs:
+  # - source_labels: [dc]
+  #   regex: (.+)\d+
+  #   target_label: dc
