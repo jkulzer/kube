@@ -60,9 +60,6 @@ alertmanager:
     - '/etc/alertmanager/config/*.tmpl'
   ingress:
     enabled: true
-
-    # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-    # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     ingressClassName: nginx
     hosts:
       - alertmanager.kube.home
@@ -78,13 +75,13 @@ alertmanager:
       repository: quay.io/prometheus/alertmanager
       tag: latest
 
-    storage: {}
-    volumeClaimTemplate:
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 5Gi
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
 
     externalUrl: https://alertmanager.kube.home
     routePrefix: /
@@ -127,17 +124,12 @@ prometheusOperator:
 
 prometheus:
   enabled: true
-  service:
-    type: ClusterIP
   ingress:
-    enabled: true
-    ingressClassName: nginx
-    hosts:
-      - prometheus.kube.home
+    enabled: false
+
   image:
     repository: quay.io/prometheus/prometheus
     tag: latest
-  externalUrl: "prometheus.kube.home"
   replicas: 1
   shards: 1
   storageSpec:
