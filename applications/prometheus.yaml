@@ -1,7 +1,14 @@
-apiVersion: v2
-name: prometheus
-version: 0.0.0
-dependencies:
-  - name: kube-prometheus-stack
-    version: 35.3.0
-    repository: https://prometheus-community.github.io/helm-charts
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+spec:
+  destination:
+    namespace: prometheus
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: prometheus
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    targetRevision: HEAD
