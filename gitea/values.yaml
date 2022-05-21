@@ -3,9 +3,6 @@ image:
 
 persistence:
   enabled: true
-  size: 20Gi
-  accessModes:
-    - ReadWriteOnce
 
 gitea:
   admin:
@@ -26,8 +23,6 @@ memcached:
 
 postgresql:
   enabled: true
-  persistence:
-    size: 10Gi
 
 ingress:
   enabled: true
