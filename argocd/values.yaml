@@ -34,7 +34,7 @@ redis:
       repository: "bitnami/redis-exporter"
 
 server:
-  extraArgs:
+  extraArgs: 
     - --insecure
   metrics:
     enabled: true
@@ -46,8 +46,6 @@ server:
     ingressClassName: nginx
     hosts:
     - argocd.kube.home
-  config:
-    url: "https://argocd.kube.home"
 
 repoServer:
   metrics:
