@@ -9,10 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: cert-manager
-    targetRevision: 1.8.0
-    repoURL: https://charts.jetstack.io
-    helm:
-      releaseName: cert-manager
-      values: |
-        installCRDs: true
+    path: cert-manager
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    targetRevision: HEAD
