@@ -1,8 +1,4 @@
-replicaCount: 1
 image: 
-  repository: gitea/gitea
-  tag: "latest"
-  pullPolicy: Always
   rootless: true # only possible when running 1.14 or later
 
 persistence:
@@ -19,7 +15,7 @@ gitea:
   metrics:
     enabled: true
     serviceMonitor: 
-      enabled: false
+      enabled: true
   config:
     APP_NAME: "KubeNet Git Server"
 
