@@ -54,7 +54,7 @@ spec:
         resources:
           requests:
             cpu: 500m
-            memory: 2048Mi
+            memory: 4096Mi
         readinessProbe:
           tcpSocket:
             port: 25565
@@ -135,7 +135,7 @@ spec:
         - name: ONLINE_MODE
           value: "true"
         - name: MEMORY
-          value: "2048M"
+          value: "4096M"
         - name: JVM_OPTS
           value: ""
         - name: JVM_XX_OPTS
