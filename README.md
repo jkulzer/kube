@@ -98,16 +98,58 @@
 		<td><img width="128" src="https://argocd.kube.home/api/badge?name=cert-manager"></td>
 	</tr>
 	<tr>
+		<td><img width="64" src="https://cdn.jsdelivr.net/gh/cilium/cilium@master/Documentation/images/logo-solo.svg"></td>
+		<td><a href="https://cilium.io">Cilium</a></td>
+		<td>Container Network interface with encryption and observability</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=cilium"></td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://raw.githubusercontent.com/go-gitea/gitea/main/assets/favicon.svg"></td>
+		<td><a href="https://gitea.io">Gitea</a></td>
+		<td>Lightweight Git server</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=gitea"></td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://github.com/gotify/server/raw/master/ui/public/static/defaultapp.png"></td>
+		<td><a href="https://gotify.net/">Gotify</a></td>
+		<td>Notification Server</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=gotify"></td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://raw.githubusercontent.com/grafana/grafana/main/public/img/grafana_icon.svg"></td>
+		<td><a href="https://grafana.com/">Grafana</a></td>
+		<td>Dashboard that displays metrics from Prometheus</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=grafana"></td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://raw.githubusercontent.com/kubernetes/community/master/icons/svg/resources/unlabeled/ing.svg"></td>
+		<td><a href="https://kubernetes.github.io/ingress-nginx/">NGINX-Ingress</a></td>
+		<td>The ingress controller developed by Kubernetes</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=ingress-nginx"></td>
+	</tr>
+	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
 		<td><a href="https://longhorn.io/">Longhorn</a></td>
 		<td>Uncomplicated distributed storage</td>
 		<td><img width="128" src="https://argocd.kube.home/api/badge?name=longhorn"></td>
 	</tr>
 	<tr>
+		<td><img width="64" src="https://metallb.org/images/logo/metallb-white.png"></td>
+		<td><a href="https://metallb.org/">MetalLB</a></td>
+		<td>A load balancer</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=metallb"></td>
+	</tr>
+	<tr>
 		<td><img width="64" src="https://simpleicons.org/icons/vault.svg"></td>
 		<td><a href="https://vaultproject.io/">Hashicorp Vault</a></td>
 		<td>Easy secrets management with Service Account Auth</td>
-		<td><img width="64" src="https://argocd.kube.home/api/badge?name=vault"></td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=vault"></td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://raw.githubusercontent.com/banzaicloud/bank-vaults/main/docs/images/logo/bank-vaults-logo.svg"></td>
+		<td><a href="https://banzaicloud.com/docs/bank-vaults/mutating-webhook/">Vault Mutating Webhook</a></td>
+		<td>Allows to embed secrets from Vault in ConfigMaps, Environmental Variables etc.</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=vault-secrets-webhook"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/prometheus/icon/color/prometheus-icon-color.svg"></td>
