@@ -4,6 +4,10 @@ metadata:
   name: metallb
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: metallb-system
     server: https://kubernetes.default.svc

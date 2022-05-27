@@ -1,0 +1,3 @@
+controller:
+  extraArgs:
+    default-ssl-certificate: "kube-system/star-kube-home-tls"

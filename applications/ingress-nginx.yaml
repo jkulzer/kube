@@ -4,18 +4,15 @@ metadata:
   name: ingress-nginx
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: ingress-nginx
-    targetRevision: 4.0.19
-    repoURL: https://kubernetes.github.io/ingress-nginx
-    helm:
-      releaseName: ingress-nginx
-      values: |
-        controller:
-          extraArgs:
-            default-ssl-certificate: "kube-system/star-kube-home-tls"
-            enable-ssl-passthrough: true
+    path: ingress-nginx
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    targetRevision: HEAD
