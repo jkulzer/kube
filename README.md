@@ -89,31 +89,31 @@
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"></td>
 		<td><a href="https://argoproj.github.io/argo-cd">ArgoCD</a></td>
 		<td>Automatically deploys manifests from git repo</td>
+		<td><img width="32" src="https://argocd.kube.home/api/badge?name=argocd"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://github.com/jetstack/cert-manager/raw/master/logo/logo.png"></td>
 		<td><a href="https://cert-manager.io">cert-manager</a></td>
 		<td>Certificate Management for Kubernetes</td>
+		<td><img width="32" src="https://argocd.kube.home/api/badge?name=cert-manager"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
 		<td><a href="https://longhorn.io/">Longhorn</a></td>
 		<td>Uncomplicated distributed storage</td>
+		<td><img width="32" src="https://argocd.kube.home/api/badge?name=longhorn"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://simpleicons.org/icons/vault.svg"></td>
 		<td><a href="https://vaultproject.io/">Hashicorp Vault</a></td>
 		<td>Easy secrets management with Service Account Auth</td>
-	</tr>
-	<tr>
-		<td><img width="64" src="https://goauthentik.io/img/icon_top_brand_colour.svg"></td>
-		<td><a href="https://goauthentik.io/">Authentik</a></td>
-		<td>All-in-one Auth system</td>
+		<td><img width="32" src="https://argocd.kube.home/api/badge?name=vault"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/prometheus/icon/color/prometheus-icon-color.svg"></td>
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
 		<td>Monitoring Scraper</td>
+		<td><img width="32" src="https://argocd.kube.home/api/badge?name=prometheus"></td>
 	</tr>
 </table>
 
