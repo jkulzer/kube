@@ -5,6 +5,9 @@ metadata:
   name: netdata
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
   destination:
     namespace: netdata
     server: https://kubernetes.default.svc
