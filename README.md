@@ -76,44 +76,44 @@
 
 <table>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/kubernetes/icon/color/kubernetes-icon-color.svg"></td>
+		<td><img width="128" src="https://cncf-branding.netlify.app/img/projects/kubernetes/icon/color/kubernetes-icon-color.svg"></td>
 		<td><a href="https://kubernetes.io">Kubernetes</a></td>
 		<td>Just Kubernetes</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/k3s/icon/color/k3s-icon-color.svg"></td>
+		<td><img width="128" src="https://cncf-branding.netlify.app/img/projects/k3s/icon/color/k3s-icon-color.svg"></td>
 		<td><a href="https://k3s.io">K3s</a></td>
 		<td>Lightweight Kubernetes distribution with ARM support</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"></td>
+		<td><img width="128" src="https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"></td>
 		<td><a href="https://argoproj.github.io/argo-cd">ArgoCD</a></td>
 		<td>Automatically deploys manifests from git repo</td>
-		<td><img width="64" src="https://argocd.kube.home/api/badge?name=argocd"></td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=argocd"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://github.com/jetstack/cert-manager/raw/master/logo/logo.png"></td>
+		<td><img width="128" src="https://github.com/jetstack/cert-manager/raw/master/logo/logo.png"></td>
 		<td><a href="https://cert-manager.io">cert-manager</a></td>
 		<td>Certificate Management for Kubernetes</td>
-		<td><img width="64" src="https://argocd.kube.home/api/badge?name=cert-manager"></td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=cert-manager"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
+		<td><img width="128" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
 		<td><a href="https://longhorn.io/">Longhorn</a></td>
 		<td>Uncomplicated distributed storage</td>
-		<td><img width="64" src="https://argocd.kube.home/api/badge?name=longhorn"></td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=longhorn"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://simpleicons.org/icons/vault.svg"></td>
+		<td><img width="128" src="https://simpleicons.org/icons/vault.svg"></td>
 		<td><a href="https://vaultproject.io/">Hashicorp Vault</a></td>
 		<td>Easy secrets management with Service Account Auth</td>
-		<td><img width="64" src="https://argocd.kube.home/api/badge?name=vault"></td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=vault"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/prometheus/icon/color/prometheus-icon-color.svg"></td>
+		<td><img width="128" src="https://cncf-branding.netlify.app/img/projects/prometheus/icon/color/prometheus-icon-color.svg"></td>
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
 		<td>Monitoring Scraper</td>
-		<td><img width="64" src="https://argocd.kube.home/api/badge?name=prometheus"></td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=prometheus"></td>
 	</tr>
 </table>
 
