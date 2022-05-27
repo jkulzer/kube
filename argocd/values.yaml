@@ -35,7 +35,7 @@ redis:
 
 server:
   extraArgs:
-    - "--insecure"
+    insecure: ""
   metrics:
     enabled: true
   ingress:
