@@ -9,7 +9,6 @@ encryption:
   wireguard:
     userspaceFallback: true
 
-
 hubble:
   enabled: true
   relay:
@@ -28,6 +27,6 @@ nodeinit:
   enabled: true
   removeCbrBridge: true
 
-nativeRoutingCIDR: 10.42.0.0/16
+ipv4NativeRoutingCIDR: 10.42.0.0/16
 
 MACAddressPolicy: none
