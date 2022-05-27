@@ -1,0 +1,16 @@
+image:
+  repository: netdata/netdata
+  tag: "{{ .Chart.AppVersion }}"
+  pullPolicy: Always
+
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  path: /
+  pathType: Prefix
+  hosts:
+    - netdata.kube.home
+
