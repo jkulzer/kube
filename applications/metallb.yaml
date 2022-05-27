@@ -13,14 +13,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: metallb
-    targetRevision: 0.12.1
-    repoURL: https://metallb.github.io/metallb
-    helm:
-      releaseName: metallb
-      values: |
-        address-pools:
-          - addresses:
-            - 192.168.69.2 - 192.168.69.32
-            name: default
-            protocol: layer2
+    path: metallb
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    targetRevision: HEAD
