@@ -10,6 +10,9 @@ encryption:
     userspaceFallback: true
 
 hubble:
+  tls:
+    auto:
+      method: cronJob
   enabled: true
   relay:
     enabled: true
