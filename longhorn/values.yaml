@@ -19,42 +19,10 @@ persistence:
 
 
 defaultSettings:
-  backupTarget: ~
-  backupTargetCredentialSecret: ~
-  allowRecurringJobWhileVolumeDetached: ~
-  createDefaultDiskLabeledNodes: ~
-  defaultDataPath: ~
-  defaultDataLocality: ~
-  replicaSoftAntiAffinity: ~
-  replicaAutoBalance: ~
-  storageOverProvisioningPercentage: ~
+  backupTarget: nfs://youmu.2hu.net:/srv/dev-disk-by-label-F/F/longhorn-backup/
   storageMinimalAvailablePercentage: 5
-  upgradeChecker: ~
   defaultReplicaCount: 1
-  defaultLonghornStaticStorageClass: ~
-  backupstorePollInterval: ~
-  taintToleration: ~
-  systemManagedComponentsNodeSelector: ~
-  priorityClass: ~
-  autoSalvage: ~
-  autoDeletePodWhenVolumeDetachedUnexpectedly: ~
-  disableSchedulingOnCordonedNode: ~
-  replicaZoneSoftAntiAffinity: ~
-  nodeDownPodDeletionPolicy: ~
-  allowNodeDrainWithLastHealthyReplica: ~
-  mkfsExt4Parameters: ~
-  disableReplicaRebuild: ~
-  replicaReplenishmentWaitInterval: ~
-  concurrentReplicaRebuildPerNodeLimit: ~
-  disableRevisionCounter: ~
-  systemManagedPodsImagePullPolicy: ~
-  allowVolumeCreationWithDegradedAvailability: ~
-  autoCleanupSystemGeneratedSnapshot: ~
   concurrentAutomaticEngineUpgradePerNodeLimit: 1
-  backingImageCleanupWaitInterval: ~
-  backingImageRecoveryWaitInterval: ~
-  guaranteedEngineManagerCPU: ~
-  guaranteedReplicaManagerCPU: ~
 
 ingress:
   enabled: true
