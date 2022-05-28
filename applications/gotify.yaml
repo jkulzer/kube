@@ -4,6 +4,10 @@ metadata:
   name: gotify
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: gotify
     server: https://kubernetes.default.svc
