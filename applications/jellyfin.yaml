@@ -4,6 +4,10 @@ metadata:
   name: jellyfin
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: jellyfin
     server: https://kubernetes.default.svc
