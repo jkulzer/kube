@@ -128,6 +128,12 @@
 		<td><img width="128" src="https://argocd.kube.home/api/badge?name=ingress-nginx"></td>
 	</tr>
 	<tr>
+		<td><img width="64" src="https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-transparent.svg"></td>
+		<td><a href="https://jellyfin.org">Jellyfin</a></td>
+		<td>Selfhosted media server</td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=jellyfin"></td>
+	</tr>
+	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
 		<td><a href="https://longhorn.io/">Longhorn</a></td>
 		<td>Uncomplicated distributed storage</td>
