@@ -4,6 +4,10 @@ metadata:
   name: prometheus
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: prometheus
     server: https://kubernetes.default.svc
