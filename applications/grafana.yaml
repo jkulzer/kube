@@ -4,6 +4,10 @@ metadata:
   name: grafana
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: grafana
     server: https://kubernetes.default.svc
