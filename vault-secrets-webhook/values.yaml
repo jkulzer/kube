@@ -1,0 +1,7 @@
+replicaCount: 2
+
+metrics:
+  enabled: true
+  port: 8443
+  serviceMonitor:
+    enabled: true
