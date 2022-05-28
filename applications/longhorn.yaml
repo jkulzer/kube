@@ -9,6 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd
+    path: longhorn
     repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
     targetRevision: HEAD
