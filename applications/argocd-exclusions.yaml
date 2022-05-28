@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: example-argocd
+  labels:
+    example: resource-exclusions
+spec:
+  resource.exclusions: |
+  - apiGroups:
+    - cilium.io
+    kinds:
+    - CiliumIdentity
+    - CiliumEndpoint
+    clusters:
+    - "*"
