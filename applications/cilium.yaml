@@ -4,6 +4,10 @@ metadata:
   name: cilium
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
