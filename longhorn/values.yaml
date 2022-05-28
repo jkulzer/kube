@@ -1,27 +1,13 @@
-global:
-  cattle:
-    systemDefaultRegistry: ""
-
 persistence:
   defaultClass: true
   defaultFsType: ext4
   defaultClassReplicaCount: 1
   reclaimPolicy: Delete
-  recurringJobSelector:
-    enable: false
-    jobList: []
-  backingImage:
-    enable: false
-    name: ~
-    dataSourceType: ~
-    dataSourceParameters: ~
-    expectedChecksum: ~
-
 
 defaultSettings:
   backupTarget: nfs://youmu.2hu.net:/srv/dev-disk-by-label-F/F/longhorn-backup/
   storageMinimalAvailablePercentage: 5
-  defaultReplicaCount: "1"
+  defaultReplicaCount: 1
   concurrentAutomaticEngineUpgradePerNodeLimit: 1
 
 ingress:
@@ -29,4 +15,3 @@ ingress:
   ingressClassName: nginx
   host: longhorn.kube.home
   tls: true
-  secrets:
