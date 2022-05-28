@@ -21,7 +21,7 @@ persistence:
 defaultSettings:
   backupTarget: nfs://youmu.2hu.net:/srv/dev-disk-by-label-F/F/longhorn-backup/
   storageMinimalAvailablePercentage: 5
-  defaultReplicaCount: 1
+  defaultReplicaCount: "1"
   concurrentAutomaticEngineUpgradePerNodeLimit: 1
 
 ingress:
