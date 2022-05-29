@@ -40,9 +40,7 @@ redis:
       repository: "bitnami/redis-exporter"
 
 server:
-  extraArgs:
-    - --insecure
-    - =true
+  extraArgs: "--insecure"
   metrics:
     enabled: true
     serviceMonitor:
