@@ -1,12 +1,4 @@
-installCRDs: true
-
 prometheus:
   enabled: true
   servicemonitor:
     enabled: true
-
-startupapicheck:
-  enabled: false
-
-webhook:
-  enabled: true
