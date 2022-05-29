@@ -1,7 +1,11 @@
 configInline:
-    address-pools:
-      - addresses:
-        - 192.168.69.2 - 192.168.69.32
-        name: default
-        protocol: layer2
+  address-pools:
+    - addresses:
+      - 192.168.69.2 - 192.168.69.32
+      name: default
+      protocol: layer2
 
+prometheus:
+  namespace: prometheus
+  podMonitor:
+    enabled: true
