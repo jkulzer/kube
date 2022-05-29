@@ -33,3 +33,8 @@ nodeinit:
 ipv4NativeRoutingCIDR: 10.42.0.0/16
 
 MACAddressPolicy: none
+
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
