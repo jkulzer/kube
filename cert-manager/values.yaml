@@ -2,3 +2,5 @@ prometheus:
   enabled: true
   servicemonitor:
     enabled: true
+
+installCRDs: true
