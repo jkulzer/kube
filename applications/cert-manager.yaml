@@ -13,6 +13,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
+    helm:
+      version: v3
     path: cert-manager
     repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
     targetRevision: HEAD
