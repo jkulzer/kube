@@ -7,3 +7,6 @@ prometheus:
 
 startupapicheck:
   enabled: false
+
+webhook:
+  enabled: true
