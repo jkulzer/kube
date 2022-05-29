@@ -8,11 +8,15 @@ global:
 controller:
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
 
 dex:
   enabled: true
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
   image:
     repository: ghcr.io/dexidp/dex
     tag: latest
@@ -30,14 +34,19 @@ redis:
     automountServiceAccountToken: true
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
     image:
       repository: "bitnami/redis-exporter"
 
 server:
   extraArgs:
-    insecure: ""
+    - --insecure
+    - =true
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -47,6 +56,8 @@ server:
 repoServer:
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
 
 applicationSet:
   enabled: false
