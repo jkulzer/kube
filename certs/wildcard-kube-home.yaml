@@ -40,6 +40,8 @@ kind: Certificate
 metadata:
   name: star-kube-home
 spec:
+  duration: 720h # 30d 
+  renewBefore: 168h # 7d
   secretName: star-kube-home-tls
   issuerRef:
     name: issuer
