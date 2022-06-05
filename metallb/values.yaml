@@ -9,3 +9,9 @@ prometheus:
   namespace: prometheus
   podMonitor:
     enabled: true
+
+controller:
+  logLevel: warn
+
+speaker:
+  logLevel: warn
