@@ -29,6 +29,7 @@ l7Proxy: false
 nodeinit:
   enabled: true
   removeCbrBridge: true
+  reconfigureKubelet: true
 
 ipv4NativeRoutingCIDR: 10.42.0.0/16
 
@@ -37,4 +38,7 @@ MACAddressPolicy: none
 prometheus:
   enabled: true
   serviceMonitor:
-    enabled: true
+    enabled: false
+
+ipam:
+  mode: kubernetes
