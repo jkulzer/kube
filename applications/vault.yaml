@@ -9,19 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: vault
-    repoURL: https://helm.releases.hashicorp.com
-    targetRevision: 0.19.0
-    helm:
-      releaseName: vault
-      values: |
-        injector:
-          enabled: false
-        server:
-            ingress:
-              enabled: true
-              ingressClassName: "nginx"
-              hosts:
-              - host: &host "vault.kube.home"
-        ui:
-          enabled: true
+    path: vault
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    targetRevision: HEAD
