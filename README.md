@@ -274,9 +274,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] SSO with Authentik
 - [x] NFS
     - [x] Jellyfin
-- [ ] Longhorn Backups
+- [x] Longhorn Backups
     - [x] NFS on RasPi
-    - [ ] Automatic Backups weekly
+    - [x] Automatic Backups ~~weekly~~ daily
 - [ ] Monitoring
     - [ ] Secure Prometheus
     - [ ] Create nice dashboard
