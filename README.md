@@ -140,7 +140,7 @@
 		<td><img width="128" src="https://argocd.kube.home/api/badge?name=longhorn"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://metallb.org/images/logo/metallb-white.png"></td>
+		<td><img width="64" src="https://github.com/metallb/metallb/raw/main/website/static/images/logo/metallb-blue.png"></td>
 		<td><a href="https://metallb.org/">MetalLB</a></td>
 		<td>A load balancer</td>
 		<td><img width="128" src="https://argocd.kube.home/api/badge?name=metallb"></td>
