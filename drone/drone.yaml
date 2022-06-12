@@ -39,7 +39,7 @@ spec:
   template:
     metadata:
       annotations:
-        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc.cluster.local:8200"
         vault.security.banzaicloud.io/vault-role: "drone"
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
@@ -70,8 +70,6 @@ spec:
               value: "vault:kv/kube/drone/#gitea-client-secret"
             - name: DRONE_RPC_SECRET
               value: "vault:kv/kube/drone/#drone-rpc-secret"
-            - name: DRONE_GITEA_SKIP_VERIFY
-              value: "true"
           ports:
             - name: http
               containerPort: 80
@@ -80,7 +78,7 @@ spec:
       volumes:
       - name: "public-key"
         configMap:
-          name: kube-home-public-key
+          name: wildcard-kube-home-distribution
       - name: "drone-data"
         persistentVolumeClaim:
           claimName: drone-server
