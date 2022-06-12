@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: uptime-kuma
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: uptime-kuma
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: uptime-kuma
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    targetRevision: HEAD
