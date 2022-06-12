@@ -39,13 +39,15 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: star-kube-home
+  namespace: kube-system
 spec:
   duration: 720h0m0s # 30d 
   renewBefore: 96h0m0s # 4d
   secretName: star-kube-home-tls
   secretTemplate:
-    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true" 
-    reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "kube-system,cert-manager"
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true" 
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "cert-manager"
   issuerRef:
     name: issuer
   commonName: '*.kube.home'
