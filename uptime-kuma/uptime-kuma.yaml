@@ -70,7 +70,7 @@ kind: Service
 metadata:
   labels:
     app: uptime-kuma
-  name: uptime-kuma-service
+  name: uptime-kuma
   namespace: uptime-kuma
 spec:
   ports:
@@ -103,7 +103,7 @@ metadata:
         }
   labels:
     app: uptime-kuma
-  name: uptime-kuma-ingress
+  name: uptime-kuma
   namespace: uptime-kuma
 spec:
   rules:
