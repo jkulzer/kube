@@ -59,7 +59,7 @@ spec:
               readOnly: true
           env:
             - name: DRONE_GITEA_SERVER
-              value: https://git.kube.home
+              value: https://gitea-http.gitea.svc.cluster.local:3000
             - name: DRONE_SERVER_HOST
               value: drone.kube.home
             - name: DRONE_SERVER_PROTO
