@@ -5,7 +5,7 @@ metadata:
 spec:
   sources:
   - secret:
-      name: "star-2hu-net-tls"
+      name: "star-kube-home-tls"
       key: "ca.crt"
   target:
     configMap:
