@@ -4,6 +4,8 @@ metadata:
   name: certs
   namespace: argocd
 spec:
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-running.grafana: sync
   syncPolicy:
     automated:
       prune: true
