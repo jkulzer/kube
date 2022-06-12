@@ -1,0 +1,26 @@
+
+app:
+  logLevel: 1
+  metrics:
+    port: 9402
+    service:
+      enabled: true
+      type: ClusterIP
+      # servicemonitor:
+      # enabled: false
+      # prometheusInstance: default
+      # interval: 10s
+      # scrapeTimeout: 5s
+      # labels: {}
+      #
+  trust:
+    namespace: cert-manager
+
+resources:
+  limits:
+    cpu: 100m
+      memory: 128Mi
+  requests:
+    cpu: 100m
+      memory: 128Mi
+
