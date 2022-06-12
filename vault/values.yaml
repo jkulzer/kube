@@ -5,6 +5,6 @@ server:
       enabled: true
       ingressClassName: "nginx"
       hosts:
-      - host: &host "vault.kube.home"
+      - host: "vault.kube.home"
 ui:
   enabled: true
