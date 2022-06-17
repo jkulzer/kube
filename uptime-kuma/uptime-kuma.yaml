@@ -107,7 +107,7 @@ metadata:
   namespace: uptime-kuma
 spec:
   rules:
-  - host: status.kube.home
+  - host: uptime.kube.home
     http:
       paths:
       - backend:
