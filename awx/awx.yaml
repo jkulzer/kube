@@ -1,0 +1,11 @@
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+  namespace: awx
+spec:
+  ingress_type: ingress
+  hostname: awx.kube.home
+  ingress_annotations: |
+    kubernetes.io/ingress.class: "nginx"
