@@ -167,6 +167,17 @@
 
 * [itzg Minecraft Server](https://https://github.com/itzg/docker-minecraft-server/)
 
+Folder Structure
+
+```sh
+📁 cluster      #all cluster-relevant stuff
+├─📁 applications #this is where all application definitions for argo-cd live 
+├─📁 config #here are all Chart.yaml, values.yaml and other deployment files
+├─📄 main.yaml #this file defines the app of apps for argocd (it applies everything in the applications folder)
+├─📄 repository.yaml #this file defines the repo from where this repo gets pulled in argo-cd
+```
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -195,7 +206,7 @@ This is a possible way to get this setup running on your own cluster. It assumes
 
 4. Install Cilium
    ```sh
-   cd kube/cilium/
+   cd kube/cluster/config/cilium/
    ```
 
    ```sh
@@ -314,8 +325,10 @@ Project Link: [https://github.com/jkulzer/kube](https://github.com/jkulzer/kube)
 ## Acknowledgments
 
 * [k8s@home](https://k8s-at-home.com/)
+
+Repos I (knowingly) copied from:
 * [khuedoan/homelab](https://github.com/khuedoan/homelab)
-* []()
+* [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
