@@ -167,16 +167,28 @@
 
 * [itzg Minecraft Server](https://https://github.com/itzg/docker-minecraft-server/)
 
-Folder Structure
+Repo Folder Structure
 
 ```sh
-📁 cluster      #all cluster-relevant stuff
-├─📁 applications #this is where all application definitions for argo-cd live 
-├─📁 config #here are all Chart.yaml, values.yaml and other deployment files
-├─📄 main.yaml #this file defines the app of apps for argocd (it applies everything in the applications folder)
-├─📄 repository.yaml #this file defines the repo from where this repo gets pulled in argo-cd
+📁 cluster            #all cluster-relevant stuff
+├─📁 applications     #this is where all application definitions for argo-cd live 
+├─📁 config           #here are all Chart.yaml, values.yaml and other deployment files
+├─📄 main.yaml        #this file defines the app of apps for argocd (it applies everything in the applications folder)
+└─📄 repository.yaml  #this file defines the repo from where this repo gets pulled in argo-cd
 ```
 
+Example config folder structure
+
+```sh
+📁 config                       #the config directory from above
+| ...
+├─📁 example-helm-application   #the folder of an application that gets deployed with helm and argocd
+├──📄 Chart.yaml                #this file defines the helm chart that the application uses
+├──📄 values.yaml               #this file configures aspects of the application
+├─📁 example-manifest           #the folder of an application that has a manually written manifest
+├──📄 example-manifest.yaml     #this is a manually written manifest for an application which doesn't have a helm chart
+| ...
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
