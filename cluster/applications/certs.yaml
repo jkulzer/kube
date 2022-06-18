@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certs
+  namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-running.grafana: sync
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster/config/certs
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    targetRevision: HEAD

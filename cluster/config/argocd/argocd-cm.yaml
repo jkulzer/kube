@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  statusbadge.enabled: "true"
+  service.grafana: |
+    apiUrl: https://grafana.grafana.svc.cluster.local:3000
+    apiKey: eyJrIjoiVWV1NUM0Z0pwbkxBUWQ2UHduNVV3a1U1akFobk1WQlciLCJuIjoiQXJnb0NEIiwiaWQiOjF9

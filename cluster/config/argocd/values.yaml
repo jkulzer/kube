@@ -1,0 +1,65 @@
+
+global:
+  image:
+    repository: quay.io/argoproj/argocd
+  additionalLabels:
+    app: argo-cd
+
+controller:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+dex:
+  enabled: true
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  image:
+    repository: ghcr.io/dexidp/dex
+    tag: latest
+
+redis:
+  enabled: true
+  image:
+    repository: redis
+    tag: 6.2.6
+  securityContext:
+    runAsNonRoot: false
+  serviceAccount:
+    create: true
+    name: "argocd-redis"
+    automountServiceAccountToken: true
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+    image:
+      repository: "bitnami/redis-exporter"
+
+server:
+  extraArgs: 
+    - --insecure
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+    - argocd.kube.home
+
+repoServer:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+applicationSet:
+  enabled: false
+
+notifications:
+  enabled: false
