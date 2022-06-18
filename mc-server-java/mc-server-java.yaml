@@ -71,6 +71,8 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         env:
+        - name: WHITELIST
+          value: "Bogi165,Wosemo"
         - name: EULA
           value: "TRUE"
         - name: TYPE
@@ -225,7 +227,6 @@ data:
     level-type=default
     text-filtering-config=
     spawn-monsters=true
-    enforce-whitelist=false
     resource-pack-sha1=
     spawn-protection=16
     max-world-size=100000
