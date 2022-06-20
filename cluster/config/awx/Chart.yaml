@@ -1,7 +1,0 @@
-apiVersion: v2
-name: awx-operator
-version: 0.0.0
-dependencies: 
-  - name: awx-operator
-    version: 0.22.0
-    repository: https://ansible.github.io/awx-operator/
