@@ -4,20 +4,20 @@
    ```sh
    kubectl apply -f system-upgrade-controller.yaml
    ```
-2. List all nodes
+
+2. Change the version in the ```upgrade-job.yaml``` file to a valid K3S version (you can find the latest version via the K3S Github repo (https://github.com/k3s-io/k3s/releases)
+
+3. Run the upgrade job for the worker nodes
    ```sh
-   kubectl get nodes
+   kubectl apply -f upgrade-job-worker.yaml
    ```
-3. Label the nodes to upgrade
+4. Shut down the worker nodes
+
+5. Run the upgrade job for the control-plane nodes
    ```sh
-   kubectl label node <node-to-upgrade> k3s-upgrade=true
+   kubectl apply -f upgrade-job-control-plane.yaml
    ```
 
-:warning: The version of the worker nodes should always be lower or equal compared to the master node(s) so upgrade your master nodes first and the worker nodes afterwards
+6. Reboot the control-plane nodes
 
-4. Change the version in the ```upgrade-job.yaml``` file to a valid K3S version (you can find the latest version via the K3S Github repo (https://github.com/k3s-io/k3s/releases)
-
-5. Run the upgrade job
-   ```sh
-   kubectl apply -f upgrade-job.yaml
-   ```
+7. Power on the worker nodes
