@@ -6,7 +6,6 @@ metadata:
   labels:
     app: grafana
     namespace: grafana
-    kuma.io/sidecar-injection: enabled
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -19,6 +18,35 @@ spec:
   resources:
     requests:
       storage: 5Gi
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-config
+  namespace: grafana
+data:
+  grafana.ini: |
+    [server]
+    root_url = https://grafana.kube.home
+    domain = https://grafana.kube.home
+    [auth.generic_oauth]
+    name = Keycloak
+    icon = signin
+    enabled = true
+    client_id = kube-oidc
+    scopes = openid
+    auth_url = https://keycloak.kube.home/realms/kube/protocol/openid-connect/auth
+    token_url = https://keycloak.kube.home/realms/kube/protocol/openid-connect/token
+    api_url = https://keycloak.kube.home/realms/kube/protocol/openid-connect/userinfo
+    allowed_domains = kube.home
+    tls_client_ca = /config/kube-cert/kube-home.crt
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,17 +62,30 @@ spec:
       app: grafana
   template:
     metadata:
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://vault.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-role: "grafana"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
         app: grafana
     spec:
+      serviceAccountName: grafana
       securityContext:
         fsGroup: 472
         supplementalGroups:
           - 0
       containers:
         - name: grafana
-          image: grafana/grafana:latest
+          image: grafana/grafana:9.0.3
           imagePullPolicy: IfNotPresent
+          args:
+            - --config=/config/grafana/grafana.ini
+          env:
+          - name: GRAFANA_CLIENT_SECRET
+            value: "vault:kv/data/kube/keycloak-oidc#client-secret"
+          env:
+          - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+            value: "vault:kv/data/kube/keycloak-oidc#client-secret"
           ports:
             - containerPort: 3000
               name: http
@@ -74,10 +115,20 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana-data
+            - mountPath: /config/grafana
+              name: grafana-config
+            - mountPath: /config/kube-cert
+              name: kube-cert
       volumes:
         - name: grafana-data
           persistentVolumeClaim:
             claimName: grafana
+        - name: grafana-config
+          configMap:
+            name: grafana-config
+        - name: kube-cert
+          configMap:
+            name: wildcard-kube-home-distribution
 ---
 apiVersion: v1
 kind: Service

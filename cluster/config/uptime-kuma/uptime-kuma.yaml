@@ -87,6 +87,10 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+    nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+    nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
+    nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
     nginx.ingress.kubernetes.io/server-snippets: |
       location / {
         proxy_set_header Upgrade $http_upgrade;
@@ -100,7 +104,7 @@ metadata:
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header   Upgrade $http_upgrade;
         proxy_cache_bypass $http_upgrade;
-        }
+      }
   labels:
     app: uptime-kuma
   name: uptime-kuma

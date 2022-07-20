@@ -52,8 +52,8 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            cpu: 500m
-            memory: 4096Mi
+            cpu: 1000m
+            memory: 8192Mi
         readinessProbe:
           tcpSocket:
             port: 25565
@@ -74,9 +74,7 @@ spec:
         - name: EULA
           value: "TRUE"
         - name: TYPE
-          value: "PAPER"
-        - name: PAPER_DOWNLOAD_URL
-          value: 
+          value: "PURPUR"
         - name: VERSION
           value: "LATEST"
         - name: DIFFICULTY
@@ -132,7 +130,7 @@ spec:
         - name: ONLINE_MODE
           value: "true"
         - name: MEMORY
-          value: "4096M"
+          value: "8192M"
         - name: JVM_OPTS
           value: ""
         - name: JVM_XX_OPTS
@@ -142,7 +140,11 @@ spec:
         - name: ENABLE_RCON
           value: "false"
         - name: WHITELIST
-          value: "AUVA_001,Bogi165,Wosemo"
+          value: "AUVA_001,Bogi165,Wosemo,MaggiMagManEben,zomamigo,honnesfrstzapf"
+          # - name: PACKWIZ_URL
+          # value: "http://gitea-http.gitea.svc.cluster.local:3000/johannes/minecraft-server/raw/branch/master/modpacks/smp/pack.toml"
+          # - name: SPIGET_RESOURCES
+          # value: "9089,81534"
         ports:
         - name: minecraft
           containerPort: 25565

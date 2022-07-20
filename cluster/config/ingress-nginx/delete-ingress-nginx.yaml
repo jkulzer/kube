@@ -1,0 +1,4 @@
+#!/bin/bash
+
+helm template ingress-nginx ingress-nginx/ingress-nginx --include-crds -n kube-system --values values.yaml \
+    | kubectl delete -n kube-system -f -
