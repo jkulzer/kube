@@ -4,6 +4,10 @@ metadata:
   name: dg-smp
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   destination:
     namespace: game-servers
     server: https://kubernetes.default.svc
