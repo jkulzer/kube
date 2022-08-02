@@ -1,5 +1,18 @@
 alertmanager:
   enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - alertmanager.kube.home
+    annotations:
+      hajimari.io/enable: true
+      hajimari.io/icon: bell-ring
+      hajimari.io/appName: AlertManager
+      hajimari.io/group: Monitoring
+      nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+      nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
+      nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
 
 kubeStateMetrics:
   enabled: true
@@ -15,6 +28,19 @@ server:
     scrape_timeout: 10s
     evaluation_interval: 1m
   retention: "7d"
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - prometheus.kube.home
+    annotations:
+      hajimari.io/enable: true
+      hajimari.io/icon: chart-bar
+      hajimari.io/appName: Prometheus
+      hajimari.io/group: Monitoring
+      nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+      nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
+      nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
 
 pushgateway:
   enabled: true
