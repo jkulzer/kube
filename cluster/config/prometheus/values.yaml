@@ -6,10 +6,6 @@ alertmanager:
     hosts:
       - alertmanager.kube.home
     annotations:
-      hajimari.io/enable: "true"
-      hajimari.io/icon: "bell-ring"
-      hajimari.io/appName: "AlertManager"
-      hajimari.io/group: "Monitoring"
       nginx.ingress.kubernetes.io/auth-response-headers: "Authorization"
       nginx.ingress.kubernetes.io/auth-signin: "https://oauth.kube.home/oauth2/start?rd=https://$host$uri"
       nginx.ingress.kubernetes.io/auth-url: "https://oauth.kube.home/oauth2/auth"
@@ -34,10 +30,6 @@ server:
     hosts:
       - prometheus.kube.home
     annotations:
-      hajimari.io/enable: "true"
-      hajimari.io/icon: chart-bar
-      hajimari.io/appName: Prometheus
-      hajimari.io/group: Monitoring
       nginx.ingress.kubernetes.io/auth-response-headers: Authorization
       nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
       nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
