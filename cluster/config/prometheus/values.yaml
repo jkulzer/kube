@@ -90,8 +90,7 @@ serverFiles:
               labels:
                 severity: warning
               annotations:
-                description: Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
-                   times within the last hour
-                summary: Pod is restarting frequently
-              {{ end }}
+                description: |
+                  "Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
+                  {{ end }}"
 
