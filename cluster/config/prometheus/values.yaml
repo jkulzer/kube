@@ -78,19 +78,3 @@ alertRelabelConfigs:
   #   regex: (.+)\d+
   #   target_label: dc
   #
-
-serverFiles:
-  alerting_rules.yml:
-    groups:
-      - name: Crashing
-        rules:
-          - alert: KubernetesJobFailed
-            expr: kube_job_status_failed > 0
-            for: 0m
-            labels:
-              severity: warning
-            annotations:
-              summary: Kubernetes Job failed (instance {{ $labels.instance }})
-              description: "Job {{$labels.namespace}}/{{$labels.exported_job}} failed to complete\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-
