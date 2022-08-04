@@ -84,10 +84,13 @@ serverFiles:
     groups:
       - name: Crashing
         rules:
-          - alert: PodFrequentlyRestarting
-            expr: increase(kube_pod_container_status_restarts_total[1h]) > 5
-            for: 10m
+          - alert: KubernetesJobFailed
+            expr: kube_job_status_failed > 0
+            for: 0m
             labels:
               severity: warning
-            message: Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
+            annotations:
+              summary: Kubernetes Job failed (instance {{ $labels.instance }})
+              description: "Job {{$labels.namespace}}/{{$labels.exported_job}} failed to complete\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
 
