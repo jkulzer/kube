@@ -89,8 +89,5 @@ serverFiles:
               for: 10m
               labels:
                 severity: warning
-              annotations:
-                description: |
-                  "Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
-                  {{ end }}"
+              message: Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
 
