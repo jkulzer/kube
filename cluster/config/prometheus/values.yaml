@@ -77,3 +77,21 @@ alertRelabelConfigs:
   # - source_labels: [dc]
   #   regex: (.+)\d+
   #   target_label: dc
+  #
+
+serverFiles:
+  alerting_rules.yml:
+    groups:
+      - name: Crashing
+        rules:
+          - alert: PodFrequentlyRestarting
+              expr: increase(kube_pod_container_status_restarts_total[1h]) > 5
+              for: 10m
+              labels:
+                severity: warning
+              annotations:
+                description: Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
+                   times within the last hour
+                summary: Pod is restarting frequently
+              {{ end }}
+
