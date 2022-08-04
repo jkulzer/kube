@@ -85,9 +85,9 @@ serverFiles:
       - name: Crashing
         rules:
           - alert: PodFrequentlyRestarting
-              expr: increase(kube_pod_container_status_restarts_total[1h]) > 5
-              for: 10m
-              labels:
-                severity: warning
-              message: Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
+            expr: increase(kube_pod_container_status_restarts_total[1h]) > 5
+            for: 10m
+            labels:
+              severity: warning
+            message: Pod {{`{{$labels.namespace}}`}}/{{`{{$labels.pod}}`}} was restarted {{`{{$value}}`}}
 
