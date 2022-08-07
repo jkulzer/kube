@@ -29,3 +29,21 @@ server:
       nginx.ingress.kubernetes.io/auth-response-headers: Authorization
       nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
       nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
+
+      # alertmanagerFiles:
+      # alertmanager.yml:
+      # global:
+
+    serverFiles:
+      alerting_rules.yml:
+        groups:
+          - name: Instances
+            rules:
+              - alert: InstanceDown
+                expr: up == 0
+                for 5m
+                labels:
+                  severity: page
+                annotations:
+                  description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
+                  summary: 'Instance {{ $labels.instance }} down'
