@@ -6,7 +6,9 @@ metadata:
 spec:
   syncPolicy:
     syncOptions:
+      - ApplyOutOfSyncOnly=true
       - Replace=true
+      - PruneLast=true
     automated:
       selfHeal: true
   destination:
