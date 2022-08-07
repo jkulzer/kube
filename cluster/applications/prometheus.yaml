@@ -8,7 +8,6 @@ spec:
     syncOptions:
       - Replace=true
     automated:
-      prune: true
       selfHeal: true
   destination:
     namespace: prometheus
