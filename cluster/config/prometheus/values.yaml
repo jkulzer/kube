@@ -62,6 +62,6 @@ configmapReload:
     enabled: true
     extraConfigmapMounts:
       - name: prometheus-rules
-        mountPath: /etc/config/rules
+        mountPath: /etc/config/prometheus-alerting-rules
         configMap: prometheus-rules
         readOnly: true
