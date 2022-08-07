@@ -1,3 +1,5 @@
+namespaceOverride: prometheus
+
 alertmanager:
   enabled: true
   ingress:
@@ -17,13 +19,10 @@ nodeExporter:
   enabled: true
   hostNetwork: true
 
-server:
+prometheus:
   enabled: true
-  global:
-    scrape_interval: 1m
-    scrape_timeout: 10s
-    evaluation_interval: 1m
   retention: "7d"
+  retentionSize: "5G"
   ingress:
     enabled: true
     ingressClassName: "nginx"
@@ -34,57 +33,5 @@ server:
       nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
       nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
 
-pushgateway:
-  enabled: true
-
-alertmanagerFiles:
-  alertmanager.yml:
-    global: {}
-      # slack_api_url: ''
-
-    receivers:
-      - name: default-receiver
-        # slack_configs:
-        #  - channel: '@you'
-        #    send_resolved: true
-
-    route:
-      group_wait: 10s
-      group_interval: 5m
-      receiver: default-receiver
-      repeat_interval: 3h
-
-ruleFiles:
-  groups:
-  - alert: PrometheusNotConnectedToAlertmanager
-    expr: prometheus_notifications_alertmanagers_discovered < 1
-    for: 0m
-    labels:
-      severity: critical
-    annotations:
-      summary: Prometheus not connected to alertmanager (instance {{ $labels.instance }})
-      description: "Prometheus cannot connect the alertmanager\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-
-extraScrapeConfigs:
-  # - job_name: 'prometheus-blackbox-exporter'
-  #   metrics_path: /probe
-  #   params:
-  #     module: [http_2xx]
-  #   static_configs:
-  #     - targets:
-  #       - https://example.com
-  #   relabel_configs:
-  #     - source_labels: [__address__]
-  #       target_label: __param_target
-  #     - source_labels: [__param_target]
-  #       target_label: instance
-  #     - target_label: __address__
-  #       replacement: prometheus-blackbox-exporter:9115
-
-alertRelabelConfigs:
-  # alert_relabel_configs:
-  # - source_labels: [dc]
-  #   regex: (.+)\d+
-  #   target_label: dc
-  #
+grafana:
+  enabled: false
