@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
 spec:
   syncPolicy:
+    syncOptions:
+      - Replace=true
     automated:
       prune: true
       selfHeal: true
