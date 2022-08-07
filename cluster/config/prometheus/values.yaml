@@ -1,3 +1,5 @@
+namespaceOverride: prometheus
+
 alertmanager:
   enabled: true
   ingress:
@@ -17,9 +19,10 @@ nodeExporter:
   enabled: true
   hostNetwork: true
 
-server:
+prometheus:
   enabled: true
   retention: "7d"
+  retentionSize: "5G"
   ingress:
     enabled: true
     ingressClassName: "nginx"
@@ -30,38 +33,6 @@ server:
       nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
       nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
 
-serverFiles:
-  alerting_rules.yml:
-    groups:
-      - name: Instances
-        rules:
-          - alert: InstanceDown
-            expr: up == 0
-            for: 5m
-            labels:
-              severity: page
-            annotations:
-              description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
-              summary: 'Instance {{ $labels.instance }} down'
+grafana:
+  enabled: false
 
-ruleFiles:
-  groups:
-    - name: Instances
-      rules:
-        - alert: InstanceDown
-          expr: up == 0
-          for: 5m
-          labels:
-            severity: page
-          annotations:
-            description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
-            summary: 'Instance {{ $labels.instance }} down'
-
-configmapReload:
-  prometheus:
-    enabled: true
-    extraConfigmapMounts:
-      - name: prometheus-rules
-        mountPath: /etc/config/prometheus-alerting-rules
-        configMap: prometheus-rules
-        readOnly: true
