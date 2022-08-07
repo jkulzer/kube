@@ -1,5 +1,3 @@
-namespaceOverride: prometheus
-
 alertmanager:
   enabled: true
   ingress:
@@ -19,10 +17,9 @@ nodeExporter:
   enabled: true
   hostNetwork: true
 
-prometheus:
+server:
   enabled: true
   retention: "7d"
-  retentionSize: "5G"
   ingress:
     enabled: true
     ingressClassName: "nginx"
@@ -32,6 +29,3 @@ prometheus:
       nginx.ingress.kubernetes.io/auth-response-headers: Authorization
       nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
       nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
-
-grafana:
-  enabled: false
