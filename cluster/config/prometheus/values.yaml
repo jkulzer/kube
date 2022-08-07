@@ -2,51 +2,63 @@ namespaceOverride: prometheus
 
 alertmanager:
   enabled: true
+  config:
+    global:
+      resolve_timeout: 5m
+    inhibit_rules:
+      - source_matchers:
+          - 'severity = critical'
+        target_matchers:
+          - 'severity =~ warning|info'
+        equal:
+          - 'namespace'
+          - 'alertname'
+      - source_matchers:
+          - 'severity = warning'
+        target_matchers:
+          - 'severity = info'
+        equal:
+          - 'namespace'
+          - 'alertname'
+      - source_matchers:
+          - 'alertname = InfoInhibitor'
+        target_matchers:
+          - 'severity = info'
+        equal:
+          - 'namespace'
+  route:
+    group_by: ['namespace']
+    group_wait: 30s
+    group_interval: 5m
+    repeat_interval: 12h
+    receiver: 'null'
+    routes:
+    - receiver: 'null'
+      matchers:
+        - alertname =~ "InfoInhibitor|Watchdog"
+  receivers:
+  - name: 'null'
+  templates:
+  - '/etc/alertmanager/config/*.tmpl'
+    route:
+      group_by: ['alertname']
+      group_wait: 20s
+      group_interval: 5m
+      repeat_interval: 3h
+      receiver: discord_webhook
+    receivers:
+    - name: 'discord_webhook'
+      webhook_configs:
+      - url: 'http://discord-webhook.discord-webhook.svc.cluster.local:9094'
   ingress:
     enabled: true
     ingressClassName: "nginx"
     hosts:
       - alertmanager.kube.home
     annotations:
-      nginx.ingress.kubernetes.io/auth-response-headers: "Authorization"
-      nginx.ingress.kubernetes.io/auth-signin: "https://oauth.kube.home/oauth2/start?rd=https://$host$uri"
-      nginx.ingress.kubernetes.io/auth-url: "https://oauth.kube.home/oauth2/auth"
-
-      config:
-        global:
-          resolve_timeout: 5m
-          inhibit_rules:
-            - source_matchers:
-                - 'severity = critical'
-              target_matchers:
-                - 'severity =~ warning|info'
-              equal:
-                - 'namespace'
-                - 'alertname'
-            - source_matchers:
-                - 'severity = warning'
-              target_matchers:
-                - 'severity = info'
-              equal:
-                - 'namespace'
-                - 'alertname'
-            - source_matchers:
-                - 'alertname = InfoInhibitor'
-              target_matchers:
-                - 'severity = info'
-              equal:
-                - 'namespace'
-          route:
-            group_by: ['alertname']
-            group_wait: 20s
-            group_interval: 5m
-            repeat_interval: 3h
-            receiver: discord_webhook
-          receivers:
-          - name: 'discord_webhook'
-            webhook_configs:
-            - url: 'http://discord-webhook.discord-webhook.svc.cluster.local:9094'
-
+      nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+      nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
+      nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
 
 kubeStateMetrics:
   enabled: true
