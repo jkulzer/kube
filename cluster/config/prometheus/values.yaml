@@ -41,7 +41,7 @@ serverFiles:
         rules:
           - alert: InstanceDown
             expr: up == 0
-            for 5m
+            for: 5m
             labels:
               severity: page
             annotations:
