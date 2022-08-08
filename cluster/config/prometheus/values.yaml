@@ -12,9 +12,9 @@ alertmanager:
       repeat_interval: 10m
       receiver: discord_webhook
     receivers:
-    - name: discord_webhook
+    - name: "discord_webhook"
       webhook_configs:
-      - url: http://alertmanager-discord.alertmanager-discord.svc.cluster.local:9094
+      - url: "http://alertmanager-discord.alertmanager-discord.svc.cluster.local:9094"
     templates:
     - '/etc/alertmanager/config/*.tmpl'
   tplConfig: true
