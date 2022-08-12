@@ -16,10 +16,10 @@ gitea:
     serviceMonitor: 
       enabled: true
   config:
-    APP_NAME: "KubeNet Git Server"
     server:
       ROOT_URL: "https://git.kube.home"
       DOMAIN: "gitea.kube.home"
+    APP_NAME: "KubeNet Git Server"
 
 memcached:
   enabled: true
