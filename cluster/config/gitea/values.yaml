@@ -17,7 +17,7 @@ gitea:
       enabled: true
   config:
     APP_NAME: "KubeNet Git Server"
-    repository:
+    server:
       ROOT_URL: https://git.kube.home
 
 memcached:
