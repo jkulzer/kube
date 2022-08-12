@@ -77,4 +77,4 @@ spec:
         - name: DRONE_RPC_PROTO
           value: http
         - name: DRONE_RPC_SECRET
-          value: "vault:kv/kube/drone/#drone-rpc-secret"
+          value: "vault:kv/data/kube/drone#drone-rpc-secret"

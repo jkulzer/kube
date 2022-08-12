@@ -65,11 +65,11 @@ spec:
             - name: DRONE_SERVER_PROTO
               value: https
             - name: DRONE_GITEA_CLIENT_ID
-              value: "vault:kv/kube/drone/#gitea-client-id"
+              value: "vault:kv/data/kube/drone#gitea-client-id"
             - name: DRONE_GITEA_CLIENT_SECRET
-              value: "vault:kv/kube/drone/#gitea-client-secret"
+              value: "vault:kv/data/kube/drone#gitea-client-secret"
             - name: DRONE_RPC_SECRET
-              value: "vault:kv/kube/drone/#drone-rpc-secret"
+              value: "vault:kv/data/kube/drone#drone-rpc-secret"
             - name: DRONE_GITEA_SKIP_VERIFY
               value: "true"
           ports:
@@ -113,6 +113,10 @@ metadata:
   namespace: drone
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: git
+    hajimari.io/appName: DroneCI
+    hajimari.io/group: Dev
   labels:
     app: drone-server
 spec:
