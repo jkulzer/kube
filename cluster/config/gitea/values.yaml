@@ -1,7 +1,7 @@
 image: 
   repository: "gitea/gitea"
   rootless: false # only possible when running 1.14 or later
-  tag: "1.17"
+  tag: 1.17
   pullPolicy: Always
 
 persistence:
