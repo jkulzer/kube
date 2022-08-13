@@ -1,6 +1,7 @@
-image: 
+---
+image:
   repository: "gitea/gitea"
-  rootless: false # only possible when running 1.14 or later
+  rootless: false
   tag: 1.17
   pullPolicy: Always
 
@@ -14,7 +15,7 @@ gitea:
     email: "kulzer.johannes@tutanota.com"
   metrics:
     enabled: true
-    serviceMonitor: 
+    serviceMonitor:
       enabled: true
   config:
     server:
@@ -34,7 +35,7 @@ ingress:
   enabled: true
   className: "nginx"
   hosts:
-  - host: git.kube.home
-    paths:
-      - path: /
-        pathType: Prefix
+    - host: git.kube.home
+      paths:
+        - path: /
+          pathType: Prefix
