@@ -1,6 +1,6 @@
 image: 
   rootless: false # only possible when running 1.14 or later
-  tag: "1.17.0"
+  tag: "1.17"
   pullPolicy: Always
 
 persistence:
