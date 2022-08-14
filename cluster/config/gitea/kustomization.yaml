@@ -10,3 +10,6 @@ helmCharts:
     repo: https://dl.gitea.io/charts
     version: "5.0.9"
     valuesFile: values.yaml
+
+resources:
+  - gitea-ingress.yaml
