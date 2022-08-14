@@ -78,3 +78,5 @@ spec:
           value: http
         - name: DRONE_RPC_SECRET
           value: "vault:kv/data/kube/drone#drone-rpc-secret"
+        - name: DRONE_NAMESPACE_DEFAULT
+          value: drone
