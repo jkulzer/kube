@@ -87,7 +87,7 @@ spec:
         - name: DRONE_NAMESPACE_DEFAULT
           value: drone
         - name: DRONE_RUNNER_VOLUMES
-          value: "/etc/ssl/certs/kube-cert.crt:/usr/local/share/ca-certificates/kube-cert.crt"
+          value: "/etc/ssl/certs:/usr/local/share/ca-certificates"
       volumes:
       - name: "public-key"
         configMap:
