@@ -2,7 +2,7 @@ namespaceOverride: prometheus
 
 alertmanager:
   enabled: true
-  config:
+  config: |
     global:
       resolve_timeout: 1m
     route:
