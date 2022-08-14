@@ -244,6 +244,11 @@ kind: Ingress
 metadata:
   name: vault
   namespace: vault
+  annotations:
+    hajimari.io/enable: "true"
+    hajimari.io/icon: database-lock
+    hajimari.io/appName: Vault
+    hajimari.io/group: System
   labels:
     app.kubernetes.io/name: vault
 spec:
