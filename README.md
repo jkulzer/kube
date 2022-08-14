@@ -89,7 +89,7 @@
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"></td>
 		<td><a href="https://argoproj.github.io/argo-cd">ArgoCD</a></td>
 		<td>Automatically deploys manifests from git repo</td>
-		<td><img width="128" src="https://argocd.kube.home/api/badge?name=argocd"></td>
+		<td><img width="128" src="https://argocd.kube.home/api/badge?name=argo-cd"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://github.com/jetstack/cert-manager/raw/master/logo/logo.png"></td>
