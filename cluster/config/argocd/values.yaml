@@ -1,5 +1,4 @@
-
-  global:
+global:
   image:
     repository: quay.io/argoproj/argocd
   additionalLabels:
