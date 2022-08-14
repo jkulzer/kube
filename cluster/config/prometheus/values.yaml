@@ -2,6 +2,9 @@ namespaceOverride: prometheus
 
 alertmanager:
   enabled: true
+  config:
+    global:
+      resolve_timeout: 1m
   ingress:
     enabled: true
     ingressClassName: "nginx"
