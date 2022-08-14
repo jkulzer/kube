@@ -70,9 +70,11 @@ spec:
       - name: drone-runner
         image: drone/drone-runner-kube:latest
         volumeMounts:
-          - mountPath: "/etc/ssl/certs/kube-cert.crt"
+          - name: public-key
+            mountPath: "/etc/ssl/certs/kube-cert.crt"
             subPath: kube-cert.crt
             readOnly: true
+            name: public-key
         ports:
         - containerPort: 3000
         env:
