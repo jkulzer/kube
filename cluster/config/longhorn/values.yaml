@@ -19,3 +19,7 @@ ingress:
     nginx.ingress.kubernetes.io/auth-response-headers: Authorization
     nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
     nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
+    hajimari.io/enable: "true"
+    hajimari.io/icon: nas
+    hajimari.io/appName: Longhorn
+    hajimari.io/group: System
