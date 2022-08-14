@@ -6,6 +6,10 @@ metadata:
   namespace: gitea
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: git
+    hajimari.io/appName: Gitea
+    hajimari.io/group: Dev
 spec:
   tls:
   - hosts:

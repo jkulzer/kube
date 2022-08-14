@@ -114,7 +114,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     hajimari.io/enable: "true"
-    hajimari.io/icon: git
+    hajimari.io/icon: cog-refresh
     hajimari.io/appName: DroneCI
     hajimari.io/group: Dev
   labels:
