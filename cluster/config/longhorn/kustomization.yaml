@@ -10,6 +10,3 @@ helmCharts:
     repo: https://charts.longhorn.io
     version: 1.2.4
     valuesFile: values.yaml
-
-resources:
-  - longhorn-ingress.yaml

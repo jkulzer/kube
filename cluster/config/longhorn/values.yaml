@@ -15,4 +15,7 @@ ingress:
   ingressClassName: nginx
   host: longhorn.kube.home
   tls: true
-  secrets:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+    nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
+    nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
