@@ -30,12 +30,3 @@ memcached:
 
 postgresql:
   enabled: true
-
-ingress:
-  enabled: true
-  className: "nginx"
-  hosts:
-    - host: git.kube.home
-      paths:
-        - path: /
-          pathType: Prefix
