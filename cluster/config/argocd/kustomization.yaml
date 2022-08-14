@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: argocd
 
 helmCharts:
-  - name: argocd
+  - name: argo-cd
     releaseName: argo-cd
     namespace: argocd
     repo: https://argoproj.github.io/argo-helm
