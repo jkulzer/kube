@@ -341,6 +341,7 @@ Project Link: [https://github.com/jkulzer/kube](https://github.com/jkulzer/kube)
 Repos I (knowingly) copied from:
 * [khuedoan/homelab](https://github.com/khuedoan/homelab)
 * [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
+* [danmanners/homelab-kube-cluster] (https://github.com/danmanners/homelab-kube-cluster)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
