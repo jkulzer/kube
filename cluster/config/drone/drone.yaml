@@ -55,7 +55,7 @@ spec:
               name: "drone-data"
             - name: public-key
               mountPath: "/etc/ssl/certs/kube-cert.crt"
-              subPath: "kube-cert.crt"
+              subPath: "kube-home.crt"
               readOnly: true
           env:
             - name: DRONE_GITEA_SERVER
