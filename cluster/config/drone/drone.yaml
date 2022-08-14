@@ -70,8 +70,6 @@ spec:
               value: "vault:kv/data/kube/drone#gitea-client-secret"
             - name: DRONE_RPC_SECRET
               value: "vault:kv/data/kube/drone#drone-rpc-secret"
-            - name: DRONE_GITEA_SKIP_VERIFY
-              value: "true"
             - name: DRONE_LOGS_TRACE
               value: "true"
           ports:
