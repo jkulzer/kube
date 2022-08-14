@@ -86,6 +86,8 @@ spec:
           value: "vault:kv/data/kube/drone#drone-rpc-secret"
         - name: DRONE_NAMESPACE_DEFAULT
           value: drone
+        - name: DRONE_RUNNER_VOLUMES
+          value: /etc/ssl/certs/kube-cert.crt:/etc/ssl/certs/kube-cert.crt
       volumes:
       - name: "public-key"
         configMap:
