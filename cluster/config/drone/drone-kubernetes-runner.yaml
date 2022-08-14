@@ -69,6 +69,10 @@ spec:
       containers:
       - name: drone-runner
         image: drone/drone-runner-kube:latest
+        volumeMounts:
+          - mountPath: "/etc/ssl/certs/kube-cert.crt"
+            subPath: kube-cert.crt
+            readOnly: true
         ports:
         - containerPort: 3000
         env:
@@ -80,3 +84,7 @@ spec:
           value: "vault:kv/data/kube/drone#drone-rpc-secret"
         - name: DRONE_NAMESPACE_DEFAULT
           value: drone
+      volumes:
+      - name: "public-key"
+        configMap:
+          name: wildcard-kube-home-distribution
