@@ -72,7 +72,7 @@ spec:
         volumeMounts:
           - name: public-key
             mountPath: "/etc/ssl/certs/kube-cert.crt"
-            subPath: kube-home.crt
+            subPath: "kube-home.crt"
             readOnly: true
             name: public-key
         ports:
