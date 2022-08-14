@@ -1,5 +1,5 @@
 
-global:
+  global:
   image:
     repository: quay.io/argoproj/argocd
   additionalLabels:
@@ -46,8 +46,19 @@ server:
     enabled: true
     serviceMonitor:
       enabled: true
+  config:
+    statusbadge.enabled: "true"
+    service.grafana: |
+      apiUrl: https://grafana.grafana.svc.cluster.local:3000
+      apiKey: eyJrIjoiVWV1NUM0Z0pwbkxBUWQ2UHduNVV3a1U1akFobk1WQlciLCJuIjoiQXJnb0NEIiwiaWQiOjF9
+    kustomize.buildOptions: --enable-helm
   ingress:
     enabled: true
+    annotations:
+      hajimari.io/enable: true
+      hajimari.io/icon: weather-cloudy-arrow-right
+      hajimari.io/appName: ArgoCD
+      hajimari.io/group: Dev
     ingressClassName: nginx
     hosts:
     - argocd.kube.home
