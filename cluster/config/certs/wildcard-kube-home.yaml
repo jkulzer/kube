@@ -26,11 +26,11 @@ metadata:
 spec:
   vault:
     server: http://vault-internal.vault.svc.cluster.local:8200
-    path: internal-certs/sign/kube-home
+    path: pki/sign/kube-home-certs
     auth:
       kubernetes:
         mountPath: /v1/auth/kubernetes
-        role: kube-home
+        role: kube-home-certs
         secretRef:
           name: issuer-token
           key: token
@@ -41,8 +41,10 @@ metadata:
   name: star-kube-home
   namespace: kube-system
 spec:
-  duration: 720h0m0s # 30d 
+  duration: 420h0m0s # 30d was 720h
   renewBefore: 96h0m0s # 4d
+  privateKey:
+    size: 4096
   secretName: star-kube-home-tls
   secretTemplate:
     annotations:
