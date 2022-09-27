@@ -21,11 +21,8 @@
 
   <p align="center">
 	The source code for my own K3s-based Kubernetes-Cluster at home.
-	Der Quellcode f�r meinen Kubernetes-Cluster zuhause.
-    <br />
-    ·
+    <br/>
     <a href="https://github.com/jkulzer/kube/issues">Report Bug</a>
-    ·
     <a href="https://github.com/jkulzer/kube/issues">Request Feature</a>
   </p>
 </div>
