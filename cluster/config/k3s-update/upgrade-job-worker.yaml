@@ -10,7 +10,7 @@ spec:
     matchExpressions:
     - key: node-role.kubernetes.io/master
       operator: DoesNotExist
-  version:  v1.24.1+k3s1
+  version: v1.24.2+k3s2
   serviceAccountName: system-upgrade
   drain:
     force: true
