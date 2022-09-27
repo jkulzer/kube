@@ -80,7 +80,7 @@ spec:
         - name: DIFFICULTY
           value: "medium"
         - name: OPS
-          value: "AUVA_001,Bogi165,Wosemo"
+          value: "AUVA_001,Bogi165"
         - name: ICON
           value: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/minecraft.svg"
         - name: MAX_PLAYERS
