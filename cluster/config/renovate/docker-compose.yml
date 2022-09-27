@@ -1,0 +1,6 @@
+version: '3'
+services:
+  renovate:
+    container_name: renovate
+    image: renovate/renovate:31.14.0
+    command: sleep 50000000
