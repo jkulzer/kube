@@ -1,0 +1,42 @@
+auth:
+  managementPassword: "changeme"
+  createAdminUser: true
+  adminUser: admin
+  adminPassword: "changeme"
+
+proxy: passthrough
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  hostname: keycloak.kube.home
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+  path: /
+  tls: true
+
+metrics:
+  enabled: true
+  service:
+    ports:
+      http: 9990
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "{{ .Values.metrics.service.ports.http }}"
+  serviceMonitor:
+    enabled: false
+    namespace: ""
+
+keycloakConfigCli:
+  enabled: false
+  annotations:
+    helm.sh/hook: "post-install,post-upgrade,post-rollback"
+    helm.sh/hook-delete-policy: "hook-succeeded,before-hook-creation"
+    helm.sh/hook-weight: "5"
+    # command: []
+
+postgresql:
+  postgresqlPassword: lolpostgrespassword
