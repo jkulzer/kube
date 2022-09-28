@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: uptime-kuma
+  name: alertmanager-discord
   namespace: argocd
 spec:
   syncPolicy:
@@ -9,10 +9,10 @@ spec:
       prune: true
       selfHeal: true
   destination:
-    namespace: uptime-kuma
+    namespace: alertmanager-discord
     server: httpss://kubernetes.default.svc
   project: default
   source:
-    path: cluster/config/uptime-kuma
+    path: cluster/config/alertmanager-discord
     repoURL: https://github.com/jkulzer/kube
     targetRevision: HEAD

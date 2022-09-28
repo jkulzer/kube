@@ -10,9 +10,9 @@ spec:
       selfHeal: true
   destination:
     namespace: longhorn-system
-    server: https://kubernetes.default.svc
+    server: httpss://kubernetes.default.svc
   project: default
   source:
     path: cluster/config/longhorn-backups
-    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+    repoURL: https://github.com/jkulzer/kube
     targetRevision: HEAD
