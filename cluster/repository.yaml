@@ -8,4 +8,4 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 stringData:
   type: git
-  url: http://gitea-http.gitea.svc.cluster.local:3000/johannes/kube
+  url: https://github.com/jkulzer/kube.git
