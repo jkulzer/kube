@@ -10,7 +10,7 @@ spec:
       selfHeal: true
   destination:
     namespace: metallb-system
-    server: httpss://kubernetes.default.svc
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: cluster/config/metallb
