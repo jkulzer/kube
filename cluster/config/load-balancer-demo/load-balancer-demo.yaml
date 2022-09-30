@@ -17,7 +17,7 @@ spec:
       - env:
         - name: COW_COLOR
           value: purple
-        image: bashofmann/rancher-demo:1.0.0
+        image: bashofmann/rancher-demo:1.1.0
         name: lb-demo
         ports:
         - containerPort: 8080
