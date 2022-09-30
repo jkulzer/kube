@@ -3,4 +3,8 @@
   "extends": [
     "config:base"
   ]
+  "kubernetes": {
+	"fileMatch": ["cluster/.+\\.ya?ml$"]
+  }
+}
 }
