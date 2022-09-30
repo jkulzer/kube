@@ -3,5 +3,5 @@ name: vault-secrets-webhook
 version: 0.0.0
 dependencies: 
   - name: vault-secrets-webhook
-    version: 1.15.2
+    version: 1.16.0
     repository: https://kubernetes-charts.banzaicloud.com
