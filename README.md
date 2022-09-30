@@ -103,12 +103,6 @@
 		<td><img width="128" src="https://argocd.kube.home/api/badge?name=gitea"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://github.com/gotify/server/raw/master/ui/public/static/defaultapp.png"></td>
-		<td><a href="https://gotify.net/">Gotify</a></td>
-		<td>Notification Server</td>
-		<td><img width="128" src="https://argocd.kube.home/api/badge?name=gotify"></td>
-	</tr>
-	<tr>
 		<td><img width="64" src="https://raw.githubusercontent.com/grafana/grafana/main/public/img/grafana_icon.svg"></td>
 		<td><a href="https://grafana.com/">Grafana</a></td>
 		<td>Dashboard that displays metrics from Prometheus</td>
@@ -119,12 +113,6 @@
 		<td><a href="https://kubernetes.github.io/ingress-nginx/">NGINX-Ingress</a></td>
 		<td>The ingress controller developed by Kubernetes</td>
 		<td><img width="128" src="https://argocd.kube.home/api/badge?name=ingress-nginx"></td>
-	</tr>
-	<tr>
-		<td><img width="64" src="https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-transparent.svg"></td>
-		<td><a href="https://jellyfin.org">Jellyfin</a></td>
-		<td>Selfhosted media server</td>
-		<td><img width="128" src="https://argocd.kube.home/api/badge?name=jellyfin"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
