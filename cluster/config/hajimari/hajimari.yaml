@@ -21,9 +21,7 @@ metadata:
     app: hajimari
 data:
   config.yaml: |-
-    customApps: []
     defaultEnable: false
-    groups: []
     name: Johannes
     namespaceSelector: 
       any: true
