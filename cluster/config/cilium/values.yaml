@@ -19,10 +19,7 @@ hubble:
   ui:
     enabled: true
     ingress:
-      kubernetes.io/ingress.class: nginx
-      enabled: true
-      hosts:
-        - hubble.kube.home
+      enabled: false
 
 l7Proxy: false
 
