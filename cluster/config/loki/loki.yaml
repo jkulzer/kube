@@ -258,6 +258,8 @@ spec:
             - name: storage
               mountPath: "/data"
               subPath: 
+            - name: wal
+              mountPath: /wal
           ports:
             - name: http-metrics
               containerPort: 3100
@@ -283,6 +285,8 @@ spec:
       terminationGracePeriodSeconds: 4800
       volumes:
         - name: tmp
+          emptyDir: {}
+        - name: wal
           emptyDir: {}
         - name: config
           configMap:
