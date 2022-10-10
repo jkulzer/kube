@@ -9,7 +9,7 @@ spec:
       prune: true
       selfHeal: true
   destination:
-    namespace: longhorn-system
+    # namespace: longhorn-system
     server: https://kubernetes.default.svc
   project: default
   source:
