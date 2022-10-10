@@ -12,7 +12,3 @@ defaultSettings:
 
 ingress:
   enabled: false
-    hajimari.io/enable: "true"
-    hajimari.io/icon: nas
-    hajimari.io/appName: Longhorn
-    hajimari.io/group: System
