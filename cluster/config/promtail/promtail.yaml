@@ -1,0 +1,78 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: promtail
+rules:
+  - apiGroups: [""]
+    resources:
+    - nodes
+    - services
+    - pods
+    verbs:
+    - get
+    - watch
+    - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: promtail
+subjects:
+  - kind: ServiceAccount
+    name: promtail
+    namespace: promtail
+roleRef:
+    kind: ClusterRole
+    name: promtail
+    apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: promtail
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: promtail-config
+data:
+  promtail.yaml: |
+    clients:
+      - url: http://loki.loki.svc.cluster.local:3100/loki/api/v1/push
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: promtail
+spec:
+  selector:
+    matchLabels:
+      name: promtail
+  template:
+    metadata:
+      labels:
+        name: promtail
+    spec:
+      serviceAccount: promtail
+      volumes:
+      - name: logs
+        emptyDir: {}
+      - name: promtail-config
+        configMap:
+          name: promtail-config
+      containers:
+      - name: promtail-container
+        image: grafana/promtail
+        args:
+        - -config.file=/etc/promtail/promtail.yaml
+        env: 
+          - name: "HOSTNAME"
+            valueFrom:
+              fieldRef:
+                fieldPath: "spec.nodeName"
+        volumeMounts:
+        - name: logs
+          mountPath: /var/logs
+        - name: promtail-config
+          mountPath: /etc/promtail
