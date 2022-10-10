@@ -8,5 +8,5 @@ helmCharts:
     releaseName: promtail
     namespace: promtail
     repo: https://grafana.github.io/helm-charts
-    version: 6.4.0
+    version: 6.5.0
     valuesFile: values.yaml
