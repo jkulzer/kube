@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Host $http_host;
 spec:
   rules:
-  - host: test.kube.home
+  - host: longhorn.kube.home
     http:
       paths:
       - path: /outpost.goauthentik.io
