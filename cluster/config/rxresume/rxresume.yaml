@@ -92,6 +92,12 @@ spec:
         - name: rxresume-server
           image: amruthpillai/reactive-resume:server-v3.6.8
           imagePullPolicy: "IfNotPresent"
+          volumeMounts:
+            - name: public-key
+              mountPath: "/etc/ssl/certs/kube-cert.crt"
+              subPath: "kube-home.crt"
+              readOnly: true
+              name: public-key
           env:
             - name: POSTGRES_USER
               value: rxresume
@@ -118,6 +124,10 @@ spec:
               containerPort: 3100
               protocol: TCP
       restartPolicy: Always
+      volumes:
+        - name: "public-key"
+          configMap:
+            name: wildcard-kube-home-distribution
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -143,6 +153,12 @@ spec:
         - name: rxresume-client
           image: amruthpillai/reactive-resume:client-v3.6.8
           imagePullPolicy: "IfNotPresent"
+          volumeMounts:
+            - name: public-key
+              mountPath: "/etc/ssl/certs/kube-cert.crt"
+              subPath: "kube-home.crt"
+              readOnly: true
+              name: public-key
           env:
             - name: PUBLIC_URL
               value: "https://resume.kube.home"
@@ -153,6 +169,10 @@ spec:
               containerPort: 3000
               protocol: TCP
       restartPolicy: Always
+      volumes:
+        - name: "public-key"
+          configMap:
+            name: wildcard-kube-home-distribution
 ---
 apiVersion: v1
 kind: Service
