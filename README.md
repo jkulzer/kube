@@ -275,6 +275,10 @@ This is a possible way to get this setup running on your own cluster. It assumes
     - [ ] Observability with Cilium
 - [x] Renovate
 - [ ] Paperless-NGX
+- [ ] Unified Node management
+    - [ ] Uniform OS for every node
+    - [ ] Automatic OS updates
+    - [ ] Automated OS install with Ansible
 
 See the [open issues](https://github.com/jkulzer/kube/issues) for a full list of proposed features (and known issues).
 
