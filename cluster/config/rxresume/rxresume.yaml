@@ -36,6 +36,7 @@ spec:
   selector:
     matchLabels:
       app: rxresume
+      component: postgres
   template:
     metadata:
       annotations:
@@ -44,6 +45,7 @@ spec:
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
         app: rxresume
+        component: postgres
     spec:
       serviceAccountName: rxresume
       containers:
@@ -78,6 +80,7 @@ spec:
   selector:
     matchLabels:
       app: rxresume
+      component: server
   template:
     metadata:
       annotations:
@@ -86,6 +89,7 @@ spec:
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
         app: rxresume
+        component: server
     spec:
       serviceAccountName: rxresume
       containers:
@@ -139,6 +143,7 @@ spec:
   selector:
     matchLabels:
       app: rxresume
+      component: client
   template:
     metadata:
       annotations:
@@ -147,6 +152,7 @@ spec:
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
         app: rxresume
+        component: client
     spec:
       serviceAccountName: rxresume
       containers:
