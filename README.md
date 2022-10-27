@@ -250,7 +250,17 @@ This is a possible way to get this setup running on your own cluster. It assumes
 
 - [x] GitOps with ArgoCD
 - [x] Automatic Certificate Management
-- [x] SSO with Authentik
+- [0] SSO with Authentik
+    - [ ] ArgoCd
+    - [ ] Cilium/Hubble
+    - [ ] Drone
+    - [ ] Gitea
+    - [ ] Grafana
+    - [x] Hajimari
+    - [x] Longhorn
+    - [ ] Openproject
+    - [ ] Prometheus
+    - [ ] Vault
 - [x] NFS
     - [x] Jellyfin
 - [x] Longhorn Backups
