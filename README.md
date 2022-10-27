@@ -236,7 +236,7 @@ This is a possible way to get this setup running on your own cluster. It assumes
    ```sh
    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
    ```
-   The output will be your password to log into ArgoCD. Don't remember to not copy the % at the end of the password.
+   The output will be your password to log into ArgoCD. Don't forget to not copy the % at the end of the password.
 
    Now you should have a barebones Kubernetes cluster with a CD service (ArgoCD), a load balancer (MetalLB) and an ingress controller (NGINX-Ingress). Now you can do the next steps, installing a Git server and some way to store the database and repos of your Git server.
    
@@ -250,7 +250,7 @@ This is a possible way to get this setup running on your own cluster. It assumes
 
 - [x] GitOps with ArgoCD
 - [x] Automatic Certificate Management
-- [0] SSO with Authentik
+- [ ] SSO with Authentik
     - [ ] ArgoCd
     - [ ] Cilium/Hubble
     - [ ] Drone
