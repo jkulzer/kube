@@ -1,0 +1,480 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: authentik
+  namespace: authentik
+---
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: authentik-postgres
+  namespace: authentik
+  labels:
+    app: authentik-postgres
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "5Gi"
+---
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: authentik-redis
+  namespace: authentik
+  labels:
+    app: authentik-redis
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "5Gi"
+---
+# Source: authentik/templates/rbac.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: authentik
+  namespace: authentik
+---
+# Source: authentik/templates/rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: authentik
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+      - services
+      - configmaps
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - extensions
+      - apps
+    resources:
+      - deployments
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - extensions
+      - networking.k8s.io
+    resources:
+      - ingresses
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - traefik.containo.us
+    resources:
+      - middlewares
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - monitoring.coreos.com
+    resources:
+      - servicemonitors
+    verbs:
+      - get
+      - create
+      - delete
+      - list
+      - patch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - list
+---
+# Source: authentik/templates/rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: authentik
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: authentik
+subjects:
+  - kind: ServiceAccount
+    name: authentik
+    namespace: authentik
+---
+# Source: authentik/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentik
+  labels:
+    name: authentik
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9100
+      name: http-metrics
+      protocol: TCP
+      targetPort: http-metrics
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    name: authentik
+    component: "server"
+---
+# Source: authentik/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik-server
+  labels:
+    name: authentik
+    component: "server"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: authentik
+  template:
+    metadata:
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-role: "authentik"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
+      labels:
+        name: authentik
+        component: "server"
+    spec:
+      serviceAccountName: authentik
+      enableServiceLinks: true
+      priorityClassName: 
+      containers:
+        - name: authentik
+          image: "ghcr.io/goauthentik/server:latest"
+          imagePullPolicy: "Always"
+          args: ["server"]
+          env:            
+            - name: AUTHENTIK_AVATARS
+              value: "gravatar"
+            - name: AUTHENTIK_EMAIL__PORT
+              value: "587"
+            - name: AUTHENTIK_EMAIL__TIMEOUT
+              value: "30"
+            - name: AUTHENTIK_EMAIL__USE_SSL
+              value: "false"
+            - name: AUTHENTIK_EMAIL__USE_TLS
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENABLED
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENVIRONMENT
+              value: "k8s"
+            - name: AUTHENTIK_ERROR_REPORTING__SEND_PII
+              value: "false"
+            - name: AUTHENTIK_LOG_LEVEL
+              value: "trace"
+            - name: AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE
+              value: "ghcr.io/goauthentik/%(type)s:%(version)s"
+            - name: AUTHENTIK_POSTGRESQL__HOST
+              value: "postgres.authentik.svc.cluster.local"
+            - name: AUTHENTIK_POSTGRESQL__NAME
+              value: "authentik"
+            - name: AUTHENTIK_POSTGRESQL__PORT
+              value: "5432"
+            - name: AUTHENTIK_POSTGRESQL__S3_BACKUP__INSECURE_SKIP_VERIFY
+              value: "false"
+            - name: AUTHENTIK_POSTGRESQL__USER
+              value: "authentik"
+            - name: AUTHENTIK_REDIS__HOST
+              value: "redis"
+            - name: AUTHENTIK_REDIS__PASSWORD
+              value: "vault:kv/data/kube/authentik/#redispass"
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              value: "vault:kv/data/kube/authentik/#postgresadmin"
+            - name: AUTHENTIK_SECRET_KEY
+              value: "vault:kv/data/kube/authentik/#secret"
+            - name: AUTHENTIK_REDIS__PORT
+              value: "6379"
+            - name: AUTHENTIK_BOOTSTRAP_TOKEN
+              value: "vault:kv/data/kube/authentik/#initialadmintoken"
+            - name: AUTHENTIK_BOOTSTRAP_PASSWORD
+              value: "vault:kv/data/kube/authentik/#initialadmintoken"
+          volumeMounts:
+            - name: geoip-db
+              mountPath: /geoip
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+            - name: http-metrics
+              containerPort: 9300
+              protocol: TCP
+            - name: https
+              containerPort: 9443
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /-/health/live/
+              port: http
+            initialDelaySeconds: 50
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /-/health/ready/
+              port: http
+            initialDelaySeconds: 50
+            periodSeconds: 10
+      volumes:
+        - name: geoip-db
+          emptyDir: {}
+---
+# Source: authentik/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik-worker
+  labels:
+    name: authentik
+    component: "worker"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: "authentik"
+  template:
+    metadata:
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-role: "authentik"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
+      labels:
+        name: authentik
+        component: "worker"
+    spec:
+      serviceAccountName: authentik
+      enableServiceLinks: true
+      priorityClassName: 
+      containers:
+        - name: authentik
+          image: "ghcr.io/goauthentik/server:latest"
+          imagePullPolicy: "Always"
+          args: ["worker"]
+          env:            
+            - name: AUTHENTIK_AVATARS
+              value: "gravatar"
+            - name: AUTHENTIK_EMAIL__PORT
+              value: "587"
+            - name: AUTHENTIK_EMAIL__TIMEOUT
+              value: "30"
+            - name: AUTHENTIK_EMAIL__USE_SSL
+              value: "false"
+            - name: AUTHENTIK_EMAIL__USE_TLS
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENABLED
+              value: "false"
+            - name: AUTHENTIK_ERROR_REPORTING__ENVIRONMENT
+              value: "k8s"
+            - name: AUTHENTIK_ERROR_REPORTING__SEND_PII
+              value: "false"
+            - name: AUTHENTIK_GEOIP
+              value: "/geoip/GeoLite2-City.mmdb"
+            - name: AUTHENTIK_LOG_LEVEL
+              value: "trace"
+            - name: AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE
+              value: "ghcr.io/goauthentik/%(type)s:%(version)s"
+            - name: AUTHENTIK_POSTGRESQL__HOST
+              value: "postgres.authentik.svc.cluster.local"
+            - name: AUTHENTIK_POSTGRESQL__NAME
+              value: "authentik"
+            - name: AUTHENTIK_POSTGRESQL__PORT
+              value: "5432"
+            - name: AUTHENTIK_POSTGRESQL__S3_BACKUP__INSECURE_SKIP_VERIFY
+              value: "false"
+            - name: AUTHENTIK_POSTGRESQL__USER
+              value: "authentik"
+            - name: AUTHENTIK_REDIS__HOST
+              value: "redis"
+            - name: AUTHENTIK_REDIS__PASSWORD
+              value: "vault:kv/data/kube/authentik/#redispass"
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              value: "vault:kv/data/kube/authentik/#postgresadmin"
+            - name: AUTHENTIK_SECRET_KEY
+              value: "vault:kv/data/kube/authentik/#secret"
+            - name: AUTHENTIK_REDIS__PORT
+              value: "6379"
+          volumeMounts:
+            - name: geoip-db
+              mountPath: /geoip
+      volumes:
+        - name: geoip-db
+          emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik-postgres
+  namespace: authentik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql
+  template:
+    metadata:
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-role: "authentik"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
+      labels:
+        name: "authentik"
+        app: postgresql
+    spec:
+      serviceAccountName: authentik
+      volumes:
+        - name: "data"
+          persistentVolumeClaim:
+            claimName: authentik-postgres
+      containers:
+        - name: postgres
+          image: postgres:12-alpine
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: authentik
+            - name: POSTGRES_PASSWORD
+              value: "vault:kv/data/kube/authentik/#postgresadmin"
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgresql
+spec:
+  type: ClusterIP
+  ports:
+   - port: 5432
+  selector:
+    app: postgresql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik-redis
+  namespace: authentik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: "authentik"
+  template:
+    metadata:
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-role: "authentik"
+        vault.security.banzaicloud.io/vault-path: "kubernetes"
+      labels:
+        name: "authentik"
+        app: authentik-redis
+    spec:
+      serviceAccountName: authentik
+      volumes:
+        - name: "data"
+          persistentVolumeClaim:
+            claimName: authentik-redis
+      initContainers:
+        - name: volume-permissions
+          image: busybox
+          command: ['sh', '-c', 'chmod -R g+rwX /bitnami/redis/data']
+          volumeMounts:
+          - name: data
+            mountPath: /bitnami/redis/data
+      containers:
+        - name: redis
+          image: docker.io/bitnami/redis:6.2
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: REDIS_PASSWORD
+              value: "vault:kv/data/kube/authentik/#redispass"
+            - name: REDIS_AOF_ENABLED
+              value: "no"
+                # - name: ALLOW_EMPTY_PASSWORD
+                # value: "yes"
+          volumeMounts:
+            - name: data
+              mountPath: /bitnami/redis/data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis 
+  labels:
+    name: "authentik"
+spec:
+  type: ClusterIP
+  ports:
+   - port: 6379
+  selector:
+    app: authentik-redis
+    name: "authentik"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authentik 
+  namespace: authentik
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: shield-lock
+    hajimari.io/appName: Authentik
+    hajimari.io/group: dev
+spec:
+  tls:
+  - hosts:
+    - authentik.kube.home
+  rules:
+  - host: authentik.kube.home
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: authentik 
+            port:
+              name: http
+      - path: /outpost.goauthentik.io
+        pathType: Prefix
+        backend:
+          service:
+            name: ak-outpost-default-outpost
+            port:
+              number: 9000
