@@ -416,7 +416,7 @@ spec:
             mountPath: /bitnami/redis/data
       containers:
         - name: redis
-          image: docker.io/bitnami/redis:6.2
+          image: docker.io/bitnami/redis:7.0
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
