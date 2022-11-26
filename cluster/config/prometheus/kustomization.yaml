@@ -8,5 +8,5 @@ helmCharts:
     releaseName: kube-prometheus-stack
     namespace: prometheus
     repo: https://prometheus-community.github.io/helm-charts
-    version: 42.0.2
+    version: 42.1.0
     valuesFile: values.yaml
