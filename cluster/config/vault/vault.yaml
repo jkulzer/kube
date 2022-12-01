@@ -148,7 +148,7 @@ spec:
           emptyDir: {}
       containers:
         - name: vault
-          image: hashicorp/vault:1.12.1
+          image: hashicorp/vault:1.12.2
           imagePullPolicy: IfNotPresent
           command:
           - "/bin/sh"
