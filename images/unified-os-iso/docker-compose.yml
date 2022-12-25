@@ -1,0 +1,11 @@
+version: "3"
+services:
+  build-iso:
+    container_name: build-iso
+    build:
+      context: .
+    tty: true
+    stdin_open: true
+    privileged: true
+    volumes:
+      - /home/johannes/node-init-arch/init-iso/output:/output
