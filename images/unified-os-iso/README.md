@@ -22,7 +22,5 @@ Uses [archiso](https://wiki.archlinux.org/title/Archiso) to do it. A Docker cont
 ```
 ## Customization
 
-This is the install script which gets executed on boot of the ISO
-```sh:images/unified-os-iso/archiso-profile/airootfs/root/install-script.sh
-```
+This is the install script which gets executed on boot of the ISO: https://github.com/jkulzer/kube/blob/main/images/unified-os-iso/archiso-profile/airootfs/root/install-script.sh
 Change this if you want some changes to your installation.

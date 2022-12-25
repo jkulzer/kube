@@ -180,6 +180,7 @@ cd images/unified-os-iso
 sudo docker compose build
 sudo docker compose up
 ```
+This contains further instructions for customizing the ISO: https://github.com/jkulzer/kube/tree/main/images/unified-os-iso
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
