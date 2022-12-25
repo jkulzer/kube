@@ -1,2 +1,3 @@
 terraform/**/.terraform*
 terraform/**/terraform.tfstate*
+images/unified-os-iso/output
