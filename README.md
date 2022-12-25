@@ -167,80 +167,19 @@ Example config folder structure
 
 This is a possible way to get this setup running on your own cluster. It assumes you use K3s. I have never tested it, so use it at your own discretion.
 
-### Installation
+1. Clone repo
 
-1. Create a Kubernetes cluster with [https://k3s.io](https://k3s.io)
-2. Disable services provided by K3s by adding these arguments to your K3s master arguments:
-   ```sh
-    --disable traefik --disable servicelb --disable local-storage --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16 --no-flannel
-   ```
-   This
-   * Disables the default ingress controller Traefik (it will get replaced with ingress-nginx)
-   * Disables the default LoadBalancer ServiceLB/Klipper(not sure how it's called) (it will get replaced with metallb)
-   * Disables local-storage (it will get replaced with Longhorn)
-   * Disables Flannel, networkPolicy and specifies a cluster CIDR. This will get useful for the install of the Flannel replacement Cilium.
-3. Clone the repo
-   ```sh
-   git clone https://git.kube.home/jkulzer/kube.git
-   ```
+```sh
+git clone https://github.com/jkulzer/kube.git
+cd kube
+```
 
-4. Install Cilium
-   ```sh
-   cd kube/cluster/config/cilium/
-   ```
-
-   ```sh
-   bash init-cilium.sh
-   ```
-
-5. Install MetalLB
-   ```sh
-   cd ../metallb
-   ```
-
-   ```sh
-   bash init-metallb.sh
-   ```
-
-   ```sh
-   kubectl apply -f metallb-cm.yaml -n metallb-system
-   ```
-   (The ConfigMap mapping in the MetalLB Helm chart is broken, use this instead to define your config)
-   Make sure to change the subnet to one that suits you. You can define a new subnet in your router (reccomended) or use an IP range in your existing subnet (you can look up how to define a range in the MetalLB documentation at https://metallb.universe.tf/configuration/)
-
-5. Install NGINX-Ingress
-   ```sh
-   cd ../ingress-nginx
-   ```
-   ```
-   bash init-ingress-nginx.sh
-   ```
-   It might complain about the secret not existing, but thats fine, you can create it later.
-
-6. Install ArgoCD
-   ```sh
-   cd ../argocd
-   ```
-
-   ```sh
-   bash init-argocd.sh
-   ```
-   You can also customize your ArgoCD URL in the values.yaml file.
-   
-7. Access ArgoCD
-   ```sh
-   kubectl get svc -n kube-system
-   ```
-   Search for the service ingress-nginx-controller and get the values from the field EXTERNAL-IP. Put this IP in your DNS server or your hosts file (and assign it the domain name in the values.yaml file for argocd).
-
-   ```sh
-   kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-   ```
-   The output will be your password to log into ArgoCD. Don't forget to not copy the % at the end of the password.
-
-   Now you should have a barebones Kubernetes cluster with a CD service (ArgoCD), a load balancer (MetalLB) and an ingress controller (NGINX-Ingress). Now you can do the next steps, installing a Git server and some way to store the database and repos of your Git server.
-   
-
+2. Generate OS ISO
+```sh
+cd images/unified-os-iso
+sudo docker compose build
+sudo docker compose up
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -275,8 +214,9 @@ This is a possible way to get this setup running on your own cluster. It assumes
     - [ ] Observability with Cilium
 - [x] Renovate
 - [ ] Paperless-NGX
-- [ ] Unified Node management
-    - [ ] Uniform OS for every node
+- [x] Unified Node management
+    - [x] Uniform OS for every node
+    - [x] Uniform OS generated in Docker container
     - [ ] Automatic OS updates
     - [ ] Automated OS install with Ansible
 
