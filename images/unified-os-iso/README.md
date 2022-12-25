@@ -14,6 +14,16 @@ Uses [archiso](https://wiki.archlinux.org/title/Archiso) to do it. A Docker cont
 ├─────📄 install-script.service #service file for install script which runs on every boot
 ├──📁 root
 ├───📄 install-script.sh        #install script that gets executed every boot
+📄 docker-compose.yml           #docker compose file for generating ISO
+📄 Dockerfile                   #docker file for generating ISO
+📁 output                       #contains ISO produced
+├─💿 archlinux-20xx.xx.xx-x86_64.iso #ISO produced
 | ...
 ```
 ## Customization
+
+This is the install script which gets executed on boot of the ISO
+```sh:archiso-profile/airootfs/root/install-script.sh
+
+```
+Change this if you want some changes to your installation.
