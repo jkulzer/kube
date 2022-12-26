@@ -167,13 +167,14 @@ Example config folder structure
 
 This is a possible way to get this setup running on your own cluster. It assumes you use K3s. I have never tested it, so use it at your own discretion.
 
+### Prerequisites
 1. Clone repo
 
 ```sh
 git clone https://github.com/jkulzer/kube.git
 cd kube
 ```
-
+### Installing the OS
 2. Generate OS ISO
 ```sh
 cd images/unified-os-iso
