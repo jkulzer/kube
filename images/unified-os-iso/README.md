@@ -18,9 +18,14 @@ Uses [archiso](https://wiki.archlinux.org/title/Archiso) to do it. A Docker cont
 📄 Dockerfile                           #docker file for generating ISO
 📁 output                               #contains ISO produced
 ├─💿 archlinux-20xx.xx.xx-x86_64.iso    #ISO produced
+📁 vmware                               #contains vmware ovf files
 | ...
 ```
 ## Customization
 
 This is the install script which gets executed on boot of the ISO: https://github.com/jkulzer/kube/blob/main/images/unified-os-iso/archiso-profile/airootfs/root/install-script.sh
 Change this if you want some changes to your installation.
+
+## Installation
+
+The vmware folder contains example ovf files that create a VM with 3 CPU cores, 8GB RAM and 60GB persistent storage.
