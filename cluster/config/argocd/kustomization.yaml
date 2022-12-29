@@ -10,3 +10,7 @@ helmCharts:
     repo: https://argoproj.github.io/argo-helm
     version: 5.16.9
     valuesFile: values.yaml
+
+resources:
+  - argocd-cm.yaml
+  - argocd-ns.yaml
