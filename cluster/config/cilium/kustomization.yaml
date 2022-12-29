@@ -9,5 +9,3 @@ helmCharts:
     repo: https://helm.cilium.io
     version: 1.12.5
     valuesFile: values.yaml
-resources:
-  - hubble-ingress.yaml
