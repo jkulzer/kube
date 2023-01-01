@@ -13,3 +13,4 @@ helmCharts:
 
 resources:
   - prometheus-ns.yaml
+  - https://raw.githubusercontent.com/prometheus-community/helm-charts/main/charts/kube-prometheus-stack/crds/crd-prometheuses.yaml
