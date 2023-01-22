@@ -13,3 +13,4 @@ helmCharts:
 
 resources:
   - gitea-ingress.yaml
+  - gitea-ns.yaml
