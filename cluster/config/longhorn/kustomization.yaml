@@ -11,3 +11,4 @@ helmCharts:
     valuesFile: values.yaml
 resources:
   - longhorn-ingress.yaml
+  - longhorn-ns.yaml
