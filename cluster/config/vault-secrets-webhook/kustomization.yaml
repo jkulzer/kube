@@ -7,7 +7,7 @@ helmCharts:
     releaseName: vault-secrets-webhook
     namespace: vault-infra
     repo: https://kubernetes-charts.banzaicloud.com
-    version: 1.17.0
+    version: 1.18.0
     valuesFile: values.yaml
 resources:
   - vault-secrets-webhook-ns.yaml
