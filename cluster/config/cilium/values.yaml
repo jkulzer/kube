@@ -38,3 +38,7 @@ prometheus:
 
 ipam:
   mode: kubernetes
+
+operator:
+  enabled: true
+  replicas: 1
