@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vault
+  name: bank-vaults
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-3"
@@ -11,10 +11,10 @@ spec:
       prune: true
       selfHeal: true
   destination:
-    namespace: vault
+    namespace: vault-infra
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: cluster/config/vault
+    path: cluster/config/bank-vaults
     repoURL: https://github.com/jkulzer/kube
     targetRevision: HEAD

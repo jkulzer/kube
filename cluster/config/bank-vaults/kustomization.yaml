@@ -1,0 +1,13 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: bank-vaults
+    releaseName: bank-vaults
+    namespace: vault-infra
+    repo: https://kubernetes-charts.banzaicloud.com
+    version: 1.17.0
+    valuesFile: values.yaml
+resources:
+  - bank-vaults-ns.yaml

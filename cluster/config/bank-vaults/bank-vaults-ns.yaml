@@ -1,0 +1,4 @@
+apiVersion: 1
+kind: Namespace
+metadata:
+  name: vault-infra
