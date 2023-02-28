@@ -7,7 +7,7 @@ helmCharts:
     releaseName: vault-operator
     namespace: vault-infra
     repo: https://kubernetes-charts.banzaicloud.com
-    version: 1.18.0
+    version: 1.19.0
     valuesFile: values.yaml
 resources:
   - bank-vaults-ns.yaml
