@@ -166,26 +166,26 @@ spec:
             port:
               name: http
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: hajimari-auth
-  namespace: authentik
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/auth-url: http://ak-outpost-default-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-    nginx.ingress.kubernetes.io/auth-signin: https://home.kube.home/outpost.goauthentik.io/start?rd=$host$uri
-    nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
-    nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Host $http_host;
-spec:
-  rules:
-  - host: home.kube.home
-    http:
-      paths:
-      - path: /outpost.goauthentik.io
-        pathType: Prefix
-        backend:
-          service:
-            name: ak-outpost-default-outpost
-            port:
-              number: 9000
+#apiVersion: networking.k8s.io/v1
+  #kind: Ingress
+  #metadata:
+  #name: hajimari-auth
+    #namespace: authentik
+    #annotations:
+    #kubernetes.io/ingress.class: nginx
+      #nginx.ingress.kubernetes.io/auth-url: http://ak-outpost-default-outpost.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+      #nginx.ingress.kubernetes.io/auth-signin: https://home.kube.home/outpost.goauthentik.io/start?rd=$host$uri
+      #nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+      #nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Host $http_host;
+      #spec:
+  #rules:
+    #- host: home.kube.home
+    #http:
+      #paths:
+        #- path: /outpost.goauthentik.io
+        #pathType: Prefix
+          #backend:
+          #service:
+            #name: ak-outpost-default-outpost
+              #port:
+              #number: 9000
