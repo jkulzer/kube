@@ -4,6 +4,19 @@ kind: Namespace
 metadata:
   name: promtail
 ---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+  namespace: promtail
+spec:
+  limits:
+  - default:
+      cpu: 0.5
+    defaultRequest:
+      cpu: 0.2
+    type: Container
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:

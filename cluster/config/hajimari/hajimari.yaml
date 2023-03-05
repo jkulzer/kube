@@ -7,6 +7,19 @@ metadata:
     app: hajimari
 ---
 apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+  namespace: hajimari
+spec:
+  limits:
+  - default:
+      cpu: 0.2
+    defaultRequest:
+      cpu: 0.1
+    type: Container
+---
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: hajimari
