@@ -1,49 +1,149 @@
-namespaceOverride: prometheus
+namespaceOverride: "prometheus"
+
+defaultRules:
+  create: true
+  rules:
+    alertmanager: true
+    etcd: true
+    configReloaders: true
+    general: true
+    k8s: true
+    kubeApiserverAvailability: true
+    kubeApiserverBurnrate: true
+    kubeApiserverHistogram: true
+    kubeApiserverSlos: true
+    kubeControllerManager: true
+    kubelet: true
+    kubeProxy: true
+    kubePrometheusGeneral: true
+    kubePrometheusNodeRecording: true
+    kubernetesApps: true
+    kubernetesResources: true
+    kubernetesStorage: true
+    kubernetesSystem: true
+    kubeSchedulerAlerting: true
+    kubeSchedulerRecording: true
+    kubeStateMetrics: true
+    network: true
+    node: true
+    nodeExporterAlerting: true
+    nodeExporterRecording: true
+    prometheus: true
+    prometheusOperator: true
+
+global:
+  rbac:
+    create: true
+    createAggregateClusterRoles: false
+    pspEnabled: false
 
 alertmanager:
+  enabled: true
   config:
     global:
-      resolve_timeout: 1m
-    #route:
-  enabled: true
+      resolve_timeout: 5m
   ingress:
-    enabled: true
-    ingressClassName: "nginx"
-    hosts:
-      - alertmanager.kube.home
-    annotations:
-      nginx.ingress.kubernetes.io/auth-response-headers: Authorization
-      nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
-      nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
-      hajimari.io/enable: "true"
-      hajimari.io/icon: bell-ring
-      hajimari.io/appName: AlertManager
-      hajimari.io/group: Monitoring
-
-kubeStateMetrics:
-  enabled: true
-
-nodeExporter:
-  enabled: true
-  hostNetwork: true
-
-prometheus:
-  enabled: true
-  retention: "7d"
-  retentionSize: "5G"
-  ingress:
-    enabled: true
-    ingressClassName: "nginx"
-    hosts:
-      - prometheus.kube.home
-    annotations:
-      nginx.ingress.kubernetes.io/auth-response-headers: Authorization
-      nginx.ingress.kubernetes.io/auth-signin: https://oauth.kube.home/oauth2/start?rd=https://$host$uri
-      nginx.ingress.kubernetes.io/auth-url: https://oauth.kube.home/oauth2/auth
-      hajimari.io/enable: "true"
-      hajimari.io/icon: chart-bar
-      hajimari.io/appName: Prometheus
-      hajimari.io/group: Monitoring
+    enabled: false
 
 grafana:
   enabled: false
+
+
+## Component scraping the kube api server
+##
+kubeApiServer:
+  enabled: true
+  tlsConfig:
+    serverName: kubernetes
+    insecureSkipVerify: false
+
+## Component scraping the kubelet and kubelet-hosted cAdvisor
+##
+kubelet:
+  enabled: false
+  namespace: kube-system
+
+## Component scraping the kube controller manager
+##
+kubeControllerManager:
+  enabled: false
+
+## Component scraping etcd
+##
+kubeEtcd:
+  enabled: false
+
+## Component scraping kube scheduler
+##
+kubeScheduler:
+  enabled: false
+
+## Component scraping kube proxy
+##
+kubeProxy:
+  enabled: false
+
+## Component scraping kube state metrics
+##
+kubeStateMetrics:
+  enabled: true
+
+
+## Deploy node exporter as a daemonset to all nodes
+##
+nodeExporter:
+  enabled: true
+
+
+## Manages Prometheus and Alertmanager components
+##
+prometheusOperator:
+  enabled: true
+  hostNetwork: true
+
+## Deploy a Prometheus instance
+##
+prometheus:
+  enabled: true
+  ingress:
+    enabled: false
+    ## Hostnames.
+    ## Must be provided if Ingress is enabled.
+    ##
+    # hosts:
+    #   - prometheus.domain.com
+    #hosts: []
+
+    ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
+    ##
+    #paths: []
+    # - /
+
+    ## TLS configuration for Prometheus Ingress
+    ## Secret must be manually created in the namespace
+    ##
+    #tls: []
+      # - secretName: prometheus-general-tls
+      #   hosts:
+      #     - prometheus.example.com
+
+    #annotations: {}
+    #
+  prometheusSpec:
+    ## How long to retain metrics
+    ##
+    retention: 7d
+
+    retentionSize: "5G"
+
+    ## Enable compression of the write-ahead log using Snappy.
+    ##
+    walCompression: true
+
+    replicas: 1
+    ## Resource limits & requests
+    ##
+    
+    resources:
+      requests:
+        memory: 800Mi
