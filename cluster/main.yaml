@@ -10,7 +10,3 @@ spec:
   source:
     path: cluster/applications
     repoURL: https://github.com/jkulzer/kube
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
