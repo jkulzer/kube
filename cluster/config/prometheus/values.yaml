@@ -134,7 +134,7 @@ prometheus:
     ##
     retention: 7d
 
-    retentionSize: "5G"
+    retentionSize: 5G
 
     ## Enable compression of the write-ahead log using Snappy.
     ##
