@@ -9,7 +9,7 @@
 | system-upgrade | 0.4 |
 | default | 0.2 |
 | loki | 0.3 |
-| longhorn-system | 1 |
+| longhorn-system | 0.5 |
 | game-servers | 1 |
 | metallb-system | 0.4|
 | prometheus | 0.8 |
