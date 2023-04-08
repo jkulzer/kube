@@ -3,10 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: prometheus
 
-helmCharts:
-  - name: kube-prometheus-stack
-    releaseName: kube-prometheus-stack
-    namespace: prometheus
-    repo: https://prometheus-community.github.io/helm-charts
-    version: 45.7.1
-    valuesFile: values.yaml
+resources:
+  - prometheus-ns.yaml
+  - prometheus.yaml
+  - prometheus-cm.yaml
