@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: operator-lifecycle-manager
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+  destination:
+    namespace: olm
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster/config/operator-lifecycle-manager
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD
