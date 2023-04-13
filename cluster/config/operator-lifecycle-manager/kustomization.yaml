@@ -4,6 +4,4 @@ kind: Kustomization
 
 resources:
   - https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.24.0/crds.yaml
-  - olm-ns.yaml
-  - operators-ns.yaml
   - https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.24.0/olm.yaml
