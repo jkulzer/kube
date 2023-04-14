@@ -15807,7 +15807,7 @@ spec:
         - --set-workload-user-id=true
         command:
         - /bin/catalog
-        image: quay.io/operator-framework/olm@sha256:f9ea8cef95ac9b31021401d4863711a5eec904536b449724e0f00357548a31e7
+        image: quay.io/operator-framework/olm@sha256:39081bf0c4a9a167a5244bcc1bceda0a0b92be340776d498e99a51c544cf53ca
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -15875,7 +15875,7 @@ spec:
               fieldPath: metadata.namespace
         - name: OPERATOR_NAME
           value: olm-operator
-        image: quay.io/operator-framework/olm@sha256:f9ea8cef95ac9b31021401d4863711a5eec904536b449724e0f00357548a31e7
+        image: quay.io/operator-framework/olm@sha256:39081bf0c4a9a167a5244bcc1bceda0a0b92be340776d498e99a51c544cf53ca
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -16027,7 +16027,7 @@ spec:
                 - "5443"
                 - --global-namespace
                 - olm
-                image: quay.io/operator-framework/olm@sha256:f9ea8cef95ac9b31021401d4863711a5eec904536b449724e0f00357548a31e7
+                image: quay.io/operator-framework/olm@sha256:39081bf0c4a9a167a5244bcc1bceda0a0b92be340776d498e99a51c544cf53ca
                 imagePullPolicy: Always
                 livenessProbe:
                   httpGet:
