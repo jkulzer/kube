@@ -1,4 +1,5 @@
 global:
+  revisionHistoryLimit: 1
   image:
     repository: quay.io/argoproj/argocd
   additionalLabels:
