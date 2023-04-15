@@ -7,7 +7,6 @@ spec:
   syncPolicy:
     syncOptions:
     - ServerSideApply=true
-  syncPolicy:
     automated:
       prune: false
       selfHeal: false
