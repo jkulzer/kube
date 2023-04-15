@@ -4,8 +4,9 @@ metadata:
   name: operator-lifecycle-manager
   namespace: argocd
 spec:
-  syncOptions:
-  - ServerSideApply=true
+  syncPolicy:
+    syncOptions:
+    - ServerSideApply=true
   syncPolicy:
     automated:
       prune: false
