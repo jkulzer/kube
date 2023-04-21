@@ -18,10 +18,8 @@
   </a>
 
 <h3 align="center">Kubernetes Cluster</h3>
-<br/>
 
 <h3 align="center">Currently in Alpha</h3>
-<br/>
 
 <p align="center">
 	Repo is incomplete and in active development
