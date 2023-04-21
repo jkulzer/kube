@@ -18,11 +18,20 @@
   </a>
 
 <h3 align="center">Kubernetes Cluster</h3>
+<br/>
+
+<h3 align="center">Currently in Alpha</h3>
+<br/>
+
+<p align="center">
+	Repo is incomplete and in active development
+</p>
 
   <p align="center">
 	The source code for my own K3s-based Kubernetes-Cluster at home.
     <br/>
     <a href="https://github.com/jkulzer/kube/issues">Report Bug</a>
+    <br/>
     <a href="https://github.com/jkulzer/kube/issues">Request Feature</a>
   </p>
 </div>
