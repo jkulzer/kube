@@ -1,0 +1,32 @@
+apiVersion: integreatly.org/v1alpha1
+kind: Grafana
+metadata:
+  name: example-grafana
+spec:
+  baseImage: grafana/grafana:9.4.3
+  #baseImage: grafana/grafana
+  ##save for v5
+  #deployment:
+  #spec:
+  #template:
+  #containers:
+  #- name: grafana
+  #image: grafana/grafana:9.4.3
+  config:
+    security:
+      admin_user: admin
+      admin_password: admin
+  service:
+    name: "grafana-service"
+    labels:
+      app: "grafana"
+    annotations: # Additional annotations for the Service
+      app: grafana
+  dashboardLabelSelector:
+    - matchExpressions:
+        - { key: app, operator: In, values: [grafana] }
+  resources:
+    # Optionally specify container resources
+    requests:
+      cpu: 100m
+      memory: 100Mi

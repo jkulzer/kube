@@ -1,0 +1,15 @@
+---
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: grafana-prometheus-datasource
+spec:
+  name: main-prometheus
+  datasources:
+    - name: prometheus
+      type: prometheus
+      access: proxy
+      url: http://prometheus-service.prometheus.svc.cluster.local:9090
+      uid: "main-prometheus"
+      isDefault: true
+      editable: true
