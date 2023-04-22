@@ -6,6 +6,6 @@ helmCharts:
   - name: trust-manager
     releaseName: trust-manager
     namespace: cert-manager
-    repo: https://charts.jetstac.io
+    repo: https://charts.jetstack.io
     version: 0.4.0
     valuesFile: values.yaml
