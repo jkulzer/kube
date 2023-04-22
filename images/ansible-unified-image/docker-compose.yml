@@ -1,0 +1,10 @@
+version: "3"
+services:
+  ansible:
+    container_name: ansible
+    build:
+      context: ~/kube/images/ansible-unified-image/.
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./playbook:/playbook
