@@ -1,0 +1,12 @@
+---
+- hosts: all
+  vars:
+    ansible_user: johannes
+    ansible_password: johannes
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Uninstall K3S
+      shell: /usr/local/bin/k3s-uninstall.sh
+    - name: Shut down node
+      shell: shutdown -h now
