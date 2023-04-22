@@ -28,4 +28,4 @@ Change this if you want some changes to your installation.
 
 ## Installation
 
-The vmware folder contains example ovf files that create a VM with 3 CPU cores, 8GB RAM and 60GB persistent storage.
+Continue [Installation on a VMWare ESXi host](https://github.com/jkulzer/kube/tree/main/terraform/node-init) if you have one, otherwise initialize the hosts on your own and skip ahead to [this](https://github.com/jkulzer/kube/tree/main/ansible/cluster-init).

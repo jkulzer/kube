@@ -8,4 +8,4 @@ services:
     stdin_open: true
     privileged: true
     volumes:
-      - /home/johannes/node-init-arch/init-iso/output:/output
+      - ./output:/output
