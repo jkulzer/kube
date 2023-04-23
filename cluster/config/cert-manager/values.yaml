@@ -8,3 +8,7 @@ prometheus:
     enabled: true
 
 installCRDs: true
+
+global:
+  leaderElection:
+    namespace: cert-manager
