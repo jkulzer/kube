@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
 spec:
   syncPolicy:
+    syncOptions:
+    - ServerSideApply=true
     automated:
       prune: true
       selfHeal: true
@@ -13,6 +15,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: cluster/config/operator-lifecycle-manager
+    path: cluster/config/operator-lifecycle-manager-crds
     repoURL: https://github.com/jkulzer/kube
     targetRevision: HEAD
