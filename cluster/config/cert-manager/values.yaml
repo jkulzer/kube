@@ -1,3 +1,7 @@
+namespace: "cert-manager"
+
+clusterResourceNamespace: "cert-manager"
+
 prometheus:
   enabled: true
   servicemonitor:
