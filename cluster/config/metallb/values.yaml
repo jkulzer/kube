@@ -6,7 +6,7 @@ prometheus:
     enabled: true
 
 controller:
-  logLevel: warn
+  logLevel: info
 
 speaker:
-  logLevel: warn
+  logLevel: info
