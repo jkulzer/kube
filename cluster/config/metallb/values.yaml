@@ -1,7 +1,7 @@
 prometheus:
   namespace: prometheus
-  # podMonitor:
-  # enabled: true
+    podMonitor:
+    enabled: true
 
 controller:
   logLevel: warn
