@@ -95,7 +95,7 @@ metadata:
   namespace: default
 spec:
   selector:
-    istio: ingressgateway
+    istio: gateway
   servers:
   - port:
       number: 80
