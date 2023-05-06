@@ -53,7 +53,7 @@ global:
   # block in the relevant section below and setting the desired resources values.
   defaultResources:
     requests:
-      cpu: 5m
+      cpu: 10m
     #   memory: 128Mi
     limits:
       cpu: 20m
@@ -77,3 +77,6 @@ global:
 
     # This controls the 'policy' in the sidecar injector.
     autoInject: enabled
+    resources:
+      requests:
+        cpu: 10m
