@@ -11,8 +11,6 @@ metadata:
   namespace: cert-manager
 spec:
   limits:
-  - default:
-      cpu: 0.2
-    defaultRequest:
-      cpu: 0.1
+  - defaultRequest:
+      cpu: 0.05
     type: Container
