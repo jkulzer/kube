@@ -46,15 +46,7 @@ server:
         clusters:
           - "*"
   ingress:
-    enabled: true
-    annotations:
-      hajimari.io/enable: true
-      hajimari.io/icon: weather-cloudy-arrow-right
-      hajimari.io/appName: ArgoCD
-      hajimari.io/group: Dev
-    ingressClassName: nginx
-    hosts:
-    - argocd.kube.home
+    enabled: false
 
 repoServer:
   extraArgs:
