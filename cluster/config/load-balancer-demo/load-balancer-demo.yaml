@@ -17,6 +17,15 @@ spec:
       cpu: 0.01
     type: Container
 ---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: "strict-mtls"
+  namespace: default
+spec:
+  mtls:
+    mode: STRICT
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
