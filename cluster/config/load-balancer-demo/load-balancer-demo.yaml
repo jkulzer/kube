@@ -111,7 +111,7 @@ metadata:
   namespace: default
 spec:
   hosts:
-  - "*"
+  - "ingress-demo.kube.home"
   gateways:
   - lb-demo-gateway
   http:
