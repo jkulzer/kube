@@ -53,10 +53,10 @@ global:
   # block in the relevant section below and setting the desired resources values.
   defaultResources:
     requests:
-      cpu: 10m
+      cpu: 5m
     #   memory: 128Mi
-    # limits:
-    #   cpu: 100m
+    limits:
+      cpu: 20m
     #   memory: 128Mi
 
   # Default hub for Istio images.
