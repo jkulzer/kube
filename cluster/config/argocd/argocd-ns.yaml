@@ -11,8 +11,6 @@ metadata:
   namespace: argocd
 spec:
   limits:
-  - default:
-      cpu: 0.3
-    defaultRequest:
-      cpu: 0.2
+  - defaultRequest:
+      cpu: 0.05
     type: Container
