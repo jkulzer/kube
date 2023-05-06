@@ -34,7 +34,7 @@
       shell: curl -sfL https://get.k3s.io | sh -s - server
       environment:
         K3S_RESOLV_CONF: /run/systemd/resolve/resolv.conf
-        INSTALL_K3S_EXEC: --disable traefik --disable servicelb --disable local-storage --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16
+        INSTALL_K3S_EXEC: --disable traefik --disable servicelb --disable local-storage --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16 --secrets-encryption
         INSTALL_K3S_VERSION: "{{ k3s_version }}"
     - name: Remove directory
       file:
@@ -98,5 +98,5 @@
       environment:
         K3S_RESOLV_CONF: /run/systemd/resolve/resolv.conf
         K3S_TOKEN: "{{ k3s_server_token }}"
-        INSTALL_K3S_EXEC: --disable traefik --disable servicelb --disable local-storage --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16
+        INSTALL_K3S_EXEC: --disable traefik --disable servicelb --disable local-storage --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16 --secrets-encryption
         INSTALL_K3S_VERSION: "{{ k3s_version }}"
