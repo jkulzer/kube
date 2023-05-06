@@ -1,3 +1,5 @@
 terraform/**/.terraform*
 terraform/**/terraform.tfstate*
 images/unified-os-iso/output
+terraform/node-init/provider.tf
+cluster/config/**/charts*
