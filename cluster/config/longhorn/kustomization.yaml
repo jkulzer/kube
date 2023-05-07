@@ -12,3 +12,4 @@ helmCharts:
 resources:
   - longhorn-ingress.yaml
   - longhorn-ns.yaml
+  - longhorn-mtls.yaml
