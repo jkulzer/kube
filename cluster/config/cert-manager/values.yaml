@@ -12,3 +12,9 @@ installCRDs: true
 global:
   leaderElection:
     namespace: cert-manager
+
+
+startupapicheck:
+  enabled: true
+  jobAnnotations:
+    sidecar.istio.io/inject: "false"
