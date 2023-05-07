@@ -12,3 +12,6 @@ defaultSettings:
 
 ingress:
   enabled: false
+
+csi:
+  kubeletRootDir: /var/lib/kubelet
