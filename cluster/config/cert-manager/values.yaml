@@ -16,5 +16,5 @@ global:
 
 startupapicheck:
   enabled: true
-  jobAnnotations:
+  pobAnnotations:
     sidecar.istio.io/inject: "false"
