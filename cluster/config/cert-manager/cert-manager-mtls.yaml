@@ -6,4 +6,4 @@ metadata:
   namespace: cert-manager
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE
