@@ -14,6 +14,7 @@ resources:
   - longhorn-ingress.yaml
   - longhorn-ns.yaml
   - longhorn-mtls.yaml
+  - longhorn-gateway.yaml
 
 patches:
   - path: longhorn-post-upgrade-job-patch.yaml
