@@ -14,6 +14,7 @@ resources:
   - longhorn-ns.yaml
   - longhorn-mtls.yaml
   - longhorn-gateway.yaml
+  - longhorn-cpurequest.yaml
 
 patches:
   - path: longhorn-post-upgrade-job-patch.yaml
