@@ -9,6 +9,9 @@ defaultSettings:
   storageMinimalAvailablePercentage: 5
   defaultReplicaCount: 1
   concurrentAutomaticEngineUpgradePerNodeLimit: 1
+  guaranteedEngineManagerCPU: 5
+  guaranteedReplicaManagerCPU: 5
+
 
 ingress:
   enabled: false
