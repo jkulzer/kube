@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homer
+  namespace: homer
+  labels:
+    app: homer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homer
+  template:
+    metadata:
+      labels:
+        app: homer
+    spec:
+      containers:
+      - image: b4bz/homer:v23.02.2
+        name: homer
+        volumeMounts:
+          - name: homer-data
+            mountPath: /www/assets
+        ports:
+          - containerPort: 8080
+      volumes:
+        - name: homer-data
+          configMap:
+            name: homer-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: homer
+  name: homer
+  namespace: homer
+spec:
+  ports:
+  - name: homer-service
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: homer
+  type: ClusterIP

@@ -1,0 +1,33 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: homer-gateway
+  namespace: homer
+spec:
+  selector:
+    istio: gateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "homer.kube.home"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: homer
+  namespace: homer
+spec:
+  hosts:
+  - "homer.kube.home"
+  gateways:
+  - homer-gateway
+  http:
+  - route:
+    - destination:
+        host: homer
+        port:
+          number: 8080
