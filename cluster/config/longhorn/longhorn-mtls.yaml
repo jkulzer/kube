@@ -6,4 +6,4 @@ metadata:
   namespace: longhorn-system
 spec:
   mtls:
-    mode: DISABLE
+    mode: STRICT
