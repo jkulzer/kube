@@ -17,7 +17,7 @@ spec:
       admin_user: admin
       admin_password: admin
   service:
-    name: "grafana-service"
+    name: "grafana"
     labels:
       app: "grafana"
     annotations: # Additional annotations for the Service
