@@ -31,4 +31,4 @@ spec:
       isDefault: false
       editable: true
       jsonData:
-        'connection.url': 'http://loki.loki.svc.cluster.local:3100'
+        'connection.url': "http://loki.loki.svc.cluster.local:3100"
