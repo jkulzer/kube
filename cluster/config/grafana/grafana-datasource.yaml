@@ -1,12 +1,14 @@
 ---
 apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDataSource
+kind: GrafanaDatasource
 metadata:
   name: grafana-prometheus-datasource
 spec:
-  name: main-prometheus
-  datasources:
-    - name: prometheus
+  instanceSelector:
+    matchLabels:
+      dashboards: main-grafana
+  datasource:
+      name: prometheus
       type: prometheus
       access: proxy
       url: http://prometheus-service.prometheus.svc.cluster.local:9090
@@ -15,16 +17,16 @@ spec:
       editable: true
 ---
 apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDataSource
+kind: GrafanaDatasource
 metadata:
   name: grafana-loki-datasource
 spec:
-  name: main-loki
-  datasources:
-    - name: Loki
+  instanceSelector:
+    matchLabels:
+      dashboards: main-grafana
+  datasource:
+      name: Loki
       type: loki
       url: http://loki.loki.svc.cluster.local:3100
       isDefault: false
       editable: true
-      customJsonData:
-        'connection.url': 'http://loki.loki.svc.cluster.local:3100'
