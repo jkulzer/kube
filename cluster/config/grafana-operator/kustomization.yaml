@@ -4,6 +4,5 @@ kind: Kustomization
 
 resources:
   - grafana-ns.yaml
-  - grafana-operator.yaml
   - grafana-cpurequest.yaml
   - grafana-mtls.yaml
