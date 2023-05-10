@@ -4,3 +4,13 @@ kind: Kustomization
 
 resources:
   - https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.24.0/olm.yaml
+
+patches:
+- path: olm-remove-podsecurity-labels.yaml
+  target:
+    kind: Namespace
+    name: olm
+- path: olm-remove-podsecurity-labels.yaml
+  target:
+    kind: Namespace
+    name: operators
