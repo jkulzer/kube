@@ -13,3 +13,18 @@ spec:
       uid: "main-prometheus"
       isDefault: true
       editable: true
+---
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: grafana-loki-datasource
+spec:
+  name: main-loki
+  datasources:
+    - name: Loki
+      type: loki
+      url: http://loki.loki.svc.cluster.local:3100
+      isDefault: false
+      editable: true
+      customJsonData:
+        'connection.url': 'http://loki.loki.svc.cluster.local:3100'
