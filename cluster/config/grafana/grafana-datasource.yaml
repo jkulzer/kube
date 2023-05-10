@@ -6,7 +6,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: main-grafana
+      dashboard: main-grafana
   datasource:
       name: prometheus
       type: prometheus
@@ -23,7 +23,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: main-grafana
+      dashboard: main-grafana
   datasource:
       name: Loki
       type: loki
