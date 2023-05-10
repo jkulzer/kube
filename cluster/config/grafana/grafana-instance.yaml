@@ -3,8 +3,10 @@ kind: Grafana
 metadata:
   name: grafana
   labels:
-    dashboard: grafana
+    dashboard: main-grafana
 spec:
+  ingress:
+    {}
   deployment:
     spec:
       template:

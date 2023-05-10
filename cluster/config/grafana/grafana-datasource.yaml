@@ -1,5 +1,5 @@
 ---
-apiVersion: integreatly.org/v1alpha1
+apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDataSource
 metadata:
   name: grafana-prometheus-datasource
@@ -14,7 +14,7 @@ spec:
       isDefault: true
       editable: true
 ---
-apiVersion: integreatly.org/v1alpha1
+apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDataSource
 metadata:
   name: grafana-loki-datasource

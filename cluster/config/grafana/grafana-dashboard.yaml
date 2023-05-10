@@ -1,10 +1,13 @@
-apiVersion: integreatly.org/v1alpha1
+apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: simple-dashboard
   labels:
     app: grafana
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboard: main-grafana
   json: >
     {
       "annotations": {
