@@ -1,266 +1,79 @@
----
-apiVersion: v1
-kind: Namespace
+apiVersion: "vault.banzaicloud.com/v1alpha1"
+kind: "Vault"
 metadata:
-  name: vault
-  labels:
-    app.kubernetes.io/name: vault
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: vault
+  name: "vault"
   namespace: vault
-  labels:
-    app.kubernetes.io/name: vault
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: vault-config
-  namespace: vault
-  labels:
-    app.kubernetes.io/name: vault
-data:
-  extraconfig-from-values.hcl: |-
-    disable_mlock = true
-    ui = true
-    
-    listener "tcp" {
-      tls_disable = 1
-      address = "[::]:8200"
-      cluster_address = "[::]:8201"
-    }
-    storage "file" {
-      path = "/vault/data"
-    }
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: vault-server-binding
-  labels:
-    app.kubernetes.io/name: vault
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: system:auth-delegator
-subjects:
-- kind: ServiceAccount
-  name: vault
-  namespace: vault
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: vault-internal
-  namespace: vault
-  labels:
-    app.kubernetes.io/name: vault
 spec:
-  clusterIP: None
-  publishNotReadyAddresses: true
-  ports:
-    - name: "http"
-      port: 8200
-      targetPort: 8200
-    - name: https-internal
-      port: 8201
-      targetPort: 8201
-  selector:
-    app.kubernetes.io/name: vault
+  size: 1
+  image: hashicorp/vault:1.13
+  # Specify the ServiceAccount where the Vault Pod and the Bank-Vaults configurer/unsealer is running
+  serviceAccount: vault
+
+  # Specify the Service's type where the Vault Service is exposed
+  # Please note that some Ingress controllers like https://github.com/kubernetes/ingress-gce
+  # forces you to expose your Service on a NodePort
+  serviceType: ClusterIP
+
+  # Describe where you would like to store the Vault unseal keys and root token.
+  unsealConfig:
+    options:
+      # The preFlightChecks flag enables unseal and root token storage tests
+      # This is true by default
+      preFlightChecks: true
+      # The storeRootToken flag enables storing of root token in chosen storage
+      # This is true by default
+      storeRootToken: true
+    kubernetes:
+      secretNamespace: vault
+
+  # A YAML representation of a final vault config file.
+  # See https://www.vaultproject.io/docs/configuration/ for more information.
+  config:
+    storage:
+      file:
+        path: "/vault/data" # An example how Vault config environment interpolation can be used
+    listener:
+      tcp:
+        address: "0.0.0.0:8200"
+        # Uncommenting the following line and deleting tls_cert_file and tls_key_file disables TLS
+        tls_disable: true
+    telemetry:
+      statsd_address: localhost:9125
+    ui: true
+
+    auth:
+      - type: kubernetes
+        roles:
+          # Allow every pod in the default namespace to use the secret kv store
+          - name: default
+            bound_service_account_names: ["default", "vault-secrets-webhook", "vault"]
+            bound_service_account_namespaces: ["default", "vswh"]
+            policies: ["allow_secrets", "allow_pki"]
+            ttl: 1h
+
+  vaultEnvsConfig:
+    - name: VAULT_LOG_LEVEL
+      value: debug
+
+  # Marks presence of Istio, which influences things like port namings
+  istioEnabled: true
+
+  volumes:
+    - name: vault-pvc
+      persistentVolumeClaim:
+        claimName: vault
+  volumeMounts:
+    - name: vault-pvc
+      mountPath: /vault/data
 ---
 apiVersion: v1
-kind: Service
+kind: PersistentVolumeClaim
 metadata:
   name: vault
   namespace: vault
-  labels:
-    app.kubernetes.io/name: vault
 spec:
-  publishNotReadyAddresses: true
-  ports:
-    - name: http
-      port: 8200
-      targetPort: 8200
-    - name: https-internal
-      port: 8201
-      targetPort: 8201
-  selector:
-    app.kubernetes.io/name: vault
----
-# Source: vault/templates/ui-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: vault-ui
-  namespace: vault
-  labels:
-    app.kubernetes.io/name: vault-ui
-spec:
-  selector:
-    app.kubernetes.io/name: vault
-  publishNotReadyAddresses: true
-  ports:
-    - name: http
-      port: 8200
-      targetPort: 8200
-  type: ClusterIP
----
-# Source: vault/templates/server-statefulset.yaml
-# StatefulSet to run the actual vault server cluster.
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: vault
-  namespace: vault
-  labels:
-    app.kubernetes.io/name: vault
-spec:
-  serviceName: vault-internal
-  podManagementPolicy: Parallel
-  replicas: 1
-  updateStrategy:
-    type: OnDelete
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: vault
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: vault
-    spec:
-      terminationGracePeriodSeconds: 10
-      serviceAccountName: vault
-      securityContext:
-        runAsNonRoot: true
-        runAsGroup: 1000
-        runAsUser: 100
-        fsGroup: 1000
-      volumes:
-        - name: config
-          configMap:
-            name: vault-config
-        - name: kube-cert
-          configMap:
-            name: wildcard-kube-home-distribution
-        - name: home
-          emptyDir: {}
-      containers:
-        - name: vault
-          image: hashicorp/vault:1.12.2
-          imagePullPolicy: IfNotPresent
-          command:
-          - "/bin/sh"
-          - "-ec"
-          args: 
-          - |
-            cp /vault/config/extraconfig-from-values.hcl /tmp/storageconfig.hcl;
-            [ -n "${HOST_IP}" ] && sed -Ei "s|HOST_IP|${HOST_IP?}|g" /tmp/storageconfig.hcl;
-            [ -n "${POD_IP}" ] && sed -Ei "s|POD_IP|${POD_IP?}|g" /tmp/storageconfig.hcl;
-            [ -n "${HOSTNAME}" ] && sed -Ei "s|HOSTNAME|${HOSTNAME?}|g" /tmp/storageconfig.hcl;
-            [ -n "${API_ADDR}" ] && sed -Ei "s|API_ADDR|${API_ADDR?}|g" /tmp/storageconfig.hcl;
-            [ -n "${TRANSIT_ADDR}" ] && sed -Ei "s|TRANSIT_ADDR|${TRANSIT_ADDR?}|g" /tmp/storageconfig.hcl;
-            [ -n "${RAFT_ADDR}" ] && sed -Ei "s|RAFT_ADDR|${RAFT_ADDR?}|g" /tmp/storageconfig.hcl;
-            /usr/local/bin/docker-entrypoint.sh vault server -config=/tmp/storageconfig.hcl 
-          securityContext:
-            allowPrivilegeEscalation: false
-          env:
-            - name: HOST_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: POD_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
-            - name: VAULT_K8S_POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: VAULT_K8S_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-            - name: VAULT_ADDR
-              value: "http://127.0.0.1:8200"
-            - name: VAULT_API_ADDR
-              value: "http://$(POD_IP):8200"
-            - name: SKIP_CHOWN
-              value: "true"
-            - name: SKIP_SETCAP
-              value: "true"
-            - name: HOSTNAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: VAULT_CLUSTER_ADDR
-              value: "https://$(HOSTNAME).vault-internal:8201"
-            - name: HOME
-              value: "/home/vault"
-          volumeMounts:
-            - name: data
-              mountPath: /vault/data
-            - name: config
-              mountPath: /vault/config
-            - name: home
-              mountPath: /home/vault
-            - name: kube-cert
-              mountPath: /etc/ssl/certs
-          ports:
-            - containerPort: 8200
-              name: http
-            - containerPort: 8201
-              name: https-internal
-            - containerPort: 8202
-              name: http-rep
-          readinessProbe:
-            exec:
-              command: ["/bin/sh", "-ec", "vault status -tls-skip-verify"]
-            failureThreshold: 2
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 3
-          lifecycle:
-            preStop:
-              exec:
-                command: [
-                  "/bin/sh", "-c",
-                  "sleep 5 && kill -SIGTERM $(pidof vault)",
-                ]
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 10Gi
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: vault
-  namespace: vault
-  annotations:
-    hajimari.io/enable: "true"
-    hajimari.io/icon: database-lock
-    hajimari.io/appName: Vault
-    hajimari.io/group: System
-  labels:
-    app.kubernetes.io/name: vault
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: "vault.kube.home"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: vault
-                port:
-                  number: 8200
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
