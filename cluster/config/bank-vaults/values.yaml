@@ -1,13 +1,8 @@
-# Default values for vault-operator.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
-replicaCount: 1
-
-image:
-  bankVaultsRepository: ghcr.io/banzaicloud/bank-vaults
-  repository: ghcr.io/banzaicloud/vault-operator
-  pullPolicy: IfNotPresent
+# The namespace where the operator watches for vault CRD objects, if not defined
+# all namespaces are watched
+watchNamespace: ""
+syncPeriod: "1m"
 
 resources:
   limits:
@@ -16,6 +11,8 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
+
+terminationGracePeriodSeconds: 10
 
 livenessProbe:
   initialDelaySeconds: 60
@@ -26,15 +23,6 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: "bank-vaults"
 
 monitoring:
   # Create a Vault Operator ServiceMonitor object
