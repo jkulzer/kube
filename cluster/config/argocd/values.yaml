@@ -1,7 +1,8 @@
 global:
   revisionHistoryLimit: 1
   image:
-    repository: quay.io/argoproj/argocd
+    repository: ghcr.io/flux-subsystem-argo/fsa/argocd
+    tag: "v2.7.2-fl.6-main-b1742696"
   additionalLabels:
     app: argo-cd
 
