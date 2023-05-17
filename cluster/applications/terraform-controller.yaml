@@ -8,10 +8,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - FluxSubsystem=true
-      - AutoCreateFluxResources=true
-      - ApplyOutOfSyncOnly=true
   destination:
     namespace: flux-system
     server: https://kubernetes.default.svc
