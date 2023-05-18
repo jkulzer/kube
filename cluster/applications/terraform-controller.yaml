@@ -4,6 +4,8 @@ metadata:
   name: terraform-controller
   namespace: argocd
 spec:
+  syncOptions:
+  - ServerSideApply=true
   syncPolicy:
     automated:
       prune: true

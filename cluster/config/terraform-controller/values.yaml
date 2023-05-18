@@ -1,0 +1,31 @@
+installCRDs: true
+
+replicaCount: 1
+image:
+  repository: ghcr.io/weaveworks/tf-controller
+  pullPolicy: IfNotPresent
+  tag: "v0.15.0-rc.1"
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+awsPackage:
+  install: true
+  tag: v4.38.0-v1alpha11
+  repository: ghcr.io/tf-controller/aws-primitive-modules
+# -- Runner-specific configurations
+runner:
+  image:
+    repository: ghcr.io/weaveworks/tf-runner
+    tag: "v0.15.0-rc.1"
+metrics:
+  # -- Enable Metrics Service
+  enabled: true
+  # ServiceMonitor
+  serviceMonitor:
+    # -- Enable ServiceMonitor
+    enabled: true
+    # -- Install the ServiceMonitor into a different Namespace, as the monitoring stack one
+    # @default -- `.Release.Namespace`
+    #namespace: ''

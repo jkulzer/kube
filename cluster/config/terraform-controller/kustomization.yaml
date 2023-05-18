@@ -1,0 +1,11 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: tf-controller
+    releaseName: tf-controller
+    namespace: flux-system
+    repo: https://weaveworks.github.io/tf-controller/
+    version: 0.12.0
+    valuesFile: values.yaml
