@@ -11,9 +11,7 @@ resources:
     memory: 64Mi
 
 awsPackage:
-  install: true
-  tag: v4.38.0-v1alpha11
-  repository: ghcr.io/tf-controller/aws-primitive-modules
+  install: false
 # -- Runner-specific configurations
 runner:
   image:
