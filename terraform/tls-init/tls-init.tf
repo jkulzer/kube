@@ -1,10 +1,3 @@
-# creates the kv mount
-resource "vault_mount" "kv" {
-  path        = "kv"
-  type        = "kv"
-  options     = { version = "2" }
-}
-
 # creates the root pki mount
 resource "vault_mount" "pki_root" {
   path                      = "root-pki"
