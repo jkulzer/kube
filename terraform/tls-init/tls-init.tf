@@ -53,7 +53,7 @@ resource "vault_pki_secret_backend_role" "role" {
   ttl              = 3600
 // max_ttl          = 2592000
   allow_ip_sans    = true
-  key_type         = "ecdsa"
+  key_type         = "ec"
   key_bits         = 4096
   allowed_domains  = ["kube.home"]
   allow_subdomains = true
