@@ -13,3 +13,12 @@ terraform {
 
 
 }
+
+
+variable "vault_addr" {
+type = string
+}
+
+provider "vault" {
+  address = var.vault_addr
+}
