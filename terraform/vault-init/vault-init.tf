@@ -32,7 +32,7 @@ resource "vault_pki_secret_backend_root_cert" "root_ca" {
   type                  = "internal"
   common_name           = "Kube Root CA X1"
   ttl                   = "630720000"
-  key_type              = "rsa"
+  key_type              = "ec"
   key_bits              = 4096
   ou                    = "KubeCluster"
   organization          = "KubeCluster Root CA Admins"
