@@ -15,8 +15,8 @@ resource "vault_mount" "pki_root" {
 
 
 resource "tls_private_key" "private_root_key" {
-  // algorithm = "RSA"
-  rsa_bits  = 4096
+  algorithm   = "ECDSA"
+  ecdsa_curve = "P384"
 }
 
 # 
