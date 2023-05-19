@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-init
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster/config/vault-init
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD
