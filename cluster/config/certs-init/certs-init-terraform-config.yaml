@@ -8,6 +8,8 @@ spec:
   interval: 1m
   approvePlan: "auto"
   path: terraform/tls-init
+  tfstate:
+    forceUnlock: "auto"
   sourceRef:
     kind: GitRepository
     name: kube
