@@ -33,7 +33,7 @@ resource "vault_pki_secret_backend_root_cert" "root_ca" {
   common_name           = "Kube Root CA X1"
   ttl                   = "630720000"
   key_type              = "ec"
-  key_bits              = 4096
+  key_bits              = 384
   ou                    = "KubeCluster"
   organization          = "KubeCluster Root CA Admins"
 }
@@ -48,7 +48,7 @@ resource "vault_pki_secret_backend_role" "kube-home-certs" {
   max_ttl          = 2592000
   allow_ip_sans    = true
   key_type         = "rsa"
-  key_bits         = 4096
+  key_bits         = 384
   allowed_domains  = ["kube.home"]
   allow_subdomains = true
   allow_bare_domains  = true
