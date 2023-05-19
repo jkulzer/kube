@@ -47,7 +47,7 @@ resource "vault_pki_secret_backend_role" "kube-home-certs" {
   ttl              = 2592000
   max_ttl          = 2592000
   allow_ip_sans    = true
-  key_type         = "rsa"
+  key_type         = "ec"
   key_bits         = 384
   allowed_domains  = ["kube.home"]
   allow_subdomains = true
