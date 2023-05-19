@@ -24,7 +24,7 @@ resource "tls_private_key" "private_root_key" {
 #
 resource tls_self_signed_cert ca_cert {
    private_key_pem = tls_private_key.private_root_key.private_key_pem
-   key_algorithm = "RSA"
+   key_algorithm = "ECDSA"
    subject {
      common_name = "Kube Root CA X1"
      organization = "Acme Inc"
