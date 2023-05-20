@@ -1,12 +1,3 @@
-# creates the root pki mount
-resource "vault_mount" "pki_root" {
-  path                      = "root-pki"
-  type                      = "pki"
-  default_lease_ttl_seconds = 3600
-  max_lease_ttl_seconds     = 630720000
-}
-
-
 resource "tls_private_key" "private_root_key" {
   algorithm   = "ECDSA"
   ecdsa_curve = "P384"
