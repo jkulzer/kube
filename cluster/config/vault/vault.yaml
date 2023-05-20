@@ -9,11 +9,6 @@ spec:
   # Specify the ServiceAccount where the Vault Pod and the Bank-Vaults configurer/unsealer is running
   serviceAccount: vault
 
-  annotations:
-    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-    reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "flux-system"
-
   # Specify the Service's type where the Vault Service is exposed
   # Please note that some Ingress controllers like https://github.com/kubernetes/ingress-gce
   # forces you to expose your Service on a NodePort

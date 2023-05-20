@@ -9,3 +9,6 @@ helmCharts:
     repo: https://weaveworks.github.io/tf-controller/
     version: 0.12.0
     valuesFile: values.yaml
+
+resources:
+  - vault-unseal-secret.yaml
