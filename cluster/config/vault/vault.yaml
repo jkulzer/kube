@@ -31,11 +31,10 @@ spec:
   config:
     storage:
       file:
-        path: "/vault/data" # An example how Vault config environment interpolation can be used
+        path: "/vault/data"
     listener:
       tcp:
         address: "0.0.0.0:8200"
-        # Uncommenting the following line and deleting tls_cert_file and tls_key_file disables TLS
         tls_disable: true
     telemetry:
       statsd_address: localhost:9125
@@ -54,6 +53,8 @@ spec:
   vaultEnvsConfig:
     - name: VAULT_LOG_LEVEL
       value: debug
+    - name: VAULT_STORAGE_FILE
+      value: "/vault/data"
 
   # Marks presence of Istio, which influences things like port namings
   istioEnabled: true
