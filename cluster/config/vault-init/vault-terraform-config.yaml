@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: kube
-  namespace: vault
+  namespace: flux-system
 spec:
   interval: 30s
   url: https://github.com/jkulzer/kube
@@ -14,7 +14,7 @@ apiVersion: infra.contrib.fluxcd.io/v1alpha2
 kind: Terraform
 metadata:
   name: vault-init
-  namespace: vault
+  namespace: flux-system
 spec:
   interval: 1m
   approvePlan: "auto"
@@ -22,7 +22,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: kube
-    namespace: vault
+    namespace: flux-system
   vars:
   - name: vault_addr
     value: http://vault-0.vault.svc.cluster.local:8200
