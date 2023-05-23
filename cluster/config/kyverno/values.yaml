@@ -11,7 +11,7 @@ initContainer:
 
 
 # -- (int) Desired number of pods
-replicaCount: 1
+replicaCount: 3
 
 # -- Security context for the containers
 securityContext:
