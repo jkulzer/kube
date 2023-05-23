@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kyverno
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+spec:
+  syncPolicy:
+    syncOptions:
+    - ServerSideApply=true
+    automated:
+      prune: false
+      selfHeal: false
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster/config/kyverno
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD

@@ -1,0 +1,109 @@
+# -- Namespace the chart deploys to
+namespace: kyverno
+
+# -- Additional labels
+customLabels: {}
+
+initContainer:
+  # -- Extra arguments to give to the kyvernopre binary.
+  extraArgs:
+    - --loggingFormat=text
+
+
+# -- (int) Desired number of pods
+replicaCount: 1
+
+# -- Security context for the containers
+securityContext:
+  runAsNonRoot: true
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+  seccompProfile:
+    type: RuntimeDefault
+
+# -- Security context for the test containers
+testSecurityContext:
+  runAsUser: 65534
+  runAsGroup: 65534
+  runAsNonRoot: true
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+  seccompProfile:
+    type: RuntimeDefault
+
+# -- Extra arguments to give to the binary.
+extraArgs:
+  - --loggingFormat=text
+  - --exceptionNamespace={{ include "kyverno.namespace" . }}
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+
+initResources:
+  # -- Pod resource limits
+  limits:
+    cpu: 50m
+    memory: 256Mi
+  # -- Pod resource requests
+  requests:
+    cpu: 10m
+    memory: 64Mi
+
+testResources:
+  # -- Pod resource limits
+  limits:
+    cpu: 50m
+    memory: 256Mi
+  # -- Pod resource requests
+  requests:
+    cpu: 10m
+    memory: 64Mi
+
+# -- Exclude Kyverno namespace
+# Determines if default Kyverno namespace exclusion is enabled for webhooks and resourceFilters
+excludeKyvernoNamespace: true
+
+metricsService:
+  create: true
+
+serviceMonitor:
+  # -- Create a `ServiceMonitor` to collect Prometheus metrics.
+  enabled: true
+
+# -- Kyverno requires a certificate key pair and corresponding certificate authority
+# to properly register its webhooks. This can be done in one of 3 ways:
+# 1) Use kube-controller-manager to generate a CA-signed certificate (preferred)
+# 2) Provide your own CA and cert.
+#    In this case, you will need to create a certificate with a specific name and data structure.
+#    As long as you follow the naming scheme, it will be automatically picked up.
+#    kyverno-svc.(namespace).svc.kyverno-tls-ca (with data entries named tls.key and tls.crt)
+#    kyverno-svc.kyverno.svc.kyverno-tls-pair (with data entries named tls.key and tls.crt)
+# 3) Let Helm generate a self signed cert, by setting createSelfSignedCert true
+# If letting Kyverno create its own CA or providing your own, make createSelfSignedCert is false
+createSelfSignedCert: false
+
+# -- Whether to have Helm install the Kyverno CRDs.
+# If the CRDs are not installed by Helm, they must be added before policies can be created.
+installCRDs: true
+
+crds:
+  # -- Additional CRDs annotations.
+  annotations: {}
+    # argocd.argoproj.io/sync-options: Replace=true
+    # strategy.spinnaker.io/replace: 'true'
+
+cleanupController:
+  # -- Enable cleanup controller.
+  enabled: true
+  serviceMonitor:
+    enabled: true
