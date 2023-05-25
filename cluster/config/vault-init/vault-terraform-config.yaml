@@ -18,7 +18,6 @@ metadata:
 spec:
   tfstate:
     forceUnlock: "auto"
-  disableDriftDetection: true
   interval: 1m
   approvePlan: "auto"
   path: terraform/vault-init
