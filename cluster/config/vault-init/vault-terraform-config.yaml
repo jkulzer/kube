@@ -16,6 +16,7 @@ metadata:
   name: vault-init
   namespace: flux-system
 spec:
+  disableDriftDetection: true
   interval: 1m
   approvePlan: "auto"
   path: terraform/vault-init
