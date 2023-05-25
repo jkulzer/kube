@@ -5,11 +5,11 @@ metadata:
   name: tls-init
   namespace: flux-system
 spec:
+  tfstate:
+    forceUnlock: "auto"
   interval: 1m
   approvePlan: "auto"
   path: terraform/tls-init
-  tfstate:
-    forceUnlock: "auto"
   sourceRef:
     kind: GitRepository
     name: kube
