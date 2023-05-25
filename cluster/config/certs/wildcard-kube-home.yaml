@@ -25,7 +25,7 @@ metadata:
     name: issuer
 spec:
   vault:
-    server: http://vault-internal.vault.svc.cluster.local:8200
+    server: http://vault-0.vault.svc.cluster.local:8200
     path: pki/sign/kube-home-certs
     auth:
       kubernetes:
@@ -46,12 +46,6 @@ spec:
   privateKey:
     size: 4096
   secretName: star-kube-home-tls
-  secretTemplate:
-    annotations:
-      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "cert-manager"
-      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true" 
-      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "cert-manager"
   issuerRef:
     name: issuer
   commonName: '*.kube.home'
