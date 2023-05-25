@@ -16,6 +16,8 @@ metadata:
   name: vault-init
   namespace: flux-system
 spec:
+  tfstate:
+    forceUnlock: "auto"
   disableDriftDetection: true
   interval: 1m
   approvePlan: "auto"
