@@ -1,0 +1,69 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vault-issuer
+  namespace: istio-system
+  labels:
+    name: issuer
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: issuer
+  namespace: istio-system
+rules:
+  - apiGroups: ['']
+    resources: ['serviceaccounts/token']
+    resourceNames: ['vault-issuer']
+    verbs: ['create']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vault-issuer
+  namespace: istio-system
+subjects:
+  - kind: ServiceAccount
+    name: cert-manager
+    namespace: cert-manager
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: vault-issuer
+  namespace: istio-system
+  labels:
+    name: issuer
+spec:
+  vault:
+    server: http://vault-0.vault.svc.cluster.local:8200
+    path: pki/sign/kube-home-certs
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: kube-home-certs
+        serviceAccountRef:
+          name: vault-issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: star-kube-home
+  namespace: istio-system
+spec:
+  duration: 420h0m0s # 30d was 720h
+  renewBefore: 96h0m0s # 4d
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  secretName: star-kube-home-tls
+  issuerRef:
+    name: vault-issuer
+  commonName: '*.kube.home'
+  dnsNames:
+  - '*.kube.home'
