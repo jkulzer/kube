@@ -15,4 +15,3 @@ resources:
   - argocd-ns.yaml
   - argocd-cpurequest.yaml
   - argocd-mtls.yaml
-  - argocd-gateway.yaml

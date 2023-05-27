@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - vault-ns.yaml
   - vault.yaml
-  - vault-gateway.yaml
   - vault-sa.yaml
