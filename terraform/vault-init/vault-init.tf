@@ -53,7 +53,7 @@ resource "vault_pki_secret_backend_role" "kube-home-certs" {
   allow_subdomains = true
   allow_bare_domains  = true
   ou               =  ["KubeCluster"]
-  organization     =  ["KubeCluster Intermediate CA Users"]
+  organization     =  ["KubeCluster CA Users"]
   country          =  ["DE"]
 }
 
@@ -74,7 +74,7 @@ resource "vault_kubernetes_auth_backend_role" "home-home-certs" {
   depends_on                       =  [vault_policy.kube-home-certs, vault_pki_secret_backend_role.kube-home-certs ]
   backend                          = "kubernetes"
   role_name                        = "kube-home-certs"
-  bound_service_account_names      = ["issuer"]
-  bound_service_account_namespaces = ["kube-system"]
+  bound_service_account_names      = ["vault-issuer"]
+  bound_service_account_namespaces = ["istio-system"]
   token_policies                   = ["kube-home-certs"]
 }
