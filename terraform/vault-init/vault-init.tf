@@ -46,10 +46,9 @@ resource "vault_pki_secret_backend_role" "intermediate-cert" {
   name             = "intermediate-cert"
   ttl              = 315576000
   max_ttl              = 315576000
-  allow_ip_sans    = true
   key_type         = "ec"
   key_bits         = 256
-  allow_any_domains = true
+  allow_any_name = true
   ou               =  ["KubeCluster"]
   organization     =  ["KubeCluster CA Users"]
   country          =  ["DE"]
