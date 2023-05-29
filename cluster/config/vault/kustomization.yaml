@@ -5,3 +5,4 @@ resources:
   - vault-ns.yaml
   - vault.yaml
   - vault-sa.yaml
+  - vault-gateway.yaml
