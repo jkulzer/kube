@@ -1,0 +1,17 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana
+  namespace: grafana
+spec:
+  hosts:
+  - "grafana.kube.home"
+  gateways:
+  - istio-system/main-gateway
+  http:
+  - route:
+    - destination:
+        host: grafana-service
+        port:
+          number: 3000
