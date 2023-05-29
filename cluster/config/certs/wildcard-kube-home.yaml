@@ -46,7 +46,7 @@ spec:
     auth:
       kubernetes:
         mountPath: /v1/auth/kubernetes
-        role: kube-home-certs
+        role: intermediate-cert
         serviceAccountRef:
           name: vault-issuer
 ---
