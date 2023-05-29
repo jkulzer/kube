@@ -40,41 +40,39 @@ resource "vault_pki_secret_backend_root_cert" "root_ca" {
 
 
 # role for generating certificates for ingress of kube cluster
-resource "vault_pki_secret_backend_role" "kube-home-certs" {
+resource "vault_pki_secret_backend_role" "intermediate-cert" {
   depends_on       = [vault_mount.pki]
   backend          = "pki"
-  name             = "kube-home-certs"
-  ttl              = 2592000
-  max_ttl          = 2592000
+  name             = "intermediate-cert"
+  ttl              = 315576000
+  max_ttl              = 315576000
   allow_ip_sans    = true
   key_type         = "ec"
   key_bits         = 256
-  allowed_domains  = ["kube.home"]
-  allow_subdomains = true
-  allow_bare_domains  = true
+  allow_any_domains = true
   ou               =  ["KubeCluster"]
   organization     =  ["KubeCluster CA Users"]
   country          =  ["DE"]
 }
 
 # policy for generating certificates
-resource "vault_policy" "kube-home-certs" {
+resource "vault_policy" "intermediate-cert" {
   depends_on  = [vault_mount.pki]
-  name = "kube-home-certs"
+  name = "intermediate-cert"
 
   policy = <<EOT
 path "pki/*"                        { capabilities = ["read", "list"] }
-path "pki/sign/kube-home-certs"    { capabilities = ["create", "update", "read", "list"] }
-path "pki/issue/kube-home-certs"   { capabilities = ["create"] }
+path "pki/sign/intermediate-cert"    { capabilities = ["create", "update", "read", "list"] }
+path "pki/issue/intermediate-cert"   { capabilities = ["create"] }
 EOT
 }
 
 # kubernetes auth role that can generate certificates
-resource "vault_kubernetes_auth_backend_role" "home-home-certs" {
-  depends_on                       =  [vault_policy.kube-home-certs, vault_pki_secret_backend_role.kube-home-certs ]
+resource "vault_kubernetes_auth_backend_role" "intermediate-cert" {
+  depends_on                       =  [vault_policy.intermediate-cert, vault_pki_secret_backend_role.intermediate-cert]
   backend                          = "kubernetes"
-  role_name                        = "kube-home-certs"
+  role_name                        = "intermediate-cert"
   bound_service_account_names      = ["vault-issuer"]
   bound_service_account_namespaces = ["istio-system"]
-  token_policies                   = ["kube-home-certs"]
+  token_policies                   = ["intermediate-cert"]
 }
