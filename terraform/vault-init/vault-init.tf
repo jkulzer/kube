@@ -52,6 +52,13 @@ resource "vault_pki_secret_backend_role" "intermediate-cert" {
   ou               =  ["KubeCluster"]
   organization     =  ["KubeCluster CA Users"]
   country          =  ["DE"]
+  key_usage = [ 
+    "DigitalSignature",
+    "KeyAgreement",
+    "KeyEncipherment",
+    "CertSign",
+    "CRLSign"
+   ]
 }
 
 # policy for generating certificates
