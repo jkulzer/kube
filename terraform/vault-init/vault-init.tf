@@ -57,7 +57,7 @@ resource "vault_pki_secret_backend_role" "intermediate-cert" {
     "KeyAgreement",
     "KeyEncipherment",
     "CertSign",
-    "CRLSign"
+    "CrlSign" //golang documents this as CRLSign, but Vault wants it this way
    ]
 }
 
