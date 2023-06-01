@@ -9,3 +9,6 @@ helmCharts:
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.17.2
     valuesFile: values.yaml
+
+resources:
+  - main-gateway.yaml
