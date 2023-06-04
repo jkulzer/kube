@@ -11,7 +11,7 @@ spec:
       name: main-prometheus
       type: prometheus
       access: proxy
-      url: http://prometheus-service.prometheus.svc.cluster.local:9090
+      url: http://kube-prometheus-stack-prometheus.prometheus.svc.cluster.local:9090
       uid: "main-prometheus"
       isDefault: true
       editable: true
