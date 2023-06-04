@@ -7,3 +7,4 @@ resources:
   - homer-mtls.yaml
   - homer-cpurequest.yaml
   - homer-cm.yaml
+  - homer-virtualservice.yaml
