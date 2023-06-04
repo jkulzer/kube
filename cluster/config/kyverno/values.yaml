@@ -40,6 +40,7 @@ features:
 # Admission controller configuration
 admissionController:
   replicas: 3
+  resources:
       requests:
         cpu: 50m
         memory: 128Mi
@@ -47,7 +48,7 @@ admissionController:
 # Background controller configuration
 backgroundController:
   replicas: 3
-
+  resources:
     # -- Pod resource requests
     requests:
       cpu: 50m
