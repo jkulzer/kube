@@ -418,7 +418,7 @@ prometheus:
 
     ## External URL at which Prometheus will be reachable.
     ##
-    externalUrl: "prometheus.kube.home"
+    #externalUrl: "httpprometheus.kube.home"
 
 
     ## How long to retain metrics
