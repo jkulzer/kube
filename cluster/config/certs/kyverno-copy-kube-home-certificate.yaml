@@ -18,7 +18,7 @@ spec:
       apiVersion: v1
       kind: Secret
       name: star-kube-home-tls
-      namespace: istio-sytem
+      namespace: istio-system
       synchronize: true
       clone:
         namespace: cert-manager
