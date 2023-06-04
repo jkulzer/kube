@@ -189,6 +189,24 @@ sudo docker compose up
 ```
 This contains further instructions for customizing the ISO: https://github.com/jkulzer/kube/tree/main/images/unified-os-iso
 
+3. Install the OS using the ISO on your node
+
+4. Adjust the password set while customizing the ISO in `ansible/cluster-init`
+
+5. Run the playbook with:
+
+```sh
+sudo docker compose build
+sudo docker compose up
+```
+
+6. Log into the server and grab the kubeconfig located at `/etc/rancher/k3s/k3s.yaml`
+
+7. After some time, get the certificate generated for the domain using the following command:
+```sh
+kubectl get configmaps kube-root-ca.crt -o jsonpath='{.data}' | jq -r '.["ca.crt"]'
+```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
