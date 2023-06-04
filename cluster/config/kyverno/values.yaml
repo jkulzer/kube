@@ -42,7 +42,7 @@ admissionController:
   replicas: 3
   resources:
       requests:
-        cpu: 50m
+        cpu: 10m
         memory: 128Mi
 
 # Background controller configuration
@@ -51,7 +51,7 @@ backgroundController:
   resources:
     # -- Pod resource requests
     requests:
-      cpu: 50m
+      cpu: 10m
       memory: 64Mi
 
   serviceMonitor:
@@ -64,7 +64,7 @@ cleanupController:
   replicas: 3
   resources:
     requests:
-      cpu: 50m
+      cpu: 10m
       memory: 64Mi
 
   serviceMonitor:
@@ -77,7 +77,7 @@ reportsController:
   replicas: 3
   resources:
     requests:
-      cpu: 50m
+      cpu: 10m
       memory: 64Mi
   serviceMonitor:
     # -- Create a `ServiceMonitor` to collect Prometheus metrics.
