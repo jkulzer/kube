@@ -204,7 +204,7 @@ sudo docker compose up
 
 7. After some time, get the certificate generated for the domain using the following command:
 ```sh
-kubectl get configmaps kube-root-ca.crt -o jsonpath='{.data}' | jq -r '.["ca.crt"]'
+kubectl get configmaps wildcard-kube-home-distribution -o jsonpath='{.data}' | jq -r '.["kube-home.crt"]' > /tmp/kube-home.crt
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
