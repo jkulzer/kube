@@ -134,38 +134,7 @@ alertmanager:
   #       {{ end }}
 
   ingress:
-    enabled: true
-
-    # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-    # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-    ingressClassName: nginx
-
-    annotations: {}
-
-    labels: {}
-
-    ## Redirect ingress to an additional defined port on the service
-    # servicePort: 8081
-
-    ## Hosts must be provided if Ingress is enabled.
-    ##
-    hosts:
-      - alertmanager.kube.home
-
-    paths:
-      - /
-
-    ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
-    ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
-    pathType: ImplementationSpecific
-
-    ## TLS configuration for Alertmanager Ingress
-    ## Secret must be manually created in the namespace
-    ##
-    tls: []
-    # - secretName: alertmanager-general-tls
-    #   hosts:
-    #   - alertmanager.example.com
+    enabled: false
 
   service:
     ## Service type
@@ -375,25 +344,6 @@ prometheus:
 
   ingress:
     enabled: false
-
-      #annotations: {}
-      #ingressClass: nginx
-
-      #hosts:
-      #- prometheus.kube.home
-
-    ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
-    ##
-    #paths:
-    #- /
-
-    ## TLS configuration for Prometheus Ingress
-    ## Secret must be manually created in the namespace
-    ##
-    #tls: []
-      # - secretName: prometheus-general-tls
-      #   hosts:
-      #     - prometheus.example.com
 
   serviceMonitor:
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
