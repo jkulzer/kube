@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: root-certificate
+  namespace: cert-manager
+spec:
+  duration: 87660h #10 years
+  renewBefore: 78894h #9 years
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  isCA: true
+  secretName: root-certificate
+  issuerRef:
+    name: selfsigned-issuer
+  commonName: '*'
+  dnsNames:
+  - '*'

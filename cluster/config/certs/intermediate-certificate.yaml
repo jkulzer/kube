@@ -2,17 +2,18 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: star-kube-home
+  name: intermediate-certificate
   namespace: cert-manager
 spec:
-  duration: 420h0m0s # 30d was 720h
-  renewBefore: 96h0m0s # 4d
+  duration: 4383h #6 months
+  renewBefore: 2922h #4 months
   privateKey:
     algorithm: ECDSA
     size: 256
-  secretName: star-kube-home-tls
+  isCA: true
+  secretName: intermediate-certificate
   issuerRef:
     name: intermediate-issuer
-  commonName: '*.kube.home'
+  commonName: '*'
   dnsNames:
-  - '*.kube.home'
+  - '*'

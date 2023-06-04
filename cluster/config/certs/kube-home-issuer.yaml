@@ -1,0 +1,9 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: kube-home-issuer
+  namespace: cert-manager
+spec:
+  ca:
+    secretName: intermediate-certificate
