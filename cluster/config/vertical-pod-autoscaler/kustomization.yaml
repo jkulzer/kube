@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: goldilocks
+
+helmCharts:
+  - name: vpa
+    releaseName: vpa
+    namespace: goldilocks
+    repo: https://charts.fairwinds.com/stable
+    version: 1.7.5
+    valuesFile: values.yaml
+
+resources:
+  - goldilocks-ns.yaml

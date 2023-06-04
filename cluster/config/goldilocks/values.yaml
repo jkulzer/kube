@@ -1,0 +1,26 @@
+vpa:
+  enabled: false
+
+controller:
+  enabled: true
+  resources:
+    requests:
+      cpu: 25m
+      memory: 256Mi
+
+dashboard:
+  enabled: true
+  replicaCount: 1
+  service:
+    # dashboard.service.type -- The type of the dashboard service
+    type: ClusterIP
+    # dashboard.service.port -- The port to run the dashboard service on
+    port: 80
+    # dashboard.service.annotations -- Extra annotations for the dashboard service
+  excludeContainers: "linkerd-proxy,istio-proxy"
+  ingress:
+    enabled: false
+  resources:
+    requests:
+      cpu: 25m
+      memory: 256Mi
