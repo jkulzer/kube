@@ -9,3 +9,6 @@ helmCharts:
     repo: https://charts.fairwinds.com/stable
     version: 6.6.0
     valuesFile: values.yaml
+
+resources:
+  - goldilocks-virtualservice.yaml
