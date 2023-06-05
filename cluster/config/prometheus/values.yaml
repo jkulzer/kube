@@ -7,7 +7,7 @@ defaultRules:
   create: true
   rules:
     alertmanager: true
-    etcd: true
+    etcd: false
     configReloaders: true
     general: true
     k8s: true
@@ -216,7 +216,7 @@ kubeApiServer:
 
 
 kubelet:
-  enabled: false
+  enabled: true
 
 kubeControllerManager:
   enabled: false
