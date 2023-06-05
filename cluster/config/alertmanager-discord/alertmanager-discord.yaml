@@ -13,10 +13,8 @@ metadata:
   namespace: alertmanager-discord
 spec:
   limits:
-  - default:
-      cpu: 0.2
-    defaultRequest:
-      cpu: 0.1
+  - defaultRequest:
+      cpu: 0.02
     type: Container
 ---
 apiVersion: apps/v1
