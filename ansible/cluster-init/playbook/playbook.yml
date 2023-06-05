@@ -11,9 +11,13 @@
     - name: Symlink resolv.conf
       shell: ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
     - name: Install htop, kubernetes tooling, git, bind9 for DNS debugging, rsync, VMWare Tools and open-iscsi (for longhorn)
-      shell: yes | pacman -S htop kustomize helm git bind open-vm-tools rsync open-iscsi
+      shell: yes | pacman -S htop kustomize helm git bind open-vm-tools rsync open-iscsi ntp
     - name: Enable and start VMWare Tools
       shell: systemctl enable vmtoolsd --now
+    - name: Enable and start iscsid (required for longhorn)
+      shell: systemctl enable iscsid --now
+    - name: Enable and start ntpd
+      shell: systemctl enable ntpd --now
     - name: Create variable from command
       shell: ip route get 9.9.9.9 | awk '{print $7}' | cut -d '.' -f4
       register: command_output
@@ -26,7 +30,7 @@
   vars:
     ansible_user: johannes
     ansible_password: johannes
-    k3s_version: v1.26.0+k3s1
+    k3s_version: v1.27.2+k3s1
   gather_facts: false
   become: true
   tasks:
@@ -46,7 +50,9 @@
       shell: kustomize build kube/cluster/config/cilium --enable-helm | kubectl apply -f -
     - name: Initialize Prometheus CRDs
       shell: kustomize build kube/cluster/config/prometheus-crds --enable-helm | kubectl apply --server-side=true --force-conflicts -f -
-    - name: Initialize Prometheus without CRDs
+    - name: Initialize Istio CRDs
+      shell: kustomize build kube/cluster/config/istio-crds --enable-helm | kubectl apply --server-side=true --force-conflicts -f -
+    - name: Initialize Prometheus
       shell: kustomize build kube/cluster/config/prometheus --enable-helm | kubectl apply --server-side=true --force-conflicts -f -
     - name: Initialize ArgoCD
       shell: kustomize build kube/cluster/config/argocd --enable-helm | kubectl apply -f -
@@ -86,7 +92,7 @@
   vars:
     ansible_user: johannes
     ansible_password: johannes
-    k3s_version: v1.26.0+k3s1
+    k3s_version: v1.27.2+k3s1
   gather_facts: false
   become: true
   tasks:
