@@ -1,41 +1,5 @@
 namespaceOverride: "prometheus"
 
-
-## Create default rules for monitoring the cluster
-##
-defaultRules:
-  create: true
-  rules:
-    alertmanager: true
-    etcd: false
-    configReloaders: true
-    general: true
-    k8s: true
-    kubeApiserverAvailability: true
-    kubeApiserverBurnrate: true
-    kubeApiserverHistogram: true
-    kubeApiserverSlos: true
-    kubeControllerManager: true
-    kubelet: true
-    kubeProxy: true
-    kubePrometheusGeneral: true
-    kubePrometheusNodeRecording: true
-    kubernetesApps: true
-    kubernetesResources: true
-    kubernetesStorage: true
-    kubernetesSystem: true
-    kubeSchedulerAlerting: true
-    kubeSchedulerRecording: true
-    kubeStateMetrics: true
-    network: true
-    node: true
-    nodeExporterAlerting: true
-    nodeExporterRecording: true
-    prometheus: true
-    prometheusOperator: true
-
-## Provide custom recording or alerting rules to be deployed into the cluster.
-##
 additionalPrometheusRulesMap: {}
 #  rule-name:
 #    groups:
@@ -53,19 +17,8 @@ global:
 ## ref: https://prometheus.io/docs/alerting/alertmanager/
 ##
 alertmanager:
-
-  ## Deploy alertmanager
-  ##
   enabled: true
-
-  ## Api that prometheus will use to communicate with alertmanager. Possible values are v1, v2
-  ##
   apiVersion: v2
-
-  ## Alertmanager configuration directives
-  ## ref: https://prometheus.io/docs/alerting/configuration/#configuration-file
-  ##      https://prometheus.io/webtools/alerting/routing-tree-editor/
-  ##
   config:
     global:
       resolve_timeout: 5m
@@ -83,15 +36,6 @@ alertmanager:
     - name: 'null'
     templates:
     - '/etc/alertmanager/config/*.tmpl'
-
-  ## Alertmanager template files to format alerts
-  ## By default, templateFiles are placed in /etc/alertmanager/config/ and if
-  ## they have a .tmpl file suffix will be loaded. See config.templates above
-  ## to change, add other suffixes. If adding other suffixes, be sure to update
-  ## config.templates above to include those suffixes.
-  ## ref: https://prometheus.io/docs/alerting/notifications/
-  ##      https://prometheus.io/docs/alerting/notification_examples/
-  ##
   templateFiles: {}
   #
   ## An example template:
@@ -116,29 +60,14 @@ alertmanager:
     enabled: false
 
   service:
-    ## Service type
-    ##
     type: ClusterIP
 
   ## If true, create a serviceMonitor for alertmanager
   ##
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    ##
     selfMonitor: true
-
-    ## Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the
-    ## running cluster equal to the expected size.
     replicas: 1
-
-    ## Time duration Alertmanager shall retain data for. Default is '120h', and must match the regular expression
-    ## [0-9]+(ms|s|m|h) (milliseconds seconds minutes hours).
-    ##
     retention: 120h
-
-    ## Storage is the definition of how storage will be used by the Alertmanager instances.
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
-    ##
     storage:
       volumeClaimTemplate:
         spec:
@@ -146,31 +75,15 @@ alertmanager:
           resources:
             requests:
               storage: 5Gi
-
-
-    ## The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. string  false
-    ##
     externalUrl: "alertmanager.kube.home"
-
-    ## The route prefix Alertmanager registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true,
-    ## but the server serves requests under a different route prefix. For example for use with kubectl proxy.
-    ##
-    routePrefix: /
-
-    ## Define resources requests and limits for single Pods.
-    ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
-    ##
     resources:
       requests:
         memory: 400Mi
+        cpu: 20m
 
-## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-##
 grafana:
   enabled: false
 
-## Component scraping the kube api server
-##
 kubeApiServer:
   enabled: true
   tlsConfig:
@@ -179,8 +92,9 @@ kubeApiServer:
 
 kubelet:
   enabled: true
-  resource: true
-  resourcePath: "/metrics/resource/"
+  serviceMonitor:
+    resource: true
+    resourcePath: "/metrics/resource/"
 
 kubeControllerManager:
   enabled: false
@@ -289,43 +203,16 @@ prometheus:
     enabled: false
 
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    ##
-    #interval: ""
     selfMonitor: true
 
   ## Settings affecting prometheusSpec
   ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#prometheusspec
   ##
   prometheusSpec:
-    ## Interval between consecutive scrapes.
-    ## Defaults to 30s.
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/release-0.44/pkg/prometheus/promcfg.go#L180-L183
-    ##
-    #scrapeInterval: ""
-
-    ## Number of seconds to wait for target to respond before erroring
-    ##
-    #scrapeTimeout: ""
-
-
-    ## External URL at which Prometheus will be reachable.
-    ##
-    #externalUrl: "httpprometheus.kube.home"
-
-
-    ## How long to retain metrics
-    ##
     retention: 3d
-
-    ## Maximum size of metrics
-    ##
     retentionSize: 5GiB
-
     replicas: 1
-
-    ## Resource limits & requests
-    ##
     resources:
       requests:
         memory: 400Mi
+        cpu: 50m
