@@ -7,6 +7,12 @@ prometheus:
 
 controller:
   logLevel: info
+  resources:
+    requests:
+      cpu: 10m
 
 speaker:
   logLevel: info
+  resources:
+    requests:
+      cpu: 10m
