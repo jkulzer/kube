@@ -69,27 +69,6 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
-    inhibit_rules:
-      - source_matchers:
-          - 'severity = critical'
-        target_matchers:
-          - 'severity =~ warning|info'
-        equal:
-          - 'namespace'
-          - 'alertname'
-      - source_matchers:
-          - 'severity = warning'
-        target_matchers:
-          - 'severity = info'
-        equal:
-          - 'namespace'
-          - 'alertname'
-      - source_matchers:
-          - 'alertname = InfoInhibitor'
-        target_matchers:
-          - 'severity = info'
-        equal:
-          - 'namespace'
     route:
       group_by: ['namespace']
       group_wait: 30s
@@ -146,7 +125,6 @@ alertmanager:
   serviceMonitor:
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
-    interval: ""
     selfMonitor: true
 
     ## Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the
@@ -186,17 +164,6 @@ alertmanager:
       requests:
         memory: 400Mi
 
-
-    ## SecurityContext holds pod-level security attributes and common container settings.
-    ## This defaults to non root user with uid 1000 and gid 2000. *v1.PodSecurityContext  false
-    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-    ##
-    securityContext:
-      runAsGroup: 2000
-      runAsNonRoot: true
-      runAsUser: 1000
-      fsGroup: 2000
-
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 ##
 grafana:
@@ -209,11 +176,6 @@ kubeApiServer:
   tlsConfig:
     serverName: kubernetes
     insecureSkipVerify: false
-  serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    ##
-    interval: ""
-
 
 kubelet:
   enabled: true
@@ -230,17 +192,12 @@ coreDns:
     targetPort: 9153
     # selector:
     #   k8s-app: kube-dns
-  serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    ##
-    interval: ""
 
 kubeEtcd:
   enabled: false
 
 kubeScheduler:
-  enabled: false
-
+  enabled: true
 
 ## Component scraping kube state metrics
 ##
@@ -287,13 +244,6 @@ prometheus-node-exporter:
     monitor:
       enabled: true
 
-      jobLabel: jobLabel
-
-      ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-      ##
-      interval: ""
-
-
 ## Manages Prometheus and Alertmanager components
 ##
 prometheusOperator:
@@ -317,15 +267,6 @@ prometheusOperator:
     enabled: true
     patch:
       enabled: true
-
-      ## SecurityContext holds pod-level security attributes and common container settings.
-      ## This defaults to non root user with uid 2000 and gid 2000. *v1.PodSecurityContext  false
-      ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-      ##
-      securityContext:
-        runAsGroup: 2000
-        runAsNonRoot: true
-        runAsUser: 2000
 
   service:
     type: ClusterIP
