@@ -82,3 +82,6 @@ reportsController:
   serviceMonitor:
     # -- Create a `ServiceMonitor` to collect Prometheus metrics.
     enabled: true
+
+apiVersionOverride:
+  podDisruptionBudget: "policy/v1"
