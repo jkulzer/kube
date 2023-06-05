@@ -1,21 +1,5 @@
 namespaceOverride: "prometheus"
 
-additionalPrometheusRulesMap: {}
-#  rule-name:
-#    groups:
-#    - name: my_group
-#      rules:
-#      - record: my_record
-#        expr: 100 * my_record
-
-##
-global:
-  rbac:
-    create: true
-
-## Configuration for alertmanager
-## ref: https://prometheus.io/docs/alerting/alertmanager/
-##
 alertmanager:
   enabled: true
   apiVersion: v2
@@ -36,34 +20,10 @@ alertmanager:
     - name: 'null'
     templates:
     - '/etc/alertmanager/config/*.tmpl'
-  templateFiles: {}
-  #
-  ## An example template:
-  #   template_1.tmpl: |-
-  #       {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}
-  #
-  #       {{ define "slack.myorg.text" }}
-  #       {{- $root := . -}}
-  #       {{ range .Alerts }}
-  #         *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
-  #         *Cluster:* {{ template "cluster" $root }}
-  #         *Description:* {{ .Annotations.description }}
-  #         *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>
-  #         *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
-  #         *Details:*
-  #           {{ range .Labels.SortedPairs }} - *{{ .Name }}:* `{{ .Value }}`
-  #           {{ end }}
-  #       {{ end }}
-  #       {{ end }}
-
   ingress:
     enabled: false
-
   service:
     type: ClusterIP
-
-  ## If true, create a serviceMonitor for alertmanager
-  ##
   serviceMonitor:
     selfMonitor: true
     replicas: 1
@@ -99,15 +59,11 @@ kubelet:
 kubeControllerManager:
   enabled: false
 
-## Component scraping coreDns. Use either this or kubeDns
-##
 coreDns:
   enabled: true
   service:
     port: 9153
     targetPort: 9153
-    # selector:
-    #   k8s-app: kube-dns
 
 kubeEtcd:
   enabled: false
@@ -124,15 +80,10 @@ kubeStateMetrics:
 ##
 kube-state-metrics:
   namespaceOverride: "prometheus"
-  rbac:
-    create: true
   releaseLabel: true
   prometheus:
     monitor:
       enabled: true
-      ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-      ##
-      interval: ""
 
   selfMonitor:
     enabled: false
