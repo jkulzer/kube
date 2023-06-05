@@ -179,6 +179,8 @@ kubeApiServer:
 
 kubelet:
   enabled: true
+  resource: true
+  resourcePath: "/metrics/resource/"
 
 kubeControllerManager:
   enabled: false
