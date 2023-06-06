@@ -9,5 +9,3 @@ helmCharts:
     repo: https://kubernetes-charts.banzaicloud.com
     version: 1.19.0
     valuesFile: values.yaml
-resources:
-  - vault-secrets-webhook-ns.yaml
