@@ -113,6 +113,11 @@ prometheus:
   serviceMonitor:
     selfMonitor: true
   prometheusSpec:
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+
     retention: 5d
     retentionSize: 9GiB
     replicas: 1
