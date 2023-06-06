@@ -5,8 +5,8 @@ metadata:
   name: root-certificate
   namespace: cert-manager
 spec:
-  duration: 87660h #10 years
-  renewBefore: 78894h #9 years
+  duration: 87660h0m0s #10 years
+  renewBefore: 78894h0m0s #9 years
   privateKey:
     algorithm: ECDSA
     size: 256

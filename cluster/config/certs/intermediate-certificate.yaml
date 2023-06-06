@@ -5,8 +5,8 @@ metadata:
   name: intermediate-certificate
   namespace: cert-manager
 spec:
-  duration: 4383h #6 months
-  renewBefore: 2922h #4 months
+  duration: 4383h0m0s #6 months
+  renewBefore: 2922h0m0s #4 months
   privateKey:
     algorithm: ECDSA
     size: 256
