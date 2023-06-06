@@ -55,22 +55,6 @@ kubelet:
   serviceMonitor:
     resource: true
     resourcePath: "/metrics/resource/"
-    cAdvisorMetricRelabelings:
-      # Remove duplicate metrics
-      - sourceLabels: ["__name__"]
-        regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|authentication_token|cadvisor_version|container_blkio|container_cpu|container_fs|container_last|container_memory|container_network|container_oom|container_processes|container|csi_operations|disabled_metric|get_token|go|hidden_metric|kubelet_certificate|kubelet_cgroup|kubelet_container|kubelet_containers|kubelet_cpu|kubelet_device|kubelet_graceful|kubelet_http|kubelet_lifecycle|kubelet_managed|kubelet_node|kubelet_pleg|kubelet_pod|kubelet_run|kubelet_running|kubelet_runtime|kubelet_server|kubelet_started|kubelet_volume|kubernetes_build|kubernetes_feature|machine_cpu|machine_memory|machine_nvm|machine_scrape|node_namespace|plugin_manager|prober_probe|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|storage_operation|volume_manager|volume_operation|workqueue)_(.+)"
-        action: keep
-      - sourceLabels: ["node"]
-        targetLabel: instance
-        action: replace
-    metricRelabelings:
-      # Remove duplicate metrics
-      - sourceLabels: ["__name__"]
-        regex: "(apiserver_audit|apiserver_client|apiserver_delegated|apiserver_envelope|apiserver_storage|apiserver_webhooks|authentication_token|cadvisor_version|container_blkio|container_cpu|container_fs|container_last|container_memory|container_network|container_oom|container_processes|container|csi_operations|disabled_metric|get_token|go|hidden_metric|kubelet_certificate|kubelet_cgroup|kubelet_container|kubelet_containers|kubelet_cpu|kubelet_device|kubelet_graceful|kubelet_http|kubelet_lifecycle|kubelet_managed|kubelet_node|kubelet_pleg|kubelet_pod|kubelet_run|kubelet_running|kubelet_runtime|kubelet_server|kubelet_started|kubelet_volume|kubernetes_build|kubernetes_feature|machine_cpu|machine_memory|machine_nvm|machine_scrape|node_namespace|plugin_manager|prober_probe|process_cpu|process_max|process_open|process_resident|process_start|process_virtual|registered_metric|rest_client|scrape_duration|scrape_samples|scrape_series|storage_operation|volume_manager|volume_operation|workqueue)_(.+)"
-        action: keep
-      - sourceLabels: ["node"]
-        targetLabel: instance
-        action: replace
 
 kubeControllerManager:
   enabled: false
@@ -87,13 +71,9 @@ kubeEtcd:
 kubeScheduler:
   enabled: true
 
-## Component scraping kube state metrics
-##
 kubeStateMetrics:
   enabled: true
 
-## Configuration for kube-state-metrics subchart
-##
 kube-state-metrics:
   namespaceOverride: "prometheus"
   releaseLabel: true
@@ -104,20 +84,11 @@ kube-state-metrics:
   selfMonitor:
     enabled: false
 
-## Deploy node exporter as a daemonset to all nodes
-##
 nodeExporter:
   enabled: true
 
-## Configuration for prometheus-node-exporter subchart
-##
 prometheus-node-exporter:
   namespaceOverride: "prometheus"
-  podLabels:
-    ## Add the 'node-exporter' label to be used by serviceMonitor to match standard common usage in rules and grafana dashboards
-    ##
-    jobLabel: node-exporter
-  releaseLabel: true
   extraArgs:
     - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
     - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
@@ -127,54 +98,21 @@ prometheus-node-exporter:
     monitor:
       enabled: true
 
-## Manages Prometheus and Alertmanager components
-##
 prometheusOperator:
   enabled: true
-
-  ## Prometheus-Operator v0.39.0 and later support TLS natively.
-  ##
-  tls:
-    enabled: true
-    # Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants
-    tlsMinVersion: VersionTLS13
-    # The default webhook port is 10250 in order to work out-of-the-box in GKE private clusters and avoid adding firewall rules.
-    internalPort: 10251
-
-  ## Admission webhook support for PrometheusRules resources added in Prometheus Operator 0.30 can be enabled to prevent incorrectly formatted
-  ## rules from making their way into prometheus and potentially preventing the container from starting
-  admissionWebhooks:
-    failurePolicy:
-    ## The default timeoutSeconds is 10 and the maximum value is 30.
-    timeoutSeconds: 10
-    enabled: true
-    patch:
-      enabled: true
-
   service:
     type: ClusterIP
   kubeletService:
-    enabled: false
+    enabled: true
 
-## Deploy a Prometheus instance
-##
 prometheus:
   enabled: true
-
-  ## Configuration for Prometheus service
-  ##
   service:
     type: ClusterIP
-
   ingress:
     enabled: false
-
   serviceMonitor:
     selfMonitor: true
-
-  ## Settings affecting prometheusSpec
-  ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#prometheusspec
-  ##
   prometheusSpec:
     retention: 3d
     retentionSize: 5GiB
