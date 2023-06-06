@@ -26,9 +26,9 @@ spec:
       dashboard: main-grafana
   datasource:
     name: Loki
-      type: loki
-      url: http://loki.loki.svc.cluster.local:3100
-      isDefault: false
-      editable: true
-      jsonData:
-        'connection.url': "http://loki.loki.svc.cluster.local:3100"
+    type: loki
+    url: http://loki.loki.svc.cluster.local:3100
+    isDefault: false
+    editable: true
+    jsonData:
+      'connection.url': "http://loki.loki.svc.cluster.local:3100"
