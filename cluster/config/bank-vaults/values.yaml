@@ -1,34 +1,14 @@
 
-# The namespace where the operator watches for vault CRD objects, if not defined
-# all namespaces are watched
 watchNamespace: ""
 syncPeriod: "1m"
 
 resources:
-  limits:
-    cpu: 100m
-    memory: 256Mi
   requests:
-    cpu: 100m
+    cpu: 50m
     memory: 128Mi
 
 terminationGracePeriodSeconds: 10
 
-livenessProbe:
-  initialDelaySeconds: 60
-  periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
-readinessProbe:
-  periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
-
 monitoring:
-  # Create a Vault Operator ServiceMonitor object
   serviceMonitor:
-    enabled: false
-    additionalLabels: {}
-    metricRelabelings: []
-    relabelings: []
-
+    enabled: true
