@@ -7,5 +7,6 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: main-grafana
+      dashboard: main-grafana
   url: https://raw.githubusercontent.com/jkulzer/kube/main/cluster/config/grafana/grafana-dashboard.json
+  resyncPeriod: 15s
