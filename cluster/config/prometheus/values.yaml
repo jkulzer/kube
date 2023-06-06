@@ -113,9 +113,16 @@ prometheus:
   serviceMonitor:
     selfMonitor: true
   prometheusSpec:
-    retention: 3d
-    retentionSize: 5GiB
+    retention: 5d
+    retentionSize: 9GiB
     replicas: 1
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
     resources:
       requests:
         memory: 400Mi
