@@ -9,7 +9,7 @@ spec:
       prune: true
       selfHeal: true
   destination:
-    namespace: kube-system
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   project: default
   source:
