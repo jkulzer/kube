@@ -18,7 +18,7 @@ app:
     path: "/readyz"
 
   trust:
-    namespace: istio-system
+    namespace: cert-manager
 
 resources:
   requests:

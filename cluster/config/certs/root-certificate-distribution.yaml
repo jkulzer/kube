@@ -2,7 +2,7 @@ apiVersion: trust.cert-manager.io/v1alpha1
 kind: Bundle
 metadata:
   name: root-certificate-distribution
-  namespace: cert-manager
+  # the namespace gets set in the trust-manager values file
 spec:
   sources:
   - secret:
