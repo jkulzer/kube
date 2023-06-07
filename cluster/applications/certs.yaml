@@ -3,13 +3,11 @@ kind: Application
 metadata:
   name: certs
   namespace: argocd
-  annotations:
-    notifications.argoproj.io/subscribe.on-sync-running.grafana: sync
 spec:
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      prune: true
+      selfHeal: true
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
