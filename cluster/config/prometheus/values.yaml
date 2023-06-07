@@ -7,17 +7,20 @@ alertmanager:
     global:
       resolve_timeout: 5m
     route:
-      group_by: ['namespace']
-      group_wait: 30s
+      group_by: ['alertname']
+      group_wait: 20s
       group_interval: 5m
-      repeat_interval: 12h
-      receiver: 'null'
+      repeat_interval: 3h 
+      receiver: discord_webhook
       routes:
       - receiver: 'null'
         matchers:
           - alertname =~ "InfoInhibitor|Watchdog"
     receivers:
     - name: 'null'
+    - name: 'discord_webhook'
+      webhook_configs:
+      - url: 'http://alertmanager-discord.alertmanager-discord.svc.cluster.local:9094'
     templates:
     - '/etc/alertmanager/config/*.tmpl'
   ingress:
@@ -117,7 +120,6 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
-
     retention: 5d
     retentionSize: 9GiB
     replicas: 1
