@@ -1,12 +1,14 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: sync-kube-home-certificate
+  name: sync-gateway-certificate
   annotations:
     policies.kyverno.io/title: Sync kube-home certificate from cert-manager to istio-system namespace
     policies.kyverno.io/subject: Secret
     policies.kyverno.io/minversion: 1.6.0
 spec:
+  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
   rules:
   - name: sync-image-pull-secret
     match:
@@ -21,5 +23,5 @@ spec:
       namespace: istio-system
       synchronize: true
       clone:
-        namespace: cert-manager
         name: star-kube-home-tls
+        namespace: cert-manager
