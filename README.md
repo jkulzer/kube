@@ -108,9 +108,9 @@
 		<td>Dashboard that displays metrics from Prometheus</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://raw.githubusercontent.com/kubernetes/community/master/icons/svg/resources/unlabeled/ing.svg"></td>
-		<td><a href="https://kubernetes.github.io/ingress-nginx/">NGINX-Ingress</a></td>
-		<td>The ingress controller developed by Kubernetes</td>
+		<td><img width="64" src="https://istio.io/v1.7/img/istio-whitelogo-bluebackground-framed.svg"></td>
+		<td><a href="https://istio.io/">Istio</a></td>
+		<td>The leading Kubernetes service mesh</td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
