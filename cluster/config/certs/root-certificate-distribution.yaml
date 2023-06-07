@@ -1,0 +1,12 @@
+apiVersion: trust.cert-manager.io/v1alpha1
+kind: Bundle
+metadata:
+  name: wildcard-kube-home-distribution
+spec:
+  sources:
+  - secret:
+      name: "root-certificate"
+      key: "ca.crt"
+  target:
+    configMap:
+      key: "kube-home.crt"
