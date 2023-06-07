@@ -7,7 +7,7 @@ spec:
   sources:
   - secret:
       name: "root-certificate"
-      key: "ca.crt"
+      key: "tls.crt"
   target:
     configMap:
       key: "kube-home.crt"
