@@ -45,12 +45,6 @@ data:
         link: "#3273dc"
         link-hover: "#ffdd57"
 
-    message:
-      style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
-      title: "Demo !"
-      icon: "fa fa-grin"
-      content: "This is a dummy homepage demo. <br /> Find more information on <a href='https://github.com/bastienwirtz/homer'>github.com/bastienwirtz/homer</a>"
-
     # Optional navbar
     # links: [] # Allows for navbar (dark mode, layout, and search) without any links
     links:
