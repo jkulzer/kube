@@ -24,4 +24,4 @@ type = string
 provider "vault" {
   address = var.vault_addr
   token = var.vault-root
-}%
+}
