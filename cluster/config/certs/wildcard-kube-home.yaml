@@ -12,7 +12,7 @@ spec:
     size: 256
   secretName: star-kube-home-tls
   issuerRef:
-    name: intermediate-issuer
+    name: kube-home-issuer
   commonName: '*.kube.home'
   dnsNames:
   - '*.kube.home'

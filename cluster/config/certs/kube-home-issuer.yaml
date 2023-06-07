@@ -6,4 +6,4 @@ metadata:
   namespace: cert-manager
 spec:
   ca:
-    secretName: intermediate-certificate
+    secretName: root-certificate

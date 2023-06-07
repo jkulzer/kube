@@ -1,9 +1,0 @@
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: intermediate-issuer
-  namespace: cert-manager
-spec:
-  ca:
-    secretName: root-certificate
