@@ -11,4 +11,3 @@ helmCharts:
     valuesFile: values.yaml
 resources:
   - istio-ns.yaml
-  - istio-mtls.yaml
