@@ -10,14 +10,7 @@ controller:
       enabled: true
 
 dex:
-  enabled: true
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-  image:
-    repository: ghcr.io/dexidp/dex
-    tag: latest
+  enabled: false
 
 redis:
   enabled: true
