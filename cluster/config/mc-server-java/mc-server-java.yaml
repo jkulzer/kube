@@ -94,7 +94,7 @@ spec:
         - name: EULA
           value: "TRUE"
         - name: TYPE
-          value: "PURPUR"
+          value: "PAPER"
         - name: VERSION
           value: "LATEST"
         - name: DIFFICULTY
@@ -137,8 +137,6 @@ spec:
           value: ""
         - name: MODE
           value: "survival"
-        - name: MOTD
-          value: "Welcome to DG-SMP on Kubernetes"
         - name: PVP
           value: "true"
         - name: LEVEL_TYPE
@@ -160,11 +158,7 @@ spec:
         - name: ENABLE_RCON
           value: "false"
         - name: WHITELIST
-          value: "AUVA_001,Bogi165,Wosemo,MaggiMagManEben,zomamigo,honnesfrstzapf"
-          # - name: PACKWIZ_URL
-          # value: "http://gitea-http.gitea.svc.cluster.local:3000/johannes/minecraft-server/raw/branch/master/modpacks/smp/pack.toml"
-          # - name: SPIGET_RESOURCES
-          # value: "9089,81534"
+          value: "AUVA_001,Bogi165,Wosemo"
         ports:
         - name: minecraft
           containerPort: 25565
