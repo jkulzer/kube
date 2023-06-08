@@ -95,8 +95,6 @@ spec:
           value: "TRUE"
         - name: TYPE
           value: "PAPER"
-        - name: VERSION
-          value: "LATEST"
         - name: DIFFICULTY
           value: "medium"
         - name: OPS
