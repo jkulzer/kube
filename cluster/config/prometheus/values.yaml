@@ -71,7 +71,7 @@ kubeEtcd:
   enabled: false
 
 kubeScheduler:
-  enabled: true
+  enabled: false
 
 kubeStateMetrics:
   enabled: true
@@ -88,6 +88,9 @@ kube-state-metrics:
 
 nodeExporter:
   enabled: true
+
+kubeProxy:
+  enabled: false
 
 prometheus-node-exporter:
   namespaceOverride: "prometheus"
