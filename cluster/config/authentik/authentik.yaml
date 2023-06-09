@@ -1,10 +1,4 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: authentik
-  namespace: authentik
----
 kind: "PersistentVolumeClaim"
 apiVersion: "v1"
 metadata:
@@ -126,6 +120,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: authentik
+  namespace: authentik
   labels:
     name: authentik
 spec:
@@ -148,6 +143,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: authentik-server
+  namespace: authentik
   labels:
     name: authentik
     component: "server"
@@ -253,6 +249,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: authentik-worker
+  namespace: authentik
   labels:
     name: authentik
     component: "worker"
@@ -373,6 +370,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgres
+  namespace: authentik
   labels:
     app: postgresql
 spec:
@@ -435,6 +433,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis 
+  namespace: authentik
   labels:
     name: "authentik"
 spec:
