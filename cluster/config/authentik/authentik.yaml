@@ -443,37 +443,3 @@ spec:
   selector:
     app: authentik-redis
     name: "authentik"
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: authentik 
-  namespace: authentik
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    hajimari.io/enable: "true"
-    hajimari.io/icon: shield-lock
-    hajimari.io/appName: Authentik
-    hajimari.io/group: dev
-spec:
-  tls:
-  - hosts:
-    - authentik.kube.home
-  rules:
-  - host: authentik.kube.home
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: authentik 
-            port:
-              name: http
-      - path: /outpost.goauthentik.io
-        pathType: Prefix
-        backend:
-          service:
-            name: ak-outpost-default-outpost
-            port:
-              number: 9000
