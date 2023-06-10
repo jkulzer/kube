@@ -11,7 +11,7 @@ data "vault_generic_secret" "authentik" {
 ##################
 
 provider "authentik" {
-  url   = "https://authentik.kube.home"
+  url   = "http://authentik.authentik.svc.cluster.local:80"
   token = data.vault_generic_secret.authentik.data["initialadmintoken"]
 }
 
