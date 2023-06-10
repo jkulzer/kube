@@ -214,7 +214,7 @@ spec:
             - name: AUTHENTIK_BOOTSTRAP_TOKEN
               value: "vault:kv/data/kube/authentik/#initialadmintoken"
             - name: AUTHENTIK_BOOTSTRAP_PASSWORD
-              value: "vault:kv/data/kube/authentik/#initialadmintoken"
+              value: "vault:kv/data/kube/authentik/#initialadminpassword"
           volumeMounts:
             - name: geoip-db
               mountPath: /geoip
