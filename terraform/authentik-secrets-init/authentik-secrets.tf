@@ -26,11 +26,20 @@ resource "random_password" "redispass" {
 }
 
 ########################
+#initial admin token   #
+########################
+
+resource "random_password" "initial-admin-token" {
+  length           = 50
+  override_special = "-_"
+}
+
+########################
 #initial admin password#
 ########################
 
 resource "random_password" "initial-admin-password" {
-  length           = 50
+  length           = 20
   override_special = "-_"
 }
 
@@ -46,6 +55,7 @@ resource "vault_kv_secret_v2" "authentik-secrets" {
     secret = random_password.main-secret.result
     postgresadmin = random_password.postgresadmin.result
     redispass = random_password.redispass.result
+    initialadmintoken= random_password.initial-admin-token.result
     initialadminpassword = random_password.initial-admin-password.result
   }
   )
