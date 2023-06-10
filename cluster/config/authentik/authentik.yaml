@@ -155,7 +155,7 @@ spec:
   template:
     metadata:
       annotations:
-        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-addr: "http://vault-0.vault.svc.cluster.local:8200"
         vault.security.banzaicloud.io/vault-role: "authentik"
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
@@ -261,7 +261,7 @@ spec:
   template:
     metadata:
       annotations:
-        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-addr: "http://vault-0.vault.svc.cluster.local:8200"
         vault.security.banzaicloud.io/vault-role: "authentik"
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
@@ -339,7 +339,7 @@ spec:
   template:
     metadata:
       annotations:
-        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-addr: "http://vault-0.vault.svc.cluster.local:8200"
         vault.security.banzaicloud.io/vault-role: "authentik"
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
@@ -393,7 +393,7 @@ spec:
   template:
     metadata:
       annotations:
-        vault.security.banzaicloud.io/vault-addr: "http://vault-internal.vault.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-addr: "http://vault-0.vault.svc.cluster.local:8200"
         vault.security.banzaicloud.io/vault-role: "authentik"
         vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
