@@ -188,7 +188,7 @@ spec:
             - name: AUTHENTIK_ERROR_REPORTING__SEND_PII
               value: "false"
             - name: AUTHENTIK_LOG_LEVEL
-              value: "trace"
+              value: "info"
             - name: AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE
               value: "ghcr.io/goauthentik/%(type)s:%(version)s"
             - name: AUTHENTIK_POSTGRESQL__HOST
@@ -296,7 +296,7 @@ spec:
             - name: AUTHENTIK_GEOIP
               value: "/geoip/GeoLite2-City.mmdb"
             - name: AUTHENTIK_LOG_LEVEL
-              value: "trace"
+              value: "info"
             - name: AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE
               value: "ghcr.io/goauthentik/%(type)s:%(version)s"
             - name: AUTHENTIK_POSTGRESQL__HOST
