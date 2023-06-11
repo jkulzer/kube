@@ -1,8 +1,6 @@
 ## Discovery Settings
 pilot:
-  autoscaleEnabled: true
-  autoscaleMin: 1
-  autoscaleMax: 5
+  autoscaleEnabled: false
   replicaCount: 1
 
   # Resources for a small pilot install
