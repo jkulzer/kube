@@ -359,7 +359,7 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_USER
-              value: authentik
+              value: "authentik"
             - name: POSTGRES_PASSWORD
               value: "vault:kv/data/kube/authentik/#postgresadmin"
           volumeMounts:
