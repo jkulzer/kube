@@ -319,6 +319,8 @@ spec:
               value: "vault:kv/data/kube/authentik/#secret"
             - name: AUTHENTIK_REDIS__PORT
               value: "6379"
+            - name: AUTHENTIK_BOOTSTRAP_TOKEN
+              value: "vault:kv/data/kube/authentik/#initialadmintoken"
             - name: AUTHENTIK_BOOTSTRAP_PASSWORD
               value: "vault:kv/data/kube/authentik/#initialadminpassword"
           volumeMounts:
