@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - authentik.yaml
   - authentik-terraform-init-clients.yaml
+  - authentik-virtualservice.yaml
