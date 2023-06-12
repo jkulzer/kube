@@ -63,11 +63,56 @@ data:
     # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
     services:
       - name: "Monitoring"
-        icon: "fas chart-line"
+        icon: "fas fa-chart-line"
         items:
           - name: "Grafana"
             logo: "https://cdn.simpleicons.org/grafana"
             subtitle: "Monitoring"
             tag: "app"
-            url: "http://grafana.kube.home"
+            url: "https://grafana.kube.home"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Prometheus"
+            logo: "https://cdn.simpleicons.org/prometheus"
+            subtitle: "Monitoring"
+            tag: "app"
+            url: "https://prometheus.kube.home"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Alertmanager"
+            logo: "https://cdn.simpleicons.org/prometheus"
+            subtitle: "Monitoring"
+            tag: "app"
+            url: "https://alertmanager.kube.home"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Kiali"
+            logo: "https://cdn.simpleicons.org/istio"
+            subtitle: "Monitoring"
+            tag: "app"
+            url: "https://kiali.kube.home"
+            target: "_blank" # optional html a tag target attribute
+      - name: "Infrastructure"
+        icon: "fas fa-conveyor-belt"
+        items:
+          - name: "ArgoCD"
+            logo: "https://cdn.simpleicons.org/argo"
+            subtitle: "Deployment"
+            tag: "app"
+            url: "http://argocd.kube.home"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Authentik"
+            logo: "https://raw.githubusercontent.com/goauthentik/authentik/de9c35c2aa4b917ab6922d1c53da68f1d6f1491e/website/static/img/icon_top_brand.svg"
+            subtitle: "Authentication"
+            tag: "app"
+            url: "http://authentik.kube.home"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Vault"
+            logo: "https://cdn.simpleicons.org/vault"
+            subtitle: "Secrets Management"
+            tag: "app"
+            url: "http://vault.kube.home"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Longhorn"
+            logo: "https://longhorn.io/img/logos/longhorn-icon-color.png"
+            subtitle: "Storage"
+            tag: "app"
+            url: "http://longhorn.kube.home"
             target: "_blank" # optional html a tag target attribute
