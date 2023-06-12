@@ -66,9 +66,8 @@ data:
         icon: "fas chart-line"
         items:
           - name: "Grafana"
-            logo: "https://github.com/simple-icons/simple-icons/raw/develop/icons/grafana.svg"
+            logo: "https://cdn.simpleicons.org/grafana"
             subtitle: "Monitoring"
             tag: "app"
-            keywords: "self hosted reddit"
             url: "http://grafana.kube.home"
             target: "_blank" # optional html a tag target attribute
