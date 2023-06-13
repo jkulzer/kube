@@ -8,3 +8,4 @@ resources:
   - homer-cpurequest.yaml
   - homer-cm.yaml
   - homer-virtualservice.yaml
+  - homer-authpolicy.yaml
