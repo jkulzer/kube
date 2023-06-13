@@ -15,9 +15,4 @@ resources:
   - longhorn-mtls.yaml
   - longhorn-cpurequest.yaml
   - longhorn-gateway.yaml
-
-patches:
-  - path: longhorn-post-upgrade-job-patch.yaml
-    target:
-      kind: Job
-      name: "longhorn-post-upgrade"
+  - longhorn-authpolicy.yaml
