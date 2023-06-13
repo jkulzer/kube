@@ -200,7 +200,7 @@ spec:
             - name: AUTHENTIK_POSTGRESQL__S3_BACKUP__INSECURE_SKIP_VERIFY
               value: "false"
             - name: AUTHENTIK_POSTGRESQL__USER
-              value: "authentik"
+              value: "postgres"
             - name: AUTHENTIK_REDIS__HOST
               value: "redis.authentik.svc.cluster.local"
             - name: AUTHENTIK_REDIS__PASSWORD
@@ -310,7 +310,7 @@ spec:
             - name: AUTHENTIK_POSTGRESQL__S3_BACKUP__INSECURE_SKIP_VERIFY
               value: "false"
             - name: AUTHENTIK_POSTGRESQL__USER
-              value: "authentik"
+              value: "postgres"
             - name: AUTHENTIK_REDIS__HOST
               value: "redis.authentik.svc.cluster.local"
             - name: AUTHENTIK_REDIS__PASSWORD
@@ -361,14 +361,12 @@ spec:
             claimName: authentik-postgres
       containers:
         - name: postgres
-          image: postgres:12-alpine
+          image: bitnami/postgresql:12-alpine
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
           env:
-            - name: POSTGRES_USER
-              value: "authentik"
-            - name: POSTGRES_PASSWORD
+            - name: POSTGRESQL_PASSWORD
               value: "vault:kv/data/kube/authentik/#postgresadmin"
           volumeMounts:
             - name: data
