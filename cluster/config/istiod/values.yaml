@@ -78,3 +78,19 @@ global:
     resources:
       requests:
         cpu: 5m
+
+meshConfig:
+  extensionProviders:
+  - name: "authentik"
+    envoyExtAuthzHttp:
+      service: "ak-outpost-default-outpost.authentik.svc.cluster.local"
+      port: "9000"
+      pathPrefix: "/outpost.goauthentik.io/auth/envoy"
+      headersToDownstreamOnAllow:
+      - cookie
+      headersToUpstreamOnAllow:
+      - set-cookie
+      - x-authentik-*
+      includeRequestHeadersInCheck:
+      - cookie
+
