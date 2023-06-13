@@ -1,7 +1,7 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: authentik-policy
+  name: homer-authentik-policy
   namespace: istio-system
 spec:
   selector:
