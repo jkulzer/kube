@@ -34,7 +34,7 @@ resource "authentik_outpost" "outpost" {
   protocol_providers = [
     authentik_provider_proxy.proxy-auth-test.id,
     authentik_provider_proxy.proxy-longhorn.id,
-    authentik_provider_proxy.proxy-hajimari.id
+    authentik_provider_proxy.proxy-homer.id
   ]
   # the config must be encoded in json, \" is required to escape the quotes
   config = "{\"authentik_host\": \"http://authentik.authentik.svc.cluster.local:80\",\"authentik_host_browser\": \"https://authentik.kube.home\"}"
@@ -76,20 +76,20 @@ resource "authentik_application" "proxy-longhorn" {
 }
 
 ##########
-#hajimari#
+#homer#
 ##########
 
-resource "authentik_provider_proxy" "proxy-hajimari" {
-  name               = "Hajimari"
+resource "authentik_provider_proxy" "proxy-homer" {
+  name               = "Homer"
   authorization_flow = data.authentik_flow.default-authorization-flow.id
-  external_host      = "https://home.kube.home"
+  external_host      = "https://homer.kube.home"
   mode               = "forward_single"
 }
 
-resource "authentik_application" "proxy-hajimari" {
-  name              = "Hajimari"
-  slug              = "hajimari"
-  protocol_provider = authentik_provider_proxy.proxy-hajimari.id
+resource "authentik_application" "proxy-homer" {
+  name              = "Homer"
+  slug              = "homer"
+  protocol_provider = authentik_provider_proxy.proxy-homer.id
 }
 
 #######
