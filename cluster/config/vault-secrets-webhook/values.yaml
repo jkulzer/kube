@@ -5,3 +5,6 @@ metrics:
   port: 8443
   serviceMonitor:
     enabled: true
+
+env:
+  VAULT_IMAGE: hashicorp/vault:1.13.3
