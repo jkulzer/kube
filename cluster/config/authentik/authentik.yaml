@@ -368,6 +368,8 @@ spec:
           env:
             - name: POSTGRESQL_PASSWORD
               value: "vault:kv/data/kube/authentik/#postgresadmin"
+            - name: POSTGRESQL_DATABASE
+              value: "authentik"
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql
