@@ -207,6 +207,8 @@ spec:
               value: "vault:kv/data/kube/authentik/#redispass"
             - name: AUTHENTIK_POSTGRESQL__PASSWORD
               value: "vault:kv/data/kube/authentik/#postgresadmin"
+            - name: POSTGRES_PASSWORD
+              value: "vault:kv/data/kube/authentik/#postgresadmin"
             - name: AUTHENTIK_SECRET_KEY
               value: "vault:kv/data/kube/authentik/#secret"
             - name: AUTHENTIK_REDIS__PORT
@@ -314,6 +316,8 @@ spec:
             - name: AUTHENTIK_REDIS__PASSWORD
               value: "vault:kv/data/kube/authentik/#redispass"
             - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              value: "vault:kv/data/kube/authentik/#postgresadmin"
+            - name: POSTGRES_PASSWORD
               value: "vault:kv/data/kube/authentik/#postgresadmin"
             - name: AUTHENTIK_SECRET_KEY
               value: "vault:kv/data/kube/authentik/#secret"
