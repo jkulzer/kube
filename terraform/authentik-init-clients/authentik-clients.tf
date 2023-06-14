@@ -41,21 +41,38 @@ resource "authentik_outpost" "outpost" {
 }
 
 
-#########
-#testapp#
-#########
+############
+#prometheus#
+############
 
-resource "authentik_provider_proxy" "proxy-auth-test" {
-  name               = "Proxy Auth Test"
+resource "authentik_provider_proxy" "proxy-auth-prometheus" {
+  name               = "Prometheus"
   authorization_flow = data.authentik_flow.default-authorization-flow.id
-  external_host      = "https://test.kube.home"
+  external_host      = "https://prometheus.kube.home"
   mode               = "forward_single"
 }
 
-resource "authentik_application" "proxy-auth-test-application" {
-  name              = "Proxy Auth Test"
-  slug              = "proxy-auth-test"
-  protocol_provider = authentik_provider_proxy.proxy-auth-test.id
+resource "authentik_application" "proxy-auth-prometheus" {
+  name              = "Prometheus"
+  slug              = "prometheus"
+  protocol_provider = authentik_provider_proxy.proxy-auth-prometheus.id
+}
+
+##############
+#alertmanager#
+##############
+
+resource "authentik_provider_proxy" "proxy-auth-alertmanager" {
+  name               = "Alertmanager"
+  authorization_flow = data.authentik_flow.default-authorization-flow.id
+  external_host      = "https://alertmanager.kube.home"
+  mode               = "forward_single"
+}
+
+resource "authentik_application" "proxy-auth-alertmanager" {
+  name              = "Alertmanager"
+  slug              = "alertmanager"
+  protocol_provider = authentik_provider_proxy.proxy-auth-alertmanager.id
 }
 
 ##########
