@@ -32,7 +32,8 @@ resource "authentik_outpost" "outpost" {
   name = "Default Outpost"
   service_connection = authentik_service_connection_kubernetes.local.id
   protocol_providers = [
-    authentik_provider_proxy.proxy-auth-test.id,
+    authentik_provider_proxy.proxy-prometheus.id,
+    authentik_provider_proxy.proxy-alertmanager.id,
     authentik_provider_proxy.proxy-longhorn.id,
     authentik_provider_proxy.proxy-homer.id
   ]
@@ -45,34 +46,34 @@ resource "authentik_outpost" "outpost" {
 #prometheus#
 ############
 
-resource "authentik_provider_proxy" "proxy-auth-prometheus" {
+resource "authentik_provider_proxy" "proxy-prometheus" {
   name               = "Prometheus"
   authorization_flow = data.authentik_flow.default-authorization-flow.id
   external_host      = "https://prometheus.kube.home"
   mode               = "forward_single"
 }
 
-resource "authentik_application" "proxy-auth-prometheus" {
+resource "authentik_application" "proxy-prometheus" {
   name              = "Prometheus"
   slug              = "prometheus"
-  protocol_provider = authentik_provider_proxy.proxy-auth-prometheus.id
+  protocol_provider = authentik_provider_proxy.proxy-prometheus.id
 }
 
 ##############
 #alertmanager#
 ##############
 
-resource "authentik_provider_proxy" "proxy-auth-alertmanager" {
+resource "authentik_provider_proxy" "proxy-alertmanager" {
   name               = "Alertmanager"
   authorization_flow = data.authentik_flow.default-authorization-flow.id
   external_host      = "https://alertmanager.kube.home"
   mode               = "forward_single"
 }
 
-resource "authentik_application" "proxy-auth-alertmanager" {
+resource "authentik_application" "proxy-alertmanager" {
   name              = "Alertmanager"
   slug              = "alertmanager"
-  protocol_provider = authentik_provider_proxy.proxy-auth-alertmanager.id
+  protocol_provider = authentik_provider_proxy.proxy-alertmanager.id
 }
 
 ##########
