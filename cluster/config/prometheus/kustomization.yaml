@@ -15,3 +15,5 @@ resources:
   - prometheus-ns.yaml
   - alertmanager-virtualservice.yaml
   - prometheus-virtualservice.yaml
+  - alertmanager-authpolicy.yaml
+  - prometheus-authpolicy.yaml

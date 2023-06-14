@@ -223,7 +223,8 @@ kubectl get configmaps wildcard-kube-home-distribution -o jsonpath='{.data}' | j
     - [x] Homer
     - [x] Longhorn
     - [ ] Openproject
-    - [ ] Prometheus
+    - [x] Prometheus
+    - [x] Alertmanager
     - [ ] Vault
 - [ ] NFS
     - [ ] Jellyfin
