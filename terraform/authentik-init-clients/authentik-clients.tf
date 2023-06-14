@@ -118,6 +118,7 @@ resource "authentik_application" "proxy-homer" {
 resource "authentik_provider_oauth2" "vault" {
   name      = "Vault"
   client_id = "vault"
+  authorization_flow = data.authentik_flow.default-authorization-flow.id
 }
 
 resource "authentik_application" "oidc-vault" {
