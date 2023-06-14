@@ -35,7 +35,8 @@ resource "authentik_outpost" "outpost" {
     authentik_provider_proxy.proxy-prometheus.id,
     authentik_provider_proxy.proxy-alertmanager.id,
     authentik_provider_proxy.proxy-longhorn.id,
-    authentik_provider_proxy.proxy-homer.id
+    authentik_provider_proxy.proxy-homer.id,
+    authentik_provider_oauth2.vault.id
   ]
   # the config must be encoded in json, \" is required to escape the quotes
   config = "{\"authentik_host\": \"http://authentik.authentik.svc.cluster.local:80\",\"authentik_host_browser\": \"https://authentik.kube.home\"}"
@@ -111,6 +112,31 @@ resource "authentik_application" "proxy-homer" {
 }
 
 #######
+#vault#
+#######
+
+resource "authentik_provider_oauth2" "vault" {
+  name      = "Vault"
+  client_id = "vault"
+}
+
+resource "authentik_application" "oidc-vault" {
+  name              = "Vault"
+  slug              = "vault"
+  protocol_provider = authentik_provider_oauth2.vault.id
+}
+
+resource "vault_jwt_auth_backend" "vault-oidc-backend" {
+    description         = "Authentik"
+    path                = "oidc"
+    type                = "oidc"
+    oidc_discovery_url  = "https://authentik.kube.home/application/o/vault"
+    oidc_client_id      = authentik_provider_oauth2.vault.client_id
+    oidc_client_secret  = authentik_provider_oauth2.vault.client_secret
+}
+
+
+#######
 #users#
 #######
 
@@ -127,3 +153,4 @@ resource "authentik_user" "name" {
     authentik_group.authentik-admins.id,
     ]
 }
+
