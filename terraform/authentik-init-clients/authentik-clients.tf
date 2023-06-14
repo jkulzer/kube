@@ -131,7 +131,7 @@ resource "vault_jwt_auth_backend" "vault-oidc-backend" {
     description         = "Authentik"
     path                = "oidc"
     type                = "oidc"
-    oidc_discovery_url  = "https://authentik.kube.home/application/o/vault"
+    oidc_discovery_url  = "http://ak-outpost-default-outpost.authentik.svc.cluster.local:9000"
     oidc_client_id      = authentik_provider_oauth2.vault.client_id
     oidc_client_secret  = authentik_provider_oauth2.vault.client_secret
 }
