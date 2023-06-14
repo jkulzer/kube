@@ -216,30 +216,28 @@ kubectl get configmaps wildcard-kube-home-distribution -o jsonpath='{.data}' | j
 - [x] GitOps with ArgoCD
 - [x] Automatic Certificate Management
 - [ ] SSO with Authentik
-    - [ ] ArgoCd
-    - [ ] Cilium/Hubble
+    - [ ] ArgoCD
     - [ ] Drone
     - [ ] Gitea
     - [ ] Grafana
-    - [x] Hajimari
+    - [x] Homer
     - [x] Longhorn
     - [ ] Openproject
     - [ ] Prometheus
     - [ ] Vault
-- [x] NFS
-    - [x] Jellyfin
+- [ ] NFS
+    - [ ] Jellyfin
 - [x] Longhorn Backups
-    - [x] NFS on RasPi
-    - [x] Automatic Backups ~~weekly~~ daily
+    - [ ] NFS on RasPi
+    - [ ] Automatic Backups ~~weekly~~ daily
 - [ ] Monitoring
     - [ ] Secure Prometheus
-    - [ ] Create nice dashboard
-    - [ ] Configure alerting via Discord
-- [ ] Cilium
-    - [ ] Wireguard with Cilium
-    - [ ] Observability with Cilium
+    - [x] Create nice dashboard
+    - [x] Configure alerting via Discord
 - [x] Renovate
 - [ ] Paperless-NGX
+- [ ] Gitea
+- [ ] Harbor
 - [x] Unified Node management
     - [x] Uniform OS for every node
     - [x] Uniform OS generated in Docker container
