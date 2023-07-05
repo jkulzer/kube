@@ -28,20 +28,28 @@ resource "authentik_service_connection_kubernetes" "local" {
   local = true
 }
 
-resource "authentik_outpost" "outpost" {
-  name = "Default Outpost"
+resource "authentik_outpost" "proxy-outpost" {
+  name = "Proxy Outpost"
   service_connection = authentik_service_connection_kubernetes.local.id
   protocol_providers = [
     authentik_provider_proxy.proxy-prometheus.id,
     authentik_provider_proxy.proxy-alertmanager.id,
     authentik_provider_proxy.proxy-longhorn.id,
-    authentik_provider_proxy.proxy-homer.id,
-    authentik_provider_oauth2.vault.id
+    authentik_provider_proxy.proxy-homer.id
   ]
   # the config must be encoded in json, \" is required to escape the quotes
   config = "{\"authentik_host\": \"http://authentik.authentik.svc.cluster.local:80\",\"authentik_host_browser\": \"https://authentik.kube.home\"}"
 }
 
+resource "authentik_outpost" "oauth-outpost" {
+  name = "OAuth Outpost"
+  service_connection = authentik_service_connection_kubernetes.local.id
+  protocol_providers = [
+    authentik_provider_oauth2.vault.id
+  ]
+  # the config must be encoded in json, \" is required to escape the quotes
+  config = "{\"authentik_host\": \"http://authentik.authentik.svc.cluster.local:80\",\"authentik_host_browser\": \"https://authentik.kube.home\"}"
+}
 
 ############
 #prometheus#
