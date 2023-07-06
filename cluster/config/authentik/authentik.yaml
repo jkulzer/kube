@@ -234,8 +234,14 @@ spec:
             httpGet:
               path: /-/health/live/
               port: http
-            initialDelaySeconds: 80
+            initialDelaySeconds: 5
             periodSeconds: 10
+          startupProbe:
+            failueThreshold: 60
+            httpGet:
+              path: /-/health/live/
+              port: http
+            periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /-/health/ready/
