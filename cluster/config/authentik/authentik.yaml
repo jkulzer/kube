@@ -237,7 +237,7 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
           startupProbe:
-            failueThreshold: 60
+            failueThreshold: 120
             httpGet:
               path: /-/health/live/
               port: http
