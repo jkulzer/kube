@@ -167,7 +167,7 @@ spec:
       priorityClassName: 
       containers:
         - name: authentik
-          image: "ghcr.io/goauthentik/server:2023.6.0"
+          image: "ghcr.io/goauthentik/server:2023.6.1"
           imagePullPolicy: "Always"
           args: ["server"]
           env:            
@@ -275,7 +275,7 @@ spec:
       priorityClassName: 
       containers:
         - name: authentik
-          image: "ghcr.io/goauthentik/server:2023.6.0"
+          image: "ghcr.io/goauthentik/server:2023.6.1"
           imagePullPolicy: "Always"
           args: ["worker"]
           env:            
