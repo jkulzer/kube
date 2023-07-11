@@ -217,9 +217,6 @@ spec:
               value: "vault:kv/data/kube/authentik/#initialadmintoken"
             - name: AUTHENTIK_BOOTSTRAP_PASSWORD
               value: "vault:kv/data/kube/authentik/#initialadminpassword"
-          volumeMounts:
-            - name: geoip-db
-              mountPath: /geoip
           ports:
             - name: http
               containerPort: 9000
@@ -230,9 +227,6 @@ spec:
             - name: https
               containerPort: 9443
               protocol: TCP
-      volumes:
-        - name: geoip-db
-          emptyDir: {}
 ---
 # Source: authentik/templates/deployment.yaml
 apiVersion: apps/v1
@@ -283,8 +277,6 @@ spec:
               value: "k8s"
             - name: AUTHENTIK_ERROR_REPORTING__SEND_PII
               value: "false"
-            - name: AUTHENTIK_GEOIP
-              value: "/geoip/GeoLite2-City.mmdb"
             - name: AUTHENTIK_LOG_LEVEL
               value: "info"
             - name: AUTHENTIK_OUTPOSTS__CONTAINER_IMAGE_BASE
@@ -315,12 +307,6 @@ spec:
               value: "vault:kv/data/kube/authentik/#initialadmintoken"
             - name: AUTHENTIK_BOOTSTRAP_PASSWORD
               value: "vault:kv/data/kube/authentik/#initialadminpassword"
-          volumeMounts:
-            - name: geoip-db
-              mountPath: /geoip
-      volumes:
-        - name: geoip-db
-          emptyDir: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
