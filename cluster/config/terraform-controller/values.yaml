@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/weaveworks/tf-controller
   pullPolicy: IfNotPresent
-  tag: "v0.15.0-rc.1"
+  tag: "v0.15.1"
 resources:
   requests:
     cpu: 50m
@@ -16,7 +16,7 @@ awsPackage:
 runner:
   image:
     repository: ghcr.io/weaveworks/tf-runner
-    tag: "v0.15.0-rc.1"
+    tag: "v0.15.1"
 metrics:
   # -- Enable Metrics Service
   enabled: true
