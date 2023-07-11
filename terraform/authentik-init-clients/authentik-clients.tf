@@ -134,6 +134,18 @@ resource "vault_jwt_auth_backend" "vault-oidc-backend" {
     oidc_client_secret  = authentik_provider_oauth2.vault.client_secret
 }
 
+resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
+  backend   = vault_jwt_auth_backend.vault-oidc-backend.jwt.path
+  role_name = "admin"
+  token_policies = ["root", "default"]
+  bound_audiences = authentik_provider_oauth2.vault.client_id
+  allowed_redirect_uris = [
+    "https://vault.kube.home/ui/vault/auth/oidc/oidc/callback",
+    "https://vault.kube.home/oidc/callback",
+    "http://localhost:8200/oidc/callback"
+  ]
+}
+
 
 #######
 #users#
