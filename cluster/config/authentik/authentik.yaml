@@ -230,18 +230,6 @@ spec:
             - name: https
               containerPort: 9443
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /-/health/live/
-              port: http
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /-/health/ready/
-              port: http
-            initialDelaySeconds: 120
-            periodSeconds: 10
       volumes:
         - name: geoip-db
           emptyDir: {}
