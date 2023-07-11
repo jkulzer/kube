@@ -41,16 +41,6 @@ resource "authentik_outpost" "proxy-outpost" {
   config = "{\"authentik_host\": \"http://authentik.authentik.svc.cluster.local:80\",\"authentik_host_browser\": \"https://authentik.kube.home\"}"
 }
 
-resource "authentik_outpost" "oauth-outpost" {
-  name = "OAuth Outpost"
-  service_connection = authentik_service_connection_kubernetes.local.id
-  protocol_providers = [
-    authentik_provider_oauth2.vault.id
-  ]
-  # the config must be encoded in json, \" is required to escape the quotes
-  config = "{\"authentik_host\": \"http://authentik.authentik.svc.cluster.local:80\",\"authentik_host_browser\": \"https://authentik.kube.home\"}"
-}
-
 ############
 #prometheus#
 ############
