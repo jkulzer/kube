@@ -72,9 +72,16 @@ spec:
     - name: vault-pvc
       persistentVolumeClaim:
         claimName: vault
+    - name: main-certificate
+      configMap:
+        name: kube-root-ca.crt
   volumeMounts:
     - name: vault-pvc
       mountPath: /vault/data
+    - name: main-certificate
+      mountPath: /etc/ssl/certs/my-cert.pem
+      subPath: ca.crt
+      readOnly: false
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
