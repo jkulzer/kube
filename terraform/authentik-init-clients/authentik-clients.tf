@@ -144,6 +144,7 @@ resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
     "https://vault.kube.home/oidc/callback",
     "http://localhost:8200/oidc/callback"
   ]
+  user_claim = "sub"
 }
 
 
