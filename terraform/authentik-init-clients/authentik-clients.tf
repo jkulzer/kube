@@ -142,7 +142,8 @@ resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
   allowed_redirect_uris = [
     "https://vault.kube.home/ui/vault/auth/oidc/oidc/callback",
     "https://vault.kube.home/oidc/callback",
-    "http://localhost:8200/oidc/callback"
+    "https://localhost:8200/oidc/callback",
+    "http://localhost:8200/oidc/callback",
   ]
   user_claim = "sub"
 }
