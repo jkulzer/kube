@@ -125,6 +125,12 @@ resource "authentik_application" "oidc-vault" {
   protocol_provider = authentik_provider_oauth2.vault.id
 }
 
+data "kubernetes_config_map_v1" "root-ca" {
+  metadata {
+    name = "root-certificate-distribution"
+  }
+}
+
 resource "vault_jwt_auth_backend" "vault-oidc-backend" {
     description         = "Authentik"
     path                = "oidc"
@@ -132,6 +138,7 @@ resource "vault_jwt_auth_backend" "vault-oidc-backend" {
     oidc_discovery_url  = "http://ak-outpost-default-outpost.authentik.svc.cluster.local:9000"
     oidc_client_id      = authentik_provider_oauth2.vault.client_id
     oidc_client_secret  = authentik_provider_oauth2.vault.client_secret
+    oidc_discovery_ca_pem = data.kubernetes_config_map_v1.root-ca.metadata.kube-home-crt
 }
 
 resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
