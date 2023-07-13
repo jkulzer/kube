@@ -10,4 +10,4 @@ spec:
       key: "tls.crt"
   target:
     configMap:
-      key: "kube-home.crt"
+      key: "kube-home-crt"
