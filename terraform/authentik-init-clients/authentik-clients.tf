@@ -142,7 +142,7 @@ resource "vault_jwt_auth_backend" "vault-oidc-backend" {
 }
 
 resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
-  backend   = vault_jwt_auth_backend.vault-oidc-backend.path
+  backend   = "oidc"
   role_name = "admin"
   token_policies = ["root", "default"]
   bound_audiences = [authentik_provider_oauth2.vault.client_id]
