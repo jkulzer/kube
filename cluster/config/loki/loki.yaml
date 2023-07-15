@@ -52,7 +52,6 @@ metadata:
     app: loki
 rules:
 - apiGroups:      ['extensions']
-  resources:      ['podsecuritypolicies']
   verbs:          ['use']
   resourceNames:  [loki]
 ---
@@ -174,12 +173,10 @@ spec:
           args:
             - "-config.file=/etc/loki/loki.yaml"
           volumeMounts:
-            - name: tmp
-              mountPath: /tmp
             - name: config
               mountPath: /etc/loki
             - name: storage
-              mountPath: "/data"
+              mountPath: "/tmp"
               subPath: 
             - name: wal
               mountPath: /wal
@@ -207,8 +204,6 @@ spec:
             readOnlyRootFilesystem: true
       terminationGracePeriodSeconds: 4800
       volumes:
-        - name: tmp
-          emptyDir: {}
         - name: wal
           emptyDir: {}
         - name: config
@@ -223,4 +218,3 @@ spec:
       resources:
         requests:
           storage: "10Gi"
-      storageClassName:
