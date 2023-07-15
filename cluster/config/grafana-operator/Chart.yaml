@@ -3,5 +3,5 @@ name: grafana-operator
 version: 0.0.0
 dependencies: 
   - name: grafana-operator
-    version: v5.0.0-rc0
+    version: v5.2.0
     repository: oci://ghcr.io/grafana-operator/helm-charts
