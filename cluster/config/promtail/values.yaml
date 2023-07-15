@@ -1,0 +1,117 @@
+resources: {}
+#  limits:
+#    cpu: 200m
+#    memory: 128Mi
+#  requests:
+#    cpu: 100m
+#    memory: 128Mi
+
+namespace: promtail
+
+
+# -- Default volumes that are mounted into pods. In most cases, these should not be changed.
+# Use `extraVolumes`/`extraVolumeMounts` for additional custom volumes.
+# @default -- See `values.yaml`
+defaultVolumes:
+  - name: run
+    hostPath:
+      path: /run/promtail
+  - name: containers
+    hostPath:
+      path: /var/lib/docker/containers
+  - name: pods
+    hostPath:
+      path: /var/log/pods
+
+# -- Default volume mounts. Corresponds to `volumes`.
+# @default -- See `values.yaml`
+defaultVolumeMounts:
+  - name: run
+    mountPath: /run/promtail
+  - name: containers
+    mountPath: /var/lib/docker/containers
+    readOnly: true
+  - name: pods
+    mountPath: /var/log/pods
+    readOnly: true
+
+# Extra volumes to be added in addition to those specified under `defaultVolumes`.
+extraVolumes: []
+
+# Extra volume mounts together. Corresponds to `extraVolumes`.
+extraVolumeMounts: []
+
+extraArgs:
+  - -log.format=json
+
+serviceMonitor:
+  enabled: true
+
+config:
+  clients:
+    - url: http://loki.loki.svc.cluster.local:3100/loki/api/v1/push
+  snippets:
+    pipelineStages:
+      - cri: {}
+    common:
+      - action: replace
+        source_labels:
+          - __meta_kubernetes_pod_node_name
+        target_label: node_name
+      - action: replace
+        source_labels:
+          - __meta_kubernetes_namespace
+        target_label: namespace
+      - action: replace
+        replacement: $1
+        separator: /
+        source_labels:
+          - namespace
+          - app
+        target_label: job
+      - action: replace
+        source_labels:
+          - __meta_kubernetes_pod_name
+        target_label: pod
+      - action: replace
+        source_labels:
+          - __meta_kubernetes_pod_container_name
+        target_label: container
+      - action: replace
+        replacement: /var/log/pods/*$1/*.log
+        separator: /
+        source_labels:
+          - __meta_kubernetes_pod_uid
+          - __meta_kubernetes_pod_container_name
+        target_label: __path__
+      - action: replace
+        replacement: /var/log/pods/*$1/*.log
+        regex: true/(.*)
+        separator: /
+        source_labels:
+          - __meta_kubernetes_pod_annotationpresent_kubernetes_io_config_hash
+          - __meta_kubernetes_pod_annotation_kubernetes_io_config_hash
+          - __meta_kubernetes_pod_container_name
+        target_label: __path__
+
+    extraScrapeConfigs: |
+      - job_name: journal
+        journal:
+          json: false
+          max_age: 12h
+          path: /var/log/journal
+          labels:
+            job: systemd-journal
+        relabel_configs:
+          - source_labels: ['__journal__systemd_unit']
+            target_label: 'unit'
+          - source_labels:
+            - __journal__hostname
+            target_label: node_name
+          - source_labels:
+            - __journal_syslog_identifier
+            target_label: syslog_identifier
+
+sidecar:
+  configReloader:
+    enabled: true
