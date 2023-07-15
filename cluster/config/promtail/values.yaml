@@ -9,37 +9,36 @@ resources: {}
 namespace: promtail
 
 
-# -- Default volumes that are mounted into pods. In most cases, these should not be changed.
-# Use `extraVolumes`/`extraVolumeMounts` for additional custom volumes.
-# @default -- See `values.yaml`
 defaultVolumes:
   - name: run
     hostPath:
       path: /run/promtail
-  - name: containers
-    hostPath:
-      path: /var/lib/docker/containers
   - name: pods
     hostPath:
       path: /var/log/pods
 
-# -- Default volume mounts. Corresponds to `volumes`.
-# @default -- See `values.yaml`
 defaultVolumeMounts:
   - name: run
     mountPath: /run/promtail
-  - name: containers
-    mountPath: /var/lib/docker/containers
-    readOnly: true
   - name: pods
     mountPath: /var/log/pods
     readOnly: true
 
-# Extra volumes to be added in addition to those specified under `defaultVolumes`.
-extraVolumes: []
+extraVolumes:
+  - name: var-journal
+    hostPath:
+      path: /var/log/journal
+  - name: run-journal
+    hostPath:
+      path: /run/log/journal
 
-# Extra volume mounts together. Corresponds to `extraVolumes`.
-extraVolumeMounts: []
+extraVolumeMounts:
+  - name: var-journal
+    mountPath: /var/log/journal
+    readOnly: true
+  - name: run-journal
+    mountPath: /run/log/journal
+    readOnly: true
 
 extraArgs:
   - -log.format=json
