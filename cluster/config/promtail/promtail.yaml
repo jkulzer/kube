@@ -68,7 +68,7 @@ spec:
           name: promtail-config
       containers:
       - name: promtail-container
-        image: grafana/promtail
+        image: grafana/promtail:2.8.2
         args:
         - -config.file=/etc/promtail/promtail.yaml
         env: 
