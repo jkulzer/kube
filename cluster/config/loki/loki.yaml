@@ -21,6 +21,7 @@ data:
     server:
       http_listen_port: 3100
     common:
+      path_prefix: /tmp/loki
       storage:
         filesystem:
           chunks_directory: /tmp/loki/chunks
