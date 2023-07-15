@@ -9,3 +9,6 @@ helmCharts:
     repo: https://grafana.github.io/helm-charts/
     version: 6.11.6
     valuesFile: values.yaml
+
+resources:
+  - promtail-ns.yaml
