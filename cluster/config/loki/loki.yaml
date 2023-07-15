@@ -43,34 +43,6 @@ data:
     ruler:
       alertmanager_url: http://kube-prometheus-stack-alertmanager.prometheus.svc.cluster.local:9093
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: loki
-  namespace: loki
-  labels:
-    app: loki
-rules:
-- apiGroups:      ['extensions']
-  verbs:          ['use']
-  resourceNames:  [loki]
----
-# Source: loki/templates/rolebinding.yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: loki
-  namespace: loki
-  labels:
-    app: loki
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: loki
-subjects:
-- kind: ServiceAccount
-  name: loki
----
 # Source: loki/templates/service-headless.yaml
 apiVersion: v1
 kind: Service
