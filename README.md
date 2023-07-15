@@ -269,6 +269,7 @@ Helpful repos:
 * [khuedoan/homelab](https://github.com/khuedoan/homelab)
 * [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
 * [danmanners/homelab-kube-cluster](https://github.com/danmanners/homelab-kube-cluster)
+* [BeryJu](https://github.com/BeryJu/k8s)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
