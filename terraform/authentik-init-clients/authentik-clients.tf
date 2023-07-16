@@ -176,8 +176,8 @@ resource "vault_kv_secret_v2" "grafana-oauth-secrets" {
   name                       = "kube/grafana"
   data_json                  = jsonencode(
   {
-    oauth_client_id     = data.authentik_provider_oauth2.grafana.client_id
-    oauth_client_secret = data.authentik_provider_oauth2.grafana.client_secret
+    oauth_client_id     = authentik_provider_oauth2.grafana.client_id
+    oauth_client_secret = authentik_provider_oauth2.grafana.client_secret
   }
   )
 }
