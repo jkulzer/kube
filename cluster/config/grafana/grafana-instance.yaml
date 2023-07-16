@@ -6,7 +6,6 @@ metadata:
   labels:
     dashboard: main-grafana
 spec:
-  ingress: []
   deployment:
     spec:
       template:
