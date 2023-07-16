@@ -9,10 +9,31 @@ spec:
   deployment:
     spec:
       template:
+        metadata:
+          annotations:
+            vault.security.banzaicloud.io/vault-addr: "http://vault-0.vault.svc.cluster.local:8200"
+            vault.security.banzaicloud.io/vault-role: "grafana"
+            vault.security.banzaicloud.io/vault-path: "kubernetes"
         spec:
           containers:
             - name: grafana
               image: grafana/grafana:10.0.2
-  config:
-    auth:
-      disable_login_form: "true"
+          env:
+            - name: GF_AUTH_GENERIC_OAUTH_ENABLED
+              value: true
+            - name: GF_AUTH_GENERIC_OAUTH_NAME
+              value: "authentik"
+            - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID 
+              value: "vault:kv/data/kube/grafana/#oauth_client_id"
+            - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+              value: "vault:kv/data/kube/grafana/#oauth_client_secret"
+            - name: GF_AUTH_GENERIC_OAUTH_SCOPES
+              value: "openid profile email"
+            - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL: 
+              value: "https://authentik.kube.home/application/o/authorize/"
+            - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
+              value: "https://authentik.kube.home/application/o/token/"
+            - name: GF_AUTH_GENERIC_OAUTH_API_URL
+              value: "https://authentik.kube.home/application/o/userinfo/"
+            - name: GF_AUTH_SIGNOUT_REDIRECT_URL 
+              value: "https://authentik.kube.home/application/o/grafana/end-session/"
