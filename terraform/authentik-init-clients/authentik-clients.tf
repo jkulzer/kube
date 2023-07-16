@@ -181,22 +181,3 @@ resource "vault_kv_secret_v2" "grafana-oauth-secrets" {
   }
   )
 }
-
-#######
-#users#
-#######
-
-resource "authentik_group" "authentik-admins" {
-  name         = "Authentik External Admins"
-  is_superuser = true
-}
-
-
-resource "authentik_user" "name" {
-  username = "jkulzer"
-  name     = "Johannes Kulzer"
-  groups   = [
-    authentik_group.authentik-admins.id,
-    ]
-}
-
