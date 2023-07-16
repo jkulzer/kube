@@ -1,3 +1,4 @@
+---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: Grafana
 metadata:
@@ -5,8 +6,7 @@ metadata:
   labels:
     dashboard: main-grafana
 spec:
-  ingress:
-    {}
+  ingress: []
   deployment:
     spec:
       template:
@@ -14,17 +14,6 @@ spec:
           containers:
             - name: grafana
               image: grafana/grafana:10.0.2
-              ports:
-              - containerPort: 3000
-                name: http
-  service:
-    spec:
-      ports:
-      - name: grafana
-        port: 3000
-        protocol: TCP
-        targetPort: http
   config:
-    security:
-      admin_user: admin
-      admin_password: admin
+    auth:
+      disable_login_form: "true"
