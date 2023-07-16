@@ -113,6 +113,8 @@ resource "authentik_application" "proxy-homer" {
 #vault#
 #######
 
+/*
+
 resource "authentik_provider_oauth2" "vault" {
   name      = "Vault"
   client_id = "vault"
@@ -154,6 +156,7 @@ resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
   ]
   user_claim = "sub"
 }
+*/
 
 #########
 #grafana#
