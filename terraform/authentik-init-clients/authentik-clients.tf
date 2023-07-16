@@ -155,6 +155,32 @@ resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
   user_claim = "sub"
 }
 
+#########
+#grafana#
+#########
+
+resource "authentik_provider_oauth2" "grafana" {
+  name      = "Grafana"
+  client_id = "grafana"
+  authorization_flow = data.authentik_flow.default-authorization-flow.id
+}
+
+resource "authentik_application" "oidc-grafana" {
+  name              = "Grafana"
+  slug              = "grafana"
+  protocol_provider = authentik_provider_oauth2.grafana.id
+}
+
+resource "vault_kv_secret_v2" "grafana-oauth-secrets" {
+  mount                      = "kv"
+  name                       = "kube/grafana"
+  data_json                  = jsonencode(
+  {
+    oauth_client_id     = data.authentik_provider_oauth2.grafana.client_id
+    oauth_client_secret = data.authentik_provider_oauth2.grafana.client_secret
+  }
+  )
+}
 
 #######
 #users#
