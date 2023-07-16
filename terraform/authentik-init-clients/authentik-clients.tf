@@ -162,9 +162,13 @@ resource "vault_jwt_auth_backend_role" "vault-oidc-backend-role" {
 #grafana#
 #########
 
+resource "random_password" "grafana-client-id" {
+  length           = 64
+}
+
 resource "authentik_provider_oauth2" "grafana" {
   name      = "Grafana"
-  client_id = "grafana"
+  client_id = random_password.grafana-client-id.result
   authorization_flow = data.authentik_flow.default-authorization-flow.id
 }
 
