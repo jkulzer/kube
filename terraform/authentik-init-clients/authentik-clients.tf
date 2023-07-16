@@ -188,3 +188,34 @@ resource "vault_kv_secret_v2" "grafana-oauth-secrets" {
   }
   )
 }
+
+#######################################################################
+#this allows the grafana pod to get the oauth id and secret from vault#
+#######################################################################
+
+resource "vault_policy" "grafana" {
+  name = "grafana"
+
+  policy = <<EOT
+path "kv/kube/grafana" { 
+  capabilities = ["read", "list"] 
+}
+
+path "kv/data/kube/grafana" { 
+  capabilities = ["read", "list"]
+}
+
+path "kv/kube/grafana/*" { 
+  capabilities = ["read", "list"]
+}  
+EOT
+}
+
+
+resource "vault_kubernetes_auth_backend_role" "grafana" {
+  backend                          = "kubernetes"
+  role_name                        = "grafana"
+  bound_service_account_names      = ["grafana-sa"]
+  bound_service_account_namespaces = ["grafana"]
+  token_policies                   = ["grafana"]
+}
