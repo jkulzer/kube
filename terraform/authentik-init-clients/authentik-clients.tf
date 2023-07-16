@@ -168,7 +168,7 @@ resource "authentik_provider_oauth2" "grafana" {
 resource "authentik_application" "oidc-grafana" {
   name              = "Grafana"
   slug              = "grafana"
-  protocol_provider = authentik_provider_oauth2.grafana.id
+  protocol_provider = authentik_provider_oauth2.grafana.client_id
 }
 
 resource "vault_kv_secret_v2" "grafana-oauth-secrets" {
