@@ -8,7 +8,7 @@ helmCharts:
     releaseName: gitea
     namespace: gitea
     repo: https://dl.gitea.io/charts
-    version: "9.0.0"
+    version: "9.0.4"
     valuesFile: values.yaml
 
 resources:
