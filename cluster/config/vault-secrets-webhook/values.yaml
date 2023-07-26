@@ -7,4 +7,4 @@ metrics:
     enabled: true
 
 env:
-  VAULT_IMAGE: hashicorp/vault:1.14.0
+  VAULT_IMAGE: hashicorp/vault:1.14.1
