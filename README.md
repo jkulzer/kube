@@ -220,6 +220,7 @@ kubectl get configmaps wildcard-kube-home-distribution -o jsonpath='{.data}' | j
     - [ ] Drone
     - [ ] Gitea
     - [ ] Grafana
+    - [ ] Harbor
     - [x] Homer
     - [x] Longhorn
     - [ ] Openproject
@@ -229,15 +230,16 @@ kubectl get configmaps wildcard-kube-home-distribution -o jsonpath='{.data}' | j
 - [ ] NFS
     - [ ] Jellyfin
 - [x] Longhorn Backups
-    - [ ] NFS on RasPi
+    - [ ] NFS on RasPi (or Minio?)
     - [ ] Automatic Backups ~~weekly~~ daily
 - [ ] Monitoring
-    - [ ] Secure Prometheus
+    - [x] Secure Prometheus
     - [x] Create nice dashboard
     - [x] Configure alerting via Discord
 - [x] Renovate
 - [ ] Paperless-NGX
 - [ ] Gitea
+    - [ ] OAuth or LDAP SSO
 - [ ] Harbor
 - [x] Unified Node management
     - [x] Uniform OS for every node
