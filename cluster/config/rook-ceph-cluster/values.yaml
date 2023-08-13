@@ -12,15 +12,19 @@ cephClusterSpec:
     mgr:
       requests:
         cpu: "100m"
+        memory: "128Mi"
     mon:
       requests:
         cpu: "100m"
+        memory: "128Mi"
     osd:
       requests:
         cpu: "100m"
+        memory: "128Mi"
     prepareosd:
       requests:
         cpu: "50m"
+        memory: "128Mi"
 
   mon:
     count: 1
