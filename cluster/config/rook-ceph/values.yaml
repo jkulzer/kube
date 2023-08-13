@@ -59,7 +59,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -67,7 +67,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -75,7 +75,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -83,7 +83,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -91,7 +91,7 @@ csi:
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
@@ -99,7 +99,7 @@ csi:
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
@@ -127,7 +127,7 @@ csi:
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
@@ -135,7 +135,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 50m
+          cpu: 10m
         limits:
           memory: 256Mi
           cpu: 100m
@@ -147,7 +147,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -155,7 +155,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -163,7 +163,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -171,7 +171,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
           cpu: 200m
@@ -179,7 +179,7 @@ csi:
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
@@ -187,7 +187,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 50m
+          cpu: 10m
         limits:
           memory: 256Mi
           cpu: 100m
@@ -207,7 +207,7 @@ csi:
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
@@ -227,15 +227,15 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 100m
+          cpu: 50m
         limits:
           memory: 256Mi
-          cpu: 200m
+          cpu: 50m
     - name : csi-nfsplugin
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
@@ -243,7 +243,7 @@ csi:
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
@@ -255,7 +255,7 @@ csi:
       resource:
         requests:
           memory: 128Mi
-          cpu: 50m
+          cpu: 10m
         limits:
           memory: 256Mi
           cpu: 100m
@@ -263,7 +263,7 @@ csi:
       resource:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 50m
         limits:
           memory: 1Gi
           cpu: 500m
