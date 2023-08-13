@@ -8,6 +8,19 @@ cephClusterSpec:
   cephVersion:
     image: quay.io/ceph/ceph:v17.2.6
   skipUpgradeChecks: false
+  resources:
+    mgr:
+      requests:
+        cpu: "100m"
+    mon:
+      requests:
+        cpu: "100m"
+    osd:
+      requests:
+        cpu: "100m"
+    prepareosd:
+      requests:
+        cpu: "50m"
 
   mon:
     count: 1
