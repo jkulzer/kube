@@ -5,3 +5,4 @@ metadata:
   name: loki
   labels:
     app: loki 
+    pod-security.kubernetes.io/enforce: privileged
