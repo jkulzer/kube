@@ -14,7 +14,7 @@
 <br />
 <div align="center">
   <a href="https://git.kube.home/johannes/kube">
-    <img src="https://cncf-branding.netlify.app/img/projects/kubernetes/icon/color/kubernetes-icon-color.svg" alt="Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Kubernetes Cluster</h3>
@@ -73,7 +73,7 @@
 
 <table>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/kubernetes/icon/color/kubernetes-icon-color.svg"></td>
+		<td><img width="64" src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png"></td>
 		<td><a href="https://kubernetes.io">Kubernetes</a></td>
 		<td>Just Kubernetes</td>
 	</tr>
