@@ -27,14 +27,14 @@ alertmanager:
     enabled: false
   service:
     type: ClusterIP
-  alertmanagerSpec:
-    volumes:
-      - name: tz-config
-        hostPath:
-          path: /usr/share/zoneinfo/Europe/Berlin
-    volumeMounts:
-      - name: tz-config
-        mountPath: /etc/localtime
+      #alertmanagerSpec:
+      #volumes:
+      #- name: tz-config
+      #hostPath:
+      #path: /usr/share/zoneinfo/Europe/Berlin
+      #volumeMounts:
+      #- name: tz-config
+      #mountPath: /etc/localtime
   serviceMonitor:
     selfMonitor: true
     replicas: 1
@@ -134,13 +134,13 @@ prometheus:
     retention: 5d
     retentionSize: 9GiB
     replicas: 1
-    volumes:
-      - name: tz-config
-        hostPath:
-          path: /usr/share/zoneinfo/Europe/Berlin
-    volumeMounts:
-      - name: tz-config
-        mountPath: /etc/localtime
+      #volumes:
+      #- name: tz-config
+        #hostPath:
+          #path: /usr/share/zoneinfo/Europe/Berlin
+            #volumeMounts:
+            #- name: tz-config
+            #mountPath: /etc/localtime
     storageSpec:
       volumeClaimTemplate:
         spec:
