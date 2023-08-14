@@ -127,6 +127,26 @@
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
 		<td>Monitoring Scraper</td>
 	</tr>
+	<tr>
+		<td><img width="64" src="https://landscape.cncf.io/logos/goldilocks.svg"></td>
+		<td><a href="https://www.fairwinds.com/goldilocks">Goldilocks</a></td>
+		<td>CPU/Memory Reqests Reccomender</td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://landscape.cncf.io/logos/kyverno.svg"></td>
+		<td><a href="https://kyverno.io">Kyverno</a></td>
+		<td>Policy Management</td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://landscape.cncf.io/logos/grafana-loki.svg"></td>
+		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
+		<td>Log Aggregator</td>
+	</tr>
+	<tr>
+		<td><img width="64" src="https://landscape.cncf.io/logos/grafana-loki.svg"></td>
+		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
+		<td>Log Aggregator</td>
+	</tr>
 </table>
 
 * [itzg Minecraft Server](https://https://github.com/itzg/docker-minecraft-server/)
@@ -232,10 +252,7 @@ kubectl get configmaps wildcard-kube-home-distribution -o jsonpath='{.data}' | j
     - [ ] OAuth or LDAP SSO
 - [ ] Harbor
 - [x] Unified Node management
-    - [x] Uniform OS for every node
-    - [x] Uniform OS generated in Docker container
-    - [ ] Automatic OS updates
-    - [ ] Automated OS install with Ansible
+    - [x] Talos
 
 See the [open issues](https://github.com/jkulzer/kube/issues) for a full list of proposed features (and known issues).
 
