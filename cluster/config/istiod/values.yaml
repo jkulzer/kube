@@ -6,8 +6,8 @@ pilot:
   # Resources for a small pilot install
   resources:
     requests:
-      cpu: 100m
-      memory: 2048Mi
+      cpu: 20m
+      memory: 200Mi
 
 
 sidecarInjectorWebhook:
