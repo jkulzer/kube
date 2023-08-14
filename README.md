@@ -78,12 +78,7 @@
 		<td>Just Kubernetes</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/k3s/icon/color/k3s-icon-color.svg"></td>
-		<td><a href="https://k3s.io">K3s</a></td>
-		<td>Lightweight Kubernetes distribution with ARM support</td>
-	</tr>
-	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/argo/icon/color/argo-icon-color.svg"></td>
+		<td><img width="64" src="https://landscape.cncf.io/logos/argo.svg"></td>
 		<td><a href="https://argoproj.github.io/argo-cd">ArgoCD</a></td>
 		<td>Automatically deploys manifests from git repo</td>
 	</tr>
@@ -91,11 +86,6 @@
 		<td><img width="64" src="https://github.com/jetstack/cert-manager/raw/master/logo/logo.png"></td>
 		<td><a href="https://cert-manager.io">cert-manager</a></td>
 		<td>Certificate Management for Kubernetes</td>
-	</tr>
-	<tr>
-		<td><img width="64" src="https://cdn.jsdelivr.net/gh/cilium/cilium@master/Documentation/images/logo-solo.svg"></td>
-		<td><a href="https://cilium.io">Cilium</a></td>
-		<td>Container Network interface with encryption and observability</td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://raw.githubusercontent.com/go-gitea/gitea/main/assets/favicon.svg"></td>
@@ -113,9 +103,9 @@
 		<td>The leading Kubernetes service mesh</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/longhorn/icon/color/longhorn-icon-color.svg"></td>
-		<td><a href="https://longhorn.io/">Longhorn</a></td>
-		<td>Uncomplicated distributed storage</td>
+		<td><img width="64" src="https://landscape.cncf.io/logos/rook.svg"></td>
+		<td><a href="https://rook.io/">Rook/Ceph</a></td>
+		<td>Highly scalable distributed storage</td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://github.com/metallb/metallb/raw/main/website/static/images/logo/metallb-blue.png"></td>
@@ -133,7 +123,7 @@
 		<td>Allows to embed secrets from Vault in ConfigMaps, Environmental Variables etc.</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://cncf-branding.netlify.app/img/projects/prometheus/icon/color/prometheus-icon-color.svg"></td>
+		<td><img width="64" src="https://landscape.cncf.io/logos/prometheus.svg"></td>
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
 		<td>Monitoring Scraper</td>
 	</tr>
