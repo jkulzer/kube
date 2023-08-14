@@ -5,7 +5,7 @@ kind: Kustomization
 helmCharts:
   - name: crossplane
     releaseName: crossplane
-    namespace: argocd
+    namespace: crossplane-system
     repo: https://charts.crossplane.io/stable
     version: 1.13.2
     valuesFile: values.yaml
