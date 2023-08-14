@@ -9,8 +9,8 @@ recommender:
   replicaCount: 1
   resources:
     requests:
-      cpu: 50m
-      memory: 500Mi
+      cpu: 15m
+      memory: 100Mi
 
 updater:
   enabled: false
