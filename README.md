@@ -142,11 +142,6 @@
 		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
 		<td>Log Aggregator</td>
 	</tr>
-	<tr>
-		<td><img width="64" src="https://landscape.cncf.io/logos/grafana-loki.svg"></td>
-		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
-		<td>Log Aggregator</td>
-	</tr>
 </table>
 
 * [itzg Minecraft Server](https://https://github.com/itzg/docker-minecraft-server/)
