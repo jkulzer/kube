@@ -5,8 +5,8 @@ controller:
   enabled: true
   resources:
     requests:
-      cpu: 25m
-      memory: 256Mi
+      cpu: 20m
+      memory: 100Mi
 
 dashboard:
   enabled: true
@@ -22,5 +22,5 @@ dashboard:
     enabled: false
   resources:
     requests:
-      cpu: 25m
-      memory: 256Mi
+      cpu: 15m
+      memory: 100Mi
