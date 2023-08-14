@@ -4,6 +4,10 @@ global:
     app: argo-cd
 
 controller:
+  resources:
+    requests:
+      cpu: 15m
+      memory: 100M
   metrics:
     enabled: true
     serviceMonitor:
@@ -16,6 +20,10 @@ redis:
   enabled: true
 
 server:
+  resources:
+    requests:
+      cpu: 15m
+      memory: 100M
   extraArgs: 
     - --insecure
   metrics:
@@ -52,6 +60,10 @@ server:
     enabled: false
 
 repoServer:
+  resources:
+    requests:
+      cpu: 15m
+      memory: 100M
   extraArgs:
     - --allow-oob-symlinks
   metrics:
