@@ -13,3 +13,4 @@ helmCharts:
 
 resources:
   - goldilocks-ns.yaml
+  - https://raw.githubusercontent.com/FairwindsOps/charts/master/stable/vpa/crds/vpa-v1-crd.yaml
