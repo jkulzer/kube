@@ -81,15 +81,28 @@ global:
 
 meshConfig:
   extensionProviders:
-  - name: "authentik"
+  - name: 'authelia'
     envoyExtAuthzHttp:
-      service: "ak-outpost-proxy-outpost.authentik.svc.cluster.local"
-      port: "9000"
-      pathPrefix: "/outpost.goauthentik.io/auth/envoy"
-      headersToDownstreamOnAllow:
-      - cookie
-      headersToUpstreamOnAllow:
-      - set-cookie
-      - x-authentik-*
+      service: 'authelia.default.svc.cluster.local'
+      port: 80
+      pathPrefix: '/api/verify/'
       includeRequestHeadersInCheck:
-      - cookie
+        - accept
+        - cookie
+        - proxy-authorization
+      headersToUpstreamOnAllow:
+        - 'authorization'
+        - 'proxy-authorization'
+        - 'remote-*'
+        - 'authelia-*'
+      includeAdditionalHeadersInCheck:
+        X-Authelia-URL: 'https://auth.kube.home/'
+        X-Forwarded-Method: '%REQ(:METHOD)%'
+        X-Forwarded-Proto: '%REQ(:SCHEME)%'
+        X-Forwarded-Host: '%REQ(:AUTHORITY)%'
+        X-Forwarded-URI: '%REQ(:PATH)%'
+        X-Forwarded-For: '%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%'
+      headersToDownstreamOnDeny:
+        - set-cookie
+      headersToDownstreamOnAllow:
+        - set-cookie
