@@ -98,21 +98,15 @@ data:
             tag: "app"
             url: "http://argocd.kube.home"
             target: "_blank" # optional html a tag target attribute
-          - name: "Authentik"
-            logo: "https://raw.githubusercontent.com/goauthentik/authentik/de9c35c2aa4b917ab6922d1c53da68f1d6f1491e/website/static/img/icon_top_brand.svg"
+          - name: "Authelia"
+            logo: "https://www.authelia.com/images/branding/logo.svg"
             subtitle: "Authentication"
             tag: "app"
-            url: "http://authentik.kube.home"
+            url: "http://auth.kube.home"
             target: "_blank" # optional html a tag target attribute
-          - name: "Vault"
-            logo: "https://cdn.simpleicons.org/vault"
-            subtitle: "Secrets Management"
-            tag: "app"
-            url: "http://vault.kube.home"
-            target: "_blank" # optional html a tag target attribute
-          - name: "Longhorn"
-            logo: "https://longhorn.io/img/logos/longhorn-icon-color.png"
+          - name: "Ceph"
+            logo: "https://ceph.io/assets/bitmaps/Ceph_Logo_Stacked_RGB_Reversed_120411_fa.png"
             subtitle: "Storage"
             tag: "app"
-            url: "http://longhorn.kube.home"
+            url: "http://ceph.kube.home"
             target: "_blank" # optional html a tag target attribute

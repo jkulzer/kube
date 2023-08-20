@@ -5,7 +5,6 @@ resources:
   - homer-ns.yaml
   - homer-deployment.yaml
   - homer-mtls.yaml
-  - homer-cpurequest.yaml
   - homer-cm.yaml
   - homer-virtualservice.yaml
-    #- homer-authpolicy.yaml
+  - homer-authpolicy.yaml
