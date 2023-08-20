@@ -1,6 +1,5 @@
-terraform/**/.terraform*
-terraform/**/terraform.tfstate*
-images/unified-os-iso/output
-terraform/node-init/provider.tf
-terraform/proxmox-init/credentials.sh
 cluster/config/**/charts*
+talos/secrets.yaml
+talos/talosconfig
+talos/controlplane.yaml
+talos/worker.yaml
