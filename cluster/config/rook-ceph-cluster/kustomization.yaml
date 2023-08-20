@@ -6,4 +6,4 @@ namespace: rook-ceph
 resources:
   - rook-ceph-cluster.yaml
   - ceph-dashboard-virtualservice.yaml
-  - ceph-dashboard-authorizationpolicy.yaml
+  - ceph-dashboard-authpolicy.yaml
