@@ -184,28 +184,9 @@ This is a possible way to get this setup running on your own cluster. It assumes
 ```sh
 git clone https://github.com/jkulzer/kube.git
 cd kube
-```
-### Installing the OS
-2. Generate OS ISO
-```sh
-cd images/unified-os-iso
-sudo docker compose build
-sudo docker compose up
-```
-This contains further instructions for customizing the ISO: https://github.com/jkulzer/kube/tree/main/images/unified-os-iso
 
-3. Install the OS using the ISO on your node
-
-4. Adjust the password set while customizing the ISO in `ansible/cluster-init`
-
-5. Run the playbook with:
-
-```sh
-sudo docker compose build
-sudo docker compose up
-```
-
-6. Log into the server and grab the kubeconfig located at `/etc/rancher/k3s/k3s.yaml`
+... //TODO 
+Add missing steps
 
 7. After some time, get the certificate generated for the domain using the following command:
 ```sh
