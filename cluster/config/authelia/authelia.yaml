@@ -116,6 +116,10 @@ data:
         policy: one_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'ceph.kube.home'
+        policy: one_factor
+        subject:
+        - ['group:kubeadmin']
 ---
 apiVersion: v1
 kind: Secret
