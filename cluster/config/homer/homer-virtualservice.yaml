@@ -6,7 +6,7 @@ metadata:
   namespace: homer
 spec:
   hosts:
-  - "homer.kube.home"
+  - "home.kube.home"
   gateways:
   - istio-system/main-gateway
   http:

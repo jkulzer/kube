@@ -9,7 +9,7 @@ spec:
       istio: gateway 
   action: CUSTOM
   provider:
-    name: "authentik"
+    name: "authelia"
   rules:
   - to:
     - operation:
