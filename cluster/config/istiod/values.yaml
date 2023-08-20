@@ -83,7 +83,7 @@ meshConfig:
   extensionProviders:
   - name: 'authelia'
     envoyExtAuthzHttp:
-      service: 'authelia.default.svc.cluster.local'
+      service: 'authelia.authelia.svc.cluster.local'
       port: 80
       pathPrefix: '/api/verify/'
       includeRequestHeadersInCheck:
