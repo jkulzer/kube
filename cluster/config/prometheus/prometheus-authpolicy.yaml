@@ -1,7 +1,8 @@
+---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: prometheus-authentik-policy
+  name: prometheus-authelia-policy
   namespace: istio-system
 spec:
   selector:
@@ -9,7 +10,7 @@ spec:
       istio: gateway 
   action: CUSTOM
   provider:
-    name: "authentik"
+    name: "authelia"
   rules:
   - to:
     - operation:
