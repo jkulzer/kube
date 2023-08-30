@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: quay.io/jetstack/trust-manager
-  tag: v0.5.0
+  tag: v0.6.0
 
 app:
   metrics:
