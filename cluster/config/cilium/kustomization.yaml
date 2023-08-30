@@ -9,3 +9,6 @@ helmCharts:
     repo: https://helm.cilium.io
     version: 1.14.0
     valuesFile: values.yaml
+
+resources:
+  - kube-system-ns-label.yaml

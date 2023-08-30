@@ -1,13 +1,5 @@
-kubeProxyReplacement: "disabled"
-
 containerRuntime:
   integration: containerd
-
-encryption:
-  enabled: false
-  type: wireguard
-  wireguard:
-    userspaceFallback: true
 
 hubble:
   tls:
@@ -27,14 +19,15 @@ nodeinit:
   enabled: true
   removeCbrBridge: true
 
-ipv4NativeRoutingCIDR: 10.42.0.0/16
+ipv4NativeRoutingCIDR: 10.13.0.0/16
 
 MACAddressPolicy: none
 
 prometheus:
   enabled: true
   serviceMonitor:
-    enabled: false
+    enabled: true
+    trustCRDsExist: true
 
 ipam:
   mode: kubernetes
@@ -42,3 +35,30 @@ ipam:
 operator:
   enabled: true
   replicas: 1
+
+kubeProxyReplacement: false
+
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: "/sys/fs/cgroup"
+
+securityContext:
+  privileged: true
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
