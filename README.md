@@ -113,16 +113,6 @@
 		<td>A load balancer</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://simpleicons.org/icons/vault.svg"></td>
-		<td><a href="https://vaultproject.io/">Hashicorp Vault</a></td>
-		<td>Easy secrets management with Service Account Auth</td>
-	</tr>
-	<tr>
-		<td><img width="64" src="https://raw.githubusercontent.com/banzaicloud/bank-vaults/main/docs/images/logo/bank-vaults-logo.svg"></td>
-		<td><a href="https://banzaicloud.com/docs/bank-vaults/mutating-webhook/">Vault Mutating Webhook</a></td>
-		<td>Allows to embed secrets from Vault in ConfigMaps, Environmental Variables etc.</td>
-	</tr>
-	<tr>
 		<td><img width="64" src="https://landscape.cncf.io/logos/prometheus.svg"></td>
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
 		<td>Monitoring Scraper</td>
