@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: grafana
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      securityContext:
+        fsGroup: 472
+        runAsGroup: 472
+        runAsNonRoot: true
+        runAsUser: 472
+      containers:
+      - image: grafana/grafana:10.1.0
+        name: grafana
+          #env:
+          #- name: GF_PATHS_PROVISIONING
+          #value: /provisioning
+          #- name: GF_SECURITY_ADMIN_USER
+          #value: admin
+          #- name: GF_SECURITY_ADMIN_PASSWORD
+          #value: admin
+        volumeMounts:
+        - name: grafana-data
+          mountPath: /var/lib/grafana
+        - name: grafana-datasources
+          mountPath: /etc/grafana/provisioning/datasources
+        - name: grafana-dashboards-provisioning
+          mountPath: /etc/grafana/provisioning/dashboards
+        - name: grafana-dashboards-json
+          mountPath: /dashboards/main
+        ports:
+          - name: grafana
+            protocol: TCP
+            containerPort: 3000
+        livenessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /api/health
+            port: 3000
+          initialDelaySeconds: 60
+          timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 3000
+      volumes:
+      - name: grafana-data
+        persistentVolumeClaim:
+          claimName: grafana
+      - name: grafana-datasources
+        configMap:
+          name: grafana-datasources
+      - name: grafana-dashboards-provisioning
+        configMap:
+          name: grafana-dashboards
+      - name: grafana-dashboards-json
+        configMap:
+          name: grafana-dashboards-json
