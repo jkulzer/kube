@@ -24,13 +24,6 @@ spec:
       containers:
       - image: grafana/grafana:10.1.0
         name: grafana
-          #env:
-          #- name: GF_PATHS_PROVISIONING
-          #value: /provisioning
-          #- name: GF_SECURITY_ADMIN_USER
-          #value: admin
-          #- name: GF_SECURITY_ADMIN_PASSWORD
-          #value: admin
         volumeMounts:
         - name: grafana-data
           mountPath: /var/lib/grafana
