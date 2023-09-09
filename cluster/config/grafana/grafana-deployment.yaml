@@ -22,8 +22,38 @@ spec:
         runAsNonRoot: true
         runAsUser: 472
       containers:
-      - image: grafana/grafana:10.1.0
-        name: grafana
+      - name: grafana
+        image: grafana/grafana:10.1.0
+        env:
+        - name: GF_SERVER_ROOT_URL
+          value: "https://grafana.kube.home"
+        - name: GF_AUTH_GENERIC_OAUTH_ENABLED
+          value: "true"
+        - name: GF_AUTH_GENERIC_OAUTH_NAME
+          value: Authelia
+        - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+          value: grafana
+        - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+          value: insecure_secret
+        - name: GF_AUTH_GENERIC_OAUTH_SCOPES
+          value: openid profile email groups
+        - name: GF_AUTH_GENERIC_OAUTH_EMPTY_SCOPES
+          value: "false"
+        - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
+          value: https://auth.kube.home/api/oidc/authorization
+        - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
+          value: https://auth.kube.home/api/oidc/token
+        - name: GF_AUTH_GENERIC_OAUTH_API_URL
+          value: https://auth.kube.home/api/oidc/userinfo
+        - name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
+          value: preferred_username
+        - name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
+          value: name
+        - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
+          value: "true"
+        - name: GF_AUTH_GENERIC_OAUTH_TLS_SKIP_VERIFY_INSECURE
+          value: "true"
+            #command: [ "cp /install/cert/kube-home-crt /etc/ssl/cert.crt", "/bin/sh /run.sh"]
         volumeMounts:
         - name: grafana-data
           mountPath: /var/lib/grafana
@@ -33,6 +63,8 @@ spec:
           mountPath: /etc/grafana/provisioning/dashboards
         - name: grafana-dashboards-json
           mountPath: /dashboards/main
+        - name: kube-url-root-certificate
+          mountPath: /install/cert
         ports:
           - name: grafana
             protocol: TCP
@@ -61,3 +93,6 @@ spec:
       - name: grafana-dashboards-json
         configMap:
           name: grafana-dashboards-json
+      - name: kube-url-root-certificate
+        configMap:
+          name: root-certificate-distribution
