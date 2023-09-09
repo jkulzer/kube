@@ -51,9 +51,6 @@ spec:
   continueUpgradeAfterChecksEvenIfNotHealthy: false
   crashCollector:
     disable: false
-  dashboard:
-    enabled: true
-    ssl: false
   dataDirHostPath: /var/lib/rook
   disruptionManagement:
     managePodBudgets: true
