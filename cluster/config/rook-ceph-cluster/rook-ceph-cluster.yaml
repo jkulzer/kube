@@ -40,7 +40,7 @@ metadata:
 spec:
   cephVersion:
     allowUnsupported: false
-    image: quay.io/ceph/ceph:v17.2.6
+    image: quay.io/ceph/ceph:v18.2.0
   cleanupPolicy:
     allowUninstallWithVolumes: true
     confirmation: ""
