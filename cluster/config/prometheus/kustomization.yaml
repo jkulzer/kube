@@ -7,7 +7,7 @@ helmCharts:
     releaseName: kube-prometheus-stack
     namespace: prometheus
     repo: https://prometheus-community.github.io/helm-charts
-    version: 50.3.1
+    version: 51.0.2
     valuesFile: values.yaml
 
 resources:
