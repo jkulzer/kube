@@ -64,8 +64,6 @@ repoServer:
     requests:
       cpu: 15m
       memory: 100M
-  extraArgs:
-    - --allow-oob-symlinks
   metrics:
     enabled: true
     serviceMonitor:
