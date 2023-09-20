@@ -1,127 +1,5 @@
 ---
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: authelia
-  labels: 
-    app.kubernetes.io/name: authelia
-data:
-  configuration: |
-    ---
-    theme: dark
-    default_redirection_url: https://home.kube.home
-    server:
-      host: 0.0.0.0
-      port: 9091
-      buffers:
-        read: 4096
-        write: 4096
-      timeouts:
-        read: 6s
-        write: 6s
-        idle: 30s
-      enable_pprof: false
-      enable_expvars: false
-    log:
-      level: info
-      format: json
-      keep_stdout: true
-    telemetry:
-      metrics:
-        enabled: true
-        address: 'tcp://0.0.0.0:9959'
-        buffers:
-          read: 4096
-          write: 4096
-    totp:
-      disable: true
-      issuer: kube.home
-      algorithm: sha1
-      digits: 8
-      period: 30
-      skew: 1
-      secret_size: 32
-    webauthn:
-      disable: true
-      display_name: Authelia
-      attestation_conveyance_preference: indirect
-      user_verification: preferred
-      timeout: 60s
-    ntp:
-      address: time.cloudflare.com:123
-      version: 4
-      max_desync: 3s
-      disable_startup_check: false
-      disable_failure: false
-    authentication_backend:
-      password_reset:
-        disable: false
-      ldap:
-        implementation: custom
-        url: ldap://ldap.authelia.svc.cluster.local:3890
-        timeout: 5s
-        start_tls: false
-        base_dn: dc=kube,dc=home
-        users_filter: (&({username_attribute}={input})(objectClass=person))
-        groups_filter: "(member={dn})"
-        permit_referrals: false
-        permit_unauthenticated_bind: false
-        permit_feature_detection_failure: false
-        user: uid=admin,ou=people,dc=kube,dc=home
-        additional_users_dn: ou=people
-        additional_groups_dn: ou=groups
-        group_name_attribute: cn
-        mail_attribute: mail
-        display_name_attribute: displayName
-        username_attribute: uid
-    password_policy:
-      standard:
-        enabled: true
-        min_length: 8
-        max_length: 0
-        require_uppercase: true
-        require_lowercase: true
-        require_number: true
-        require_special: true
-      zxcvbn:
-        enabled: false
-    session:
-      name: 'authelia_session'
-      domain: 'kube.home'
-      same_site: 'lax'
-      expiration: 1h
-      inactivity: 5m
-      remember_me_duration: 1M
-    regulation: 
-      ban_time: 5m
-      find_time: 2m
-      max_retries: 3
-    storage:
-      local:
-        path: /config/db.sqlite3
-    notifier:
-      disable_startup_check: false
-      filesystem:
-        filename: /config/notification.txt
-    access_control:
-      default_policy: deny
-      rules:
-      - domain: 'home.kube.home'
-        policy: one_factor
-      - domain: 'prometheus.kube.home'
-        policy: one_factor
-        subject:
-        - ['group:kubeadmin']
-      - domain: 'alertmanager.kube.home'
-        policy: one_factor
-        subject:
-        - ['group:kubeadmin']
-      - domain: 'ceph.kube.home'
-        policy: one_factor
-        subject:
-        - ['group:kubeadmin']
----
-apiVersion: v1
 kind: Secret
 metadata:
   name: authelia-jwt-token
@@ -141,6 +19,13 @@ metadata:
   name: authelia-storage-encryption-key
   annotations:
     secret-generator.v1.mittwald.de/autogenerate: STORAGE_ENCRYPTION_KEY
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: authelia-hmac-secret
+  annotations:
+    secret-generator.v1.mittwald.de/autogenerate: HMAC_SECRET
 ---
 apiVersion: v1
 kind: Service
@@ -173,9 +58,8 @@ spec:
   selector:
     matchLabels: 
       app.kubernetes.io/name: authelia
-  revisionHistoryLimit: 3
+  revisionHistoryLimit: 1
   replicas: 1
-  minReadySeconds: 0
   strategy:
     type: RollingUpdate
     rollingUpdate: 
@@ -196,7 +80,10 @@ spec:
       enableServiceLinks: false
       containers:
       - name: authelia
-        image: ghcr.io/authelia/authelia:4.37.5
+        # image: ghcr.io/authelia/authelia:4.37.5
+        # This is needed for templating, and the 4.37 version doesn't have the feature yet
+        # A switch to the stable branch will be done when 4.38 releases
+        image: ghcr.io/authelia/authelia:v4.38.0-beta2
         imagePullPolicy: IfNotPresent
         command: ["authelia"]
         args:
@@ -208,6 +95,10 @@ spec:
             cpu: "0.25"
             memory: 50Mi
         env:
+          # This enables the injection of env variables in the config
+          # https://github.com/authelia/authelia/blob/master/docs/content/en/configuration/methods/files.md
+        - name: X_AUTHELIA_CONFIG_FILTERS
+          value: "expand-env,template"
         - name: AUTHELIA_SERVER_DISABLE_HEALTHCHECK
           value: "true"
         - name: AUTHELIA_JWT_SECRET_FILE
@@ -220,6 +111,8 @@ spec:
           value: /secrets/storage-encryption-key/STORAGE_ENCRYPTION_KEY
         - name: AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE
           value: /secrets/ldap-password/LLDAP_LDAP_USER_PASS
+        - name: AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE
+          value: /secrets/hmac-secret/HMAC_SECRET
         - name: TZ
           value: Europe/Berlin
         startupProbe:
@@ -276,6 +169,15 @@ spec:
         - mountPath: /secrets/ldap-password
           name: ldap-admin-user-pass
           readOnly: true
+        - mountPath: /secrets/hmac-secret
+          name: authelia-hmac-secret
+          readOnly: true
+        - mountPath: /secrets/grafana-oidc-secret
+          name: grafana-oidc-secret
+          readOnly: true
+        - mountPath: /secrets/authelia-oidc-issuer
+          name: authelia-oidc-issuer
+          readOnly: true
       volumes:
       - name: config
         configMap:
@@ -307,6 +209,24 @@ spec:
           items:
           - key: LLDAP_LDAP_USER_PASS
             path: LLDAP_LDAP_USER_PASS
+      - name: authelia-hmac-secret
+        secret:
+          secretName: authelia-hmac-secret
+          items:
+          - key: HMAC_SECRET
+            path: HMAC_SECRET
+      - name: grafana-oidc-secret
+        secret:
+            secretName: grafana-oidc-secret
+            items:
+              - key: GRAFANA_OAUTH_HASHED_KEY
+                path: GRAFANA_OAUTH_HASHED_KEY
+      - name: authelia-oidc-issuer
+        secret:
+            secretName: authelia-oidc-issuer
+            items:
+              - key: tls.key
+                path: tls.key
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor

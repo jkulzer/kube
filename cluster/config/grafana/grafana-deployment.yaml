@@ -34,7 +34,10 @@ spec:
         - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
           value: grafana
         - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
-          value: insecure_secret
+          valueFrom:
+            secretKeyRef:
+              name: grafana-oidc-secret
+              key: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
         - name: GF_AUTH_GENERIC_OAUTH_SCOPES
           value: openid profile email groups
         - name: GF_AUTH_GENERIC_OAUTH_EMPTY_SCOPES
@@ -55,8 +58,8 @@ spec:
           value: "true"
             #command: [ "cp /install/cert/kube-home-crt /etc/ssl/cert.crt", "/bin/sh /run.sh"]
         volumeMounts:
-        - name: grafana-data
-          mountPath: /var/lib/grafana
+        # - name: grafana-data
+        #   mountPath: /var/lib/grafana
         - name: grafana-datasources
           mountPath: /etc/grafana/provisioning/datasources
         - name: grafana-dashboards-provisioning
@@ -81,9 +84,9 @@ spec:
             path: /api/health
             port: 3000
       volumes:
-      - name: grafana-data
-        persistentVolumeClaim:
-          claimName: grafana
+      # - name: grafana-data
+      #   persistentVolumeClaim:
+      #     claimName: grafana
       - name: grafana-datasources
         configMap:
           name: grafana-datasources

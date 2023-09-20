@@ -10,3 +10,4 @@ resources:
   - grafana-deployment.yaml
   - grafana-gateway.yaml
   - grafana-dashboard.yaml
+  - grafana-oidc-secret.yaml

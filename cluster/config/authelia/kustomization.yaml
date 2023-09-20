@@ -3,7 +3,11 @@ kind: Kustomization
 namespace: authelia
 
 resources:
-  - authelia.yaml
+  - authelia-ns.yaml
+  - authelia-cm.yaml
+  - authelia-deployment.yaml
   - ldap.yaml
   - authelia-gateway.yaml
   - lldap-gateway.yaml
+  - kyverno-copy-grafana-oidc-secret.yaml
+  - authelia-oidc-issuer.yaml
