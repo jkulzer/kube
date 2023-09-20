@@ -56,6 +56,9 @@ spec:
           value: "true"
         - name: GF_AUTH_GENERIC_OAUTH_TLS_SKIP_VERIFY_INSECURE
           value: "true"
+        # Disables the login form as only OIDC gets used
+        - name: GF_AUTH_DISABLE_LOGIN_FORM
+          value: "true"
             #command: [ "cp /install/cert/kube-home-crt /etc/ssl/cert.crt", "/bin/sh /run.sh"]
         volumeMounts:
         # - name: grafana-data
