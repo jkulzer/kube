@@ -58,6 +58,13 @@ server:
           - "*"
   ingress:
     enabled: false
+  volumeMounts:
+    - name: trusted-bundle-distribution
+      mountPath: /etc/ssl/certs
+  volumes:
+    - name: trusted-bundle-distribution
+      configMap:
+        name: trusted-bundle-distribution
 
 configs:
   cm:
