@@ -59,6 +59,22 @@ server:
   ingress:
     enabled: false
 
+configs:
+  cm:
+    create: true
+    url: https://argocd.kube.home
+    oidc.config: |
+      name: Authelia
+      issuer: https://auth.kube.home
+      clientID: argocd
+      clientSecret: insecure_secret
+      cliClientID: argocd-cli
+      requestedScopes:
+        - openid
+        - profile
+        - email
+        - groups
+
 repoServer:
   resources:
     requests:
