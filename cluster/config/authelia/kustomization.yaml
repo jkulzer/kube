@@ -10,4 +10,5 @@ resources:
   - authelia-gateway.yaml
   - lldap-gateway.yaml
   - kyverno-copy-grafana-oidc-secret.yaml
+  - kyverno-copy-argocd-oidc-secret.yaml
   - authelia-oidc-issuer.yaml

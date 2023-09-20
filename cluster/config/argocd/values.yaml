@@ -74,7 +74,7 @@ configs:
       name: Authelia
       issuer: https://auth.kube.home
       clientID: argocd
-      clientSecret: insecure_secret
+      clientSecret: $argocd-oidc-secret:oidc.authelia.clientSecret
       cliClientID: argocd-cli
       requestedScopes:
         - openid

@@ -175,6 +175,9 @@ spec:
         - mountPath: /secrets/grafana-oidc-secret
           name: grafana-oidc-secret
           readOnly: true
+        - mountPath: /secrets/argocd-oidc-secret
+          name: argocd-oidc-secret
+          readOnly: true
         - mountPath: /secrets/authelia-oidc-issuer
           name: authelia-oidc-issuer
           readOnly: true
@@ -221,6 +224,12 @@ spec:
             items:
               - key: GRAFANA_OAUTH_HASHED_KEY
                 path: GRAFANA_OAUTH_HASHED_KEY
+      - name: argocd-oidc-secret
+        secret:
+            secretName: argocd-oidc-secret
+            items:
+              - key: hashed-client-secret
+                path: hashed-client-secret
       - name: authelia-oidc-issuer
         secret:
             secretName: authelia-oidc-issuer
