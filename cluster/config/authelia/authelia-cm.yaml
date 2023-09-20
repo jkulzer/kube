@@ -20,8 +20,9 @@ data:
         read: 6s
         write: 6s
         idle: 30s
-      enable_pprof: false
-      enable_expvars: false
+      endpoints:
+        enable_pprof: false
+        enable_expvars: false
     log:
       level: info
       format: json
@@ -91,7 +92,7 @@ data:
       same_site: 'lax'
       expiration: 1h
       inactivity: 5m
-      remember_me_duration: 1M
+      remember_me: 1M
     regulation: 
       ban_time: 5m
       find_time: 2m
