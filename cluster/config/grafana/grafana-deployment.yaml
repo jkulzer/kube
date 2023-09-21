@@ -23,7 +23,7 @@ spec:
         runAsUser: 472
       containers:
       - name: grafana
-        image: grafana/grafana:10.1.1
+        image: grafana/grafana:10.1.2
         env:
         - name: GF_SERVER_ROOT_URL
           value: "https://grafana.kube.home"
