@@ -113,6 +113,10 @@ data:
         policy: one_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'kiali.kube.home'
+        policy: one_factor
+        subject:
+        - ['group:kubeadmin']
       - domain: 'alertmanager.kube.home'
         policy: one_factor
         subject:
