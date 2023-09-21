@@ -81,6 +81,10 @@ configs:
         - profile
         - email
         - groups
+  rbac:
+    create: true
+    policy.csv: |
+      g, kubeadmin, role:admin
 
 repoServer:
   resources:
