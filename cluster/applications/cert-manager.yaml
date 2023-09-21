@@ -8,7 +8,8 @@ metadata:
 spec:
   syncPolicy:
     automated:
-      selfHeal: false
+      selfHeal: true
+      prune: true
   destination:
     namespace: cert-manager
     server: https://kubernetes.default.svc
