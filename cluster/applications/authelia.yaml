@@ -8,7 +8,7 @@ metadata:
 spec:
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
   destination:
     server: https://kubernetes.default.svc
