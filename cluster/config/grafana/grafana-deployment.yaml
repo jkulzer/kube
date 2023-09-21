@@ -54,12 +54,9 @@ spec:
           value: name
         - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
           value: "true"
-        - name: GF_AUTH_GENERIC_OAUTH_TLS_SKIP_VERIFY_INSECURE
-          value: "true"
         # Disables the login form as only OIDC gets used
         - name: GF_AUTH_DISABLE_LOGIN_FORM
           value: "true"
-            #command: [ "cp /install/cert/kube-home-crt /etc/ssl/cert.crt", "/bin/sh /run.sh"]
         volumeMounts:
         # - name: grafana-data
         #   mountPath: /var/lib/grafana
@@ -69,8 +66,8 @@ spec:
           mountPath: /etc/grafana/provisioning/dashboards
         - name: grafana-dashboards-json
           mountPath: /dashboards/main
-        - name: kube-url-root-certificate
-          mountPath: /install/cert
+        - name: trusted-bundle-distribution
+          mountPath: /etc/ssl/certs
         ports:
           - name: grafana
             protocol: TCP
@@ -99,6 +96,6 @@ spec:
       - name: grafana-dashboards-json
         configMap:
           name: grafana-dashboards-json
-      - name: kube-url-root-certificate
+      - name: trusted-bundle-distribution
         configMap:
-          name: root-certificate-distribution
+          name: trusted-bundle-distribution
