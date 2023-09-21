@@ -1,7 +1,7 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: alertmanager-authentik-policy
+  name: alertmanager-authelia-policy
   namespace: istio-system
 spec:
   selector:
@@ -9,7 +9,7 @@ spec:
       istio: gateway 
   action: CUSTOM
   provider:
-    name: "authentik"
+    name: "authelia"
   rules:
   - to:
     - operation:
