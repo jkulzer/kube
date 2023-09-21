@@ -7,6 +7,7 @@ resources:
   - authelia-cm.yaml
   - authelia-deployment.yaml
   - ldap.yaml
+  - ldap-pvc.yaml
   - authelia-gateway.yaml
   - lldap-gateway.yaml
   - kyverno-copy-grafana-oidc-secret.yaml

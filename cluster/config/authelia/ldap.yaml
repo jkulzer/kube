@@ -50,6 +50,13 @@ spec:
         - name: ldap-ui
           containerPort: 17170
           protocol: TCP
+        volumeMounts:
+          - name: ldap-data
+            mountPath: /data
+      volumes:
+        - name: ldap-data
+          persistentVolumeClaim:
+            claimName: lldap
 ---
 apiVersion: v1
 kind: Service
