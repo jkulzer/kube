@@ -109,11 +109,15 @@ data:
       rules:
       - domain: 'home.kube.home'
         policy: one_factor
-      - domain: 'prometheus.kube.home'
+      - domain: 'goldilocks.kube.home'
         policy: one_factor
         subject:
         - ['group:kubeadmin']
       - domain: 'kiali.kube.home'
+        policy: one_factor
+        subject:
+        - ['group:kubeadmin']
+      - domain: 'prometheus.kube.home'
         policy: one_factor
         subject:
         - ['group:kubeadmin']
