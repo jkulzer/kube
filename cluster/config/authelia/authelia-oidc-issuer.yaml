@@ -18,7 +18,6 @@ spec:
   privateKey:
     algorithm: RSA
     size: 4096
-  isCA: false
   secretName: authelia-oidc-issuer
   issuerRef:
     name: authelia-oidc-issuer
