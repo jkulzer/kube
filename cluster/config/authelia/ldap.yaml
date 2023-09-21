@@ -56,7 +56,7 @@ spec:
       volumes:
         - name: ldap-data
           persistentVolumeClaim:
-            claimName: lldap
+            claimName: ldap
 ---
 apiVersion: v1
 kind: Service
