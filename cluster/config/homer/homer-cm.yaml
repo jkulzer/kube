@@ -104,9 +104,3 @@ data:
             tag: "app"
             url: "http://auth.kube.home"
             target: "_blank" # optional html a tag target attribute
-          - name: "Ceph"
-            logo: "https://ceph.io/assets/bitmaps/Ceph_Logo_Stacked_RGB_Reversed_120411_fa.png"
-            subtitle: "Storage"
-            tag: "app"
-            url: "http://ceph.kube.home"
-            target: "_blank" # optional html a tag target attribute
