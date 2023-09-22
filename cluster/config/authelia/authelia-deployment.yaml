@@ -1,31 +1,59 @@
 ---
-apiVersion: v1
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
 metadata:
   name: authelia-jwt-token
-  annotations:
-    secret-generator.v1.mittwald.de/autogenerate: JWT_TOKEN
+  namespace: authelia
+spec:
+  secret:
+    name: authelia-jwt-token
+    namespace: authelia
+  generator:
+    type: string
+    length: 64
+    key: JWT_TOKEN
 ---
-apiVersion: v1
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
 metadata:
   name: authelia-session-encryption-key
-  annotations:
-    secret-generator.v1.mittwald.de/autogenerate: SESSION_ENCRYPTION_KEY
+  namespace: authelia
+spec:
+  secret:
+    name: authelia-session-encryption-key
+    namespace: authelia
+  generator:
+    type: string
+    length: 64
+    key: SESSION_ENCRYPTION_KEY
 ---
-apiVersion: v1
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
 metadata:
   name: authelia-storage-encryption-key
-  annotations:
-    secret-generator.v1.mittwald.de/autogenerate: STORAGE_ENCRYPTION_KEY
+  namespace: authelia
+spec:
+  secret:
+    name: authelia-storage-encryption-key
+    namespace: authelia
+  generator:
+    type: string
+    length: 64
+    key: STORAGE_ENCRYPTION_KEY
 ---
-apiVersion: v1
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
 metadata:
   name: authelia-hmac-secret
-  annotations:
-    secret-generator.v1.mittwald.de/autogenerate: HMAC_SECRET
+  namespace: authelia
+spec:
+  secret:
+    name: authelia-hmac-secret
+    namespace: authelia
+  generator:
+    type: string
+    length: 64
+    key: HMAC_SECRET
 ---
 apiVersion: v1
 kind: Service

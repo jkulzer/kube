@@ -75,16 +75,30 @@ spec:
     port: 17170
     targetPort: ldap-ui
 ---
-apiVersion: v1
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
 metadata:
   name: ldap-jwt-secret
-  annotations:
-    secret-generator.v1.mittwald.de/autogenerate: LLDAP_JWT_SECRET
+  namespace: authelia
+spec:
+  secret:
+    name: ldap-jwt-secret
+    namespace: authelia
+  generator:
+    type: string
+    length: 64
+    key: LLDAP_JWT_SECRET
 ---
-apiVersion: v1
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
 metadata:
   name: ldap-admin-user-pass
-  annotations:
-    secret-generator.v1.mittwald.de/autogenerate: LLDAP_LDAP_USER_PASS
+  namespace: authelia
+spec:
+  secret:
+    name: ldap-admin-user-pass
+    namespace: authelia
+  generator:
+    type: string
+    length: 64
+    key: LLDAP_LDAP_USER_PASS
