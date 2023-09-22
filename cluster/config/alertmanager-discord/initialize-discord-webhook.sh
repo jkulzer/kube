@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "Enter Discord Webhook: " discord_webhook
+read -p "Enter Discord Webhook: " discord_webhook_url
 
-# Write the secret to Vault
-vault kv put kv/kube/alertmanager discord-webhook="$discord_webhook"
+# Write the secret
+kubectl create secret -n alertmanager-discord discord-webhook --from-literal="webhook-url=$discord_webhook_url"

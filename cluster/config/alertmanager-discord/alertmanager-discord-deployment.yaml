@@ -11,10 +11,6 @@ spec:
       app: alertmanager-discord
   template:
     metadata:
-      annotations:
-        vault.security.banzaicloud.io/vault-addr: "http://vault-0.vault.svc.cluster.local:8200"
-        vault.security.banzaicloud.io/vault-role: "alertmanager-discord"
-        vault.security.banzaicloud.io/vault-path: "kubernetes"
       labels:
         app: alertmanager-discord
     spec:
@@ -24,7 +20,9 @@ spec:
           image: benjojo/alertmanager-discord
           env:
             - name: DISCORD_WEBHOOK
-              value: "vault:kv/data/kube/alertmanager/#discord-webhook"
+              valueFrom:
+                secretKeyRef: discord-webhook
+                key: webhook-url
           ports:
             - name: http
               containerPort: 9094
