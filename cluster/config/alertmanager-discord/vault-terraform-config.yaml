@@ -1,0 +1,33 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kube
+  namespace: flux-system
+spec:
+  interval: 30s
+  url: https://github.com/jkulzer/kube
+  ref:
+    branch: main
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: vault-init
+  namespace: flux-system
+spec:
+  tfstate:
+    forceUnlock: "auto"
+  interval: 1m
+  approvePlan: "auto"
+  path: terraform/vault-init
+  sourceRef:
+    kind: GitRepository
+    name: kube
+    namespace: flux-system
+  vars:
+  - name: vault_addr
+    value: http://vault-0.vault.svc.cluster.local:8200
+  varsFrom:
+    - kind: Secret
+      name: vault-unseal-keys
