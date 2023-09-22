@@ -19,9 +19,10 @@ spec:
         - name: alertmanager-discord
           image: benjojo/alertmanager-discord
           env:
-            - name: DISCORD_WEBHOOK
-              valueFrom:
-                secretKeyRef: discord-webhook
+          - name: DISCORD_WEBHOOK
+            valueFrom:
+              secretKeyRef: 
+                name: discord-webhook
                 key: webhook-url
           ports:
             - name: http
