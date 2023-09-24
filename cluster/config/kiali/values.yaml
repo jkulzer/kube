@@ -31,8 +31,14 @@ server:
   metrics_port: 9090
 
 external_services:
+  istio:
+    enabled: true
   prometheus:
     url: "http://kube-prometheus-stack-prometheus.prometheus.svc.cluster.local:9090"
+  grafana:
+    enabled: false
+  tracing:
+    enabled: false
 
 auth:
   strategy: anonymous
