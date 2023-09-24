@@ -51,9 +51,11 @@ spec:
         - name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
           value: preferred_username
         - name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
-          value: name
+          value: groups
         - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
           value: "true"
+        - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
+          value: "contains(groups[*], 'kubeadmin') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
         # Disables the login form as only OIDC gets used
         - name: GF_AUTH_DISABLE_LOGIN_FORM
           value: "true"
