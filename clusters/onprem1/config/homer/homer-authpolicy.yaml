@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: homer-authentik-policy
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: gateway 
+  action: CUSTOM
+  provider:
+    name: "authelia"
+  rules:
+  - to:
+    - operation:
+        hosts:
+          - "homer.kube.home"

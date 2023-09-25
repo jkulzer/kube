@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager-discord
+  namespace: alertmanager-discord
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager-discord
+  template:
+    metadata:
+      labels:
+        app: alertmanager-discord
+    spec:
+      serviceAccountName: alertmanager-discord
+      containers:
+        - name: alertmanager-discord
+          image: benjojo/alertmanager-discord
+          env:
+          - name: DISCORD_WEBHOOK
+            valueFrom:
+              secretKeyRef: 
+                name: discord-webhook
+                key: webhook-url
+          ports:
+            - name: http
+              containerPort: 9094
+              protocol: TCP

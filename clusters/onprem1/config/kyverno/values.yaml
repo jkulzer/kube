@@ -1,0 +1,87 @@
+crds:
+  install: true
+
+# Tests configuration
+test:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+grafana:
+  enabled: false
+
+# Features configuration
+features:
+  admissionReports:
+    # -- Enables the feature
+    enabled: true
+  autoUpdateWebhooks:
+    # -- Enables the feature
+    enabled: true
+  backgroundScan:
+    # -- Enables the feature
+    enabled: true
+    # -- Number of background scan workers
+    backgroundScanWorkers: 3
+    # -- Background scan interval
+    backgroundScanInterval: 1h
+    # -- Skips resource filters in background scan
+    skipResourceFilters: true
+  forceFailurePolicyIgnore:
+    # -- Enables the feature
+    enabled: false
+  logging:
+    # -- Logging format
+    format: text
+    # -- Logging verbosity
+    verbosity: 2
+
+# Admission controller configuration
+admissionController:
+  replicas: 3
+  resources:
+      requests:
+        cpu: 10m
+        memory: 128Mi
+
+# Background controller configuration
+backgroundController:
+  replicas: 3
+  resources:
+    # -- Pod resource requests
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+  serviceMonitor:
+    # -- Create a `ServiceMonitor` to collect Prometheus metrics.
+    enabled: true
+    #namespace: ~
+
+# Cleanup controller configuration
+cleanupController:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+  serviceMonitor:
+    # -- Create a `ServiceMonitor` to collect Prometheus metrics.
+    enabled: true
+      #namespace: ~
+
+# Reports controller configuration
+reportsController:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+  serviceMonitor:
+    # -- Create a `ServiceMonitor` to collect Prometheus metrics.
+    enabled: true
+
+apiVersionOverride:
+  podDisruptionBudget: "policy/v1"

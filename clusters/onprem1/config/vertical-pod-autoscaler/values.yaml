@@ -1,0 +1,19 @@
+rbac:
+  create: true
+recommender:
+  enabled: true
+  extraArgs:
+    v: "4"
+    pod-recommendation-min-cpu-millicores: 15
+    pod-recommendation-min-memory-mb: 100
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 5m
+      memory: 50Mi
+
+updater:
+  enabled: false
+
+admissionController:
+  enabled: false

@@ -1,0 +1,25 @@
+prometheus:
+  namespace: prometheus
+  serviceAccount: default
+  namespace: prometheus
+  podMonitor:
+    enabled: true
+
+controller:
+  logLevel: info
+  resources:
+    requests:
+      cpu: 10m
+
+speaker:
+  logLevel: info
+  # frr is probably needed for bgp, but gets deactivated for layer 2 usage
+  frr:
+    enabled: false
+  reloader:
+    resources:
+      requests:
+        cpu: 10m
+  resources:
+    requests:
+      cpu: 10m

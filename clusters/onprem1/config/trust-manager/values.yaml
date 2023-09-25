@@ -1,0 +1,30 @@
+replicaCount: 1
+image:
+  repository: quay.io/jetstack/trust-manager
+  tag: v0.6.0
+
+app:
+  metrics:
+    port: 9402
+    service:
+      enabled: true
+      type: ClusterIP
+      servicemonitor:
+        enabled: true
+          #prometheusInstance: default
+
+  readinessProbe:
+    port: 6060
+    path: "/readyz"
+
+  trust:
+    namespace: cert-manager
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+crds:
+  enabled: true
+

@@ -1,4 +1,4 @@
-cluster/config/**/charts*
+clusters/**/config/**/charts*
 talos/secrets.yaml
 talos/talosconfig
 talos/controlplane.yaml
