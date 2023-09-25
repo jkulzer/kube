@@ -1,0 +1,16 @@
+# This also includes the usual trusted certificates preinstalled
+---
+apiVersion: trust.cert-manager.io/v1alpha1
+kind: Bundle
+metadata:
+  name: trusted-bundle-distribution
+  # the namespace gets set in the trust-manager values file
+spec:
+  sources:
+  - useDefaultCAs: true
+  - secret:
+      name: "root-certificate"
+      key: "tls.crt"
+  target:
+    configMap:
+      key: "ca-certificates.crt"
