@@ -23,7 +23,7 @@ features:
     # -- Enables the feature
     enabled: true
     # -- Number of background scan workers
-    backgroundScanWorkers: 3
+    backgroundScanWorkers: 1
     # -- Background scan interval
     backgroundScanInterval: 1h
     # -- Skips resource filters in background scan
@@ -39,7 +39,7 @@ features:
 
 # Admission controller configuration
 admissionController:
-  replicas: 3
+  replicas: 1
   resources:
       requests:
         cpu: 10m
@@ -47,7 +47,7 @@ admissionController:
 
 # Background controller configuration
 backgroundController:
-  replicas: 3
+  replicas: 1
   resources:
     # -- Pod resource requests
     requests:
@@ -61,7 +61,7 @@ backgroundController:
 
 # Cleanup controller configuration
 cleanupController:
-  replicas: 3
+  replicas: 1
   resources:
     requests:
       cpu: 10m
@@ -74,7 +74,7 @@ cleanupController:
 
 # Reports controller configuration
 reportsController:
-  replicas: 3
+  replicas: 1
   resources:
     requests:
       cpu: 10m
