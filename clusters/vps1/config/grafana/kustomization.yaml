@@ -4,10 +4,8 @@ kind: Kustomization
 
 resources:
   - grafana-ns.yaml
-  - grafana-pvc.yaml
   - grafana-cm.yaml
   - grafana-svc.yaml
   - grafana-deployment.yaml
   - grafana-gateway.yaml
   - grafana-dashboard.yaml
-  - grafana-oidc-secret.yaml
