@@ -31,17 +31,10 @@ alertmanager:
     selfMonitor: true
     replicas: 1
     retention: 120h
-    storage:
-      volumeClaimTemplate:
-        spec:
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 5Gi
     externalUrl: "alertmanager.kube.home"
     resources:
       requests:
-        memory: 400Mi
+        memory: 100Mi
         cpu: 20m
 
 grafana:
@@ -124,25 +117,8 @@ prometheus:
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
     retention: 5d
-    retentionSize: 9GiB
+    retentionSize: 2GiB
     replicas: 1
-      #volumes:
-      #- name: tz-config
-        #hostPath:
-          #path: /usr/share/zoneinfo/Europe/Berlin
-            #volumeMounts:
-            #- name: tz-config
-            #mountPath: /etc/localtime
-    templateFiles:
-      discord_webhook.tmpl: |-
-        {{ define "slack.default.title" }}{{ template "__subject" . }}{{ end }}
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 10Gi
     resources:
       requests:
         memory: 400Mi
