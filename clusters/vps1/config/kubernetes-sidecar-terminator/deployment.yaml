@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +11,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: sidecar-terminator
-  strategy: {}
   template:
     metadata:
       labels:
@@ -18,8 +18,10 @@ spec:
     spec:
       serviceAccountName: sidecar-terminator
       containers:
-      - image: zachomedia/kubernetes-sidecar-terminator
+      - image: ghcr.io/jkulzer/kubernetes-sidecar-terminator:latest
         name: sidecar-terminator
+        command: 
+          - "/kubernetes-sidecar-terminator"
         resources:
           requests:
             cpu: 10m
