@@ -43,6 +43,10 @@ telemetry:
       #  configOverride parts give you the ability to override the low level configuration params passed to envoy filter.
 
 global:
+  # The podDisruptionBudget APIVersion has some problems on k3s, therefore it will get disabled
+  # It is a small cluster and the podDisruptionBudget is overkill for it
+  defaultPodDisruptionBudget:
+    enabled: false
   # Used to locate istiod.
   istioNamespace: istio-system
   # A minimal set of requested resources to applied to all deployments so that
