@@ -25,11 +25,11 @@ spec:
         - --provider=cloudflare
         - --domain-filter=jkulzer.dev
         env:
-        - name: CF_API_KEY
+        - name: CF_API_TOKEN
           valueFrom: 
             secretKeyRef:
               name: cloudflare-credentials
-              key: CF_API_KEY
+              key: CF_API_TOKEN
         - name: CF_API_EMAIL
           valueFrom: 
             secretKeyRef:
