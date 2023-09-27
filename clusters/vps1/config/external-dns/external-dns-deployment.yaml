@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: external-dns
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      serviceAccountName: external-dns
+      containers:
+      - name: external-dns
+        image: registry.k8s.io/external-dns/external-dns:v0.13.5
+        args:
+        - --source=service
+        - --source=ingress
+        - --source=istio-virtualservice
+        - --provider=cloudflare
+        - --domain-filter=jkulzer.dev
+        env:
+        - name: CF_API_KEY
+          valueFrom: 
+            configMapKeyRef:
+              name: cloudflare-credentials
+              key: CF_API_KEY
+        - name: CF_API_EMAIL
+          valueFrom: 
+            configMapKeyRef:
+              name: cloudflare-credentials
+              key: CF_API_EMAIL
