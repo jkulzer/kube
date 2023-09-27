@@ -6,3 +6,5 @@ metadata:
   labels:
     pod-security.kubernetes.io/enforce: privileged
     goldilocks.fairwinds.com/enabled: "true"
+  annotations:
+    traffic.sidecar.istio.io/excludeOutboundIPRanges: 172.43.0.1/32
