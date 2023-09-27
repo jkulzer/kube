@@ -6,4 +6,4 @@ metadata:
   namespace: argocd
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE # Needed because of this: https://github.com/argoproj/argo-cd/issues/10391
