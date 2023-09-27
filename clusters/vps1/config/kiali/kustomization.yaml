@@ -9,6 +9,3 @@ helmCharts:
     repo: https://kiali.org/helm-charts
     version: 1.74.0
     valuesFile: values.yaml
-
-resources:
-  - kiali-gateway.yaml

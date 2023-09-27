@@ -7,5 +7,4 @@ resources:
   - grafana-cm.yaml
   - grafana-svc.yaml
   - grafana-deployment.yaml
-  - grafana-gateway.yaml
   - grafana-dashboard.yaml

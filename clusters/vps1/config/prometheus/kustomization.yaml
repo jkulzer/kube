@@ -12,5 +12,3 @@ helmCharts:
 
 resources:
   - prometheus-ns.yaml
-  - alertmanager-virtualservice.yaml
-  - prometheus-virtualservice.yaml
