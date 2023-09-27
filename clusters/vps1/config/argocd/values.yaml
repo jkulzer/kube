@@ -21,9 +21,9 @@ redis:
 
 server:
   deploymentAnnotations:
-    traffic.sidecar.istio.io/excludeOutboundIPRanges: "172.43.0.1/32"
+    traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.43.0.1/32"
   podAnnotations:
-    traffic.sidecar.istio.io/excludeOutboundIPRanges: "172.43.0.1/32"
+    traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.43.0.1/32"
   resources:
     requests:
       cpu: 15m
