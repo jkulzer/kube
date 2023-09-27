@@ -1,0 +1,46 @@
+istio_namespace: "istio-system" # default is where Kiali is installed
+
+  #auth:
+  #openid: {}
+  #strategy: ""
+
+deployment:
+  # This only limits what Kiali will attempt to see, but Kiali Service Account has permissions to see everything.
+  # For more control over what the Kial Service Account can see, use the Kiali Operator
+  accessible_namespaces:
+  - "**"
+  image_name: quay.io/kiali/kiali
+  instance_name: "kiali"
+  logger:
+    log_format: "text"
+    log_level: "info"
+    time_field_format: "2006-01-02T15:04:05Z07:00"
+    sampler_rate: "1"
+  replicas: 1
+  pod_labels:
+    sidecar.istio.io/inject: "true"
+  pod_annotations:
+    traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.43.0.1/32"
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "64Mi"
+  view_only_mode: true
+
+server:
+  port: 20001
+  metrics_enabled: true
+  metrics_port: 9090
+
+external_services:
+  istio:
+    enabled: true
+  prometheus:
+    url: "http://kube-prometheus-stack-prometheus.prometheus.svc.cluster.local:9090"
+  grafana:
+    enabled: false
+  tracing:
+    enabled: false
+
+auth:
+  strategy: anonymous
