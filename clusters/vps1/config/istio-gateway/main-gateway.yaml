@@ -15,7 +15,7 @@ spec:
     hosts:
     - "*.kube.home"
     tls:
-      httpsRedirect: true
+      httpsRedirect: false # Currently disabled for dev
   - port:
       number: 443
       name: https
@@ -25,4 +25,4 @@ spec:
     tls:
       mode: SIMPLE # enables HTTPS on this port
       credentialName: star-kube-home-tls
-      httpsRedirect: true
+      httpsRedirect: false # Currently disabled for dev
