@@ -13,7 +13,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*.kube.home"
+    - "*.jkulzer.dev"
     tls:
       httpsRedirect: false # Currently disabled for dev
   - port:
@@ -21,7 +21,7 @@ spec:
       name: https
       protocol: HTTPS
     hosts:
-    - "*.kube.home"
+    - "*.jkulzer.dev"
     tls:
       mode: SIMPLE # enables HTTPS on this port
       credentialName: star-kube-home-tls
