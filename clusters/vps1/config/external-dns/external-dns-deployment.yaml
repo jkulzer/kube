@@ -27,11 +27,11 @@ spec:
         env:
         - name: CF_API_KEY
           valueFrom: 
-            configMapKeyRef:
+            secretKeyRef:
               name: cloudflare-credentials
               key: CF_API_KEY
         - name: CF_API_EMAIL
           valueFrom: 
-            configMapKeyRef:
+            secretKeyRef:
               name: cloudflare-credentials
               key: CF_API_EMAIL
