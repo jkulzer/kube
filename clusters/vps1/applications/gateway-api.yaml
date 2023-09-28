@@ -15,6 +15,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/vps1/config/gateway-system
+    path: clusters/vps1/config/gateway-api
     repoURL: https://github.com/jkulzer/kube
     targetRevision: HEAD
