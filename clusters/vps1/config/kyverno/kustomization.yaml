@@ -12,3 +12,4 @@ helmCharts:
 
 resources:
   - kyverno-ns.yaml
+  - kverno-modify-namespaces.yaml
