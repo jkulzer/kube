@@ -13,3 +13,4 @@ helmCharts:
 resources:
   - istio-mtls.yaml
   - istio-servicemonitors.yaml
+  - istio-privileged-pod-security-fix.yaml
