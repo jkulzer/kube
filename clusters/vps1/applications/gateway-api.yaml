@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gateway-api
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: gateway-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/vps1/config/gateway-system
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD
