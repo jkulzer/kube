@@ -10,5 +10,5 @@ helmCharts:
     version: 1.19.0
     valuesFile: values.yaml
 
-resources:
-  - main-gateway.yaml
+# resources:
+#   - main-gateway.yaml
