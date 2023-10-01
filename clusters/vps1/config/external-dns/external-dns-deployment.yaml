@@ -19,9 +19,8 @@ spec:
       - name: external-dns
         image: registry.k8s.io/external-dns/external-dns:v0.13.5
         args:
-        - --source=service
-        - --source=ingress
-        - --source=istio-virtualservice
+        - --source=gateway-httproute
+        - --source=gateway-udproute
         - --provider=cloudflare
         - --domain-filter=jkulzer.dev
         env:
