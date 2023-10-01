@@ -16,3 +16,5 @@ global:
 
 startupapicheck:
   enabled: false
+
+featureGates: "ExperimentalGatewayAPISupport=true"
