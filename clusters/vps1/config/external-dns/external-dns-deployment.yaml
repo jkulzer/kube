@@ -21,6 +21,8 @@ spec:
         args:
         - --source=gateway-httproute
         - --provider=cloudflare
+        - --domain-filter=jkulzer.dev
+        - --txt-prefix=external-dns
         env:
         - name: CF_API_TOKEN
           valueFrom: 
