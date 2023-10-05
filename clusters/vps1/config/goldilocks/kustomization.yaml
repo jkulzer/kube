@@ -7,5 +7,5 @@ helmCharts:
     releaseName: goldilocks
     namespace: goldilocks
     repo: https://charts.fairwinds.com/stable
-    version: 7.2.0
+    version: 7.3.0
     valuesFile: values.yaml
