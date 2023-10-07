@@ -20,7 +20,6 @@ spec:
         image: registry.k8s.io/external-dns/external-dns:v0.13.5
         args:
         - --source=gateway-httproute
-        - --source=gateway-tlsroute
         - --source=gateway-tcproute
         - --provider=cloudflare
         - --domain-filter=jkulzer.dev
