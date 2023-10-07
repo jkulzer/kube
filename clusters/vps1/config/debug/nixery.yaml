@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
         - name: nixery
-          image: nixery.dev/shell/git/htop/curl/wget/kubectl
+          image: nixery.dev/arm64/htop/curl/wget/kubectl/dig/coreutils-full
           imagePullPolicy: Always
-          command: ["sh", "-c", "echo test && sleep 10000"]
+          command: 
+            - "sh -c sleep 100000"
