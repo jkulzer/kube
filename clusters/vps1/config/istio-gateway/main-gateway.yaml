@@ -1,0 +1,45 @@
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: main-gateway
+  namespace: istio-system
+spec:
+  gatewayClassName: istio
+  listeners:
+  - name: http-wildcard
+    port: 80
+    protocol: HTTP
+    hostname: "*.jkulzer.dev"
+    allowedRoutes:
+      namespaces:
+        from: All
+  - name: https-wildcard
+    port: 443
+    protocol: HTTPS
+    hostname: "*.jkulzer.dev"
+    allowedRoutes:
+      namespaces:
+        from: All
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: jkulzer-dev-tls
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: "jkulzer.dev"
+    allowedRoutes:
+      namespaces:
+        from: All
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "jkulzer.dev"
+    allowedRoutes:
+      namespaces:
+        from: All
+    tls:
+      certificateRefs:
+      - kind: Secret
+        name: jkulzer-dev-tls
