@@ -7,7 +7,7 @@ metadata:
 spec:
   secretName: jkulzer-dev-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
   dnsNames:
   - "jkulzer.dev"
   - "links.jkulzer.dev"
