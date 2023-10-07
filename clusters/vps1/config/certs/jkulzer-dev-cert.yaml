@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: jkulzer-dev
+  namespace: cert-manager
+spec:
+  secretName: jkulzer-dev-tls
+  issuerRef:
+    name: letsencrypt-staging
+  dnsNames:
+  - "jkulzer.dev"
+  - "links.jkulzer.dev"
