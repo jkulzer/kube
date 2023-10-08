@@ -10,4 +10,5 @@ spec:
     name: letsencrypt-prod
   dnsNames:
   - "jkulzer.dev"
-  - "links.jkulzer.dev"
+  - "test.jkulzer.dev"
+  - "www.jkulzer.dev"
