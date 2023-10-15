@@ -121,8 +121,8 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
-    retention: 5d
-    retentionSize: 2GiB
+    retention: 1d
+    retentionSize: 1GiB
     replicas: 1
     resources:
       requests:
