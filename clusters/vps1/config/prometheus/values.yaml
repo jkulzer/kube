@@ -36,6 +36,11 @@ alertmanager:
       requests:
         memory: 100Mi
         cpu: 20m
+  alertmanagerSpec:
+    resources:
+      requests:
+        memory: 50Mi
+        cpu: 10m
 
 grafana:
   enabled: false
