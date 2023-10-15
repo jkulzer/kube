@@ -36,8 +36,6 @@ spec:
           mountPath: /etc/grafana/provisioning/dashboards
         - name: grafana-dashboards-json
           mountPath: /dashboards/main
-        - name: trusted-bundle-distribution
-          mountPath: /etc/ssl/certs
         ports:
           - name: grafana
             protocol: TCP
@@ -66,6 +64,3 @@ spec:
       - name: grafana-dashboards-json
         configMap:
           name: grafana-dashboards-json
-      - name: trusted-bundle-distribution
-        configMap:
-          name: trusted-bundle-distribution
