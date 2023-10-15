@@ -52,7 +52,7 @@ kubeApiServer:
     insecureSkipVerify: false
 
 kubelet:
-  enabled: true
+  enabled: false
   serviceMonitor:
     resource: false
 
@@ -60,7 +60,7 @@ kubeControllerManager:
   enabled: false
 
 coreDns:
-  enabled: true
+  enabled: false
   service:
     port: 9153
     targetPort: 9153
@@ -72,7 +72,7 @@ kubeScheduler:
   enabled: false
 
 kubeStateMetrics:
-  enabled: true
+  enabled: false
 
 kube-state-metrics:
   namespaceOverride: "prometheus"
