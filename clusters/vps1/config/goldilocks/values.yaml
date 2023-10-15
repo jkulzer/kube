@@ -6,7 +6,7 @@ controller:
   resources:
     requests:
       cpu: 20m
-      memory: 100Mi
+      memory: 50Mi
 
 dashboard:
   enabled: true
@@ -23,4 +23,4 @@ dashboard:
   resources:
     requests:
       cpu: 15m
-      memory: 100Mi
+      memory: 50Mi
