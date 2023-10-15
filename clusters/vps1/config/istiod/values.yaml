@@ -79,6 +79,7 @@ global:
     resources:
       requests:
         cpu: 5m
+        memory: 5Mi
 
 meshConfig:
   extensionProviders:
