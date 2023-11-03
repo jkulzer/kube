@@ -27,6 +27,38 @@ spec:
         env:
         - name: GF_SERVER_ROOT_URL
           value: "https://grafana.kube.home"
+        - name: GF_AUTH_GENERIC_OAUTH_ENABLED
+          value: "true"
+        - name: GF_AUTH_GENERIC_OAUTH_NAME
+          value: Authelia
+        - name: GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+          value: grafana
+        - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+          valueFrom:
+           secretKeyRef:
+             name: grafana-oidc-secret
+             key: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+        - name: GF_AUTH_GENERIC_OAUTH_SCOPES
+          value: openid profile email groups
+        - name: GF_AUTH_GENERIC_OAUTH_EMPTY_SCOPES
+          value: "false"
+        - name: GF_AUTH_GENERIC_OAUTH_AUTH_URL
+          value: https://auth.kube.home/api/oidc/authorization
+        - name: GF_AUTH_GENERIC_OAUTH_TOKEN_URL
+          value: https://auth.kube.home/api/oidc/token
+        - name: GF_AUTH_GENERIC_OAUTH_API_URL
+          value: https://auth.kube.home/api/oidc/userinfo
+        - name: GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH
+          value: preferred_username
+        - name: GF_AUTH_GENERIC_OAUTH_GROUPS_ATTRIBUTE_PATH
+          value: groups
+        - name: GF_AUTH_GENERIC_OAUTH_USE_PKCE
+          value: "true"
+        - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
+          value: "contains(groups[*], 'kubeadmin') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+        # Disables the login form as only OIDC gets used
+        - name: GF_AUTH_DISABLE_LOGIN_FORM
+          value: "true"
         volumeMounts:
         # - name: grafana-data
         #   mountPath: /var/lib/grafana
