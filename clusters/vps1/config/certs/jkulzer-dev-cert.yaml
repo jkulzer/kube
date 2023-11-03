@@ -12,3 +12,8 @@ spec:
   - "jkulzer.dev"
   - "test.jkulzer.dev"
   - "www.jkulzer.dev"
+  - "grafana.jkulzer.dev"
+  - "auth.jkulzer.dev"
+  - "argocd.jkulzer.dev"
+  - "prometheus.jkulzer.dev"
+  - "alertmanager.jkulzer.dev"
