@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: nginx-reverse-proxy
+  labels:
+    app: test-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-nginx
+  template:
+    metadata:
+      labels:
+        app: test-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25.2
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d/
+        ports:
+          - name: http
+            protocol: TCP
+            containerPort: 80
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config

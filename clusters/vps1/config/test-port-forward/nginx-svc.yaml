@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-nginx
+  namespace: nginx-reverse-proxy
+  labels:
+    app: test-nginx
+spec:
+  type: ClusterIP
+  selector:
+    app: test-nginx
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
