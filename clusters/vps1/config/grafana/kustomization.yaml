@@ -9,3 +9,4 @@ resources:
   - grafana-deployment.yaml
   - grafana-dashboard.yaml
   - grafana-oidc-secret.yaml
+  - grafana-httproute.yaml
