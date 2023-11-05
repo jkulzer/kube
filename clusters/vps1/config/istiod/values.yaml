@@ -98,7 +98,7 @@ meshConfig:
         - 'remote-*'
         - 'authelia-*'
       includeAdditionalHeadersInCheck:
-        X-Authelia-URL: 'https://auth.kube.home/'
+        X-Authelia-URL: 'https://auth.jkulzer.dev/'
         X-Forwarded-Method: '%REQ(:METHOD)%'
         X-Forwarded-Proto: '%REQ(:SCHEME)%'
         X-Forwarded-Host: '%REQ(:AUTHORITY)%'
