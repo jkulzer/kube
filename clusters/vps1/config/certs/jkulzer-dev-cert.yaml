@@ -13,7 +13,6 @@ spec:
   - "www.jkulzer.dev"
   - "grafana.jkulzer.dev"
   - "auth.jkulzer.dev"
-  - "argo.jkulzer.dev"
   - "prometheus.jkulzer.dev"
   - "alertmanager.jkulzer.dev"
   - "vpn.jkulzer.dev"
