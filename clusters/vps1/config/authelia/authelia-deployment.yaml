@@ -263,7 +263,7 @@ spec:
                 path: GRAFANA_OAUTH_HASHED_KEY
       - name: firezone-oidc-secret
         secret:
-            secretName: grafana-oidc-secret
+            secretName: firezone-oidc-secret
             items:
               - key: CLIENT_ID
                 path: CLIENT_ID
