@@ -82,6 +82,9 @@ global:
         memory: 64Mi
 
 meshConfig:
+  defaultConfig:
+    gatewayTopology:
+      numTrustedProxies: 2
   extensionProviders:
   - name: 'authelia'
     envoyExtAuthzHttp:
