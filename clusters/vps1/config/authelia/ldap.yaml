@@ -84,10 +84,13 @@ spec:
   secret:
     name: ldap-jwt-secret
     namespace: authelia
-  generator:
-    type: string
-    length: 64
-    key: LLDAP_JWT_SECRET
+  keys:
+    - key: LLDAP_JWT_SECRET
+      templateString: "{{ SECRET }}"
+  generators:
+    - name: SECRET
+      type: string
+      length: 64
 ---
 apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
@@ -98,7 +101,10 @@ spec:
   secret:
     name: ldap-admin-user-pass
     namespace: authelia
-  generator:
-    type: string
-    length: 64
-    key: LLDAP_LDAP_USER_PASS
+  keys:
+    - key: LLDAP_LDAP_USER_PASS
+      templateString: "{{ PASS }}"
+  generators:
+    - name: PASS
+      type: string
+      length: 64
