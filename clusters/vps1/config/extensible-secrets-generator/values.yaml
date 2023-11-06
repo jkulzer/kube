@@ -13,7 +13,7 @@ controllerManager:
   manager:
     image:
       repository: ghcr.io/jkulzer/extensible-secrets-generator
-      tag: 0.1.10
+      tag: 0.2.0
     resources:
       limits:
         cpu: 500m
