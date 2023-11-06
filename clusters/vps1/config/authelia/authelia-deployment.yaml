@@ -267,8 +267,8 @@ spec:
             items:
               - key: CLIENT_ID
                 path: CLIENT_ID
-              - key: CLIENT_SECRET
-                path: CLIENT_SECRET
+              - key: CLIENT_SECRET_HASHED
+                path: CLIENT_SECRET_HASHED
       - name: authelia-oidc-issuer
         secret:
             secretName: authelia-oidc-issuer
