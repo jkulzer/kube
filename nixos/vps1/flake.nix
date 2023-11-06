@@ -12,10 +12,10 @@
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nixvim, ... }: {
-    nixosConfigurations.temp= nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+    nixosConfigurations.vps1-k3s= nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
       pkgs = import nixpkgs {
-        system = "x86_64-linux";
+        system = "aarch64-linux";
         config.allowUnfree = true;
       };
       modules = [

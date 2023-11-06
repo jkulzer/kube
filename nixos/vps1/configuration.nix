@@ -1,29 +1,34 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }: 
 let
   fetchGitHubSSHKey = import ./ssh-keys.nix { username = "jkulzer";};
 in
 {
   imports = [
     ./hardware-configuration.nix
-    ./k3s.nix
+    ./networking.nix # generated at runtime by nixos-infect
+    
+    ./k3s.nix # Kubernetes server
   ];
 
-
-
-  boot.cleanTmpDir = true;
-  zramSwap.enable = true;
-  networking.hostName = "temp";
-  
-  services.openssh.enable = true;
+  boot.tmp.cleanOnBoot = true;
+  zramSwap.enable = false;
+  networking.hostName = "vps1-k3s";
+  services.openssh = { 
+    enable = true;
+    settings = {
+    	PasswordAuthentication = false;
+    };
+  };
   users.users.root.openssh.authorizedKeys.keyFiles = [
     "${fetchGitHubSSHKey}"
   ];
-  users.users.johannes.openssh.authorizedKeys.keys = [
+  users.users.johannes.openssh.authorizedKeys.keyFiles = [
     "${fetchGitHubSSHKey}"
   ];
 
-#  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-   # List packages installed in system profile. To search, run:
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # System Tools
@@ -59,6 +64,17 @@ in
       kube-capacity # Shows how much resources are allocated by the cpu/memory requests/limits
    ];
   };
+
+
+  # This should fix a ArgoCD problem with too many open files
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "-";
+      item = "nofile";
+      value = "65536";
+    }
+  ];
 
   programs.git = {
     enable = true;
@@ -107,4 +123,21 @@ in
       };
     };
   };
+
+  networking.firewall = {
+    enable = true;
+  #   extraCommands = ''
+  #   # Block the external accessibility of the k8s api 6443 on eth0 (the interface with the external IP)
+  #   iptables -A INPUT -i eth0 -p tcp --dport 6443 -j DROP
+  # '';
+  };
+
+  services.tailscale.enable = true;
+
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.forwarding" = true;
+    "net.ipv6.conf.all.forwarding" = true;
+  };
+
+  system.stateVersion = "23.11";
 }
