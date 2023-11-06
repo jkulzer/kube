@@ -41,6 +41,8 @@
       url: https://kiali.org/helm-charts
     - name: istio
       url: https://istio-release.storage.googleapis.com/charts
+    - name: jetstack
+      url: https://charts.jetstack.io
     '';
   }; # helm config ending
 }
