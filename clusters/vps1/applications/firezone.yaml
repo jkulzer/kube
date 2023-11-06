@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: firezone
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: firezone
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/vps1/config/firezone
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD

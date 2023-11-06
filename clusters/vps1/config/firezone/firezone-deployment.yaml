@@ -1,0 +1,105 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firezone
+  namespace: firezone
+  labels:
+    app: firezone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firezone
+  template:
+    metadata:
+      labels:
+        app: firezone
+    spec:
+      securityContext:
+        sysctls:
+          #- name: net.ipv6.conf.all.disable_ipv6
+          #value: "0"
+          - name: net.ipv4.ip_forward
+            value: "1"
+          - name: net.ipv6.conf.all.forwarding
+            value: "1"
+      containers:
+      - name: firezone
+        image: firezone/firezone:latest
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_MODULE
+        env:
+          - name: EXTERNAL_URL
+            value: "https://vpn.jkulzer.dev"
+          - name: GUARDIAN_SECRET_KEY
+            valueFrom:
+             secretKeyRef:
+               name: firezone-secret
+               key: GUARDIAN_SECRET_KEY
+          - name: DATABASE_ENCRYPTION_KEY
+            valueFrom:
+             secretKeyRef:
+               name: firezone-secret
+               key: DATABASE_ENCRYPTION_KEY
+          - name: SECRET_KEY_BASE
+            valueFrom:
+             secretKeyRef:
+               name: firezone-secret
+               key: SECRET_KEY_BASE
+          - name: LIVE_VIEW_SIGNING_SALT
+            valueFrom:
+             secretKeyRef:
+               name: firezone-secret
+               key: LIVE_VIEW_SIGNING_SALT
+          - name: COOKIE_SIGNING_SALT
+            valueFrom:
+             secretKeyRef:
+               name: firezone-secret
+               key: COOKIE_SIGNING_SALT
+          - name: COOKIE_ENCRYPTION_SALT
+            valueFrom:
+             secretKeyRef:
+               name: firezone-secret
+               key: COOKIE_ENCRYPTION_SALT
+          - name: OPENID_CONNECT_PROVIDERS
+            valueFrom:
+             secretKeyRef:
+               name: firezone-oidc-secret
+               key: OPENID_CONNECT_PROVIDERS
+          - name: DATABASE_USER
+            value: postgres
+          - name: DATABASE_PASSWORD
+            valueFrom:
+             secretKeyRef:
+               name: postgresql-password
+               key: POSTGRES_PASSWORD
+          - name: DATABASE_HOST
+            value: postgresql.firezone.svc.cluster.local
+          - name: DATABASE_NAME
+            value: firezone
+          - name: LOCAL_AUTH_ENABLED # All auth should be done via OIDC
+            value: "false"
+          - name: DEFAULT_CLIENT_PERSISTENT_KEEPALIVE
+            value: "30"
+          - name: DEFAULT_CLIENT_DNS
+            value: "192.168.42.2,192.168.42.1"
+          - name: ALLOW_UNPRIVILEGED_DEVICE_CONFIGURATION
+            value: "false"
+        ports:
+          - name: http
+            protocol: TCP
+            containerPort: 13000
+          - name: wireguard
+            protocol: UDP
+            containerPort: 51820
+        volumeMounts:
+          - name: data
+            mountPath: /var/firezone
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: firezone-data

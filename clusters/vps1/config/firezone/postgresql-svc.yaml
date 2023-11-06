@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  namespace: firezone
+  labels:
+    app: firezone
+spec:
+  type: ClusterIP
+  selector:
+    app: firezone
+  ports:
+    - name: sql
+      protocol: TCP
+      port: 5432
+      targetPort: sql
