@@ -84,7 +84,7 @@ global:
 meshConfig:
   defaultConfig:
     gatewayTopology:
-      numTrustedProxies: 2
+      numTrustedProxies: 1
   extensionProviders:
   - name: 'authelia'
     envoyExtAuthzHttp:
