@@ -9,5 +9,6 @@ resources:
   - ldap.yaml
   - ldap-pvc.yaml
   - kyverno-copy-grafana-oidc-secret.yaml
+  - kyverno-copy-firezone-oidc-secret.yaml
   - authelia-oidc-issuer.yaml
   - authelia-httproute.yaml
