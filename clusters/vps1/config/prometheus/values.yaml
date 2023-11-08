@@ -69,7 +69,7 @@ kubeEtcd:
   enabled: false
 
 kubeScheduler:
-  enabled: false
+  enabled: true
 
 kubeStateMetrics:
   enabled: false
