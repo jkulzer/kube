@@ -18,8 +18,6 @@ spec:
     spec:
       securityContext:
         sysctls:
-          #- name: net.ipv6.conf.all.disable_ipv6
-          #value: "0"
           - name: net.ipv4.ip_forward
             value: "1"
           - name: net.ipv6.conf.all.forwarding
@@ -33,6 +31,10 @@ spec:
               - NET_ADMIN
               - SYS_MODULE
         env:
+          - name: WIREGUARD_IPV6_ENABLED
+            value: "false"
+          - name: WIREGUARD_IPV6_MASQUERADE
+            value: "false"
           - name: EXTERNAL_URL
             value: "https://vpn.jkulzer.dev"
           - name: GUARDIAN_SECRET_KEY
