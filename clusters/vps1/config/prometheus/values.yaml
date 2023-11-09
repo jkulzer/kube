@@ -52,9 +52,9 @@ kubeApiServer:
     insecureSkipVerify: false
 
 kubelet:
-  enabled: false
+  enabled: true
   serviceMonitor:
-    resource: false
+    resource: true
 
 kubeControllerManager:
   enabled: false
@@ -69,7 +69,7 @@ kubeEtcd:
   enabled: false
 
 kubeScheduler:
-  enabled: false
+  enabled: true
 
 kubeStateMetrics:
   enabled: false
