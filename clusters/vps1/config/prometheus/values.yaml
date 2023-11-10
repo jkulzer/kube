@@ -72,7 +72,7 @@ kubeScheduler:
   enabled: true
 
 kubeStateMetrics:
-  enabled: false
+  enabled: true
 
 kube-state-metrics:
   namespaceOverride: "prometheus"
