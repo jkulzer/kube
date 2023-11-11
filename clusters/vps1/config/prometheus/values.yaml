@@ -57,7 +57,7 @@ kubelet:
     resource: true
 
 kubeControllerManager:
-  enabled: false
+  enabled: true
 
 coreDns:
   enabled: false
@@ -72,7 +72,7 @@ kubeScheduler:
   enabled: true
 
 kubeStateMetrics:
-  enabled: false
+  enabled: true
 
 kube-state-metrics:
   namespaceOverride: "prometheus"
