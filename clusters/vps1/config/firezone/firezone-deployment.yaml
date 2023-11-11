@@ -90,7 +90,9 @@ spec:
           - name: DEFAULT_CLIENT_DNS
             value: "192.168.42.2,192.168.42.1"
           - name: ALLOW_UNPRIVILEGED_DEVICE_CONFIGURATION
-            value: "false"
+            value: "true"
+          - name: ALLOW_UNPRIVILEGED_DEVICE_MANAGEMENT
+            value: "true"
         ports:
           - name: http
             protocol: TCP
