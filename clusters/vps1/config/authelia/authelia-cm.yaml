@@ -158,7 +158,7 @@ data:
           public: false
           authorization_policy: one_factor
           redirect_uris:
-            - https://vpn.jkulzer.dev/auth/oidc/callback
+            - https://vpn.jkulzer.dev/oidc/callback
           scopes:
             - "openid"
             - "profile"
