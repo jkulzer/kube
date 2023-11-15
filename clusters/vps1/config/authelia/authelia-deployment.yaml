@@ -212,8 +212,8 @@ spec:
           readOnly: true
         - mountPath: /secrets/grafana-oidc-secret
           name: grafana-oidc-secret
-        - mountPath: /secrets/firezone-oidc-secret
-          name: firezone-oidc-secret
+        - mountPath: /secrets/headscale-oidc-secret
+          name: headscale-oidc-secret
           readOnly: true
         - mountPath: /secrets/authelia-oidc-issuer
           name: authelia-oidc-issuer
@@ -261,14 +261,14 @@ spec:
             items:
               - key: GRAFANA_OAUTH_HASHED_KEY
                 path: GRAFANA_OAUTH_HASHED_KEY
-      - name: firezone-oidc-secret
+      - name: headscale-oidc-secret
         secret:
-            secretName: firezone-oidc-secret
+            secretName: headscale-oidc-secret
             items:
-              - key: CLIENT_ID
-                path: CLIENT_ID
-              - key: CLIENT_SECRET_HASHED
-                path: CLIENT_SECRET_HASHED
+              - key: HEADSCALE_OIDC_ID
+                path: HEADSCALE_OIDC_ID
+              - key: HEADSCALE_OIDC_TOKEN_HASHED
+                path: HEADSCALE_OIDC_TOKEN_HASHED
       - name: authelia-oidc-issuer
         secret:
             secretName: authelia-oidc-issuer
