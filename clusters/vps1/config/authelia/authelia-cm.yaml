@@ -152,7 +152,7 @@ data:
             - "groups"
             - "email"
           userinfo_signing_algorithm: none
-        - id: '{{- fileContent "/secrets/headscale-oidc-secret/HEADSCALE_OIDC_ID" }}'
+        - id: headscale
           description: VPN
           secret: '{{- fileContent "/secrets/headscale-oidc-secret/HEADSCALE_OIDC_TOKEN_HASHED" }}'
           public: false
