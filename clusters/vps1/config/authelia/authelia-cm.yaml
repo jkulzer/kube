@@ -152,13 +152,13 @@ data:
             - "groups"
             - "email"
           userinfo_signing_algorithm: none
-        - id: '{{- fileContent "/secrets/firezone-oidc-secret/CLIENT_ID" }}'
+        - id: '{{- fileContent "/secrets/headscale-oidc-secret/HEADSCALE_OIDC_ID" }}'
           description: VPN
-          secret: '{{- fileContent "/secrets/firezone-oidc-secret/CLIENT_SECRET_HASHED" }}'
+          secret: '{{- fileContent "/secrets/headscale-oidc-secret/HEADSCALE_OIDC_TOKEN_HASHED" }}'
           public: false
           authorization_policy: one_factor
           redirect_uris:
-            - https://vpn.jkulzer.dev/auth/oidc/authelia/callback
+            - https://vpn.jkulzer.dev/auth/oidc/callback
           scopes:
             - "openid"
             - "profile"
