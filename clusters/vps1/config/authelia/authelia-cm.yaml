@@ -163,4 +163,5 @@ data:
             - "openid"
             - "profile"
             - "email"
+            - "groups"
           userinfo_signing_algorithm: none
