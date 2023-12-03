@@ -52,12 +52,12 @@ kubeApiServer:
     insecureSkipVerify: false
 
 kubelet:
-  enabled: true
+  enabled: false
   serviceMonitor:
-    resource: true
+    resource: false
 
 kubeControllerManager:
-  enabled: true
+  enabled: false
 
 coreDns:
   enabled: false
@@ -69,7 +69,7 @@ kubeEtcd:
   enabled: false
 
 kubeScheduler:
-  enabled: true
+  enabled: false
 
 kubeStateMetrics:
   enabled: true
