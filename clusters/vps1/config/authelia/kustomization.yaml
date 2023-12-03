@@ -11,4 +11,4 @@ resources:
   - kyverno-copy-grafana-oidc-secret.yaml
   - kyverno-copy-headscale-oidc-secret.yaml
   - authelia-oidc-issuer.yaml
-  - authelia-httproute.yaml
+  - authelia-virtualservice.yaml
