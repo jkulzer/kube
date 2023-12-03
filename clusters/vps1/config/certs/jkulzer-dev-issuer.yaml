@@ -10,9 +10,8 @@ spec:
     privateKeySecretRef:
       name: jkulzer-dev-account-key
     solvers:
-      - http01:
-          gatewayHTTPRoute:
-            parentRefs:
-              - name: main-gateway
-                namespace: istio-system
-                kind: Gateway
+    - dns01:
+        cloudflare:
+          apiKeySecretRef:
+            name: cloudflare-credentials
+            key: apikey
