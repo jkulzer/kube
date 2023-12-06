@@ -57,7 +57,7 @@ kubelet:
     resource: true
 
 kubeControllerManager:
-  enabled: true
+  enabled: false
 
 coreDns:
   enabled: false
