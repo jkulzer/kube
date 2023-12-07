@@ -1,0 +1,17 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: homer
+  namespace: homer
+spec:
+  hosts:
+  - "home.jkulzer.dev"
+  gateways:
+  - istio-system/main-gateway
+  http:
+  - route:
+    - destination:
+        host: homer
+        port:
+          number: 8080

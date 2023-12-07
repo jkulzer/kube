@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homer
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: homer
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/vps1/config/homer
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD
