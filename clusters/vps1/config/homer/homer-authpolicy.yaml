@@ -14,4 +14,4 @@ spec:
   - to:
     - operation:
         hosts:
-          - "homer.jkulzer.dev"
+          - "home.jkulzer.dev"
