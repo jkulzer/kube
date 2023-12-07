@@ -127,6 +127,10 @@ data:
         policy: one_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'home.jkulzer.dev'
+        policy: one_factor
+        subject:
+        - ['group:kubeadmin']
     identity_providers:
       oidc:
         cors:
