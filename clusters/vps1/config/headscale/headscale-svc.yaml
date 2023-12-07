@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: headscale
+  namespace: headscale
+  labels:
+    app: headscale
+spec:
+  type: ClusterIP
+  # type: LoadBalancer
+  selector:
+    app: headscale
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: http
+    - name: metrics
+      protocol: TCP
+      port: 9090
+      targetPort: metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: headscale-derp
+  namespace: headscale
+  labels:
+    app: headscale
+spec:
+  type: LoadBalancer
+  selector:
+    app: headscale
+  ports:
+    - name: derp
+      protocol: UDP
+      port: 3478
+      targetPort: derp
