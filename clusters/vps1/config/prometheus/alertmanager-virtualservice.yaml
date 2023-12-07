@@ -6,7 +6,7 @@ metadata:
   namespace: prometheus
 spec:
   hosts:
-  - "alertmanager.kube.home"
+  - "alertmanager.jkulzer.dev"
   gateways:
   - istio-system/main-gateway
   http:
