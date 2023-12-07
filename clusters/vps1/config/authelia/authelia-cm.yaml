@@ -36,7 +36,7 @@ data:
           write: 4096
     totp:
       disable: true
-      issuer: kube.home
+      issuer: jkulzer.dev
       algorithm: sha1
       digits: 8
       period: 30
@@ -107,23 +107,23 @@ data:
     access_control:
       default_policy: deny
       rules:
-      - domain: 'goldilocks.kube.home'
+      - domain: 'goldilocks.jkulzer.dev'
         policy: one_factor
         subject:
         - ['group:kubeadmin']
-      - domain: 'kiali.kube.home'
+      - domain: 'kiali.jkulzer.dev'
         policy: one_factor
         subject:
         - ['group:kubeadmin']
-      - domain: 'prometheus.kube.home'
+      - domain: 'prometheus.jkulzer.dev'
         policy: one_factor
         subject:
         - ['group:kubeadmin']
-      - domain: 'alertmanager.kube.home'
+      - domain: 'alertmanager.jkulzer.dev'
         policy: one_factor
         subject:
         - ['group:kubeadmin']
-      - domain: 'grafana.kube.home'
+      - domain: 'grafana.jkulzer.dev'
         policy: one_factor
         subject:
         - ['group:kubeadmin']
