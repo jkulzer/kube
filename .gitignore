@@ -1,5 +1,16 @@
 clusters/**/config/**/charts*
+
 talos/secrets.yaml
 talos/talosconfig
 talos/controlplane.yaml
 talos/worker.yaml
+
+opentofu/**/.terraform
+opentofu/**/.terraform.lock.hcl
+opentofu/**/terraform.tfstate
+opentofu/**/terraform.tfstate.backup
+
+opentofu/**/**/.terraform
+opentofu/**/**/.terraform.lock.hcl
+opentofu/**/**/terraform.tfstate
+opentofu/**/**/terraform.tfstate.backup
