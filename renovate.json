@@ -5,6 +5,8 @@
 
   "kubernetes": {
     "fileMatch": ["cluster/.+\\.yaml$"]
-  }
+  },
+
+  "branchConcurrentLimit": 25
 
 }
