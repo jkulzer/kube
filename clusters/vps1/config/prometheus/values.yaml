@@ -28,14 +28,7 @@ alertmanager:
   service:
     type: ClusterIP
   serviceMonitor:
-    selfMonitor: true
-    replicas: 1
-    retention: 120h
-    externalUrl: "alertmanager.kube.home"
-    resources:
-      requests:
-        memory: 100Mi
-        cpu: 20m
+    selfMonitor: false
   alertmanagerSpec:
     resources:
       requests:
