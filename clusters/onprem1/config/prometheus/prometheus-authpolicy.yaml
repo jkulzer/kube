@@ -1,0 +1,18 @@
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: prometheus-authelia-policy
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: gateway 
+  action: CUSTOM
+  provider:
+    name: "authelia"
+  rules:
+  - to:
+    - operation:
+        hosts:
+          - "prometheus.kube.home"
