@@ -20,8 +20,8 @@ podAnnotations:
 
 service:
   # Type of service. Set to "None" to disable the service entirely
-  annotations:
-    metallb.universe.tf/loadBalancerIPs: 192.168.64.10
+  # annotations:
+  #   metallb.universe.tf/loadBalancerIPs: 192.168.64.10
   type: LoadBalancer
   ports:
   - name: status-port
