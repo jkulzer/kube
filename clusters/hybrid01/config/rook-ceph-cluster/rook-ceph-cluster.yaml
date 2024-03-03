@@ -30,7 +30,7 @@ metadata:
 spec:
   failureDomain: host
   replicated:
-    size: 3
+    size: 2
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
