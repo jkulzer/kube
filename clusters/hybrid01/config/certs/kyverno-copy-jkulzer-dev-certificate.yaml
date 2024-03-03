@@ -1,0 +1,27 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: sync-jkulzer-dev-gateway-certificate
+  annotations:
+    policies.kyverno.io/title: Sync jkulzer-dev certificate from cert-manager to istio-system namespace
+    policies.kyverno.io/subject: Secret
+    policies.kyverno.io/minversion: 1.6.0
+spec:
+  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
+  rules:
+  - name: sync-image-pull-secret
+    match:
+      any:
+      - resources:
+          kinds:
+          - Namespace
+    generate:
+      apiVersion: v1
+      kind: Secret
+      name: jkulzer-dev-tls
+      namespace: istio-system
+      synchronize: true
+      clone:
+        name: jkulzer-dev-tls
+        namespace: cert-manager

@@ -2,3 +2,14 @@ machine:
   kubelet:
     extraArgs:
       rotate-server-certificates: true
+  network:
+    kubespan:
+      enabled: true
+cluster:
+  allowSchedulingOnControlPlanes: true
+  discovery:
+    enabled: true
+    registries:
+      kubernetes: # Kubernetes registry is problematic with KubeSpan, if the control plane endpoint is routeable itself via KubeSpan.
+        disabled: true
+      service: {}

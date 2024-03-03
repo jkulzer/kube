@@ -1,0 +1,9 @@
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: "strict-mtls"
+  namespace: argocd
+spec:
+  mtls:
+    mode: PERMISSIVE # Needed because of this: https://github.com/argoproj/argo-cd/issues/10391

@@ -1,0 +1,18 @@
+namespace: "cert-manager"
+
+clusterResourceNamespace: "cert-manager"
+
+prometheus:
+  enabled: true
+  servicemonitor:
+    enabled: true
+
+installCRDs: true
+
+global:
+  leaderElection:
+    namespace: cert-manager
+
+
+startupapicheck:
+  enabled: false
