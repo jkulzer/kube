@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: extensible-secrets-generator
+
+helmCharts:
+  - name: extensible-secrets-generator
+    releaseName: extensible-secrets-generator
+    namespace: extensible-secrets-generator
+    repo: https://jkulzer.github.io/extensible-secrets-generator
+    version: 0.1.4
+    valuesFile: values.yaml
+
+resources:
+  - esg-ns.yaml
