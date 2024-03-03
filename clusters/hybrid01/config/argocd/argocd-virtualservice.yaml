@@ -12,6 +12,6 @@ spec:
   http:
   - route:
     - destination:
-        host: argocd-server
+        host: argo-cd-argocd-server
         port:
           number: 80
