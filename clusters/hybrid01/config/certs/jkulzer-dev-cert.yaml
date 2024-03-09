@@ -5,6 +5,10 @@ metadata:
   name: jkulzer-dev
   namespace: cert-manager
 spec:
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "istio-system"
   secretName: jkulzer-dev-tls
   issuerRef:
     name: letsencrypt-prod

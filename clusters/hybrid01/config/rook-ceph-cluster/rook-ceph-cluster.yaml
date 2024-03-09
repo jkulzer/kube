@@ -80,13 +80,13 @@ spec:
     periodicity: daily
   mgr:
     allowMultiplePerNode: true
-    count: 3
+    count: 1
     modules:
     - enabled: true
       name: pg_autoscaler
   mon:
     allowMultiplePerNode: true
-    count: 3
+    count: 1
   monitoring:
     enabled: false
   network:
