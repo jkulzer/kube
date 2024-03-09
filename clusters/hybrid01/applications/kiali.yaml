@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kiali
-  namespace: istio-system
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
