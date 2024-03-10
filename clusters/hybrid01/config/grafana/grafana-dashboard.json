@@ -51,6 +51,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -147,6 +148,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -240,6 +242,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -337,6 +340,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -414,50 +418,33 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "mode": "thresholds"
           },
           "mappings": [],
+          "max": 1,
           "min": 0,
           "thresholds": {
-            "mode": "absolute",
+            "mode": "percentage",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 10
+              },
+              {
+                "color": "#EAB839",
+                "value": 25
+              },
+              {
+                "color": "#37872D",
+                "value": 50
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -469,18 +456,18 @@
       },
       "id": 7,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -488,14 +475,14 @@
             "uid": "main-prometheus"
           },
           "editorMode": "code",
-          "expr": "node_filesystem_free_bytes{mountpoint=\"/\"} * on(instance) group_left(nodename) (node_uname_info)",
+          "expr": "(ceph_cluster_total_bytes{}-ceph_cluster_total_used_bytes{})/ceph_cluster_total_bytes{}",
           "legendFormat": "{{nodename}} - {{device}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Free Storage per Node",
-      "type": "timeseries"
+      "title": "Free Storage",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -545,7 +532,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -610,7 +597,7 @@
         },
         "textMode": "name"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -655,6 +642,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -772,7 +760,7 @@
         },
         "textMode": "name"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "datasource": {
@@ -803,13 +791,13 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Debugging",
   "uid": "17994e64-df21-4cf5-a7a7-95b4aa924238",
-  "version": 15,
+  "version": 1,
   "weekStart": ""
 }
