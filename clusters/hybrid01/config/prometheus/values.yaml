@@ -114,9 +114,16 @@ prometheus:
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
     retention: 1d
-    retentionSize: 1GiB
+    retentionSize: 15GiB
     replicas: 1
     resources:
       requests:
         memory: 400Mi
         cpu: 50m
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 16Gi
