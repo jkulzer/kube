@@ -98,7 +98,7 @@ prometheusOperator:
   service:
     type: ClusterIP
   kubeletService:
-    enabled: false
+    enabled: true
 
 prometheus:
   enabled: true
