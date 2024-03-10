@@ -32,6 +32,7 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
+      "id": 2,
       "links": [],
       "liveNow": true,
       "panels": [
@@ -435,19 +436,23 @@ data:
                 "mode": "percentage",
                 "steps": [
                   {
-                    "color": "dark-red",
+                    "color": "#220004",
                     "value": null
                   },
                   {
-                    "color": "dark-orange",
+                    "color": "dark-red",
                     "value": 10
                   },
                   {
-                    "color": "#EAB839",
-                    "value": 25
+                    "color": "dark-orange",
+                    "value": 20
                   },
                   {
-                    "color": "#37872D",
+                    "color": "#EAB839",
+                    "value": 30
+                  },
+                  {
+                    "color": "dark-green",
                     "value": 50
                   }
                 ]
@@ -458,11 +463,11 @@ data:
           },
           "gridPos": {
             "h": 7,
-            "w": 8,
+            "w": 5,
             "x": 0,
             "y": 17
           },
-          "id": 7,
+          "id": 12,
           "options": {
             "orientation": "auto",
             "reduceOptions": {
@@ -472,7 +477,7 @@ data:
               "fields": "",
               "values": false
             },
-            "showThresholdLabels": false,
+            "showThresholdLabels": true,
             "showThresholdMarkers": true
           },
           "pluginVersion": "10.1.2",
@@ -482,11 +487,13 @@ data:
                 "type": "prometheus",
                 "uid": "main-prometheus"
               },
-              "editorMode": "code",
               "expr": "(ceph_cluster_total_bytes{}-ceph_cluster_total_used_bytes{})/ceph_cluster_total_bytes{}",
-              "legendFormat": "{{nodename}} - {{device}}",
-              "range": true,
-              "refId": "A"
+              "format": "time_series",
+              "instant": true,
+              "interval": "5s",
+              "intervalFactor": 1,
+              "refId": "A",
+              "step": 300
             }
           ],
           "title": "Free Storage",
@@ -500,62 +507,248 @@ data:
           "fieldConfig": {
             "defaults": {
               "color": {
-                "mode": "thresholds"
+                "mode": "palette-classic"
               },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 40,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 0,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
-                    "value": 1
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Available"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#EAB839",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Total Capacity"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#447EBC",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Used"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#BF1B00",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Used"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#BF1B00",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "total_avail"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#6ED0E0",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "total_space"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#7EB26D",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "total_used"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "#890F02",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Total Capacity"
+                },
+                "properties": [
+                  {
+                    "id": "custom.fillOpacity",
+                    "value": 0
+                  },
+                  {
+                    "id": "custom.lineWidth",
+                    "value": 3
+                  },
+                  {
+                    "id": "custom.stacking",
+                    "value": {
+                      "group": false,
+                      "mode": "normal"
+                    }
                   }
                 ]
               }
-            },
-            "overrides": []
+            ]
           },
           "gridPos": {
-            "h": 4,
-            "w": 5,
-            "x": 8,
+            "h": 7,
+            "w": 8,
+            "x": 5,
             "y": 17
           },
-          "id": 4,
+          "id": 29,
           "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
+            "legend": {
               "calcs": [
-                "lastNotNull"
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
               ],
-              "fields": "",
-              "values": false
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
             },
-            "textMode": "auto"
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            }
           },
-          "pluginVersion": "10.1.2",
+          "pluginVersion": "9.1.3",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
                 "uid": "main-prometheus"
               },
-              "editorMode": "code",
-              "expr": "kube_node_spec_unschedulable",
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
+              "expr": "ceph_cluster_total_bytes{}-ceph_cluster_total_used_bytes{}",
+              "format": "time_series",
+              "legendFormat": "Available",
+              "refId": "A",
+              "step": 300
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "main-prometheus"
+              },
+              "expr": "ceph_cluster_total_used_bytes{}",
+              "format": "time_series",
+              "legendFormat": "Used",
+              "refId": "B",
+              "step": 300
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "main-prometheus"
+              },
+              "expr": "ceph_cluster_total_bytes{}",
+              "format": "time_series",
+              "legendFormat": "Total Capacity",
+              "refId": "C",
+              "step": 300
             }
           ],
-          "title": "Unschedulable Containers",
-          "type": "stat"
+          "title": "Capacity",
+          "type": "timeseries"
         },
         {
           "datasource": {
@@ -719,75 +912,6 @@ data:
           ],
           "title": "Container Count",
           "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "main-prometheus"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 5,
-            "x": 8,
-            "y": 21
-          },
-          "id": 8,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "textMode": "name"
-          },
-          "pluginVersion": "10.1.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "main-prometheus"
-              },
-              "editorMode": "builder",
-              "exemplar": false,
-              "expr": "kube_job_failed{condition=\"true\"}",
-              "instant": false,
-              "interval": "",
-              "legendFormat": "{{job_name}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "timeFrom": "1m",
-          "title": "Failed Jobs",
-          "type": "stat"
         }
       ],
       "refresh": "",
@@ -799,7 +923,7 @@ data:
         "list": []
       },
       "time": {
-        "from": "now-6h",
+        "from": "now-3h",
         "to": "now"
       },
       "timepicker": {},
