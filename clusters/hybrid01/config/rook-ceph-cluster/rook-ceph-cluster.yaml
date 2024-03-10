@@ -88,7 +88,7 @@ spec:
     allowMultiplePerNode: true
     count: 1
   monitoring:
-    enabled: false
+    enabled: true
   network:
     connections:
       compression:
