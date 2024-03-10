@@ -89,6 +89,12 @@ data:
             tag: "app"
             url: "https://kiali.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
+          - name: "Gatus (Status Monitor)"
+            logo: "https://raw.githubusercontent.com/TwiN/gatus/master/web/static/logo-512x512.png"
+            subtitle: "Monitoring"
+            tag: "app"
+            url: "https://status.jkulzer.dev"
+            target: "_blank" # optional html a tag target attribute
       - name: "Infrastructure"
         icon: "fas fa-conveyor-belt"
         items:
@@ -96,11 +102,11 @@ data:
             logo: "https://cdn.simpleicons.org/argo"
             subtitle: "Deployment"
             tag: "app"
-            url: "http://argocd.jkulzer.dev"
+            url: "https://argo.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
           - name: "Authelia"
             logo: "https://www.authelia.com/images/branding/logo.svg"
             subtitle: "Authentication"
             tag: "app"
-            url: "http://auth.jkulzer.dev"
+            url: "https://auth.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
