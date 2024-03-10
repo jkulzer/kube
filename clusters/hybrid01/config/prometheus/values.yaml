@@ -123,7 +123,9 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          accessModes: ["ReadWriteOnce"]
+          storageClassName: ceph-block
+          accessModes: 
+            - "ReadWriteOnce"
           resources:
             requests:
-              storage: 16Gi
+                storage: 16Gi
