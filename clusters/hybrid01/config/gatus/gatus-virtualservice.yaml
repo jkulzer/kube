@@ -1,0 +1,17 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gatus
+  namespace: gatus
+spec:
+  hosts:
+  - "status.jkulzer.dev"
+  gateways:
+  - istio-system/main-gateway
+  http:
+  - route:
+    - destination:
+        host: gatus
+        port:
+          number: 80
