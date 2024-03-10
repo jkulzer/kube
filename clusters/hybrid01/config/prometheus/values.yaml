@@ -28,7 +28,7 @@ alertmanager:
   service:
     type: ClusterIP
   serviceMonitor:
-    selfMonitor: false
+    selfMonitor: true
   alertmanagerSpec:
     resources:
       requests:
@@ -113,6 +113,8 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
     retention: 1d
     retentionSize: 15GiB
     replicas: 1
