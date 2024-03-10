@@ -14,13 +14,4 @@ spec:
     name: letsencrypt-prod
   dnsNames:
   - "jkulzer.dev"
-  - "www.jkulzer.dev"
-  - "grafana.jkulzer.dev"
-  - "auth.jkulzer.dev"
-  - "prometheus.jkulzer.dev"
-  - "alertmanager.jkulzer.dev"
-  - "vpn.jkulzer.dev"
-  - "kiali.jkulzer.dev"
-  - "argo.jkulzer.dev"
-  - "home.jkulzer.dev"
-  - "goldilocks.jkulzer.dev"
+  - "*.jkulzer.dev"
