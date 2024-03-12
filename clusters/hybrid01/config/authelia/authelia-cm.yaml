@@ -156,3 +156,29 @@ data:
             - "groups"
             - "email"
           userinfo_signing_algorithm: none
+        - id: argocd
+          description: Argo CD
+          secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
+          public: false
+          authorization_policy: one_factor
+          redirect_uris:
+            - https://argo.jkulzer.dev/auth/callback
+          scopes:
+            - openid
+            - groups
+            - email
+            - profile
+          userinfo_signing_algorithm: none
+        - id: argocd-cli
+          description: Argo CD (CLI)
+          public: true
+          authorization_policy: one_factor
+          redirect_uris:
+            - http://localhost:8085/auth/callback
+          scopes:
+            - openid
+            - groups
+            - email
+            - profile
+            - offline_access
+          userinfo_signing_algorithm: none

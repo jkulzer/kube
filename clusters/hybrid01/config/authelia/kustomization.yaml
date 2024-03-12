@@ -11,3 +11,5 @@ resources:
   - authelia-oidc-issuer.yaml
   - authelia-virtualservice.yaml
   - grafana-oidc-secret.yaml
+  - argocd-oidc-secret.yaml
+

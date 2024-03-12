@@ -66,6 +66,22 @@ server:
 configs:
   cm:
     create: true
+    url: https://argo.jkulzer.dev
+    oidc.config: |
+      name: Authelia
+      issuer: https://auth.jkulzer.dev
+      clientID: argocd
+      clientSecret: $argocd-oidc-secret:client-secret
+      cliClientID: argocd-cli
+      requestedScopes:
+        - openid
+        - profile
+        - email
+        - groups
+  rbac:
+    create: true
+    policy.csv: |
+      g, kubeadmin, role:admin
 
 repoServer:
   resources:
