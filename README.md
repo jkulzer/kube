@@ -81,56 +81,71 @@
 		<td><img width="64" src="https://landscape.cncf.io/logos/argo.svg"></td>
 		<td><a href="https://argoproj.github.io/argo-cd">ArgoCD</a></td>
 		<td>Automatically deploys manifests from git repo</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=argo-cd"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://github.com/jetstack/cert-manager/raw/master/logo/logo.png"></td>
 		<td><a href="https://cert-manager.io">cert-manager</a></td>
 		<td>Certificate Management for Kubernetes</td>
-	</tr>
-	<tr>
-		<td><img width="64" src="https://raw.githubusercontent.com/go-gitea/gitea/main/assets/favicon.svg"></td>
-		<td><a href="https://gitea.io">Gitea</a></td>
-		<td>Lightweight Git server</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=cert-manager"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://raw.githubusercontent.com/grafana/grafana/main/public/img/grafana_icon.svg"></td>
 		<td><a href="https://grafana.com/">Grafana</a></td>
 		<td>Dashboard that displays metrics from Prometheus</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=grafana"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://istio.io/v1.7/img/istio-whitelogo-bluebackground-framed.svg"></td>
 		<td><a href="https://istio.io/">Istio</a></td>
 		<td>The leading Kubernetes service mesh</td>
+        <td>
+            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=istio-crds">
+            <br>
+            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=istiod">
+            <br>
+            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=istio-gateway">
+        </td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://landscape.cncf.io/logos/rook.svg"></td>
 		<td><a href="https://rook.io/">Rook/Ceph</a></td>
 		<td>Highly scalable distributed storage</td>
+        <td>
+            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=rook-ceph">
+            <br>
+            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=rook-ceph-cluster">
+        </td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://github.com/metallb/metallb/raw/main/website/static/images/logo/metallb-blue.png"></td>
 		<td><a href="https://metallb.org/">MetalLB</a></td>
 		<td>A load balancer</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=metallb"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://landscape.cncf.io/logos/prometheus.svg"></td>
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
 		<td>Monitoring Scraper</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=prometheus"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://landscape.cncf.io/logos/goldilocks.svg"></td>
 		<td><a href="https://www.fairwinds.com/goldilocks">Goldilocks</a></td>
 		<td>CPU/Memory Reqests Reccomender</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=goldilocks"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://landscape.cncf.io/logos/kyverno.svg"></td>
 		<td><a href="https://kyverno.io">Kyverno</a></td>
 		<td>Policy Management</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=kyverno"></td>
 	</tr>
 	<tr>
 		<td><img width="64" src="https://landscape.cncf.io/logos/grafana-loki.svg"></td>
 		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
 		<td>Log Aggregator</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=loki"></td>
 	</tr>
 </table>
 
