@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: goldilocks
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  destination:
+    namespace: goldilocks
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/hybrid01/config/goldilocks
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD
