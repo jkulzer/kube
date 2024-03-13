@@ -4,4 +4,3 @@ metadata:
  name: jkulzer-dev-tls
  annotations:
    reflector.v1.k8s.emberstack.com/reflects: "cert-manager/jkulzer-dev-tls"
-data:
