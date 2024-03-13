@@ -39,7 +39,7 @@ features:
 
 # Admission controller configuration
 admissionController:
-  replicas: 1
+  replicas: 3
   resources:
       requests:
         cpu: 10m
@@ -47,7 +47,7 @@ admissionController:
 
 # Background controller configuration
 backgroundController:
-  replicas: 1
+  replicas: 3
   resources:
     # -- Pod resource requests
     requests:
@@ -61,7 +61,7 @@ backgroundController:
 
 # Cleanup controller configuration
 cleanupController:
-  replicas: 1
+  replicas: 3
   resources:
     requests:
       cpu: 10m
@@ -74,7 +74,7 @@ cleanupController:
 
 # Reports controller configuration
 reportsController:
-  replicas: 1
+  replicas: 3
   resources:
     requests:
       cpu: 10m
