@@ -22,11 +22,11 @@ serviceMonitor:
 # ref: https://github.com/TwiN/gatus#configuration
 config:
   endpoints:
-    - name: jkulzer.dev
-      url: https://jkulzer.dev
-      interval: 60s
-      conditions:
-        - "[STATUS] == 200"
+    # - name: jkulzer.dev
+    #   url: https://jkulzer.dev
+    #   interval: 60s
+    #   conditions:
+    #     - "[STATUS] == 200"
     - name: Authelia
       url: https://auth.jkulzer.dev
       interval: 60s
