@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: synapse
+  namespace: synapse
+data:
+  homeserver.yaml: |-
+    server_name: "jkulzer"
+    listeners:
+      - port: 8008
+        tls: false
+        type: http
+        x_forwarded: true
+        bind_addresses: ['0.0.0.0']
+        resources:
+          - names: [client, federation]
+            compress: false
+    database:
+      name: sqlite3
+      args:
+        database: /storage/homeserver.db
+    log_config: "/storage/jkulzer.log.config"
+    media_store_path: /storage/media_store
+    report_stats: false
+    signing_key_path: "/keys/jkulzer.signing.key"

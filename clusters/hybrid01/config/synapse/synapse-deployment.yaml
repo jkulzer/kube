@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synapse
+  namespace: synapse
+  annotations:
+      configmap.reloader.stakater.com/reload: "synapse"
+  labels:
+    app: synapse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: synapse
+  template:
+    metadata:
+      labels:
+        app: synapse
+    spec:
+      containers:
+      - name: synapse
+        image: matrixdotorg/synapse:v1.102.0
+        env:
+        - name: SYNAPSE_CONFIG_DIR
+          value: /data
+        ports:
+        - name: synapse
+          protocol: TCP
+          containerPort: 8008
+        volumeMounts:
+          - name: synapse-cm
+            mountPath: /data
+          - name: synapse-data
+            mountPath: /storage
+          - name: synapse-keys
+            mountPath: /keys
+          - name: synapse-secrets
+            mountPath: /data/conf.d
+      volumes:
+        - name: synapse-cm
+          configMap:
+            name: synapse
+        - name: synapse-data
+          emptyDir: {}
+        - name: synapse-keys
+          emptyDir: {}
+        - name: synapse-secrets
+          secret:
+            secretName: synapse-secrets
