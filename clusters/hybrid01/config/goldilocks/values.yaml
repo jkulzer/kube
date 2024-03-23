@@ -5,11 +5,11 @@ controller:
   enabled: true
   resources:
     requests:
-      cpu: 30m
-      memory: 40M
+      cpu: 75m
+      memory: 200M
     limits:
-      cpu: 50m
-      memory: 50M
+      cpu: 100m
+      memory: 400M
 
 dashboard:
   enabled: true
