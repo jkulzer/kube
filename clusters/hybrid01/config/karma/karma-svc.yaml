@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: karma
+  namespace: karma
+  labels:
+    app: karma
+spec:
+  type: ClusterIP
+  selector:
+    app: karma
+  ports:
+    - name: karma
+      protocol: TCP
+      port: 3000
+      targetPort: karma
