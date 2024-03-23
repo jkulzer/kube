@@ -17,7 +17,13 @@ spec:
       serviceAccountName: alertmanager-discord
       containers:
         - name: alertmanager-discord
-          image: ghcr.io/matthew-beckett/alertmanager-discord:master@sha256:26228db1833d7ff2f9153a5cee0b37d5441e4d1b602029581c9c656744597f0c
+          image: ghcr.io/jkulzer/kubernetes-sidecar-terminator:latest
+          resources:
+            requests:
+              cpu: 15m
+              memory: 15M
+            limits:
+              memory: 20M
           env:
           - name: DISCORD_WEBHOOK
             valueFrom:
