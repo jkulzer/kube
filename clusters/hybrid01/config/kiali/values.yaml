@@ -23,8 +23,11 @@ deployment:
     traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.43.0.1/32"
   resources:
     requests:
-      cpu: "10m"
-      memory: "64Mi"
+      cpu: 10m
+      memory: 50Mi
+    limits:
+      cpu: 20m
+      memory: 75Mi
   view_only_mode: true
 
 server:
