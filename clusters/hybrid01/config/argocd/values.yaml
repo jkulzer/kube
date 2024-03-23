@@ -6,8 +6,8 @@ global:
 controller:
   resources:
     requests:
-      cpu: 100m
-      memory: 100M
+      cpu: 900m
+      memory: 700M
   metrics:
     enabled: true
     serviceMonitor:
@@ -18,6 +18,10 @@ dex:
 
 redis:
   enabled: true
+  resources:
+    requests:
+      cpu: 15m
+      memory: 30m
 
 server:
   deploymentAnnotations:
@@ -27,7 +31,7 @@ server:
   resources:
     requests:
       cpu: 15m
-      memory: 100M
+      memory: 70M
   extraArgs: 
     - --insecure
   metrics:
@@ -86,8 +90,8 @@ configs:
 repoServer:
   resources:
     requests:
-      cpu: 15m
-      memory: 100M
+      cpu: 50m
+      memory: 200M
   metrics:
     enabled: true
     serviceMonitor:
