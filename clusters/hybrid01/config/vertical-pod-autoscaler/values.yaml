@@ -14,16 +14,14 @@ recommender:
     storage: prometheus
   replicaCount: 1
   resources:
-    limits: {}
-      # cpu: 200m
-      # memory: 1000Mi
     requests:
-      cpu: 50m
-      memory: 500Mi
+      cpu: 15m
+      memory: 50M
+    limits:
+      cpu: 25m
+      memory: 80M 
   podMonitor:
     enabled: true
-    annotations: {}
-    labels: {}
 
 updater:
   enabled: false
