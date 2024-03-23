@@ -20,9 +20,16 @@ spec:
       - name: karma
         image: ghcr.io/prymitive/karma:v0.119
         env:
-          - name: ALERTMANAGER_URI
-            value: http://kube-prometheus-stack-alertmanager.prometheus.svc.cluster.local:9093
+        - name: ALERTMANAGER_URI
+          value: http://kube-prometheus-stack-alertmanager.prometheus.svc.cluster.local:9093
+        resources:
+          requests:
+            cpu: 15m
+            memory: 25M
+          limits:
+            cpu: 20m
+            memory: 35M
         ports:
-          - name: karma
-            protocol: TCP
-            containerPort: 8080
+        - name: karma
+          protocol: TCP
+          containerPort: 8080
