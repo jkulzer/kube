@@ -19,11 +19,11 @@ spec:
       - name: lldap
         image: nitnelave/lldap:stable
         resources: 
-          limits:
-            memory: 125Mi
           requests:
-            cpu: "0.25"
-            memory: 50Mi
+            cpu: 15m
+            memory: 15Mi
+          limits:
+            memory: 20Mi
         env:
         - name: HOSTNAME
           value: "ldap.authelia.svc.cluster.local"

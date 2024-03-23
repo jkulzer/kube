@@ -129,11 +129,11 @@ spec:
         args:
         - --config=/configuration.yaml
         resources: 
-          limits:
-            memory: 125Mi
           requests:
-            cpu: "0.25"
+            cpu: 15m
             memory: 50Mi
+          limits:
+            memory: 100M
         env:
           # This enables the injection of env variables in the config
           # https://github.com/authelia/authelia/blob/master/docs/content/en/configuration/methods/files.md
