@@ -21,9 +21,9 @@ spec:
         resources: 
           requests:
             cpu: 15m
-            memory: 15Mi
+            memory: 30Mi
           limits:
-            memory: 40Mi
+            memory: 100Mi
         env:
         - name: HOSTNAME
           value: "ldap.authelia.svc.cluster.local"
