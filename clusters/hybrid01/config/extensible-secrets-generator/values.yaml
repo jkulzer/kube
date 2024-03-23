@@ -4,23 +4,22 @@ controllerManager:
       repository: gcr.io/kubebuilder/kube-rbac-proxy
       tag: v0.13.1
     resources:
-      limits:
-        cpu: 500m
-        memory: 128Mi
       requests:
-        cpu: 5m
-        memory: 64Mi
+        cpu: 15m
+        memory: 60Mi
+      limits:
+        memory: 128Mi
   manager:
     image:
       repository: ghcr.io/jkulzer/extensible-secrets-generator
       tag: 0.2.4
     resources:
-      limits:
-        cpu: 500m
-        memory: 128Mi
       requests:
-        cpu: 10m
-        memory: 64Mi
+        cpu: 15m
+        memory: 30Mi
+      limits:
+        cpu: 30m
+        memory: 40Mi
   replicas: 1
 metricsService:
   ports:
