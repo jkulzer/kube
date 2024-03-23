@@ -8,11 +8,11 @@ controller:
   logLevel: info
   resources:
     requests:
-      cpu: 15m
-      memory: 80M
-    limits:
       cpu: 25m
-      memory: 100M
+      memory: 10M
+    limits:
+      cpu: 50m
+      memory: 200M
 
 speaker:
   logLevel: info
