@@ -59,6 +59,13 @@ spec:
         # Disables the login form as only OIDC gets used
         - name: GF_AUTH_DISABLE_LOGIN_FORM
           value: "true"
+        resources:
+          requests:
+            cpu: 15m
+            memory: 150M
+          limits:
+            cpu: 40m
+            memory: 200M
         volumeMounts:
         # - name: grafana-data
         #   mountPath: /var/lib/grafana
