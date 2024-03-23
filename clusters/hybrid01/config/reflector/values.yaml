@@ -11,11 +11,11 @@ serviceAccount:
 
 resources:
   requests:
-    cpu: 15m
+    cpu: 25m
     memory: 128Mi
   limits:
-    cpu: 25m
-    memory: 150Mi
+    cpu: 50m
+    memory: 250Mi
   
 securityContext:
   seccompProfile:
