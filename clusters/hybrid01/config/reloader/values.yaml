@@ -12,6 +12,13 @@ reloader:
   readOnlyRootFileSystem: true
   deployment:
     replicas: 3
+    resources:
+      requests:
+        cpu: 10m
+        memory: 40M
+      limits:
+        cpu: 20m
+        memory: 50M
     securityContext:
       runAsNonRoot: true
       runAsUser: 65534
