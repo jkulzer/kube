@@ -23,7 +23,7 @@ spec:
             cpu: 15m
             memory: 15Mi
           limits:
-            memory: 20Mi
+            memory: 40Mi
         env:
         - name: HOSTNAME
           value: "ldap.authelia.svc.cluster.local"
