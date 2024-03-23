@@ -5,13 +5,13 @@ deployment:
 image:
   repository: twinproduction/gatus
 
-resources: {}
-#  limits:
-#    cpu: 100m
-#    memory: 32Mi
-#  requests:
-#    cpu: 50m
-#    memory: 16Mi
+resources:
+  requests:
+    cpu: 15m
+    memory: 25M
+  limits:
+    cpu: 20m
+    memory: 40M
 
 serviceMonitor:
   enabled: true
