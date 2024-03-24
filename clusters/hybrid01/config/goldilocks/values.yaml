@@ -28,5 +28,5 @@ dashboard:
       cpu: 15m
       memory: 30Mi
     limits:
-      cpu: 25m
-      memory: 40Mi
+      cpu: 30m
+      memory: 75Mi
