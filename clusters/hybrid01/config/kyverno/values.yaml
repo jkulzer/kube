@@ -25,7 +25,7 @@ features:
     # -- Number of background scan workers
     backgroundScanWorkers: 1
     # -- Background scan interval
-    backgroundScanInterval: 1h
+    backgroundScanInterval: 1min
     # -- Skips resource filters in background scan
     skipResourceFilters: true
   forceFailurePolicyIgnore:
