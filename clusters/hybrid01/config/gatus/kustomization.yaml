@@ -7,7 +7,7 @@ helmCharts:
     releaseName: gatus
     namespace: gatus
     repo: https://minicloudlabs.github.io/helm-charts
-    version: 3.4.1
+    version: 3.4.4
     valuesFile: values.yaml
 
 resources:
