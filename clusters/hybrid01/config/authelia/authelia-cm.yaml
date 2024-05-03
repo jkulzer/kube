@@ -186,3 +186,16 @@ data:
             - profile
             - offline_access
           userinfo_signing_algorithm: none
+        - id: headscale
+          description: Headscale
+          secret: '{{- fileContent "/secrets/headscale-oidc-secret/hashed-client-secret" }}'
+          public: false
+          authorization_policy: one_factor
+          redirect_uris:
+            - https://vpn.jkulzer.dev/oidc/callback
+          scopes:
+            - "openid"
+            - "profile"
+            - "groups"
+            - "email"
+          userinfo_signing_algorithm: none

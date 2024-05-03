@@ -12,4 +12,5 @@ resources:
   - authelia-virtualservice.yaml
   - grafana-oidc-secret.yaml
   - argocd-oidc-secret.yaml
+  - headscale-oidc-secret.yaml
 
