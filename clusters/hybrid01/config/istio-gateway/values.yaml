@@ -22,6 +22,7 @@ service:
   # Type of service. Set to "None" to disable the service entirely
   annotations:
     metallb.universe.tf/loadBalancerIPs: "116.203.211.246"
+    metallb.universe.tf/allow-shared-ip: "shared-ip-116.203.211.246"
   type: LoadBalancer
   ports:
   - name: status-port
