@@ -1,9 +1,6 @@
 crds:
   enabled: true
 
-# -- List of Kubernetes [`tolerations`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) to add to the Deployment.
-tolerations: []
-
 # Options: `ERROR`, `WARNING`, `INFO`, `DEBUG`
 logLevel: INFO
 csi:
@@ -31,22 +28,6 @@ csi:
   # -- Set logging level for cephCSI containers maintained by the cephCSI.
   # Supported values from 0 to 5. 0 for general useful logs, 5 for trace level verbosity.
   logLevel: 0
-
-  # -- Set logging level for Kubernetes-csi sidecar containers.
-  # Supported values from 0 to 5. 0 for general useful logs (the default), 5 for trace level verbosity.
-  # @default -- `0`
-  sidecarLogLevel:
-
-  # -- CSI RBD plugin daemonset update strategy, supported values are OnDelete and RollingUpdate
-  # @default -- `RollingUpdate`
-  rbdPluginUpdateStrategy:
-
-  # -- A maxUnavailable parameter of CSI RBD plugin daemonset update strategy.
-  # @default -- `1`
-  rbdPluginUpdateStrategyMaxUnavailable:
-
-  # -- Set GRPC timeout for csi containers (in seconds). It should be >= 120. If this value is not set or is invalid, it defaults to 150
-  grpcTimeoutInSeconds: 150
 
   # -- Allow starting an unsupported ceph-csi image
   allowUnsupportedVersion: false
@@ -268,34 +249,12 @@ csi:
           memory: 1Gi
           cpu: 500m
 
-  # -- Array of tolerations in YAML format which will be added to CSI provisioner deployment
-  provisionerTolerations:
-  #    - key: key
-  #      operator: Exists
-  #      effect: NoSchedule
-
-  # -- The node labels for affinity of the CSI provisioner deployment [^1]
-  provisionerNodeAffinity: #key1=value1,value2; key2=value3
-  # Set pluginTolerations and pluginNodeAffinity for plugin daemonset pods.
-  # The CSI plugins need to be started on all the nodes where the clients need to mount the storage.
-
-  # -- Array of tolerations in YAML format which will be added to CephCSI plugin DaemonSet
-  pluginTolerations:
-  #    - key: key
-  #      operator: Exists
-  #      effect: NoSchedule
-
   serviceMonitor:
     # -- Enable ServiceMonitor for Ceph CSI drivers
     enabled: true
     # -- Service monitor scrape interval
     interval: 5s
 
-  csiAddons:
-    # -- Enable CSIAddons
-    enabled: false
-    # -- CSIAddons Sidecar image
-    image: "quay.io/csiaddons/k8s-sidecar:v0.7.0"
 
 # -- Whether to disable the admission controller
 disableAdmissionController: true
@@ -305,17 +264,6 @@ hostpathRequiresPrivileged: false
 
 # -- Disable automatic orchestration when new devices are discovered.
 disableDeviceHotplug: false
-
-# -- Set tolerations and nodeAffinity [^1] for admission controller pod.
-# The admission controller would be best to start on the same nodes as other ceph daemons.
-admissionController:
-  # tolerations:
-  #    - key: key
-  #      operator: Exists
-  #      effect: NoSchedule
-  # nodeAffinity: key1=value1,value2; key2=value3
-
-# [^1]: `nodeAffinity` and `*NodeAffinity` options should have the format `"role=storage,rook; storage=ceph"` or `storage=;role=rook-example` or `storage=;` (_checks only for presence of key_)
 
 monitoring:
   # -- Enable monitoring. Requires Prometheus to be pre-installed.
