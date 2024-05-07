@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: headscale
+  namespace: headscale
+data:
+  config.yaml: |-
+    ---
+    db_type: sqlite3
+    db_path: /db/db.sqlite
+    
+    server_url: https://vpn.jkulzer.dev
+
+    listen_addr: 0.0.0.0:8080
+
+    metrics_listen_addr: 0.0.0.0:9090
+    
+    grpc_listen_addr: 0.0.0.0:50443
+    grpc_allow_insecure: false
+    private_key_path: /data/headscale/secret.key
+    
+    noise:
+      private_key_path: /data/headscale/noise_private.key
+    
+    prefixes:
+      v4: 10:64.0.0/10
+
+    derp:
+      server:
+        enabled: true
+        stun_listen_addr: "0.0.0.0:3478"
+        region_code: "k8s"
+        region_name: "Kubernetes DERP"
+
+      urls:
+        - https://controlplane.tailscale.com/derpmap/default
+    
+    oidc:
+      only_start_if_oidc_is_available: true
+      issuer: "https://auth.jkulzer.dev"
+      client_id: "headscale"
+      client_secret_path: "/secrets/client-secret"
+      scope: ["openid", "profile", "groups", "email" ]
+      allowed_domains:
+        - jkulzer.dev
+    

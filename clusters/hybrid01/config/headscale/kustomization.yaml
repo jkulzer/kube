@@ -1,0 +1,12 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - headscale-ns.yaml
+  - headscale-svc.yaml
+  - headscale-cm.yaml
+  - headscale-deployment.yaml
+  - headscale-pvc.yaml
+  - headscale-oidc-secret.yaml
+  - headscale-virtualservice.yaml
