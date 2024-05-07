@@ -147,9 +147,14 @@
 		<td>Log Aggregator</td>
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=loki"></td>
 	</tr>
+	<tr>
+		<td><img width="64" src="https://headscale.net/logo/headscale3-dots.svg"></td>
+		<td><a href="https://headscale.net">Headscale</a></td>
+		<td>Mesh VPN</td>
+        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=headscale"></td>
+	</tr>
 </table>
 
-* [itzg Minecraft Server](https://https://github.com/itzg/docker-minecraft-server/)
 
 Repo Folder Structure
 
