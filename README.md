@@ -78,7 +78,7 @@
 		<td>Just Kubernetes</td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://landscape.cncf.io/logos/argo.svg"></td>
+		<td><img width="64" src="https://argo-cd.readthedocs.io/en/stable/assets/logo.png"></td>
 		<td><a href="https://argoproj.github.io/argo-cd">ArgoCD</a></td>
 		<td>Automatically deploys manifests from git repo</td>
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=argo-cd"></td>
@@ -108,7 +108,7 @@
         </td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://landscape.cncf.io/logos/rook.svg"></td>
+		<td><img width="64" src="https://rook.io/images/rook-logo.svg"></td>
 		<td><a href="https://rook.io/">Rook/Ceph</a></td>
 		<td>Highly scalable distributed storage</td>
         <td>
@@ -124,13 +124,13 @@
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=metallb"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://landscape.cncf.io/logos/prometheus.svg"></td>
+		<td><img width="64" src="https://prometheus.io/assets/prometheus_logo_grey.svg"></td>
 		<td><a href="https://prometheus.io/">Prometheus</a></td>
 		<td>Monitoring Scraper</td>
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=prometheus"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://landscape.cncf.io/logos/goldilocks.svg"></td>
+		<td><img width="64" src="https://goldilocks.docs.fairwinds.com/img/goldilocks.svg"></td>
 		<td><a href="https://www.fairwinds.com/goldilocks">Goldilocks</a></td>
 		<td>CPU/Memory Reqests Reccomender</td>
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=goldilocks"></td>
@@ -142,7 +142,7 @@
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=kyverno"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://landscape.cncf.io/logos/grafana-loki.svg"></td>
+		<td><img width="64" src="https://grafana.com/docs/loki/latest/logo.png"></td>
 		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
 		<td>Log Aggregator</td>
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=loki"></td>
