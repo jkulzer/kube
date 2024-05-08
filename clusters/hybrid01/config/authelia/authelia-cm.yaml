@@ -199,3 +199,15 @@ data:
             - "groups"
             - "email"
           userinfo_signing_algorithm: none
+        - id: synapse
+          description: Synapse (Matrix)
+          secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
+          public: false
+          authorization_policy: 'one_factor'
+          redirect_uris:
+            - 'https://synapse.jkulzer.dev/_synapse/client/oidc/callback'
+          scopes:
+            - 'openid'
+            - 'profile'
+            - 'email'
+          userinfo_signed_response_alg: 'none'
