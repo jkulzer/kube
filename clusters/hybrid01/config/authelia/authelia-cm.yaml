@@ -205,7 +205,7 @@ data:
           public: false
           authorization_policy: 'one_factor'
           redirect_uris:
-            - 'https://synapse.jkulzer.dev/_synapse/client/oidc/callback'
+            - 'https://matrix.jkulzer.dev/_synapse/client/oidc/callback'
           scopes:
             - 'openid'
             - 'profile'
