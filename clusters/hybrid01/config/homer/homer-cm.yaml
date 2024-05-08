@@ -95,6 +95,14 @@ data:
             tag: "app"
             url: "https://status.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
+      - name: "User Software"
+        icon: "fas user"
+        items:
+          - name: "Element"
+            logo: "https://cdn.simpleicons.org/element"
+            subtitle: "Matrix frontend"
+            tag: "app"
+            url: "https://element.jkulzer.dev"
       - name: "Infrastructure"
         icon: "fas fa-conveyor-belt"
         items:
