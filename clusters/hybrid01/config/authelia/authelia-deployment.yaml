@@ -214,6 +214,8 @@ spec:
           name: grafana-oidc-secret
         - mountPath: /secrets/headscale-oidc-secret
           name: headscale-oidc-secret
+        - mountPath: /secrets/synapse-oidc-secret
+          name: synapse-oidc-secret
         - mountPath: /secrets/argocd-oidc-secret
           name: argocd-oidc-secret
         - mountPath: /secrets/authelia-oidc-issuer
@@ -271,6 +273,12 @@ spec:
       - name: headscale-oidc-secret
         secret:
             secretName: headscale-oidc-secret
+            items:
+              - key: hashed-client-secret
+                path: hashed-client-secret
+      - name: synapse-oidc-secret
+        secret:
+            secretName: synapse-oidc-secret
             items:
               - key: hashed-client-secret
                 path: hashed-client-secret
