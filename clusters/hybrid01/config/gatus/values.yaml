@@ -32,3 +32,8 @@ config:
       interval: 60s
       conditions:
         - "[STATUS] == 200"
+    - name: Element
+      url: https://element.jkulzer.dev
+      interval: 60s
+      conditions:
+        - "[STATUS] == 200"
