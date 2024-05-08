@@ -210,4 +210,4 @@ data:
             - 'openid'
             - 'profile'
             - 'email'
-          userinfo_signed_response_alg: 'none'
+          userinfo_signing_algorithm: none
