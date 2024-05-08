@@ -6,6 +6,8 @@ metadata:
   namespace: homer
   labels:
     app: homer
+  annotations:
+    configmap.reloader.stakater.com/reload: "homer-config"
 spec:
   replicas: 1
   selector:
