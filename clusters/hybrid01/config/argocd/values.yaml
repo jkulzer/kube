@@ -6,8 +6,8 @@ global:
 controller:
   resources:
     requests:
-      cpu: 900m
-      memory: 700M
+      cpu: 100m
+      memory: 750M
   metrics:
     enabled: true
     serviceMonitor:
@@ -31,7 +31,7 @@ server:
   resources:
     requests:
       cpu: 15m
-      memory: 70M
+      memory: 125M
   extraArgs: 
     - --insecure
   metrics:
