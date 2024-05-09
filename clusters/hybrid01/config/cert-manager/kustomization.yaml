@@ -13,5 +13,4 @@ helmCharts:
 
 resources:
   - cert-manager-ns.yaml
-  - cert-manager-cpurequest.yaml
   - cert-manager-mtls.yaml
