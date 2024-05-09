@@ -16,3 +16,26 @@ global:
 
 startupapicheck:
   enabled: false
+
+resources:
+  requests:
+    cpu: 15m
+    memory: 64Mi
+  limits:
+    memory: 128Mi
+
+webhook:
+  resources:
+    requests:
+      cpu: 15m
+      memory: 40Mi
+    limits:
+      memory: 64Mi
+
+cainjector:
+  resources:
+    requests:
+      cpu: 15m
+      memory: 80Mi
+    limits:
+      memory: 192Mi
