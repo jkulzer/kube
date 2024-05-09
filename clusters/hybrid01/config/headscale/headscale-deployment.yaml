@@ -32,6 +32,12 @@ spec:
         - name: derp
           protocol: UDP
           containerPort: 3478
+        resources:
+          requests:
+            cpu: 10m
+            memory: 50mi
+          limits:
+            memory: 100mi
         volumeMounts:
           - name: headscale-cm
             mountPath: /etc/headscale/config.yaml
