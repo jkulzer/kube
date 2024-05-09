@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: element
+  namespace: element
+data:
+  config.json: |-
+    {
+    "default_server_config": {
+        "m.homeserver": {
+            "base_url": "https://jkulzer.dev"
+        }
+    }
+    }

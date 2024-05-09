@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: element
+  namespace: element
+  labels:
+    app: element
+  annotations:
+    configmap.reloader.stakater.com/reload: "element"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: element
+  template:
+    metadata:
+      labels:
+        app: element
+    spec:
+      containers:
+      - image: vectorim/element-web
+        name: element
+        ports:
+          - containerPort: 80
+        volumeMounts:
+        - name: element-config
+          mountPath: /app/config.json
+          subPath: config.json
+      volumes:
+      - name: element-config
+        configMap:
+          name: element
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: element
+  name: element
+  namespace: element
+spec:
+  ports:
+  - name: element
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: element
+  type: ClusterIP
