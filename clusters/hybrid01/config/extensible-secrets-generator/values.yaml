@@ -6,7 +6,7 @@ controllerManager:
     resources:
       requests:
         cpu: 15m
-        memory: 60Mi
+        memory: 30Mi
       limits:
         memory: 128Mi
   manager:
