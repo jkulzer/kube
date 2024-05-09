@@ -6,12 +6,34 @@ metadata:
   namespace: synapse
 spec:
   hosts:
-  - "matrix.jkulzer.dev"
+  - "jkulzer.dev"
   gateways:
   - istio-system/main-gateway
   http:
-  - route:
+  - match:
+    - uri:
+        prefix: "/_matrix"
+    - uri:
+        prefix: "/_synapse"
+    route:
     - destination:
         host: synapse
         port:
           number: 8008
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: synapse-federation
+  namespace: synapse
+spec:
+  hosts:
+  - "matrix.jkulzer.dev"
+  gateways:
+  - istio-system/main-gateway
+  http:
+    - route:
+      - destination:
+          host: synapse
+          port:
+            number: 8008

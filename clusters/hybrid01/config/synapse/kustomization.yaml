@@ -7,6 +7,9 @@ resources:
   - synapse-svc.yaml
   - synapse-cm.yaml
   - synapse-deployment.yaml
-  # - synapse-oidc-secret.yaml
+  - synapse-oidc-secret.yaml
   - synapse-virtualservice.yaml
-  - synapse-secrets.yaml
+  - well-known-cm.yaml
+  - well-known-deployment.yaml
+  - well-known-svc.yaml
+  - well-known-virtualservice.yaml

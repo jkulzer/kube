@@ -28,15 +28,21 @@ spec:
         - name: synapse
           protocol: TCP
           containerPort: 8008
+        command:
+          - /usr/local/bin/python
+          - -m
+          - synapse.app.homeserver
+          - --config-path=/data/homeserver.yaml
+          - --config-path=/secrets/oidc/client-secret
         volumeMounts:
+          - name: synapse-oidc-secret
+            mountPath: /secrets/oidc
           - name: synapse-cm
             mountPath: /data
           - name: synapse-data
             mountPath: /storage
           - name: synapse-keys
             mountPath: /keys
-          - name: synapse-secrets
-            mountPath: /data/conf.d
       volumes:
         - name: synapse-cm
           configMap:
@@ -45,6 +51,6 @@ spec:
           emptyDir: {}
         - name: synapse-keys
           emptyDir: {}
-        - name: synapse-secrets
+        - name: synapse-oidc-secret
           secret:
-            secretName: synapse-secrets
+            secretName: synapse-oidc-secret

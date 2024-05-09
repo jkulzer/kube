@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: well-known
+  namespace: synapse
+  annotations:
+      configmap.reloader.stakater.com/reload: "well-known"
+  labels:
+    app: well-known
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: well-known
+  template:
+    metadata:
+      labels:
+        app: well-known
+    spec:
+      containers:
+      - name: well-known
+        image: nginx:1.25.5
+        ports:
+        - name: well-known
+          protocol: TCP
+          containerPort: 80
+        volumeMounts:
+          - name: config
+            mountPath: /etc/nginx/conf.d/default.conf
+            subPath: default.conf
+      volumes:
+      - name: config
+        configMap:
+          name: well-known
+          items:
+          - key: default.conf
+            path: default.conf
