@@ -27,6 +27,12 @@ spec:
         - name: element-config
           mountPath: /app/config.json
           subPath: config.json
+        resources:
+          requests:
+            cpu: 10m
+            memory: 15mi
+          limits:
+            memory: 30mi
       volumes:
       - name: element-config
         configMap:
