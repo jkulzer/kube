@@ -133,7 +133,7 @@ spec:
     mgr:
       requests:
         cpu: 50m
-        memory: 750Mi
+        memory: 600M
       limits:
         cpu: 1000m
         memory: 1G
@@ -147,14 +147,14 @@ spec:
     mon:
       requests:
         cpu: 50m
-        memory: 600M
+        memory: 512M
       limits:
         cpu: 500m
         memory: 1G
     osd:
       requests:
         cpu: 50m
-        memory: 1500Mi
+        memory: 1500M
       limits:
         cpu: 2000m
         memory: 4G
