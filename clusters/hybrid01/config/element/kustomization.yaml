@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - element-ns.yaml
   - element-deployment.yaml
+  - element-svc.yaml
   - element-cm.yaml
   - element-virtualservice.yaml

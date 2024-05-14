@@ -30,27 +30,10 @@ spec:
         resources:
           requests:
             cpu: 10m
-            memory: 15mi
+            memory: 15Mi
           limits:
-            memory: 30mi
+            memory: 30Mi
       volumes:
       - name: element-config
         configMap:
           name: element
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: element
-  name: element
-  namespace: element
-spec:
-  ports:
-  - name: element
-    port: 80
-    protocol: TCP
-    targetPort: 80
-  selector:
-    app: element
-  type: ClusterIP
