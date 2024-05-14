@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudnative-pg
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+    automated:
+      selfHeal: true
+      prune: true
+  destination:
+    namespace: cnpg
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/hybrid01/config/cloudnative-pg
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD
