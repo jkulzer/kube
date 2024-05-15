@@ -89,11 +89,16 @@ data:
             tag: "app"
             url: "https://kiali.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
-          - name: "Gatus (Status Monitor)"
+          - name: "Status"
             logo: "https://raw.githubusercontent.com/TwiN/gatus/master/web/static/logo-512x512.png"
             subtitle: "Monitoring"
             tag: "app"
             url: "https://status.jkulzer.dev"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Goldpinger"
+            subtitle: "Monitoring"
+            tag: "app"
+            url: "https://goldpinger.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
       - name: "User Software"
         icon: "fas user"
@@ -113,7 +118,7 @@ data:
             url: "https://argo.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
           - name: "Authelia"
-            logo: "https://www.authelia.com/images/branding/logo.svg"
+            logo: "https://www.authelia.com/images/authelia-title.png"
             subtitle: "Authentication"
             tag: "app"
             url: "https://auth.jkulzer.dev"
