@@ -151,9 +151,9 @@ data:
         issuer_private_key: |
           '{{- fileContent "/secrets/authelia-oidc-issuer/tls.key" | nindent 6 }}'
         clients:
-        - id: grafana
+        - client_id: grafana
           description: Grafana
-          secret: '{{- fileContent "/secrets/grafana-oidc-secret/GRAFANA_OAUTH_HASHED_KEY" }}'
+          client_secret: '{{- fileContent "/secrets/grafana-oidc-secret/GRAFANA_OAUTH_HASHED_KEY" }}'
           public: false
           authorization_policy: one_factor
           redirect_uris:
@@ -164,9 +164,9 @@ data:
             - "groups"
             - "email"
           userinfo_signing_algorithm: none
-        - id: argocd
+        - client_id: argocd
           description: Argo CD
-          secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
+          client_secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
           public: false
           authorization_policy: one_factor
           redirect_uris:
@@ -177,7 +177,7 @@ data:
             - email
             - profile
           userinfo_signing_algorithm: none
-        - id: argocd-cli
+        - client_id: argocd-cli
           description: Argo CD (CLI)
           public: true
           authorization_policy: one_factor
@@ -190,9 +190,9 @@ data:
             - profile
             - offline_access
           userinfo_signing_algorithm: none
-        - id: headscale
+        - client_id: headscale
           description: Headscale
-          secret: '{{- fileContent "/secrets/headscale-oidc-secret/hashed-client-secret" }}'
+          client_secret: '{{- fileContent "/secrets/headscale-oidc-secret/hashed-client-secret" }}'
           public: false
           authorization_policy: one_factor
           redirect_uris:
@@ -203,9 +203,9 @@ data:
             - "groups"
             - "email"
           userinfo_signing_algorithm: none
-        - id: synapse
+        - client_id: synapse
           description: Synapse (Matrix)
-          secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
+          client_secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
           public: false
           authorization_policy: 'one_factor'
           redirect_uris:
