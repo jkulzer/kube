@@ -1,0 +1,17 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: goldpinger
+  namespace: goldpinger
+spec:
+  hosts:
+  - "goldpinger.jkulzer.dev"
+  gateways:
+  - istio-system/main-gateway
+  http:
+  - route:
+    - destination:
+        host: goldpinger
+        port:
+          number: 8080
