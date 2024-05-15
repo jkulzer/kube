@@ -120,10 +120,7 @@ spec:
       enableServiceLinks: false
       containers:
       - name: authelia
-        # image: ghcr.io/authelia/authelia:4.37.5
-        # This is needed for templating, and the 4.37 version doesn't have the feature yet
-        # A switch to the stable branch will be done when 4.38 releases
-        image: ghcr.io/authelia/authelia:v4.38.0-beta2
+        image: ghcr.io/authelia/authelia:v4.38.8
         imagePullPolicy: IfNotPresent
         command: ["authelia"]
         args:
