@@ -41,6 +41,9 @@ spec:
   cephVersion:
     allowUnsupported: false
     image: quay.io/ceph/ceph:v18.2.2
+  dashboard:
+    enabled: true
+    ssl: false
   cleanupPolicy:
     allowUninstallWithVolumes: true
     confirmation: ""
