@@ -152,7 +152,7 @@ data:
           '{{- fileContent "/secrets/authelia-oidc-issuer/tls.key" | nindent 6 }}'
         clients:
         - client_id: grafana
-          description: Grafana
+          client_name: Grafana
           client_secret: '{{- fileContent "/secrets/grafana-oidc-secret/GRAFANA_OAUTH_HASHED_KEY" }}'
           public: false
           authorization_policy: one_factor
@@ -163,9 +163,9 @@ data:
             - "profile"
             - "groups"
             - "email"
-          userinfo_signing_algorithm: none
+          userinfo_signed_response_alg: none
         - client_id: argocd
-          description: Argo CD
+          client_name: Argo CD
           client_secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
           public: false
           authorization_policy: one_factor
@@ -176,9 +176,9 @@ data:
             - groups
             - email
             - profile
-          userinfo_signing_algorithm: none
+          userinfo_signed_response_alg: none
         - client_id: argocd-cli
-          description: Argo CD (CLI)
+          client_name: Argo CD (CLI)
           public: true
           authorization_policy: one_factor
           redirect_uris:
@@ -189,9 +189,9 @@ data:
             - email
             - profile
             - offline_access
-          userinfo_signing_algorithm: none
+          userinfo_signed_response_alg: none
         - client_id: headscale
-          description: Headscale
+          client_name: Headscale
           client_secret: '{{- fileContent "/secrets/headscale-oidc-secret/hashed-client-secret" }}'
           public: false
           authorization_policy: one_factor
@@ -202,9 +202,9 @@ data:
             - "profile"
             - "groups"
             - "email"
-          userinfo_signing_algorithm: none
+          userinfo_signed_response_alg: none
         - client_id: synapse
-          description: Synapse (Matrix)
+          client_name: Synapse (Matrix)
           client_secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
           public: false
           authorization_policy: 'one_factor'
@@ -214,4 +214,4 @@ data:
             - 'openid'
             - 'profile'
             - 'email'
-          userinfo_signing_algorithm: none
+          userinfo_signed_response_alg: none
