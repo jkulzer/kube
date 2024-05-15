@@ -11,8 +11,7 @@ data:
     theme: dark
     default_redirection_url: https://jkulzer.dev
     server:
-      host: 0.0.0.0
-      port: 9091
+      address: 'tpc://0.0.0.0:9091'
       buffers:
         read: 4096
         write: 4096
@@ -59,7 +58,7 @@ data:
         disable: false
       ldap:
         implementation: custom
-        url: ldap://ldap.authelia.svc.cluster.local:3890
+        address: ldap://ldap.authelia.svc.cluster.local:3890
         timeout: 5s
         start_tls: false
         base_dn: dc=jkulzer,dc=dev
@@ -71,10 +70,11 @@ data:
         user: uid=admin,ou=people,dc=jkulzer,dc=dev
         additional_users_dn: ou=people
         additional_groups_dn: ou=groups
-        group_name_attribute: cn
-        mail_attribute: mail
-        display_name_attribute: displayName
-        username_attribute: uid
+        attributes: 
+          mail: mail
+          username: uid
+          group_name: cn
+          display_name: displayName
     password_policy:
       standard:
         enabled: true
@@ -148,7 +148,7 @@ data:
             - "revocation"
             - "introspection"
           allowed_origins_from_client_redirect_uris: true
-        issuer_private_key: |
+        jwks: |
           '{{- fileContent "/secrets/authelia-oidc-issuer/tls.key" | nindent 6 }}'
         clients:
         - client_id: grafana
