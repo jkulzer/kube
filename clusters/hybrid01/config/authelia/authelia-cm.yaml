@@ -11,7 +11,7 @@ data:
     theme: dark
     default_redirection_url: https://jkulzer.dev
     server:
-      address: 'tpc://0.0.0.0:9091'
+      address: 'tcp://0.0.0.0:9091'
       buffers:
         read: 4096
         write: 4096
