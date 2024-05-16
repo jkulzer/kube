@@ -148,9 +148,8 @@ data:
             - "revocation"
             - "introspection"
           allowed_origins_from_client_redirect_uris: true
-        jwks: 
-          - key: '{{- secret "/secrets/authelia-oidc-issuer/tls.key" | mindent 10 "|" | msquote }}'
-            certificate_chain: '{{- secret "/secrets/authelia-oidc-issuer/tls.crt" | mindent 10 "|" | msquote }}'
+        issuer_private_key: |
+          '{{- fileContent "/secrets/authelia-oidc-issuer/tls.key" | nindent 6 }}'
         clients:
         - client_id: grafana
           client_name: Grafana
