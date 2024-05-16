@@ -285,6 +285,8 @@ spec:
             items:
               - key: tls.key
                 path: tls.key
+              - key: tls.crt
+                path: tls.crt
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
