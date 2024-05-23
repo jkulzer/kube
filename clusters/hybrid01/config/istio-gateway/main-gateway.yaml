@@ -27,4 +27,3 @@ spec:
     tls:
       mode: SIMPLE # enables HTTPS on this port
       credentialName: jkulzer-dev-tls
-      httpsRedirect: true
