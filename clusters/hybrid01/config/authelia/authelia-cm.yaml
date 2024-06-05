@@ -222,8 +222,8 @@ data:
           authorization_policy: 'one_factor'
           redirect_uris:
             - 'app.immich:/'
-            - 'https://immich.jkulzer.dev/auth/login'
-            - 'https://immich.jkulzer.dev/user-settings'
+            - 'https://images.jkulzer.dev/auth/login'
+            - 'https://images.jkulzer.dev/user-settings'
           scopes:
             - 'openid'
             - 'profile'
