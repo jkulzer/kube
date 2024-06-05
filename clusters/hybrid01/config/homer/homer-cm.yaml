@@ -108,6 +108,11 @@ data:
             subtitle: "Matrix frontend"
             tag: "app"
             url: "https://element.jkulzer.dev"
+          - name: "Immich"
+            logo: "https://immich.app/img/immich-logo-stacked-dark.svg"
+            subtitle: "Images and Videos"
+            tag: "app"
+            url: "https://images.jkulzer.dev"
       - name: "Infrastructure"
         icon: "fas fa-conveyor-belt"
         items:
