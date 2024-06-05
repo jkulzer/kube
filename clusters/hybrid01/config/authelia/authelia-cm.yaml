@@ -215,3 +215,17 @@ data:
             - 'profile'
             - 'email'
           userinfo_signed_response_alg: none
+        - client_id: immich
+          client_name: Immich
+          client_secret: '{{- fileContent "/secrets/immich-oidc-secret/hashed-client-secret" }}'
+          public: false
+          authorization_policy: 'one_factor'
+          redirect_uris:
+            - 'app.immich:/'
+            - 'https://immich.jkulzer.dev/auth/login'
+            - 'https://immich.jkulzer.dev/user-settings'
+          scopes:
+            - 'openid'
+            - 'profile'
+            - 'email'
+          userinfo_signed_response_alg: none

@@ -213,6 +213,8 @@ spec:
           name: headscale-oidc-secret
         - mountPath: /secrets/synapse-oidc-secret
           name: synapse-oidc-secret
+        - mountPath: /secrets/immich-oidc-secret
+          name: immich-oidc-secret
         - mountPath: /secrets/argocd-oidc-secret
           name: argocd-oidc-secret
         - mountPath: /secrets/authelia-oidc-issuer
@@ -276,6 +278,12 @@ spec:
       - name: synapse-oidc-secret
         secret:
             secretName: synapse-oidc-secret
+            items:
+              - key: hashed-client-secret
+                path: hashed-client-secret
+      - name: immich-oidc-secret
+        secret:
+            secretName: immich-oidc-secret
             items:
               - key: hashed-client-secret
                 path: hashed-client-secret
