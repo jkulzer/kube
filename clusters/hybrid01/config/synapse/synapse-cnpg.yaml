@@ -1,0 +1,14 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: synapse-pg
+  namespace: synapse
+spec:
+  instances: 3
+  bootstrap:
+    initdb:
+      database: synapse
+      owner: synapse
+  storage:
+    size: 5Gi

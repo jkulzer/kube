@@ -17,10 +17,6 @@ data:
         resources:
           - names: [client, federation]
             compress: false
-    database:
-      name: sqlite3
-      args:
-        database: /storage/homeserver.db
     log_config: "/data/jkulzer.log.config"
     media_store_path: /storage/media_store
     report_stats: false
