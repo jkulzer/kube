@@ -96,11 +96,6 @@ meshConfig:
         - 'proxy-authorization'
         - 'remote-*'
         - 'authelia-*'
-        # For Trusted Header SSO https://www.authelia.com/integration/trusted-header-sso/introduction/
-        - 'Remote-User'
-        - 'Remote-Groups'
-        - 'Remote-Name'
-        - 'Remote-Email'
       includeAdditionalHeadersInCheck:
         X-Authelia-URL: 'https://auth.jkulzer.dev/'
         X-Forwarded-Method: '%REQ(:METHOD)%'
@@ -112,3 +107,8 @@ meshConfig:
         - set-cookie
       headersToDownstreamOnAllow:
         - set-cookie
+        # For Trusted Header SSO https://www.authelia.com/integration/trusted-header-sso/introduction/
+        - 'Remote-User'
+        - 'Remote-Groups'
+        - 'Remote-Name'
+        - 'Remote-Email'
