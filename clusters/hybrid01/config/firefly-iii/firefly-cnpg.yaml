@@ -1,0 +1,14 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: firefly-pg
+  namespace: firefly
+spec:
+  instances: 3
+  bootstrap:
+    initdb:
+      database: firefly
+      owner: firefly
+  storage:
+    size: 5Gi

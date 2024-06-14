@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly
+  namespace: firefly
+  labels:
+    app: firefly
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly
+  template:
+    metadata:
+      labels:
+        app: firefly
+    spec:
+      containers:
+        - name: firefly
+          image: fireflyiii/core:version-6.1.16
+          env:
+          - name: DB_CONNECTION
+            value: pgsql
+          - name: PGSQL_SCHEMA
+            value: public
+          - name: DB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: firefly-pg-app
+                key: dbname
+          - name: DB_HOST
+            value: firefly-pg-rw
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: firefly-pg-app
+                key: password
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: firefly-pg-app
+                key: username
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: firefly-pg-app
+                key: username
+          - name: DB_PORT
+            valueFrom:
+              secretKeyRef:
+                name: firefly-pg-app
+                key: port
+          - name: SITE_OWNER
+            value: mail@jkulzer.dev
+          - name: APP_KEY
+            valueFrom:
+              secretKeyRef: 
+                name: firefly-app-key
+                key: key
+          - name: TZ
+            value: Europe/Berlin
+          - name: TRUSTED_PROXIES
+            value: "**"
+          - name: AUTHENTICATION_GUARD
+            value: remote_user_guard
+          - name: AUTHENTICATION_GUARD_HEADER
+            value: remote-user
+          - name: AUTHENTICATION_GUARD_EMAIL
+            value: remote-email
+          - name: APP_URL
+            value: https://budget.jkulzer.dev
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP

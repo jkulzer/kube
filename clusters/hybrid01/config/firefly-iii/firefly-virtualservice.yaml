@@ -1,0 +1,18 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: firefly
+  namespace: firefly
+spec:
+  hosts:
+  - "budget.jkulzer.dev"
+  gateways:
+  - istio-system/main-gateway
+  http:
+  - match:
+    route:
+    - destination:
+        host: firefly
+        port:
+          number: 8080
