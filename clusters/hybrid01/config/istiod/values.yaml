@@ -91,11 +91,6 @@ meshConfig:
         - accept
         - cookie
         - proxy-authorization
-        # For Trusted Header SSO https://www.authelia.com/integration/trusted-header-sso/introduction/
-        - 'Remote-User'
-        - 'Remote-Groups'
-        - 'Remote-Name'
-        - 'Remote-Email'
       headersToUpstreamOnAllow:
         - 'authorization'
         - 'proxy-authorization'
@@ -117,3 +112,8 @@ meshConfig:
         - set-cookie
       headersToDownstreamOnAllow:
         - set-cookie
+        # For Trusted Header SSO https://www.authelia.com/integration/trusted-header-sso/introduction/
+        - 'Remote-User'
+        - 'Remote-Groups'
+        - 'Remote-Name'
+        - 'Remote-Email'
