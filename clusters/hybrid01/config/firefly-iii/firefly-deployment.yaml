@@ -100,7 +100,7 @@ spec:
       containers:
         - name: cron
           image: alpine:3.20.0
-          command: sh -c "echo \"0 3 * * * wget -qO- http://firefly:8080/api/v1/cron/$CRON_TOKEN\" | crontab - && crond -f -L /dev/stdout"
+          command: [ sh -c "echo \"0 3 * * * wget -qO- http://firefly:8080/api/v1/cron/$CRON_TOKEN\" | crontab - && crond -f -L /dev/stdout" ]
           env:
           - name: APP_KEY
             valueFrom:
