@@ -107,3 +107,33 @@ spec:
               secretKeyRef: 
                 name: firefly-cron-token
                 key: token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: importer
+  namespace: firefly
+  labels:
+    app: importer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: importer
+  template:
+    metadata:
+      labels:
+        app: importer
+    spec:
+      containers:
+        - name: importer
+          image: fireflyiii/data-importer:version-1.5.2
+          env:
+          - name: FIREFLY_III_URL
+            value: http://firefly:8080
+          - name: VANITY_URL
+            value: https://budget.jkulzer.dev
+          ports:
+            - name: importer-http
+              containerPort: 8080
+              protocol: TCP
