@@ -1,0 +1,17 @@
+---
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
+kind: Secret
+metadata:
+  name: firefly-cron-token
+  namespace: firefly
+spec:
+  secret:
+    name: firefly-cron-token
+    namespace: firefly
+  keys:
+    - key: token
+      templateString: "{{ TOKEN }}"
+  generators:
+    - name: TOKEN
+      type: string
+      length: 32
