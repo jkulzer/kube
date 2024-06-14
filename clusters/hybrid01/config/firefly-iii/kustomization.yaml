@@ -10,3 +10,4 @@ resources:
   - firefly-authpolicy.yaml
   - firefly-cnpg.yaml
   - firefly-app-key.yaml
+  - firefly-cron-token.yaml
