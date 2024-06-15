@@ -8,6 +8,7 @@ resources:
   - firefly-deployment.yaml
   - firefly-virtualservice.yaml
   - firefly-authpolicy.yaml
+  - firefly-authpolicy-allowed.yaml
   - firefly-cnpg.yaml
   - firefly-app-key.yaml
   - firefly-cron-token.yaml
