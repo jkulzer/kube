@@ -7,7 +7,8 @@ metadata:
 spec:
   replicas: 2
   args:
-   - "--maxmemory=1000"
+    - --maxmemory=1000M
+    - --proactor_threads=4
   authentication:
     passwordFromSecret:
       name: immich-dragonfly-secret
