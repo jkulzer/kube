@@ -13,9 +13,9 @@ spec:
   resources:
     requests:
       cpu: 25m
-      memory: 250Mi
+      memory: 1000Mi
     limits:
-      memory: 500Mi
+      memory: 1500Mi
 ---
 apiVersion: secrets.esg.jkulzer.dev/v1alpha1
 kind: Secret
