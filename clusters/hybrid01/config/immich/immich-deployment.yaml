@@ -128,6 +128,8 @@ spec:
                   key: password
             - name: IMMICH_CONFIG_FILE
               value: /config/client-secret
+            - name: UPLOAD_LOCATION
+              value: /usr/src/app/upload
           ports:
             - name: http
               containerPort: 3001
