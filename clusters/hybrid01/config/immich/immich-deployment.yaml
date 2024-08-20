@@ -80,76 +80,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: immich-microservices
-  namespace: immich
-  labels:
-    app: microservices
-spec:
-  revisionHistoryLimit: 3
-  replicas: 1
-  strategy:
-    type: Recreate
-  selector:
-    matchLabels:
-      app: microservices
-  template:
-    metadata:
-      labels:
-        app: microservices
-    spec:
-      containers:
-        - name: immich-microservices
-          image: ghcr.io/immich-app/immich-server:v1.112.0
-          imagePullPolicy: IfNotPresent
-          command:
-            - "/bin/sh"
-          args:
-            - ./start-microservices.sh
-          env:
-            - name: DB_DATABASE_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: immich-pg-app
-                  key: dbname
-            - name: DB_HOSTNAME
-              value: immich-pg-rw
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: immich-pg-app
-                  key: password
-            - name: DB_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: immich-pg-app
-                  key: username
-            - name: IMMICH_MACHINE_LEARNING_URL
-              value: http://immich-machine-learning:3003
-            - name: REDIS_HOSTNAME
-              value: dragonfly-immich
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: immich-dragonfly-secret
-                  key: password
-            - name: IMMICH_CONFIG_FILE
-              value: /config/client-secret
-          volumeMounts:
-            - name: library
-              mountPath: /usr/src/app/upload
-            - name: config
-              mountPath: /config
-      volumes:
-        - name: library
-          persistentVolumeClaim:
-            claimName: immich-media
-        - name: config
-          secret:
-            secretName: immich-oidc-secret
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: immich-server
   namespace: immich
   labels:
@@ -169,10 +99,6 @@ spec:
         - name: immich-server
           image: ghcr.io/immich-app/immich-server:v1.112.0
           imagePullPolicy: IfNotPresent
-          command:
-            - "/bin/sh"
-          args:
-            - ./start-server.sh
           env:
             - name: DB_DATABASE_NAME
               valueFrom:
