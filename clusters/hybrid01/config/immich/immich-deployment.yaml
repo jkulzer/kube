@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: immich-machine-learning
-          image: ghcr.io/immich-app/immich-machine-learning:v1.105.1 
+          image: ghcr.io/immich-app/immich-machine-learning:v1.112.1 
           env:
             - name: DB_DATABASE_NAME
               valueFrom:
@@ -99,7 +99,7 @@ spec:
     spec:
       containers:
         - name: immich-microservices
-          image: ghcr.io/immich-app/immich-server:v1.100.0
+          image: ghcr.io/immich-app/immich-server:v1.112.0
           imagePullPolicy: IfNotPresent
           command:
             - "/bin/sh"
@@ -167,7 +167,7 @@ spec:
     spec:
       containers:
         - name: immich-server
-          image: ghcr.io/immich-app/immich-server:v1.100.0
+          image: ghcr.io/immich-app/immich-server:v1.112.0
           imagePullPolicy: IfNotPresent
           command:
             - "/bin/sh"
