@@ -6,6 +6,8 @@ metadata:
   namespace: immich
 spec:
   replicas: 2
+  args:
+   - "--maxmemory=1000"
   authentication:
     passwordFromSecret:
       name: immich-dragonfly-secret
