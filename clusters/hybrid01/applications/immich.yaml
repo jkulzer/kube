@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: immich
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: immich
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/hybrid01/config/immich
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD

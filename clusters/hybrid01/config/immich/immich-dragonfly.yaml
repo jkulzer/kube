@@ -1,0 +1,36 @@
+---
+apiVersion: dragonflydb.io/v1alpha1
+kind: Dragonfly
+metadata:
+  name: dragonfly-immich
+  namespace: immich
+spec:
+  replicas: 2
+  authentication:
+    passwordFromSecret:
+      name: immich-dragonfly-secret
+      key: password
+  resources:
+    requests:
+      cpu: 25m
+      memory: 250Mi
+    limits:
+      memory: 500Mi
+---
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
+kind: Secret
+metadata:
+  name: immich-dragonfly-secret
+  namespace: immich
+spec:
+  secret:
+    name: immich-dragonfly-secret
+    namespace: immich
+  keys:
+    - key: password
+      templateString: "{{ SECRET}}"
+  generators:
+    - name: TOKEN
+      type: string
+      length: 128
+

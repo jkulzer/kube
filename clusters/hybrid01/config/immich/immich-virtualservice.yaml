@@ -1,0 +1,18 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  hosts:
+  - "images.jkulzer.dev"
+  gateways:
+  - istio-system/main-gateway
+  http:
+  - match:
+    route:
+    - destination:
+        host: immich-server
+        port:
+          number: 3001

@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - immich-ns.yaml
+  - immich-svc.yaml
+  - immich-cm.yaml
+  - immich-pvc.yaml
+  - immich-deployment.yaml
+  - immich-dragonfly.yaml
+  - immich-oidc-secret.yaml
+  - immich-virtualservice.yaml
+  - immich-cnpg.yaml
+  - immich-initialize-admin.yaml
