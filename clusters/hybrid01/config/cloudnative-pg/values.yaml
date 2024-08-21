@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 3
 
 crds:
   # -- Specifies whether the CRDs should be created when installing the chart.
