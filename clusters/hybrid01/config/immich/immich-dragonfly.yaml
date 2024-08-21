@@ -5,10 +5,11 @@ metadata:
   name: dragonfly-immich
   namespace: immich
 spec:
-  replicas: 2
+  replicas: 1
   args:
     - --maxmemory=1000M
     - --proactor_threads=2
+    - --default_lua_flags=allow-undeclared-keys
   authentication:
     passwordFromSecret:
       name: immich-dragonfly-secret
