@@ -38,6 +38,7 @@ server:
 external_services:
   istio:
     enabled: true
+    root_namespace: istio-system
   prometheus:
     url: "http://kube-prometheus-stack-prometheus.prometheus.svc.cluster.local:9090"
   grafana:
