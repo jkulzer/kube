@@ -1,5 +1,8 @@
 ## Discovery Settings
 pilot:
+  env:
+    - name: ENABLE_DEBUG_ON_HTTP
+      value: true
   autoscaleEnabled: false
   replicaCount: 3
   resources:
