@@ -113,6 +113,11 @@ data:
             subtitle: "Images and Videos"
             tag: "app"
             url: "https://images.jkulzer.dev"
+          - name: "Firefly-III"
+            logo: "https://raw.githubusercontent.com/firefly-iii/firefly-iii/develop/.github/assets/img/logo-small.png"
+            subtitle: "Budgeting"
+            tag: "app"
+            url: "https://budget.jkulzer.dev"
       - name: "Infrastructure"
         icon: "fas fa-conveyor-belt"
         items:
