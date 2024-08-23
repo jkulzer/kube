@@ -11,4 +11,4 @@ spec:
       database: synapse
       owner: synapse
   storage:
-    size: 5Gi
+    size: 25Gi
