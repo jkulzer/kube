@@ -62,6 +62,39 @@ data:
     # First level array represent a group.
     # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
     services:
+      - name: "User Software"
+        icon: "fas user"
+        items:
+          - name: "Element"
+            logo: "https://cdn.simpleicons.org/element"
+            subtitle: "Matrix frontend"
+            tag: "app"
+            url: "https://element.jkulzer.dev"
+          - name: "Immich"
+            logo: "https://immich.app/img/immich-logo-stacked-dark.svg"
+            subtitle: "Images and Videos"
+            tag: "app"
+            url: "https://images.jkulzer.dev"
+          - name: "Firefly-III"
+            logo: "https://raw.githubusercontent.com/firefly-iii/firefly-iii/develop/.github/assets/img/logo-small.png"
+            subtitle: "Budgeting"
+            tag: "app"
+            url: "https://budget.jkulzer.dev"
+      - name: "Infrastructure"
+        icon: "fas fa-conveyor-belt"
+        items:
+          - name: "ArgoCD"
+            logo: "https://cdn.simpleicons.org/argo"
+            subtitle: "Deployment"
+            tag: "app"
+            url: "https://argo.jkulzer.dev"
+            target: "_blank" # optional html a tag target attribute
+          - name: "Authelia"
+            logo: "https://www.authelia.com/images/authelia-title.png"
+            subtitle: "Authentication"
+            tag: "app"
+            url: "https://auth.jkulzer.dev"
+            target: "_blank" # optional html a tag target attribute
       - name: "Monitoring"
         icon: "fas fa-chart-line"
         items:
@@ -110,37 +143,4 @@ data:
             subtitle: "Resource Request recommendations"
             tag: "app"
             url: "https://goldilocks.jkulzer.dev"
-            target: "_blank" # optional html a tag target attribute
-      - name: "User Software"
-        icon: "fas user"
-        items:
-          - name: "Element"
-            logo: "https://cdn.simpleicons.org/element"
-            subtitle: "Matrix frontend"
-            tag: "app"
-            url: "https://element.jkulzer.dev"
-          - name: "Immich"
-            logo: "https://immich.app/img/immich-logo-stacked-dark.svg"
-            subtitle: "Images and Videos"
-            tag: "app"
-            url: "https://images.jkulzer.dev"
-          - name: "Firefly-III"
-            logo: "https://raw.githubusercontent.com/firefly-iii/firefly-iii/develop/.github/assets/img/logo-small.png"
-            subtitle: "Budgeting"
-            tag: "app"
-            url: "https://budget.jkulzer.dev"
-      - name: "Infrastructure"
-        icon: "fas fa-conveyor-belt"
-        items:
-          - name: "ArgoCD"
-            logo: "https://cdn.simpleicons.org/argo"
-            subtitle: "Deployment"
-            tag: "app"
-            url: "https://argo.jkulzer.dev"
-            target: "_blank" # optional html a tag target attribute
-          - name: "Authelia"
-            logo: "https://www.authelia.com/images/authelia-title.png"
-            subtitle: "Authentication"
-            tag: "app"
-            url: "https://auth.jkulzer.dev"
             target: "_blank" # optional html a tag target attribute
