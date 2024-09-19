@@ -179,11 +179,11 @@ metadata:
 spec:
   metadataPool:
     replicated:
-      size: 3
+      size: 2
   dataPools:
     - name: replicated
       replicated:
-        size: 3
+        size: 2
   preserveFilesystemOnDelete: false
   metadataServer:
     activeCount: 1
