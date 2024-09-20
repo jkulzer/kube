@@ -30,7 +30,7 @@ metadata:
 spec:
   failureDomain: host
   replicated:
-    size: 2
+    size: 3
 ---
 allowVolumeExpansion: true
 apiVersion: storage.k8s.io/v1
@@ -61,7 +61,7 @@ metadata:
 spec:
   failureDomain: host
   replicated:
-    size: 2
+    size: 1
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
@@ -210,11 +210,11 @@ metadata:
 spec:
   metadataPool:
     replicated:
-      size: 2
+      size: 3
   dataPools:
     - name: replicated
       replicated:
-        size: 2
+        size: 3
   preserveFilesystemOnDelete: false
   metadataServer:
     activeCount: 1
