@@ -6,6 +6,7 @@ resources:
   - authelia-ns.yaml
   - authelia-cm.yaml
   - authelia-deployment.yaml
+  - authelia-cnpg.yaml
   - ldap.yaml
   - ldap-pvc.yaml
   - authelia-oidc-issuer.yaml

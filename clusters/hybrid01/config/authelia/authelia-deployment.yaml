@@ -148,6 +148,23 @@ spec:
           value: /secrets/ldap-password/LLDAP_LDAP_USER_PASS
         - name: AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE
           value: /secrets/hmac-secret/HMAC_SECRET
+        - name: AUTHELIA_STORAGE_POSTGRES_ADDRESS
+          value: tcp://authelia-pg-rw.authelia.svc.cluster.local:5432
+        - name: AUTHELIA_STORAGE_POSTGRES_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: authelia-pg-app
+              key: dbname
+        - name: AUTHELIA_STORAGE_POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: authelia-pg-app
+              key: username
+        - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: authelia-pg-app
+              key: password
         - name: TZ
           value: Europe/Berlin
         startupProbe:
@@ -192,6 +209,9 @@ spec:
           name: config
           readOnly: true
           subPath: configuration.yaml
+        - mountPath: /secrets/authelia-pg-app
+          name: authelia-pg-app
+          readOnly: true
         - mountPath: /secrets/storage-encryption-key
           name: authelia-storage-encryption-key
           readOnly: true

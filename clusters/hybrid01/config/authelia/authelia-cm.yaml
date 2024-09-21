@@ -33,8 +33,11 @@ data:
         buffers:
           read: 4096
           write: 4096
+    storage:
+      postgres:
+        password: {{ env "AUTHELIA_STORAGE_POSTGRES_PASSWORD" }}
     totp:
-      disable: true
+      disable: false
       issuer: jkulzer.dev
       algorithm: sha1
       digits: 8
@@ -97,9 +100,6 @@ data:
       ban_time: 5m
       find_time: 2m
       max_retries: 3
-    storage:
-      local:
-        path: /config/db.sqlite3
     notifier:
       disable_startup_check: false
       filesystem:
