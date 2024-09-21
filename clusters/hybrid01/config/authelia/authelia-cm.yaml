@@ -101,8 +101,8 @@ data:
       find_time: 2m
       max_retries: 3
     notifier:
+      disable_startup_check: false
       smtp:
-        disable_startup_check: false
         address: 'smtp://in-v3.mailjet.com:587'
         timeout: '5s'
         username: {{ env "SMTP_USERNAME" }}
