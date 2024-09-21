@@ -103,7 +103,7 @@ data:
     notifier:
       disable_startup_check: false
       smtp:
-        address: 'smtp://in-v3.mailjet.com:587'
+        address: 'smtp://smtp.mailgun.org:587'
         timeout: '5s'
         username: {{ env "SMTP_USERNAME" }}
         password: {{ env "SMTP_PASSWORD" }}
@@ -182,7 +182,7 @@ data:
           client_name: Argo CD
           client_secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
           public: false
-          authorization_policy: two_factor
+          authorization_policy: one_factor
           redirect_uris:
             - https://argo.jkulzer.dev/auth/callback
           scopes:
@@ -194,7 +194,7 @@ data:
         - client_id: argocd-cli
           client_name: Argo CD (CLI)
           public: true
-          authorization_policy: two_factor
+          authorization_policy: one_factor
           redirect_uris:
             - http://localhost:8085/auth/callback
           scopes:
