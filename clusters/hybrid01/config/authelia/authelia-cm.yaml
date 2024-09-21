@@ -102,8 +102,13 @@ data:
       max_retries: 3
     notifier:
       disable_startup_check: false
-      filesystem:
-        filename: /config/notification.txt
+      address: 'smtp://in-v3.mailjet.com:587'
+      timeout: '5s'
+      username: {{ env "SMTP_USERNAME" }}
+      password: {{ env "SMTP_PASSWORD" }}
+      sender: "Authelia <server@jkulzer.dev>"
+      subject: "[Authelia] {title}"
+      startup_check_address: 'server@jkulzer.dev'
     access_control:
       default_policy: deny
       rules:
