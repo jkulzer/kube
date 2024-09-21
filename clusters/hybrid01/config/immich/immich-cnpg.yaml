@@ -20,4 +20,5 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS vectors;
         - ALTER USER immich WITH SUPERUSER
   storage:
+    storageClass: ceph-block-noreplication
     size: 5Gi
