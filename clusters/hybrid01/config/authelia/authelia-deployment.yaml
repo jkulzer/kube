@@ -209,9 +209,6 @@ spec:
           name: config
           readOnly: true
           subPath: configuration.yaml
-        - mountPath: /secrets/authelia-pg-app
-          name: authelia-pg-app
-          readOnly: true
         - mountPath: /secrets/storage-encryption-key
           name: authelia-storage-encryption-key
           readOnly: true
