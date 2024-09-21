@@ -108,19 +108,19 @@ data:
       default_policy: deny
       rules:
       - domain: 'goldilocks.jkulzer.dev'
-        policy: one_factor
+        policy: two_factor
         subject:
         - ['group:kubeadmin']
       - domain: 'kiali.jkulzer.dev'
-        policy: one_factor
+        policy: two_factor
         subject:
         - ['group:kubeadmin']
       - domain: 'prometheus.jkulzer.dev'
-        policy: one_factor
+        policy: two_factor
         subject:
         - ['group:kubeadmin']
       - domain: 'alertmanager.jkulzer.dev'
-        policy: one_factor
+        policy: two_factor
         subject:
         - ['group:kubeadmin']
       - domain: 'karma.jkulzer.dev'
@@ -140,7 +140,7 @@ data:
         subject:
         - ['group:kubeadmin']
       - domain: 'budget.jkulzer.dev'
-        policy: one_factor
+        policy: two_factor
         subject:
         - ['group:kubeadmin']
       - domain: 'cal.jkulzer.dev'
@@ -176,7 +176,7 @@ data:
           client_name: Argo CD
           client_secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
           public: false
-          authorization_policy: one_factor
+          authorization_policy: two_factor
           redirect_uris:
             - https://argo.jkulzer.dev/auth/callback
           scopes:
@@ -188,7 +188,7 @@ data:
         - client_id: argocd-cli
           client_name: Argo CD (CLI)
           public: true
-          authorization_policy: one_factor
+          authorization_policy: two_factor
           redirect_uris:
             - http://localhost:8085/auth/callback
           scopes:
