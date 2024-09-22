@@ -5,11 +5,11 @@ metadata:
   name: authelia-pg
   namespace: authelia
 spec:
-  instances: 3
+  instances: 1
   bootstrap:
     initdb:
       database: authelia
       owner: authelia
   storage:
-    storageClass: ceph-block-noreplication
+    storageClass: ceph-block
     size: 5Gi
