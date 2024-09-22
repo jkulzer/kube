@@ -5,7 +5,7 @@ metadata:
   name: firefly-pg
   namespace: firefly
 spec:
-  instances: 3
+  instances: 1
   bootstrap:
     initdb:
       database: firefly
