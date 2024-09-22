@@ -5,7 +5,7 @@ metadata:
   name: immich-pg
   namespace: immich
 spec:
-  instances: 3
+  instances: 1
   enableSuperuserAccess: true
   postgresql:
     shared_preload_libraries:
@@ -20,5 +20,4 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS vectors;
         - ALTER USER immich WITH SUPERUSER
   storage:
-    storageClass: ceph-block-noreplication
     size: 5Gi
