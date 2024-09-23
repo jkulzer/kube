@@ -107,7 +107,7 @@ spec:
   resources:
     cleanup:
       limits:
-        cpu: 500m
+        cpu: null
         memory: 1G
       requests:
         cpu: 500m
@@ -117,32 +117,32 @@ spec:
         cpu: 15m
         memory: 150M
       limits:
-        cpu: 25m
+        cpu: null
         memory: 250M
     exporter:
       requests:
         cpu: 15m
         memory: 40M
       limits:
-        cpu: 25m
+        cpu: null
         memory: 60M
     logcollector:
       requests:
         cpu: 15m
         memory: 15M
       limits:
-        cpu: 25m
+        cpu: null
         memory: 50M
     mgr:
       requests:
         cpu: 50m
         memory: 600M
       limits:
-        cpu: 1000m
+        cpu: null
         memory: 1G
     mgr-sidecar:
       limits:
-        cpu: 500m
+        cpu: null
         memory: 100Mi
       requests:
         cpu: 100m
@@ -152,14 +152,14 @@ spec:
         cpu: 50m
         memory: 512M
       limits:
-        cpu: 500m
+        cpu: null
         memory: 1G
     osd:
       requests:
         cpu: 50m
         memory: 1500M
       limits:
-        cpu: 2000m
+        cpu: null
         memory: 4G
     prepareosd:
       requests:
