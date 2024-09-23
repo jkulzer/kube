@@ -51,6 +51,7 @@ kubelet:
   enabled: true
   serviceMonitor:
     resource: true
+    resourcePath: "/metrics/resource"
 
 kubeControllerManager:
   enabled: false
