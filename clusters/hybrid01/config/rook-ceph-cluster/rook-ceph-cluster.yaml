@@ -115,10 +115,10 @@ spec:
     crashcollector:
       requests:
         cpu: 15m
-        memory: 15M
+        memory: 150M
       limits:
         cpu: 25m
-        memory: 25M
+        memory: 250M
     exporter:
       requests:
         cpu: 15m
