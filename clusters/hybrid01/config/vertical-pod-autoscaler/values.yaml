@@ -7,8 +7,8 @@ recommender:
   enabled: true
   extraArgs:
     v: "4"
-    pod-recommendation-min-cpu-millicores: 15
-    pod-recommendation-min-memory-mb: 10
+    pod-recommendation-min-cpu-millicores: 5
+    pod-recommendation-min-memory-mb: 5
     prometheus-address: |
       http://kube-prometheus-stack-prometheus.prometheus.svc.cluster.local:9090
     storage: prometheus
@@ -18,7 +18,7 @@ recommender:
       cpu: 15m
       memory: 50M
     limits:
-      cpu: 25m
+      cpu: null
       memory: 80M 
   podMonitor:
     enabled: true
