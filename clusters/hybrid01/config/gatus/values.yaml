@@ -14,14 +14,14 @@ resources:
     memory: 40M
 
 serviceMonitor:
-  enabled: true
-  interval: 1m
-  scrapeTimeout: 30s
+  enabled: false
+  # interval: 1m
+  # scrapeTimeout: 30s
 
 # Gatus configuration
 # ref: https://github.com/TwiN/gatus#configuration
 config:
-  metrics: true
+  # metrics: true
   endpoints:
     # - name: jkulzer.dev
     #   url: https://jkulzer.dev
