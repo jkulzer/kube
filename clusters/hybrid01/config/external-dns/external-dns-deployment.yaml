@@ -23,7 +23,6 @@ spec:
         - --registry=txt
         - --txt-owner-id=my-identifier
         - --provider=cloudflare
-        - --domain-filter=jkulzer.dev
         - --txt-prefix=external-dns
         env:
         - name: CF_API_TOKEN
