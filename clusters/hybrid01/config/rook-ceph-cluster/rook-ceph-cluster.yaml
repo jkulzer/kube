@@ -195,6 +195,7 @@ metadata:
   name: cephfs
   namespace: rook-ceph
 provisioner: rook-ceph.cephfs.csi.ceph.com
+allowVolumeExpansion: true
 parameters:
   # clusterID is the namespace where the rook cluster is running
   # If you change this namespace, also change the namespace below where the secret namespaces are defined
