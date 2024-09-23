@@ -19,7 +19,7 @@ spec:
         app: element
     spec:
       containers:
-      - image: vectorim/element-web
+      - image: vectorim/element-web:v1.11.77
         name: element
         ports:
           - containerPort: 80
@@ -32,6 +32,7 @@ spec:
             cpu: 10m
             memory: 15Mi
           limits:
+            cpu: null
             memory: 30Mi
       volumes:
       - name: element-config
