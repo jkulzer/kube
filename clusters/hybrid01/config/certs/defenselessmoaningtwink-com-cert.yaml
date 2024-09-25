@@ -11,7 +11,7 @@ spec:
       reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "istio-system"
   secretName: defenselessmoaningtwink-com-tls
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt-staging
   dnsNames:
   - "defenselessmoaningtwink.com"
   - "*.defenselessmoaningtwink.com"
