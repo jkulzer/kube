@@ -8,7 +8,7 @@ spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: jkulzer-dev-account-key
+      name: account-key
     solvers:
     - dns01:
         cloudflare:
