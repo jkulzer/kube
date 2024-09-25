@@ -21,7 +21,7 @@ spec:
       httpsRedirect: true
   - port:
       number: 443
-      name: https
+      name: https-jkulzer-dev
       protocol: HTTPS
     hosts:
     - "jkulzer.dev"
@@ -31,7 +31,7 @@ spec:
       credentialName: jkulzer-dev-tls
   - port:
       number: 443
-      name: https
+      name: https-defenselessmoaningtwink-com
       protocol: HTTPS
     hosts:
     - "defenselessmoaningtwink.com"
