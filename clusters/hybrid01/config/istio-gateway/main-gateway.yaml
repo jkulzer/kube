@@ -13,8 +13,10 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*.jkulzer.dev"
     - "jkulzer.dev"
+    - "*.jkulzer.dev"
+    - "defenselessmoaningtwink.com"
+    - "*.defenselessmoaningtwink.com"
     tls:
       httpsRedirect: true
   - port:
@@ -22,8 +24,18 @@ spec:
       name: https
       protocol: HTTPS
     hosts:
-    - "*.jkulzer.dev"
     - "jkulzer.dev"
+    - "*.jkulzer.dev"
     tls:
       mode: SIMPLE # enables HTTPS on this port
       credentialName: jkulzer-dev-tls
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+    - "defenselessmoaningtwink.com"
+    - "*.defenselessmoaningtwink.com"
+    tls:
+      mode: SIMPLE # enables HTTPS on this port
+      credentialName: defenselessmoaningtwink-com-tls
