@@ -1,0 +1,110 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lldap
+  labels: 
+    app: ldap
+spec:
+  selector:
+    matchLabels: 
+      app: ldap
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ldap
+    spec:
+      containers:
+      - name: lldap
+        image: nitnelave/lldap:stable
+        resources: 
+          requests:
+            cpu: 15m
+            memory: 30Mi
+          limits:
+            memory: 100Mi
+        env:
+        - name: HOSTNAME
+          value: "ldap.authelia-private.svc.cluster.local"
+        - name: LDAP_TLS
+          value: "false"
+        - name: TZ
+          value: Europe/Berlin
+        - name: LLDAP_LDAP_BASE_DN
+          value: "dc=defenselesssmoaningtwink,dc=com"
+        - name: LLDAP_LDAP_USER_PASS
+          valueFrom:
+            secretKeyRef:
+              name: ldap-admin-user-pass
+              key: LLDAP_LDAP_USER_PASS
+        - name: LLDAP_JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ldap-jwt-secret
+              key: LLDAP_JWT_SECRET
+        ports:
+        - name: ldap
+          containerPort: 3890
+          protocol: TCP
+        - name: ldap-ui
+          containerPort: 17170
+          protocol: TCP
+        volumeMounts:
+          - name: ldap-data
+            mountPath: /data
+      volumes:
+        - name: ldap-data
+          persistentVolumeClaim:
+            claimName: ldap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ldap
+spec:
+  selector:
+    app: ldap
+  ports:
+  - name: ldap
+    protocol: TCP
+    port: 3890
+    targetPort: ldap
+  - name: ldap-ui
+    protocol: TCP
+    port: 17170
+    targetPort: ldap-ui
+---
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
+kind: Secret
+metadata:
+  name: ldap-jwt-secret
+  namespace: authelia-private
+spec:
+  secret:
+    name: ldap-jwt-secret
+    namespace: authelia-private
+  keys:
+    - key: LLDAP_JWT_SECRET
+      templateString: "{{ SECRET }}"
+  generators:
+    - name: SECRET
+      type: string
+      length: 64
+---
+apiVersion: secrets.esg.jkulzer.dev/v1alpha1
+kind: Secret
+metadata:
+  name: ldap-admin-user-pass
+  namespace: authelia-private
+spec:
+  secret:
+    name: ldap-admin-user-pass
+    namespace: authelia-private
+  keys:
+    - key: LLDAP_LDAP_USER_PASS
+      templateString: "{{ PASS }}"
+  generators:
+    - name: PASS
+      type: string
+      length: 64

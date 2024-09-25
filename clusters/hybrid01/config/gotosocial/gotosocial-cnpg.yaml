@@ -1,0 +1,15 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: gotosocial-pg
+  namespace: gotosocial
+spec:
+  instances: 1
+  bootstrap:
+    initdb:
+      database: gotosocial
+      owner: gotosocial
+  storage:
+    storageClass: ceph-block
+    size: 15Gi

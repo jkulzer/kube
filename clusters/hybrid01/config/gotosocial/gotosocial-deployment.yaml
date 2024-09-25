@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gotosocial
+  namespace: gotosocial
+  labels:
+    app: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+        - name: gotosocial
+          image: superseriousbusiness/gotosocial:0.16.0
+          env:
+          - name: GTS_DB_TYPE
+            value: "sqlite"
+          - name: DB_HOST
+            value: gotosocial-pg-rw.gotosocial.svc.cluster.local
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: gotosocial-pg-app
+                key: dbname
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: gotosocial-pg-app
+                key: user
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: gotosocial-pg-app
+                key: password
+          - name: GTS_ACCOUNT_DOMAIN
+            # value: "socialtest.defenselessmoaningtwink.com"
+            value: "localhost"
+          - name: GTS_HOST
+            value: "localhost"
+          - name: GTS_PROTOCOL
+            value: "https"
+          - name: GTS_ACCOUNTS_REGISTRATION_OPEN
+            value: "true"
+          - name: GTS_DB_ADDRESS
+            value: ":memory:"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+      #     volumeMounts:
+      #       - name: data
+      #         mountPath: /gotosocial/public/system
+      # volumes:
+      #   - name: data
+      #     persistentVolumeClaim:
+      #       claimName: gotosocial-data
