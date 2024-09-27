@@ -8,7 +8,6 @@ controller:
       cpu: 75m
       memory: 200M
     limits:
-      cpu: 100m
       memory: 400M
 
 dashboard:
@@ -28,5 +27,4 @@ dashboard:
       cpu: 15m
       memory: 30Mi
     limits:
-      cpu: null
       memory: 75Mi
