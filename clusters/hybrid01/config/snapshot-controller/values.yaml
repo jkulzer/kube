@@ -1,0 +1,16 @@
+controller:
+  enabled: true
+
+  replicaCount: 3
+  serviceMonitor:
+    # Specifies whether a ServiceMonitor should be created
+    create: true
+
+  volumeSnapshotClasses: []
+#    - name: linstor-csi-delete
+#      annotations:
+#        snapshot.storage.kubernetes.io/is-default-class: "true"
+#      labels:
+#        velero.io/csi-volumesnapshot-class: "true"
+#      driver: linstor.csi.linbit.com
+#      deletionPolicy: Delete
