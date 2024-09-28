@@ -12,7 +12,7 @@ spec:
     enabled: true
     ssl: false
   cleanupPolicy:
-    allowUninstallWithVolumes: true
+    allowUninstallWithVolumes: false
     confirmation: ""
     sanitizeDisks:
       dataSource: zero
