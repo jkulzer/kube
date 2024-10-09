@@ -180,14 +180,14 @@ spec:
           volumeMounts:
             - name: init-script
               mountPath: /script
-          readinessProbe:
-            failureThreshold: 300
-            httpGet:
-              path: /
-              port: http-init
-            initialDelaySeconds: 0
-            periodSeconds: 1
-            timeoutSeconds: 1
+          # readinessProbe:
+            # failureThreshold: 300
+            # httpGet:
+            #   path: /
+            #   port: http-init
+            # initialDelaySeconds: 0
+            # periodSeconds: 1
+            # timeoutSeconds: 1
       volumes:
         - name: library
           persistentVolumeClaim:
