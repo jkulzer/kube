@@ -139,22 +139,22 @@ spec:
               mountPath: /usr/src/app/upload
             - name: config
               mountPath: /config
-          livenessProbe:
-            failureThreshold: 5
-            httpGet:
-              path: /api/server/ping
-              port: http
-            initialDelaySeconds: 0
-            periodSeconds: 10
-            timeoutSeconds: 1
-          readinessProbe:
-            failureThreshold: 5
-            httpGet:
-              path: /api/server/ping
-              port: http
-            initialDelaySeconds: 0
-            periodSeconds: 10
-            timeoutSeconds: 1
+          # livenessProbe:
+          #   failureThreshold: 5
+          #   httpGet:
+          #     path: /api/server/ping
+          #     port: http
+          #   initialDelaySeconds: 0
+          #   periodSeconds: 10
+          #   timeoutSeconds: 1
+          # readinessProbe:
+          #   failureThreshold: 5
+          #   httpGet:
+          #     path: /api/server/ping
+          #     port: http
+          #   initialDelaySeconds: 0
+          #   periodSeconds: 10
+          #   timeoutSeconds: 1
         - name: immich-init
           image: python:3.12
           command:
