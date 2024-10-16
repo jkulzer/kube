@@ -235,7 +235,7 @@ data:
           public: false
           authorization_policy: 'one_factor'
           redirect_uris:
-            - 'app.immich:/'
+            - 'app.immich:///oauth-callback'
             - 'https://images.jkulzer.dev/auth/login'
             - 'https://images.jkulzer.dev/user-settings'
           scopes:
