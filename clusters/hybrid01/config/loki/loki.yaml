@@ -23,7 +23,7 @@ data:
       retention_enabled: true
       retention_delete_delay: 168h
       retention_delete_worker_count: 150
-      delete_request_store: file_system
+      delete_request_store: filesystem
     auth_enabled: false
     server:
       http_listen_port: 3100
