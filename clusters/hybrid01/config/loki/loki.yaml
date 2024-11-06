@@ -18,7 +18,7 @@ metadata:
 data:
   loki.yaml: |
     compactor:
-      working_directory: /data/retention
+      working_directory: /retention
       compaction_interval: 10m
       retention_enabled: true
       retention_delete_delay: 168h
@@ -160,6 +160,8 @@ spec:
               subPath: 
             - name: wal
               mountPath: /wal
+            - name: retention
+              mountPath: /retention
           ports:
             - name: http-metrics
               containerPort: 3100
@@ -185,6 +187,8 @@ spec:
       terminationGracePeriodSeconds: 4800
       volumes:
         - name: wal
+          emptyDir: {}
+        - name: retention
           emptyDir: {}
         - name: config
           configMap:
