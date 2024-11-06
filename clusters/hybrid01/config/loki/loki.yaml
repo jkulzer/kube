@@ -21,7 +21,7 @@ data:
       working_directory: /data/retention
       compaction_interval: 10m
       retention_enabled: true
-      retention_delete_delay: 7d
+      retention_delete_delay: 168h
       retention_delete_worker_count: 150
       delete_request_store: file_system
     auth_enabled: false
