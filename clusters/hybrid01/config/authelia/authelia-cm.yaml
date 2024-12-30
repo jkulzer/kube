@@ -170,7 +170,8 @@ data:
             - "revocation"
             - "introspection"
           allowed_origins_from_client_redirect_uris: true
-        issuer_private_key: |
+        jwks:
+          - key: |
           '{{- fileContent "/secrets/authelia-oidc-issuer/tls.key" | nindent 6 }}'
         clients:
         - client_id: grafana
