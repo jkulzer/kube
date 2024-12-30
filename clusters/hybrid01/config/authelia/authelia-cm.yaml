@@ -153,6 +153,14 @@ data:
         policy: one_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'music.jkulzer.dev'
+        policy: one_factor
+        subject:
+        - ['group:kubeadmin']
+      - domain: 'musiclibrary.jkulzer.dev'
+        policy: one_factor
+        subject:
+        - ['group:kubeadmin']
     identity_providers:
       oidc:
         cors:
