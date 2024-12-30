@@ -38,7 +38,13 @@ server:
     enabled: true
     serviceMonitor:
       enabled: true
-  config:
+  ingress:
+    enabled: false
+
+configs:
+  cm:
+    create: true
+    url: https://argo.jkulzer.dev
     resource.customizations: |
       argoproj.io/Application:
         health.lua: |
@@ -64,13 +70,6 @@ server:
           - CiliumIdentity
         clusters:
           - "*"
-  ingress:
-    enabled: false
-
-configs:
-  cm:
-    create: true
-    url: https://argo.jkulzer.dev
     oidc.config: |
       name: Authelia
       issuer: https://auth.jkulzer.dev
