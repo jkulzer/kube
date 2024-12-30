@@ -156,7 +156,7 @@ spec:
           #   periodSeconds: 10
           #   timeoutSeconds: 1
         - name: immich-init
-          image: python:3.12
+          image: python:3.13
           command:
             - "python"
           args:
