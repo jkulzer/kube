@@ -120,7 +120,7 @@ spec:
       enableServiceLinks: false
       containers:
       - name: authelia
-        image: ghcr.io/authelia/authelia:4.38.8
+        image: ghcr.io/authelia/authelia:4.38.17
         imagePullPolicy: IfNotPresent
         command: ["authelia"]
         args:
