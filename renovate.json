@@ -1,12 +1,12 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "kubernetes": {
-    "fileMatch": [
-      "cluster/.+\\.yaml$"
-    ]
-  },
-  "branchConcurrentLimit": 25
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended"
+	],
+	"kubernetes": {
+		"fileMatch": [
+			"clusters/.+\\.yaml$"
+		]
+	},
+	"branchConcurrentLimit": 25
 }
