@@ -124,6 +124,8 @@ spec:
         imagePullPolicy: IfNotPresent
         command: ["authelia"]
         args:
+        # - "config"
+        # - "template"
         - --config=/configuration.yaml
         resources: 
           requests:
@@ -135,7 +137,7 @@ spec:
           # This enables the injection of env variables in the config
           # https://github.com/authelia/authelia/blob/master/docs/content/en/configuration/methods/files.md
         - name: X_AUTHELIA_CONFIG_FILTERS
-          value: "expand-env,template"
+          value: "template"
         - name: AUTHELIA_SERVER_DISABLE_HEALTHCHECK
           value: "true"
         - name: AUTHELIA_JWT_SECRET_FILE
