@@ -132,7 +132,7 @@ spec:
               value: /config/client-secret
           ports:
             - name: http
-              containerPort: 3001
+              containerPort: 2283
               protocol: TCP
           volumeMounts:
             - name: library
@@ -163,7 +163,7 @@ spec:
             - /script/immich-initialize-admin.py
           env:
             - name: IMMICH_URL
-              value: http://immich-server-internal.immich.svc.cluster.local:3001
+              value: http://immich-server-internal.immich.svc.cluster.local:2883
             - name: SERVER_PORT
               value: "8080"
             - name: EMAIL
