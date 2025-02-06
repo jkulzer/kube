@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: well-known
-        image: nginx:1.27.3
+        image: nginx:1.27.4
         ports:
         - name: well-known
           protocol: TCP
