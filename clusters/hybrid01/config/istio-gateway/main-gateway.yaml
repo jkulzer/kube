@@ -42,7 +42,7 @@ spec:
   - port:
       number: 25565
       name: tcp
-      protocol: HTTP
+      protocol: TCP
     hosts:
     - "jkulzer.dev"
     - "*.jkulzer.dev"
