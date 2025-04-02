@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
         - name: immich-server
-          image: ghcr.io/immich-app/immich-server:v1.123.0
+          image: ghcr.io/immich-app/immich-server:v1.131.3
           imagePullPolicy: IfNotPresent
           env:
             - name: IMMICH_LOG_LEVEL
