@@ -7,7 +7,7 @@ helmCharts:
     releaseName: reflector
     namespace: reflector
     repo: https://emberstack.github.io/helm-charts
-    version: 7.1.288
+    version: 9.0.322
     valuesFile: values.yaml
 
 resources:
