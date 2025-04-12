@@ -8,5 +8,14 @@
 			"clusters/.+\\.yaml$"
 		]
 	},
+	"packageRules": [
+		{
+			"matchUpdateTypes": [
+				"patch"
+			],
+			"matchCurrentVersion": "!/^0/",
+			"automerge": true
+		}
+	],
 	"branchConcurrentLimit": 25
 }
