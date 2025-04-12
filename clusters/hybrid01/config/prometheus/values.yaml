@@ -1,5 +1,9 @@
 namespaceOverride: "prometheus"
 
+crds:
+  upgradeJob:
+    enabled: true
+
 alertmanager:
   enabled: true
   apiVersion: v2
@@ -113,10 +117,6 @@ prometheus:
   serviceMonitor:
     selfMonitor: true
   prometheusSpec:
-    ruleSelectorNilUsesHelmValues: false
-    serviceMonitorSelectorNilUsesHelmValues: false
-    podMonitorSelectorNilUsesHelmValues: false
-    probeSelectorNilUsesHelmValues: false
     serviceMonitorSelector: {}
     serviceMonitorNamespaceSelector: {}
     retention: 1d
