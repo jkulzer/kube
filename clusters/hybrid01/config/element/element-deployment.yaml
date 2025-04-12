@@ -30,10 +30,10 @@ spec:
         resources:
           requests:
             cpu: 10m
-            memory: 15Mi
+            memory: 30Mi
           limits:
             cpu: null
-            memory: 30Mi
+            memory: 50Mi
       volumes:
       - name: element-config
         configMap:
