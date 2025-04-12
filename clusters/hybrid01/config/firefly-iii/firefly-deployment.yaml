@@ -92,7 +92,7 @@ spec:
         spec:
           containers:
           - name: cron
-            image: alpine:3.20.0
+            image: alpine:3.21.3
             imagePullPolicy: IfNotPresent
             command:
             - "wget -qO- http://firefly:8080/api/v1/cron/$CRON_TOKEN"
