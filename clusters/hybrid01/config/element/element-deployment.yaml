@@ -22,7 +22,9 @@ spec:
       - image: vectorim/element-web:v1.11.97
         name: element
         ports:
-          - containerPort: 80
+          - name: element
+            containerPort: 80
+            protocol: TCP
         volumeMounts:
         - name: element-config
           mountPath: /app/config.json
