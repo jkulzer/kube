@@ -27,7 +27,6 @@ spec:
             cpu: 15m
             memory: 25M
           limits:
-            cpu: null
             memory: 35M
         ports:
         - name: karma
