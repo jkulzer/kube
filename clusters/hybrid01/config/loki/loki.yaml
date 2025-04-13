@@ -19,10 +19,10 @@ data:
   loki.yaml: |
     compactor:
       working_directory: /retention
-      compaction_interval: 10m
-      retention_enabled: true
-      retention_delete_delay: 168h
-      retention_delete_worker_count: 150
+      compaction-interval: 10m
+      retention-enabled: true
+      retention-delete_delay: 168h
+      retention-delete_worker_count: 150
       delete_request_store: filesystem
     auth_enabled: false
     server:
@@ -41,13 +41,12 @@ data:
     schema_config:
       configs:
         - from: 2020-10-24
-          store: boltdb-shipper
+          store: tsdb
           object_store: filesystem
-          schema: v11
+          schema: v13
           index:
             prefix: index_
             period: 24h
-
     ruler:
       alertmanager_url: http://kube-prometheus-stack-alertmanager.prometheus.svc.cluster.local:9093
 ---
@@ -148,7 +147,7 @@ spec:
         []
       containers:
         - name: loki
-          image: "grafana/loki:2.9.13"
+          image: "grafana/loki:3.4.3"
           imagePullPolicy: IfNotPresent
           args:
             - "-config.file=/etc/loki/loki.yaml"
