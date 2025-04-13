@@ -19,6 +19,8 @@ deployment:
     sidecar.istio.io/inject: "true"
   pod_annotations:
     traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.43.0.1/32"
+    # trying fix from https://github.com/kiali/kiali/issues/6598
+    proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
   resources:
     requests:
       cpu: 10m
