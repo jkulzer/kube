@@ -18,7 +18,6 @@ recommender:
       cpu: 15m
       memory: 50M
     limits:
-      cpu: null
       memory: 80M 
   podMonitor:
     enabled: true
