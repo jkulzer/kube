@@ -19,10 +19,9 @@ data:
   loki.yaml: |
     compactor:
       working_directory: /retention
-      compaction-interval: 10m
-      retention-enabled: true
-      retention-delete_delay: 168h
-      retention-delete_worker_count: 150
+      compaction_interval: 10m
+      retention_delete_delay: 168h
+      retention_delete_worker_count: 150
       delete_request_store: filesystem
     auth_enabled: false
     server:
