@@ -6,6 +6,13 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-5"
 spec:
+  # see https://github.com/istio/istio/issues/44285
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    kind: ValidatingWebhookConfiguration
+    name: istiod-default-validator
+    jqPathExpressions:
+      - .webhooks[] | select(.name == "validation.istio.io") | .failurePolicy
   syncPolicy:
     automated:
       prune: true
