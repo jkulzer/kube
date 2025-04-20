@@ -24,6 +24,8 @@ spec:
         - --txt-owner-id=my-identifier
         - --provider=cloudflare
         - --txt-prefix=external-dns
+        - --domain-filter=jkulzer.dev
+        - --domain-filter=defenselessmoaningtwink.com
         env:
         - name: CF_API_TOKEN
           valueFrom: 
