@@ -17,6 +17,8 @@ spec:
     - "*.jkulzer.dev"
     - "defenselessmoaningtwink.com"
     - "*.defenselessmoaningtwink.com"
+    - "kibty.net"
+    - "*.kibty.net"
     tls:
       httpsRedirect: true
   - port:
@@ -39,6 +41,16 @@ spec:
     tls:
       mode: SIMPLE # enables HTTPS on this port
       credentialName: defenselessmoaningtwink-com-tls
+  - port:
+      number: 443
+      name: https-kibty-net
+      protocol: HTTPS
+    hosts:
+    - "kibty.net"
+    - "*.kibty.net"
+    tls:
+      mode: SIMPLE # enables HTTPS on this port
+      credentialName: kibty-net-tls
   - port:
       number: 25565
       name: tcp

@@ -13,4 +13,5 @@ helmCharts:
 resources:
   - main-gateway.yaml
   - jkulzer-dev-cert.yaml
+  - kibty-net-cert.yaml
   - defenselessmoaningtwink-com-cert.yaml
