@@ -14,3 +14,5 @@ opentofu/**/**/.terraform
 opentofu/**/**/.terraform.lock.hcl
 opentofu/**/**/terraform.tfstate
 opentofu/**/**/terraform.tfstate.backup
+
+.direnv/

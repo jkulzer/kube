@@ -136,12 +136,6 @@
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=goldilocks"></td>
 	</tr>
 	<tr>
-		<td><img width="64" src="https://landscape.cncf.io/logos/kyverno.svg"></td>
-		<td><a href="https://kyverno.io">Kyverno</a></td>
-		<td>Policy Management</td>
-        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=kyverno"></td>
-	</tr>
-	<tr>
 		<td><img width="64" src="https://grafana.com/docs/loki/latest/logo.png"></td>
 		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
 		<td>Log Aggregator</td>
