@@ -169,7 +169,7 @@ metadata:
 spec:
   failureDomain: host
   replicated:
-    size: 3
+    size: 2
 ---
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass
@@ -195,11 +195,11 @@ metadata:
 spec:
   metadataPool:
     replicated:
-      size: 3
+      size: 2
   dataPools:
     - name: replicated
       replicated:
-        size: 3
+        size: 2
   preserveFilesystemOnDelete: false
   metadataServer:
     activeCount: 1
