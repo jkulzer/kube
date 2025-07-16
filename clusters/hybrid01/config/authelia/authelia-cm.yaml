@@ -225,18 +225,6 @@ data:
             - "groups"
             - "email"
           userinfo_signed_response_alg: none
-        - client_id: synapse
-          client_name: Synapse (Matrix)
-          client_secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
-          public: false
-          authorization_policy: 'one_factor'
-          redirect_uris:
-            - 'https://jkulzer.dev/_synapse/client/oidc/callback'
-          scopes:
-            - 'openid'
-            - 'profile'
-            - 'email'
-          userinfo_signed_response_alg: none
         - client_id: immich
           client_name: Immich
           client_secret: '{{- fileContent "/secrets/immich-oidc-secret/hashed-client-secret" }}'
