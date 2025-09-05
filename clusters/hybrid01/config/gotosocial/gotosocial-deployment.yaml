@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: gotosocial
-          image: superseriousbusiness/gotosocial:0.16.0
+          image: superseriousbusiness/gotosocial:0.19.2
           env:
           - name: GTS_DB_TYPE
             value: "sqlite"
