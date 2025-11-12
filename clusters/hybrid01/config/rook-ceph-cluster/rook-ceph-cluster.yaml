@@ -56,7 +56,7 @@ spec:
       name: pg_autoscaler
   mon:
     allowMultiplePerNode: false
-    count: 1
+    count: 3
   monitoring:
     enabled: true
   network:
