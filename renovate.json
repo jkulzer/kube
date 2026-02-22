@@ -4,8 +4,8 @@
 		"config:recommended"
 	],
 	"kubernetes": {
-		"fileMatch": [
-			"clusters/.+\\.yaml$"
+		"managerFilePatterns": [
+			"/clusters/.+\\.yaml$/"
 		]
 	},
 	"packageRules": [
