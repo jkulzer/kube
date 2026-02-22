@@ -1,0 +1,101 @@
+crds:
+  install: true
+  migration:
+    enabled: true
+    podResources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+
+config:
+  create: true
+
+webhooksCleanup:
+  enabled: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+# // TODO: later
+grafana:
+  # -- Enable grafana dashboard creation.
+  enabled: false
+
+  # -- Configmap name template.
+  configMapName: '{{ include "kyverno.fullname" . }}-grafana'
+
+  # -- (string) Namespace to create the grafana dashboard configmap.
+  # If not set, it will be created in the same namespace where the chart is deployed.
+  namespace: ~
+
+  # -- Grafana dashboard configmap annotations.
+  annotations: {}
+
+  # -- Grafana dashboard configmap labels
+  labels:
+    grafana_dashboard: "1"
+
+  # -- create GrafanaDashboard custom resource referencing to the configMap.
+  # according to https://grafana-operator.github.io/grafana-operator/docs/examples/dashboard_from_configmap/readme/
+  grafanaDashboard:
+    create: false
+    folder: kyverno
+    allowCrossNamespaceImport: true
+    matchLabels:
+      dashboards: "grafana"
+
+admissionController:
+  certManager:
+    enabled: true
+
+  serviceMonitor:
+    enabled: true
+
+backgroundController:
+  enabled: true
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      cpu: 100m
+  serviceMonitor:
+    enabled: true
+
+cleanupController:
+  certManager:
+    enabled: true
+
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+
+  serviceMonitor:
+    enabled: true
+
+reportsController:
+  enabled: true
+  rbac:
+    create: true
+
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+
+  metricsService:
+    create: true
+
+  serviceMonitor:
+    enabled: true
