@@ -11,7 +11,7 @@ spec:
       reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "istio-system"
   secretName: jkulzer-dev-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
   dnsNames:
   - "jkulzer.dev"
   - "*.jkulzer.dev"
