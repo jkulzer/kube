@@ -5,6 +5,9 @@ metadata:
   name: rook-ceph
   namespace: rook-ceph
 spec:
+  cephConfig:
+    global:
+      osd_pool_default_size: "2"
   cephVersion:
     allowUnsupported: false
     image: quay.io/ceph/ceph:v20.2.0
