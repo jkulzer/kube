@@ -238,8 +238,6 @@ spec:
           readOnly: true
         - mountPath: /secrets/grafana-oidc-secret
           name: grafana-oidc-secret
-        - mountPath: /secrets/headscale-oidc-secret
-          name: headscale-oidc-secret
         - mountPath: /secrets/immich-oidc-secret
           name: immich-oidc-secret
         - mountPath: /secrets/argocd-oidc-secret
@@ -293,12 +291,6 @@ spec:
       - name: argocd-oidc-secret
         secret:
             secretName: argocd-oidc-secret
-            items:
-              - key: hashed-client-secret
-                path: hashed-client-secret
-      - name: headscale-oidc-secret
-        secret:
-            secretName: headscale-oidc-secret
             items:
               - key: hashed-client-secret
                 path: hashed-client-secret

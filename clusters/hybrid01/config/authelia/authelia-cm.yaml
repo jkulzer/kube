@@ -212,19 +212,6 @@ data:
             - profile
             - offline_access
           userinfo_signed_response_alg: none
-        - client_id: headscale
-          client_name: Headscale
-          client_secret: '{{- fileContent "/secrets/headscale-oidc-secret/hashed-client-secret" }}'
-          public: false
-          authorization_policy: one_factor
-          redirect_uris:
-            - https://vpn.jkulzer.dev/oidc/callback
-          scopes:
-            - "openid"
-            - "profile"
-            - "groups"
-            - "email"
-          userinfo_signed_response_alg: none
         - client_id: immich
           client_name: Immich
           client_secret: '{{- fileContent "/secrets/immich-oidc-secret/hashed-client-secret" }}'
