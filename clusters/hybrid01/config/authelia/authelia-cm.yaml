@@ -79,6 +79,12 @@ data:
           username: uid
           group_name: cn
           display_name: displayName
+          extra:
+            extra:
+              immichquota: # The attribute name from LDAP
+                name: 'immich_quota'
+                multi_valued: false
+                value_type: 'integer'
     password_policy:
       standard:
         enabled: true
@@ -171,6 +177,16 @@ data:
             - "revocation"
             - "introspection"
           allowed_origins_from_client_redirect_uris: true
+            ## See: https://www.authelia.com/c/oidc
+        claims_policies:
+          immich_policy:
+            custom_claims:
+              immich_quota:
+                attribute: 'immich_quota'
+        scopes:
+          immich_scope:
+            claims:
+              - 'immich_quota'
         jwks:
           - key: {{ secret "/secrets/authelia-oidc-issuer/tls.key" | mindent 10 "|" | msquote }}
         clients:
@@ -213,5 +229,7 @@ data:
             - 'openid'
             - 'profile'
             - 'email'
+            - 'immich_scope'
+          claims_policy: 'immich_policy'
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: client_secret_post
