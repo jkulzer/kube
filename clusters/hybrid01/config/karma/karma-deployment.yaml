@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: karma
-        image: ghcr.io/prymitive/karma:v0.122
+        image: ghcr.io/prymitive/karma:v0.123
         env:
         - name: ALERTMANAGER_URI
           value: http://kube-prometheus-stack-alertmanager.prometheus.svc.cluster.local:9093
