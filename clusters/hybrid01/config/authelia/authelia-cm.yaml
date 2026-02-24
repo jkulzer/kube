@@ -200,19 +200,6 @@ data:
             - email
             - profile
           userinfo_signed_response_alg: none
-        - client_id: argocd-cli
-          client_name: Argo CD (CLI)
-          public: true
-          authorization_policy: one_factor
-          redirect_uris:
-            - http://localhost:8085/auth/callback
-          scopes:
-            - openid
-            - groups
-            - email
-            - profile
-            - offline_access
-          userinfo_signed_response_alg: none
         - client_id: immich
           client_name: Immich
           client_secret: '{{- fileContent "/secrets/immich-oidc-secret/hashed-client-secret" }}'
