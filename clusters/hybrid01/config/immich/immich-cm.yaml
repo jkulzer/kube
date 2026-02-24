@@ -100,7 +100,7 @@ data:
         "buttonText": "Login with OAuth",
         "clientId": "",
         "clientSecret": "",
-        "defaultStorageQuota": 0,
+        "defaultStorageQuota": "",
         "enabled": false,
         "issuerUrl": "",
         "mobileOverrideEnabled": false,
