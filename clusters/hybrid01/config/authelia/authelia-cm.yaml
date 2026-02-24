@@ -91,7 +91,8 @@ data:
         enabled: false
     session:
       name: 'authelia_session'
-      domain: 'jkulzer.dev'
+      cookies:
+        - domain: 'jkulzer.dev'
       same_site: 'lax'
       expiration: 1h
       inactivity: 5m
