@@ -105,10 +105,10 @@ data:
         "issuerUrl": "",
         "mobileOverrideEnabled": false,
         "mobileRedirectUri": "",
-        "scope": "openid email profile immich_scope",
+        "scope": "openid email profile immichscope",
         "signingAlgorithm": "RS256",
         "storageLabelClaim": "preferred_username",
-        "storageQuotaClaim": "immich_quota"
+        "storageQuotaClaim": "immichquota"
       },
       "passwordLogin": {
         "enabled": true
