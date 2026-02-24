@@ -13,3 +13,4 @@ resources:
   - immich-virtualservice.yaml
   - immich-cnpg.yaml
   - immich-initialize-admin.yaml
+  - volsync-secret.yaml
