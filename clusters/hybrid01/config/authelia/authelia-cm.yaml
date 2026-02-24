@@ -80,11 +80,10 @@ data:
           group_name: cn
           display_name: displayName
           extra:
-            extra:
-              immichquota: # The attribute name from LDAP
-                name: 'immichquota'
-                multi_valued: false
-                value_type: 'integer'
+            immichquota: # The attribute name from LDAP
+              name: 'immichquota'
+              multi_valued: false
+              value_type: 'integer'
     password_policy:
       standard:
         enabled: true
