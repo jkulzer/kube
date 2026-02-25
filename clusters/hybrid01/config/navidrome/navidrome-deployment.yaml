@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: navidrome
+  namespace: navidrome
+  labels:
+    app: navidrome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: navidrome
+  template:
+    metadata:
+      labels:
+        app: navidrome
+    spec:
+      containers:
+        - name: navidrome
+          image: deluan/navidrome:0.54.5
+          env:
+          - name: TZ
+            value: Europe/Berlin
+          - name: ND_SCANNER_GROUPALBUMRELEASES
+            value: "true"
+          # - name: ND_LOGLEVEL
+          #   value: "debug"
+          - name: ND_REVERSEPROXYWHITELIST
+            value: "0.0.0.0/0"
+          - name: ND_BASEURL
+            value: "https://music.jkulzer.dev"
+          - name: ND_REVERSEPROXYUSERHEADER
+            value: remote-email
+          # - name: ND_MUSICFOLDER
+          #   value: /music
+          - name: ND_DATAFOLDER
+            value: /data
+          - name: ND_CACHEFOLDER
+            value: /cache
+          ports:
+            - name: http
+              containerPort: 4533
+              protocol: TCP
+          volumeMounts:
+            - name: music-library
+              mountPath: /music
+              readOnly: true
+            - name: data
+              mountPath: /data
+            - name: cache
+              mountPath: /cache
+      volumes:
+      - name: music-library
+        persistentVolumeClaim:
+          claimName: music-library
+      - name: data
+        persistentVolumeClaim:
+          claimName: navidrome-data
+      - name: cache
+        emptyDir:
+          medium: Memory

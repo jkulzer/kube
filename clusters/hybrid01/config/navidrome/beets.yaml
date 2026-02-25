@@ -1,0 +1,121 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: beets
+  namespace: navidrome
+  labels:
+    app: music-beets
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: music-beets
+  template:
+    metadata:
+      labels:
+        app: music-beets
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+      initContainers:
+        - name: plugins
+          image: ghcr.io/frantathefranta/beets-custom:2.2.0
+          command: 
+          - /bin/sh
+          - -c
+          - | 
+            pip install "beets[lastgenre,lyrics,fetchart,beets-copyartifacts3]"
+          # volumeMounts:
+          #   - name: beets-config
+          #     mountPath: "/config/config.yaml"
+          #     subPath: config.yaml
+          #     readOnly: true
+      containers:
+        - name: beets
+          image: ghcr.io/frantathefranta/beets-custom:2.2.0
+          command: 
+          # - /usr/local/bin/beet version
+          - /bin/sh
+          - -c
+          - |
+            while true; do sleep 2; done
+          ports:
+            - name: http
+              containerPort: 8337
+              protocol: TCP
+          volumeMounts:
+            - name: ingest
+              mountPath: /ingest
+            - name: music-library
+              mountPath: /library
+            - name: beets-data
+              mountPath: /data
+            - name: beets-config
+              mountPath: "/config/config.yaml"
+              subPath: config.yaml
+              readOnly: true
+      volumes:
+      - name: ingest
+        persistentVolumeClaim:
+          claimName: ingest
+      - name: music-library
+        persistentVolumeClaim:
+          claimName: music-library
+      - name: beets-data
+        persistentVolumeClaim:
+          claimName: beets-data
+      - name: beets-config
+        configMap:
+          name: beets-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: beets-config
+  namespace: navidrome
+data:
+  config.yaml: |
+    paths:
+      default: $albumartist/$album%aunique{}/$track $title
+      singleton: $artist/$title
+      comp: Compilations/$album%aunique{}/$track $title
+    directory: /library
+    library: /data/beets.db
+    discogs:
+      source_weight: 0.5
+    import:
+      move: true
+      fetchart:
+        auto: yes
+      embedart:
+        auto: yes
+        ifempty: yes
+    plugins:
+      - lastgenre
+      - lyrics 
+      - fetchart
+      - copyartifacts
+    copyartifacts:
+      extensions: .*
+      print_ignored: yes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: beets
+  namespace: navidrome
+  labels:
+    app: music-beets
+  annotations:
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8337
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: music-beets
