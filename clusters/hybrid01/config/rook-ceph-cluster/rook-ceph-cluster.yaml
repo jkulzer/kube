@@ -109,7 +109,7 @@ spec:
         memory: 600M
       limits:
         cpu: null
-        memory: 1G
+        memory: 2G
     mgr-sidecar:
       limits:
         cpu: null
