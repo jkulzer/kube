@@ -7,10 +7,10 @@ metadata:
 spec:
   sourcePVC: immich-media
   trigger:
-    schedule: "30 4 * * *" # at 4:30
+    schedule: "30 3 * * *" # at 4:30
   rclone:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/immich/immich-media"
     rcloneConfig: "volsync-secret"
-    copyMethod: Snapshot
+    copyMethod: Clone
     volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
