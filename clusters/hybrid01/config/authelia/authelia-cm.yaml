@@ -131,6 +131,10 @@ data:
         policy: two_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'speedtest.jkulzer.dev'
+        policy: two_factor
+        subject:
+        - ['group:kubeadmin']
       - domain: 'alertmanager.jkulzer.dev'
         policy: two_factor
         subject:

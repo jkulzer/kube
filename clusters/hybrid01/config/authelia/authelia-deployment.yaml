@@ -94,6 +94,8 @@ metadata:
   name: authelia
   labels: 
     app.kubernetes.io/name: authelia
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels: 
