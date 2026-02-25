@@ -1,0 +1,36 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 116.203.211.246/32
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: default-advertisment
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - default-pool
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: internal-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.42.128/26
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: internal-advertisment
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - internal-pool

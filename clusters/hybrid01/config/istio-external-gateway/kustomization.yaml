@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: gateway
+    releaseName: gateway
+    namespace: istio-external-gateway
+    repo: https://istio-release.storage.googleapis.com/charts
+    version: 1.29.0
+    valuesFile: values.yaml
+
+resources:
+  - external-gateway.yaml
+  - external-gateway-ns.yaml
+  - jkulzer-dev-cert.yaml
+  - defenselessmoaningtwink-com-cert.yaml

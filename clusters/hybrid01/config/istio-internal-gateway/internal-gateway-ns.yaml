@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: headscale
+  name: istio-internal-gateway
   labels:
     pod-security.kubernetes.io/enforce: privileged
     goldilocks.fairwinds.com/enabled: "true"

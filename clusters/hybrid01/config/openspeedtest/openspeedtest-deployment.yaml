@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openspeedtest
+  namespace: openspeedtest
+  labels:
+    app: openspeedtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openspeedtest
+  template:
+    metadata:
+      labels:
+        app: openspeedtest
+    spec:
+      containers:
+      - image: openspeedtest/latest:v2.0.6
+        name: openspeedtest
+        ports:
+          - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: openspeedtest
+  name: openspeedtest
+  namespace: openspeedtest
+spec:
+  ports:
+  - name: openspeedtest
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: openspeedtest
+  type: ClusterIP

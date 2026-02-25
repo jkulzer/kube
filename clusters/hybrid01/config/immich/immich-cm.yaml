@@ -100,15 +100,14 @@ data:
         "buttonText": "Login with OAuth",
         "clientId": "",
         "clientSecret": "",
-        "defaultStorageQuota": 0,
         "enabled": false,
         "issuerUrl": "",
         "mobileOverrideEnabled": false,
         "mobileRedirectUri": "",
-        "scope": "openid email profile",
+        "scope": "openid email profile immichscope",
         "signingAlgorithm": "RS256",
         "storageLabelClaim": "preferred_username",
-        "storageQuotaClaim": "immich_quota"
+        "storageQuotaClaim": "immichquota"
       },
       "passwordLogin": {
         "enabled": true

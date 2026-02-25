@@ -94,6 +94,8 @@ metadata:
   name: authelia
   labels: 
     app.kubernetes.io/name: authelia
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   selector:
     matchLabels: 
@@ -120,7 +122,7 @@ spec:
       enableServiceLinks: false
       containers:
       - name: authelia
-        image: ghcr.io/authelia/authelia:4.38.17
+        image: ghcr.io/authelia/authelia:4.39.15
         imagePullPolicy: IfNotPresent
         command: ["authelia"]
         args:
@@ -238,8 +240,6 @@ spec:
           readOnly: true
         - mountPath: /secrets/grafana-oidc-secret
           name: grafana-oidc-secret
-        - mountPath: /secrets/headscale-oidc-secret
-          name: headscale-oidc-secret
         - mountPath: /secrets/immich-oidc-secret
           name: immich-oidc-secret
         - mountPath: /secrets/argocd-oidc-secret
@@ -293,12 +293,6 @@ spec:
       - name: argocd-oidc-secret
         secret:
             secretName: argocd-oidc-secret
-            items:
-              - key: hashed-client-secret
-                path: hashed-client-secret
-      - name: headscale-oidc-secret
-        secret:
-            secretName: headscale-oidc-secret
             items:
               - key: hashed-client-secret
                 path: hashed-client-secret

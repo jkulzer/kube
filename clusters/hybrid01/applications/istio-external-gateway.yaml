@@ -1,21 +1,20 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: headscale
+  name: istio-external-gateway
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "-4"
 spec:
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
   destination:
-    namespace: headscale
+    namespace: istio-external-gateway
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: clusters/hybrid01/config/headscale
+    path: clusters/hybrid01/config/istio-external-gateway
     repoURL: https://github.com/jkulzer/kube
     targetRevision: HEAD

@@ -8,7 +8,8 @@ spec:
   hosts:
   - "goldilocks.jkulzer.dev"
   gateways:
-  - istio-system/main-gateway
+  - istio-external-gateway/external-gateway
+  - istio-internal-gateway/internal-gateway
   http:
   - route:
     - destination:

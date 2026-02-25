@@ -25,7 +25,7 @@ spec:
         runAsUser: 472
       containers:
       - name: grafana
-        image: grafana/grafana:12.0.2
+        image: grafana/grafana:12.4.0
         env:
         - name: GF_SERVER_ROOT_URL
           value: "https://grafana.jkulzer.dev"

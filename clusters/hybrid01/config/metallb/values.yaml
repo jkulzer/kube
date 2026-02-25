@@ -13,6 +13,10 @@ controller:
     limits:
       cpu: 50m
       memory: 200M
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
 
 speaker:
   logLevel: info

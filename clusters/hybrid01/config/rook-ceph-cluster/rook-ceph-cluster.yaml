@@ -5,9 +5,12 @@ metadata:
   name: rook-ceph
   namespace: rook-ceph
 spec:
+  cephConfig:
+    global:
+      osd_pool_default_size: "2"
   cephVersion:
     allowUnsupported: false
-    image: quay.io/ceph/ceph:v19.2.2
+    image: quay.io/ceph/ceph:v20.2.0
   dashboard:
     enabled: true
     ssl: false
@@ -49,13 +52,13 @@ spec:
     maxLogSize: 500M
     periodicity: daily
   mgr:
-    allowMultiplePerNode: true
+    allowMultiplePerNode: false
     count: 3
     modules:
     - enabled: true
       name: pg_autoscaler
   mon:
-    allowMultiplePerNode: true
+    allowMultiplePerNode: false
     count: 3
   monitoring:
     enabled: true
