@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-internal-gateway
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-4"
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  destination:
+    namespace: istio-internal-gateway
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: clusters/hybrid01/config/istio-internal-gateway
+    repoURL: https://github.com/jkulzer/kube
+    targetRevision: HEAD

@@ -13,4 +13,4 @@ helmCharts:
 
 resources:
   - metallb-ns.yaml
-  - metallb-cm.yaml
+  - metallb-pools.yaml

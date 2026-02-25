@@ -1,0 +1,50 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: internal-gateway
+  namespace: istio-internal-gateway
+spec:
+  selector:
+    istio: gateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "jkulzer.dev"
+    - "*.jkulzer.dev"
+    - "defenselessmoaningtwink.com"
+    - "*.defenselessmoaningtwink.com"
+    tls:
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: https-jkulzer-dev
+      protocol: HTTPS
+    hosts:
+    - "jkulzer.dev"
+    - "*.jkulzer.dev"
+    tls:
+      mode: SIMPLE # enables HTTPS on this port
+      credentialName: jkulzer-dev-tls
+  - port:
+      number: 443
+      name: https-defenselessmoaningtwink-com
+      protocol: HTTPS
+    hosts:
+    - "defenselessmoaningtwink.com"
+    - "*.defenselessmoaningtwink.com"
+    tls:
+      mode: SIMPLE # enables HTTPS on this port
+      credentialName: defenselessmoaningtwink-com-tls
+  - port:
+      number: 25565
+      name: tcp
+      protocol: TCP
+    hosts:
+    - "jkulzer.dev"
+    - "*.jkulzer.dev"
+    - "defenselessmoaningtwink.com"
+    - "*.defenselessmoaningtwink.com"

@@ -5,12 +5,13 @@ kind: Kustomization
 helmCharts:
   - name: gateway
     releaseName: gateway
-    namespace: istio-system
+    namespace: istio-internal-gateway
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.29.0
     valuesFile: values.yaml
 
 resources:
-  - main-gateway.yaml
+  - internal-gateway.yaml
+  - internal-gateway-ns.yaml
   - jkulzer-dev-cert.yaml
   - defenselessmoaningtwink-com-cert.yaml
