@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: navidrome
-          image: deluan/navidrome:0.54.5
+          image: deluan/navidrome:0.60.3
           env:
           - name: TZ
             value: Europe/Berlin
