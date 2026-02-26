@@ -30,39 +30,40 @@ spec:
               mountPath: /music
             - name: data
               mountPath: /data
-            - name: config
-              mountPath: /.filebrowser.json
-              subPath: .filebrowser.json
+            # - name: config
+            #   mountPath: /.filebrowser.json
+            #   subPath: .filebrowser.json
       containers:
         - name: filebrowser
-          image: filebrowser/filebrowser:v2.31.2
-          # env:
-          # - name: "FB_AUTH.METHOD"
-          #   value: "proxy" 
-          # - name: "FB_AUTH.HEADER"
-          #   value: "remote-email"
+          image: filebrowser/filebrowser:v2.60.0
+          # command: 
+          # - "/bin/filebrowser config set --auth.method=noauth && /bin/filebrowser\""
+          # - "/bin/bash -c \"echo hello\""
+          env:
+          - name: "FB_AUTH.METHOD"
+            value: "noauth" 
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 80
               protocol: TCP
           volumeMounts:
             - name: ingest
               mountPath: /music
             - name: data
               mountPath: /data
-            - name: config
-              mountPath: /.filebrowser.json
-              subPath: .filebrowser.json
+            # - name: config
+            #   mountPath: /config
       volumes:
       - name: ingest
         persistentVolumeClaim:
           claimName: ingest
       - name: data
-        persistentVolumeClaim:
-          claimName: filebrowser-data
-      - name: config
-        configMap:
-          name: filebrowser-config
+        emptyDir: {}
+        # persistentVolumeClaim:
+        #   claimName: filebrowser-data
+      # - name: config
+      #   configMap:
+      #     name: filebrowser-config
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -86,13 +87,13 @@ data:
   # "auth.header": "remote-email",
   # "method": "proxy",
   # "header": "remote-email"
-  .filebrowser.json: |
+  settings.json: |
     {
       "address": "0.0.0.0",
-      "port": 8080,
+      "port": 80,
       "log": "stdout",
-      "database": "/data/filebrowser.db",
       "root": "/music"
+      "database": "/data/filebrowser.db",
     }
 ---
 apiVersion: v1
@@ -106,7 +107,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 8080
+    - port: 80
       targetPort: http
       protocol: TCP
       name: http
@@ -122,14 +123,15 @@ spec:
   hosts:
   - "musiclibrary.jkulzer.dev"
   gateways:
-  - istio-system/main-gateway
+  - istio-external-gateway/external-gateway
+  - istio-internal-gateway/internal-gateway
   http:
   - match:
     route:
     - destination:
         host: filebrowser
         port:
-          number: 8080
+          number: 80
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
