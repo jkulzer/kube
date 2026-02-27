@@ -2,10 +2,12 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: filebrowser
+  name: copyparty
   namespace: navidrome
   labels:
     app: music-filebrowser
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
@@ -16,85 +18,56 @@ spec:
       labels:
         app: music-filebrowser
     spec:
-      initContainers:
-        - name: auth-config
-          image: filebrowser/filebrowser:v2.31.2
-          args: 
-          - "config"
-          - "set"
-          - "--auth.method=noauth" 
-          # - "--auth.method=proxy" 
-          # - "--auth.header=remote-email"
-          volumeMounts:
-            - name: ingest
-              mountPath: /music
-            - name: data
-              mountPath: /data
-            # - name: config
-            #   mountPath: /.filebrowser.json
-            #   subPath: .filebrowser.json
       containers:
-        - name: filebrowser
-          image: filebrowser/filebrowser:v2.60.0
-          # command: 
-          # - "/bin/filebrowser config set --auth.method=noauth && /bin/filebrowser\""
-          # - "/bin/bash -c \"echo hello\""
-          env:
-          - name: "FB_AUTH.METHOD"
-            value: "noauth" 
+        - name: copyparty
+          image: ghcr.io/9001/copyparty-ac:1.20.10 
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 3923
               protocol: TCP
           volumeMounts:
             - name: ingest
-              mountPath: /music
-            - name: data
-              mountPath: /data
-            # - name: config
-            #   mountPath: /config
+              mountPath: /ingest
+            - name: music-library
+              mountPath: /library
+            - name: config
+              mountPath: /cfg
       volumes:
       - name: ingest
         persistentVolumeClaim:
           claimName: ingest
-      - name: data
-        emptyDir: {}
-        # persistentVolumeClaim:
-        #   claimName: filebrowser-data
-      # - name: config
-      #   configMap:
-      #     name: filebrowser-config
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: filebrowser-data
-  namespace: navidrome
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+      - name: music-library
+        persistentVolumeClaim:
+          claimName: music-library
+      - name: config
+        configMap:
+          name: copyparty-config
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: filebrowser-config
+  name: copyparty-config
   namespace: navidrome
+  labels:
+    app: music-filebrowser
 data:
-  # "auth.method": "proxy",
-  # "auth.header": "remote-email",
-  # "method": "proxy",
-  # "header": "remote-email"
-  settings.json: |
-    {
-      "address": "0.0.0.0",
-      "port": 80,
-      "log": "stdout",
-      "root": "/music"
-      "database": "/data/filebrowser.db",
-    }
+      # xf-host musiclibrary.jkulzer.dev
+    # [global]
+  copyparty.conf: |
+    rproxy: -1
+    theme: 4
+    idp-h-usr: remote-email
+    idp-h-grp: remote-groups
+    [/ingest]
+      /music
+      accs:
+        r: @kubeadmin
+        w: @kubeadmin
+    [/library]
+      /library
+      accs:
+        r: *
+        w: ""
 ---
 apiVersion: v1
 kind: Service
@@ -103,11 +76,10 @@ metadata:
   namespace: navidrome
   labels:
     app: music-filebrowser
-  annotations:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: 3923
       targetPort: http
       protocol: TCP
       name: http
@@ -131,7 +103,7 @@ spec:
     - destination:
         host: filebrowser
         port:
-          number: 80
+          number: 3923
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
