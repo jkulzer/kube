@@ -82,6 +82,7 @@ configs:
         - email
         - groups
       enableUserInfoGroups: true
+      userInfoPath: '/api/oidc/userinfo'
   rbac:
     create: true
     policy.csv: |
