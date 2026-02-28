@@ -85,6 +85,7 @@ configs:
     create: true
     policy.csv: |
       g, kubeadmin, role:admin
+    scopes: "[groups]"
 
 repoServer:
   resources:
