@@ -11,3 +11,5 @@ resources:
   - navidrome-authpolicy.yaml
   - filebrowser.yaml
   - beets.yaml
+  - volsync-secret.yaml
+  - navidrome-backup.yaml

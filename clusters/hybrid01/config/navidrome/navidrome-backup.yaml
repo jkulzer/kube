@@ -1,0 +1,16 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: music-library
+  namespace: navidrome
+spec:
+  sourcePVC: music-library
+  trigger:
+    schedule: "30 2 * * *" # at 3:30
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/navidrome/music-library"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Clone
+    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
