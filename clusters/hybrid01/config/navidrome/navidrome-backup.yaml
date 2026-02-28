@@ -14,3 +14,35 @@ spec:
     rcloneConfig: "volsync-secret"
     copyMethod: Clone
     volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: navidrome-data
+  namespace: navidrome
+spec:
+  sourcePVC: navidrome-data
+  trigger:
+    schedule: "30 2 * * *" # at 3:30
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/navidrome/navidrome-data"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Clone
+    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: beets-data
+  namespace: navidrome
+spec:
+  sourcePVC: beets-data
+  trigger:
+    schedule: "30 2 * * *" # at 3:30
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/navidrome/beets-data"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Clone
+    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
