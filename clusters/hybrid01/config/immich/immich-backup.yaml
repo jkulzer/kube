@@ -14,3 +14,19 @@ spec:
     rcloneConfig: "volsync-secret"
     copyMethod: Clone
     volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: immich-pg-1
+  namespace: immich
+spec:
+  sourcePVC: immich-pg-1
+  trigger:
+    schedule: "30 3 * * *" # at 4:30
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/immich/immich-pg-1"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Clone
+    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
