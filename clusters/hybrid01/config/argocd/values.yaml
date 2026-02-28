@@ -81,6 +81,7 @@ configs:
         - profile
         - email
         - groups
+      enableUserInfoGroups: true
   rbac:
     create: true
     policy.csv: |
