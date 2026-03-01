@@ -32,6 +32,16 @@ spec:
             value: "https://music.jkulzer.dev"
           - name: ND_REVERSEPROXYUSERHEADER
             value: remote-email
+          - name: ND_LASTFM_APIKEY
+            valueFrom:
+              secretKeyRef:
+                name: lastfm-credentials
+                key: ND_LASTFM_APIKEY
+          - name: ND_LASTFM_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: lastfm-credentials
+                key: ND_LASTFM_SECRET
           # - name: ND_MUSICFOLDER
           #   value: /music
           - name: ND_DATAFOLDER
