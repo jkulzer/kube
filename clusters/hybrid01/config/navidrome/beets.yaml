@@ -37,7 +37,7 @@ spec:
           #     readOnly: true
       containers:
         - name: beets
-          image: ghcr.io/frantathefranta/beets-custom:2.2.0
+          image: ghcr.io/frantathefranta/beets-custom:2.5.1
           command: 
           # - /usr/local/bin/beet version
           - /bin/sh
