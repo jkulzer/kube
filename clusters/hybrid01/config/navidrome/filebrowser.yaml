@@ -62,6 +62,8 @@ data:
       /ingest
       accs:
         rwmd: @acct
+      flags:
+        xm: aw,f,j,t3600,bin/hooks/wget.py
     [/library]
       /library
       accs:
