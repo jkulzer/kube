@@ -59,10 +59,9 @@ data:
     idp-h-usr: remote-email
     idp-h-grp: remote-groups
     [/ingest]
-      /music
+      /ingest
       accs:
-        r: @kubeadmin
-        w: @kubeadmin
+        rwmd: @acct
     [/library]
       /library
       accs:

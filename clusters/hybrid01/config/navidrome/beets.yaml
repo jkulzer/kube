@@ -6,6 +6,8 @@ metadata:
   namespace: navidrome
   labels:
     app: music-beets
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   selector:
@@ -22,7 +24,7 @@ spec:
         fsGroup: 0
       initContainers:
         - name: plugins
-          image: ghcr.io/frantathefranta/beets-custom:2.2.0
+          image: ghcr.io/frantathefranta/beets-custom:2.5.1
           command: 
           - /bin/sh
           - -c
@@ -95,7 +97,6 @@ data:
         ifempty: yes
     plugins:
       - lastgenre
-      - lyrics 
       - fetchart
       - copyartifacts
     copyartifacts:
