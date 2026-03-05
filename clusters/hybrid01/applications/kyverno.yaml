@@ -7,7 +7,8 @@ metadata:
     argocd.argoproj.io/sync-wave: "-2"
 spec:
   ignoreDifferences:
-  - kind: CustomResourceDefinition
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
     jqPathExpressions:
       -  .spec.template.metadata | select(.labels == {} or .labels == null)
   syncPolicy:
