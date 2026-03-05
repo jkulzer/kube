@@ -9,7 +9,7 @@ spec:
   ignoreDifferences:
   - kind: CustomResourceDefinition
     jqPathExpressions:
-      - .spec.template.metadata.labels | select( . == {} )
+      -  .spec.template.metadata | select(.labels == {} or .labels == null)
   syncPolicy:
     syncOptions:
     - ServerSideApply=true
