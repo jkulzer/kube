@@ -117,6 +117,10 @@ prometheus:
   serviceMonitor:
     selfMonitor: true
   prometheusSpec:
+    # this makes prometheus monitor every namespace for podmonitors and servicemonitors
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
     serviceMonitorSelector: {}
     serviceMonitorNamespaceSelector: {}
     retention: 1d
