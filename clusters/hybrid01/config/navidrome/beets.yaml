@@ -29,7 +29,7 @@ spec:
           - /bin/sh
           - -c
           - | 
-            pip install "beets[lastgenre,lyrics,fetchart,beets-copyartifacts3]"
+            pip install "beets[lastgenre,lyrics,fetchart]"
           # volumeMounts:
           #   - name: beets-config
           #     mountPath: "/config/config.yaml"
@@ -98,10 +98,6 @@ data:
     plugins:
       - lastgenre
       - fetchart
-      - copyartifacts
-    copyartifacts:
-      extensions: .*
-      print_ignored: yes
 ---
 apiVersion: v1
 kind: Service
