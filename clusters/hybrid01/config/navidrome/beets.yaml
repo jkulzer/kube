@@ -96,6 +96,7 @@ data:
         auto: yes
         ifempty: yes
     plugins:
+      - musicbrainz
       - lastgenre
       - fetchart
 ---
