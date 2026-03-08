@@ -28,6 +28,7 @@ deployment:
     limits:
       memory: 200Mi
   view_only_mode: true
+  cluster_wide_access: true
 
 server:
   port: 20001
