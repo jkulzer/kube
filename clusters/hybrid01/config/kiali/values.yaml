@@ -23,10 +23,10 @@ deployment:
     proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
   resources:
     requests:
-      cpu: 10m
-      memory: 150Mi
+      cpu: 100m
+      memory: 400Mi
     limits:
-      memory: 200Mi
+      memory: 500Mi
   view_only_mode: true
   cluster_wide_access: true
 
