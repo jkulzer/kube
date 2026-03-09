@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: istio-external-gateway
+  namespace: istio-external-gateway
+spec:
+  podMetricsEndpoints:
+  - path: /stats/prometheus
+    port: http-envoy-prom
+  selector:
+    matchLabels:
+      app: external-gateway

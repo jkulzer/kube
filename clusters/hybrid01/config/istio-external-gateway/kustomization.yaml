@@ -13,5 +13,6 @@ helmCharts:
 resources:
   - external-gateway.yaml
   - external-gateway-ns.yaml
+  - external-gateway-podmonitor.yaml
   - jkulzer-dev-cert.yaml
   - defenselessmoaningtwink-com-cert.yaml
