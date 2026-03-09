@@ -24,9 +24,9 @@ deployment:
   resources:
     requests:
       cpu: 10m
-      memory: 50Mi
+      memory: 150Mi
     limits:
-      memory: 75Mi
+      memory: 200Mi
   view_only_mode: true
 
 server:

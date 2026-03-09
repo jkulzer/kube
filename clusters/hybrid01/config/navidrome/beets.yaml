@@ -29,7 +29,7 @@ spec:
           - /bin/sh
           - -c
           - | 
-            pip install "beets[lastgenre,lyrics,fetchart,beets-copyartifacts3]"
+            pip install "beets[lastgenre,lyrics,fetchart]"
           # volumeMounts:
           #   - name: beets-config
           #     mountPath: "/config/config.yaml"
@@ -37,7 +37,7 @@ spec:
           #     readOnly: true
       containers:
         - name: beets
-          image: ghcr.io/frantathefranta/beets-custom:2.2.0
+          image: ghcr.io/frantathefranta/beets-custom:2.5.1
           command: 
           # - /usr/local/bin/beet version
           - /bin/sh
@@ -96,12 +96,9 @@ data:
         auto: yes
         ifempty: yes
     plugins:
+      - musicbrainz
       - lastgenre
       - fetchart
-      - copyartifacts
-    copyartifacts:
-      extensions: .*
-      print_ignored: yes
 ---
 apiVersion: v1
 kind: Service

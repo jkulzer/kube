@@ -62,6 +62,7 @@ spec:
     count: 3
   monitoring:
     enabled: true
+    createPrometheusRules: true
   network:
     connections:
       compression:
