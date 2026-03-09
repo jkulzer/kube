@@ -4,6 +4,9 @@ metadata:
   name: istio-external-gateway
   namespace: istio-external-gateway
 spec:
+  namespaceSelector:
+    matchNames:
+      - istio-external-gateway
   podMetricsEndpoints:
   - path: /stats/prometheus
     port: http-envoy-prom
