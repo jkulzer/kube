@@ -4,8 +4,6 @@ kind: Gateway
 metadata:
   name: external-gateway
   namespace: istio-external-gateway
-  labels:
-    app: external-gateway
 spec:
   selector:
     istio: gateway
