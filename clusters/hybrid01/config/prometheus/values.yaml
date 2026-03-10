@@ -139,16 +139,3 @@ prometheus:
           resources:
             requests:
                 storage: 16Gi
-    volumeMounts:
-    - name: istio-certs
-      mountPath: /etc/istio-certs/
-      readOnly: true
-
-    podMetadata:
-      annotations:
-        sidecar.istio.io/rewriteAppHTTPProbers: 'true'
-        sidecar.istio.io/userVolume: '[{"name": "istio-certs", "emptyDir": {"medium": "Memory"}}]'
-        sidecar.istio.io/userVolumeMount: '[{"name": "istio-certs", "mountPath": "/etc/istio-certs/"}]'
-        proxy.istio.io/config: |-
-          proxyMetadata:
-            OUTPUT_CERTS: /etc/istio-certs/
