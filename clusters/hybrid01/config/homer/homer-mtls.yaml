@@ -2,8 +2,8 @@
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: "strict-mtls"
+  name: "mtls-config"
   namespace: homer
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE
