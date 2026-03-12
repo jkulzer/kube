@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: istio-sidecars
+  namespace: navidrome
+spec:
+  namespaceSelector:
+    any: true
+  podMetricsEndpoints:
+  - path: /stats/prometheus
+    port: http-envoy-prom
+    honorLabels: true
+  selector:
+    matchLabels:
+      security.istio.io/tlsMode: istio
+
