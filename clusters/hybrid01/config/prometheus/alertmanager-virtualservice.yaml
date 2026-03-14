@@ -2,13 +2,29 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: alertmanager
+  name: alertmanager-external
   namespace: prometheus
 spec:
   hosts:
   - "alertmanager.jkulzer.dev"
   gateways:
   - istio-external-gateway/external-gateway
+  http:
+  - route:
+    - destination:
+        host: kube-prometheus-stack-alertmanager
+        port:
+          number: 9093
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: alertmanager-internal
+  namespace: prometheus
+spec:
+  hosts:
+  - "alertmanager.jkulzer.dev"
+  gateways:
   - istio-internal-gateway/internal-gateway
   http:
   - route:

@@ -2,13 +2,29 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: homer
+  name: homer-external
   namespace: homer
 spec:
   hosts:
   - "home.jkulzer.dev"
   gateways:
   - istio-external-gateway/external-gateway
+  http:
+  - route:
+    - destination:
+        host: homer
+        port:
+          number: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: homer-internal
+  namespace: homer
+spec:
+  hosts:
+  - "home.jkulzer.dev"
+  gateways:
   - istio-internal-gateway/internal-gateway
   http:
   - route:

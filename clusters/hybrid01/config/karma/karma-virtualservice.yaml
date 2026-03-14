@@ -2,13 +2,29 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: karma
+  name: karma-external
   namespace: karma
 spec:
   hosts:
   - "karma.jkulzer.dev"
   gateways:
   - istio-external-gateway/external-gateway
+  http:
+  - route:
+    - destination:
+        host: karma
+        port:
+          number: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: karma-internal
+  namespace: karma
+spec:
+  hosts:
+  - "karma.jkulzer.dev"
+  gateways:
   - istio-internal-gateway/internal-gateway
   http:
   - route:

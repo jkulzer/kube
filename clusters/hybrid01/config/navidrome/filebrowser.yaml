@@ -90,13 +90,30 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: filebrowser
+  name: copyparty-external
   namespace: navidrome
 spec:
   hosts:
   - "musiclibrary.jkulzer.dev"
   gateways:
   - istio-external-gateway/external-gateway
+  http:
+  - match:
+    route:
+    - destination:
+        host: filebrowser
+        port:
+          number: 3923
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: copyparty-internal
+  namespace: navidrome
+spec:
+  hosts:
+  - "musiclibrary.jkulzer.dev"
+  gateways:
   - istio-internal-gateway/internal-gateway
   http:
   - match:
