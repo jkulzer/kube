@@ -9,7 +9,6 @@
 -->
 <!-- [![Contributors][contributors-shield]][contributors-url] -->
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -104,7 +103,9 @@
             <br>
             <img width="128" src="https://argo.jkulzer.dev/api/badge?name=istiod">
             <br>
-            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=istio-gateway">
+            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=istio-internal-gateway">
+            <br>
+            <img width="128" src="https://argo.jkulzer.dev/api/badge?name=istio-external-gateway">
         </td>
 	</tr>
 	<tr>
@@ -140,12 +141,6 @@
 		<td><a href="https://grafana.com/oss/loki">Loki</a></td>
 		<td>Log Aggregator</td>
         <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=loki"></td>
-	</tr>
-	<tr>
-		<td><img width="64" src="https://headscale.net/logo/headscale3-dots.svg"></td>
-		<td><a href="https://headscale.net">Headscale</a></td>
-		<td>Mesh VPN</td>
-        <td><img width="128" src="https://argo.jkulzer.dev/api/badge?name=headscale"></td>
 	</tr>
 </table>
 
