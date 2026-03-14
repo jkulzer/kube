@@ -147,3 +147,7 @@ prometheus:
         proxy.istio.io/config: |-
           proxyMetadata:
             OUTPUT_CERTS: /etc/istio-certs/
+    volumes:
+      - name: istio-certs
+        emptyDir:
+          medium: "Memory"
