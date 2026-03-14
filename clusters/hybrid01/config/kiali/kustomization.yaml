@@ -13,3 +13,4 @@ helmCharts:
 resources:
   - kiali-virtualservice.yaml
   - kiali-authpolicy.yaml
+  - istio-proxy-podmonitor.yaml
