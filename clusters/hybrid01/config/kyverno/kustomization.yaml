@@ -12,3 +12,4 @@ helmCharts:
 
 resources:
   - kyverno-ns.yaml
+  - update-ns-clusterrole.yaml
