@@ -19,7 +19,7 @@ spec:
         app: homer
     spec:
       containers:
-      - image: b4bz/homer:v25.11.1
+      - image: b4bz/homer:v26.4.1
         name: homer
         volumeMounts:
           - name: homer-data
