@@ -8,4 +8,4 @@ resources:
   - dragonfly-rbac.yaml
   - dragonfly-svc.yaml
   - dragonfly-deployment.yaml
-  - https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/v1.1.2/manifests/crd.yaml
+  - https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/v1.1.11/manifests/crd.yaml
