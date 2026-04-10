@@ -38,7 +38,7 @@ data:
         password: {{ env "AUTHELIA_STORAGE_POSTGRES_PASSWORD" }}
     totp:
       disable: false
-      issuer: auth.jkulzer.dev
+      issuer: jkulzer.dev
       algorithm: sha1
       digits: 8
       period: 30
@@ -97,7 +97,7 @@ data:
         enabled: false
     session:
       name: 'authelia_session'
-      domain: 'auth.jkulzer.dev'
+      domain: 'jkulzer.dev'
       same_site: 'lax'
       expiration: 1h
       inactivity: 5m
