@@ -4,8 +4,9 @@ kind: Kustomization
 namespace: dragonfly-operator-system
 
 resources:
-  - dragonfly-ns.yaml
-  - dragonfly-rbac.yaml
-  - dragonfly-svc.yaml
-  - dragonfly-deployment.yaml
-  - https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/v1.1.11/manifests/crd.yaml
+  # - dragonfly-ns.yaml
+  - "https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/refs/tags/v1.5.0/manifests/dragonfly-operator.yaml"
+  # - dragonfly-rbac.yaml
+  # - dragonfly-svc.yaml
+  # - dragonfly-deployment.yaml
+  # - https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/v1.1.11/manifests/crd.yaml
