@@ -63,7 +63,7 @@ data:
       accs:
         rwmd: @acct
       flags:
-        xm: aw,f,j,t3600,/z/bin/mtag/wget.py
+        nosparse
     [/library]
       /library
       accs:
