@@ -103,9 +103,12 @@ spec:
   - istio-internal-gateway/internal-gateway
   http:
   - match:
-    timeout: 0s
     retries:
       attempts: 0
+    headers:
+      request:
+        remove:
+        - TE
     route:
     - destination:
         host: filebrowser
