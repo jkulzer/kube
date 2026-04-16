@@ -130,6 +130,8 @@ spec:
                   key: password
             - name: IMMICH_CONFIG_FILE
               value: /config/client-secret
+            - name: IMMICH_HELMET_FILE
+              value: "true"
           ports:
             - name: http
               containerPort: 2283
