@@ -182,6 +182,8 @@ data:
           allowed_origins_from_client_redirect_uris: true
             ## See: https://www.authelia.com/c/oidc
         claims_policies:
+          grafana:
+            id_token: ['email', 'name', 'groups', 'preferred_username']
           immichpolicy:
             custom_claims:
               immichquota:
@@ -214,6 +216,7 @@ data:
           access_token_signed_response_alg: none
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: 'client_secret_basic'
+          claims_policy: 'grafana'
         - client_id: argocd
           client_name: Argo CD
           client_secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
