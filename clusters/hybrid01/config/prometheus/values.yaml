@@ -120,6 +120,7 @@ prometheus:
     # this makes prometheus monitor every namespace for podmonitors and servicemonitors
     podMonitorSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
 
     serviceMonitorSelector: {}
     serviceMonitorNamespaceSelector: {}
