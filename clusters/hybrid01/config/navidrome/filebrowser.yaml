@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: copyparty
-          image: ghcr.io/9001/copyparty-ac:1.20.13 
+          image: ghcr.io/9001/copyparty-ac:1.20.14 
           env:
             - name: PRTY_NO_TLS
               value: "1"
