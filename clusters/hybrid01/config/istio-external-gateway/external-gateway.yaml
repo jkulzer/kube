@@ -17,6 +17,8 @@ spec:
     - "*.jkulzer.dev"
     - "defenselessmoaningtwink.com"
     - "*.defenselessmoaningtwink.com"
+    - "justmeowing.net"
+    - "*.justmeowing.net"
     tls:
       httpsRedirect: true
   - port:
@@ -40,6 +42,16 @@ spec:
       mode: SIMPLE # enables HTTPS on this port
       credentialName: defenselessmoaningtwink-com-tls
   - port:
+      number: 443
+      name: https-justmeowing-net
+      protocol: HTTPS
+    hosts:
+    - "justmeowing.net"
+    - "*.justmeowing.net"
+    tls:
+      mode: SIMPLE # enables HTTPS on this port
+      credentialName: justmeowing-net-tls
+  - port:
       number: 25565
       name: tcp
       protocol: TCP
@@ -48,3 +60,5 @@ spec:
     - "*.jkulzer.dev"
     - "defenselessmoaningtwink.com"
     - "*.defenselessmoaningtwink.com"
+    - "justmeowing.net"
+    - "*.justmeowing.net"

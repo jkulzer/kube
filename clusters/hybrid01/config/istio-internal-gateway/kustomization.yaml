@@ -15,3 +15,4 @@ resources:
   - internal-gateway-ns.yaml
   - jkulzer-dev-cert.yaml
   - defenselessmoaningtwink-com-cert.yaml
+  - justmeowing-net-cert.yaml

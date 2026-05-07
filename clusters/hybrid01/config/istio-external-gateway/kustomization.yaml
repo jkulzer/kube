@@ -16,3 +16,4 @@ resources:
   - external-gateway-podmonitor.yaml
   - jkulzer-dev-cert.yaml
   - defenselessmoaningtwink-com-cert.yaml
+  - justmeowing-net-cert.yaml
