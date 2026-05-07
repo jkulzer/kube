@@ -1,0 +1,17 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: justmeowing-net
+  namespace: cert-manager
+spec:
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "istio-internal-gateway,istio-external-gateway"
+  secretName: justmeowing-net-tls
+  issuerRef:
+    name: letsencrypt-prod
+  dnsNames:
+  - "justmeowing.net"
+  - "*.justmeowing.net"
