@@ -32,3 +32,55 @@ spec:
         host: authelia
         port:
           number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ldap-external
+  namespace: authelia
+spec:
+  hosts:
+  - "ldap.jkulzer.dev"
+  gateways:
+  - istio-external-gateway/external-gateway
+  http:
+  - route:
+    - destination:
+        host: authelia
+        port:
+          number: 17170
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ldap-internal
+  namespace: authelia
+spec:
+  hosts:
+  - "ldap.jkulzer.dev"
+  gateways:
+  - istio-internal-gateway/internal-gateway
+  http:
+  - route:
+    - destination:
+        host: ldap
+        port:
+          number: 17170
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ldap-auth-policy
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: gateway 
+  action: CUSTOM
+  provider:
+    name: "authelia"
+  rules:
+  - to:
+    - operation:
+        hosts:
+          - "ldap.jkulzer.dev"

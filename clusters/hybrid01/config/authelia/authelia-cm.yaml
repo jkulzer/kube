@@ -171,6 +171,10 @@ data:
         policy: one_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'ldap.jkulzer.dev'
+        policy: two_factor
+        subject:
+        - ['group:kubeadmin']
     identity_providers:
       oidc:
         cors:
