@@ -27,6 +27,7 @@ spec:
         - --domain-filter=jkulzer.dev
         - --domain-filter=defenselessmoaningtwink.com
         - --domain-filter=justmeowing.net
+        - --log-level=debug
         env:
         - name: CF_API_TOKEN
           valueFrom: 
