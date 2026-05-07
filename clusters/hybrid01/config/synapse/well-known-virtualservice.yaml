@@ -1,0 +1,20 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: synapse-well-known
+  namespace: synapse
+spec:
+  hosts:
+  - "jkulzer.dev"
+  gateways:
+  - istio-system/main-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/.well-known/matrix/"
+    route:
+    - destination:
+        host: well-known
+        port:
+          number: 80
