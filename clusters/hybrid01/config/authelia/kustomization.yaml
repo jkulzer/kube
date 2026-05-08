@@ -15,4 +15,5 @@ resources:
   - argocd-oidc-secret.yaml
   - headscale-oidc-secret.yaml
   - immich-oidc-secret.yaml
+  - synapse-oidc-secret.yaml
 

@@ -80,6 +80,14 @@ data:
           group_name: cn
           display_name: displayName
           extra:
+            matrix-displayname: 
+              name: matrix-displayname
+              multi_valued: false
+              value_type: 'string'
+            matrix-username: 
+              name: matrix-username
+              multi_valued: false
+              value_type: 'string'
             immichquota: # The attribute name from LDAP
               name: 'immichquota'
               multi_valued: false
@@ -186,6 +194,12 @@ data:
           allowed_origins_from_client_redirect_uris: true
             ## See: https://www.authelia.com/c/oidc
         claims_policies:
+          synapse:
+            custom_claims:
+              matrix-username: 
+                attribute: "matrix-displayname"
+              matrix-displayname: 
+                attribute: "matrix-displayname"
           grafana:
             id_token: ['email', 'name', 'groups', 'preferred_username']
           immichpolicy:
@@ -196,6 +210,10 @@ data:
           immichscope:
             claims:
               - 'immichquota'
+          synapse:
+            claims:
+              - "matrix-username"
+              - "matrix-displayname"
         jwks:
           - key: {{ secret "/secrets/authelia-oidc-issuer/tls.key" | mindent 10 "|" | msquote }}
         clients:
@@ -251,3 +269,25 @@ data:
           claims_policy: 'immichpolicy'
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: client_secret_post
+        - client_id: synapse
+          client_name: Synapse (Matrix)
+          client_secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
+          public: false
+          authorization_policy: one_factor
+          redirect_uris:
+            - https://justmeowing.net/_synapse/client/oidc/callback
+          scopes:
+            - "openid"
+            - "profile"
+            - "groups"
+            - "email"
+            - "matrix-displayname"
+            - "matrix-username"
+          response_types:
+            - 'code'
+          grant_types:
+            - 'authorization_code'
+          access_token_signed_response_alg: none
+          userinfo_signed_response_alg: none
+          token_endpoint_auth_method: 'client_secret_basic'
+          claims_policy: 'synapse'
