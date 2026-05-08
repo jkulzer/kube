@@ -269,25 +269,25 @@ data:
           claims_policy: 'immichpolicy'
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: client_secret_post
-        # - client_id: synapse
-        #   client_name: Synapse (Matrix)
-        #   client_secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
-        #   public: false
-        #   authorization_policy: one_factor
-        #   redirect_uris:
-        #     - https://justmeowing.net/_synapse/client/oidc/callback
-        #   scopes:
-        #     - "openid"
-        #     - "profile"
-        #     - "groups"
-        #     - "email"
-        #     - "matrix-displayname"
-        #     - "matrix-username"
-        #   response_types:
-        #     - 'code'
-        #   grant_types:
-        #     - 'authorization_code'
-        #   access_token_signed_response_alg: none
-        #   userinfo_signed_response_alg: none
-        #   token_endpoint_auth_method: 'client_secret_basic'
-        #   claims_policy: 'synapse'
+        - client_id: synapse
+          client_name: Synapse (Matrix)
+          client_secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
+          public: false
+          authorization_policy: one_factor
+          redirect_uris:
+            - https://justmeowing.net/_synapse/client/oidc/callback
+          scopes:
+            - "openid"
+            - "profile"
+            - "groups"
+            - "email"
+            - "matrix-displayname"
+            - "matrix-username"
+          response_types:
+            - 'code'
+          grant_types:
+            - 'authorization_code'
+          access_token_signed_response_alg: none
+          userinfo_signed_response_alg: none
+          token_endpoint_auth_method: 'client_secret_basic'
+          claims_policy: 'synapse'

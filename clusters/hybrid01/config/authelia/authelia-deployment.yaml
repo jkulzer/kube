@@ -244,6 +244,8 @@ spec:
           name: immich-oidc-secret
         - mountPath: /secrets/argocd-oidc-secret
           name: argocd-oidc-secret
+        - mountPath: /secrets/synapse-oidc-secret
+          name: synapse-oidc-secret
         - mountPath: /secrets/authelia-oidc-issuer
           name: authelia-oidc-issuer
           readOnly: true
@@ -299,6 +301,12 @@ spec:
       - name: immich-oidc-secret
         secret:
             secretName: immich-oidc-secret
+            items:
+              - key: hashed-client-secret
+                path: hashed-client-secret
+      - name: synapse-oidc-secret
+        secret:
+            secretName: synapse-oidc-secret
             items:
               - key: hashed-client-secret
                 path: hashed-client-secret
