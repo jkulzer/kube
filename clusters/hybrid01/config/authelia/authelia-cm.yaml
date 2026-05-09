@@ -281,8 +281,7 @@ data:
             - "profile"
             - "groups"
             - "email"
-            - "matrix-displayname"
-            - "matrix-username"
+            - "synapse"
           response_types:
             - 'code'
           grant_types:
