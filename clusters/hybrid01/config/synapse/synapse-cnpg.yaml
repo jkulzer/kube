@@ -5,7 +5,7 @@ metadata:
   name: synapse-pg
   namespace: synapse
 spec:
-  instances: 3
+  instances: 1
   bootstrap:
     initdb:
       database: synapse

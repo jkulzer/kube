@@ -17,13 +17,13 @@ data:
         access_log off;
         add_header Access-Control-Allow-Origin *;
         default_type application/json;
-        return 200 '{"m.server": "matrix.jkulzer.dev:443"}';
+        return 200 '{"m.server": "matrix.justmeowing.net:443"}';
       }
 
       location /.well-known/matrix/client {
         access_log off;
         add_header Access-Control-Allow-Origin *;
         default_type application/json;
-        return 200 '{"m.homeserver": {"base_url": "https://jkulzer.dev"}}';
+        return 200 '{"m.homeserver": {"base_url": "https://justmeowing.net"}}';
       }
     }

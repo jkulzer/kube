@@ -6,8 +6,8 @@ metadata:
   namespace: synapse
 data:
   homeserver.yaml: |-
-    public_baseurl: "https://jkulzer.dev"
-    server_name: "jkulzer.dev"
+    public_baseurl: "https://justmeowing.net"
+    server_name: "justmeowing.net"
     listeners:
       - port: 8008
         tls: false
@@ -17,15 +17,15 @@ data:
         resources:
           - names: [client, federation]
             compress: false
-    log_config: "/data/jkulzer.log.config"
+    log_config: "/data/justmeowing.log.config"
     media_store_path: /storage/media_store
     report_stats: false
-    signing_key_path: "/keys/jkulzer.signing.key"
+    signing_key_path: "/keys/justmeowing.signing.key"
     enable_registration: false
     enable_metrics: true
     password_config:
       enabled: false
-  jkulzer.log.config: |-
+  justmeowing.log.config: |-
     version: 1
     formatters:
       precise:

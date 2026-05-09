@@ -15,3 +15,5 @@ resources:
   - well-known-deployment.yaml
   - well-known-svc.yaml
   - well-known-virtualservice.yaml
+  - synapse-backup.yaml
+  - volsync-secret.yaml

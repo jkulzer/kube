@@ -2,13 +2,13 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: synapse
+  name: synapse-external
   namespace: synapse
 spec:
   hosts:
-  - "jkulzer.dev"
+  - "justmeowing.net"
   gateways:
-  - istio-system/main-gateway
+  - istio-external-gateway/external-gateway
   http:
   - match:
     - uri:
@@ -24,13 +24,52 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: synapse-federation
+  name: synapse-internal
   namespace: synapse
 spec:
   hosts:
-  - "matrix.jkulzer.dev"
+  - "justmeowing.net"
   gateways:
-  - istio-system/main-gateway
+  - istio-internal-gateway/internal-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/_matrix"
+    - uri:
+        prefix: "/_synapse"
+    route:
+    - destination:
+        host: synapse
+        port:
+          number: 8008
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: synapse-federation-external
+  namespace: synapse
+spec:
+  hosts:
+  - "matrix.justmeowing.net"
+  gateways:
+  - istio-external-gateway/external-gateway
+  http:
+    - route:
+      - destination:
+          host: synapse
+          port:
+            number: 8008
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: synapse-federation-internal
+  namespace: synapse
+spec:
+  hosts:
+  - "matrix.justmeowing.net"
+  gateways:
+  - istio-internal-gateway/internal-gateway
   http:
     - route:
       - destination:

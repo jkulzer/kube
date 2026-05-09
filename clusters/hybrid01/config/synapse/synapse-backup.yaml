@@ -1,0 +1,32 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: synapse-keys
+  namespace: synapse
+spec:
+  sourcePVC: synapse-keys
+  trigger:
+    schedule: "30 3 * * *" # at 4:30
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/synapse/synapse-keys"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Clone
+    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: synapse-media
+  namespace: synapse
+spec:
+  sourcePVC: synapse-media
+  trigger:
+    schedule: "30 3 * * *" # at 4:30
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/synapse/synapse-media"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Clone
+    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
