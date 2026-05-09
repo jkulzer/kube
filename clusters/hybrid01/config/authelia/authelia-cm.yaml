@@ -194,12 +194,6 @@ data:
           allowed_origins_from_client_redirect_uris: true
             ## See: https://www.authelia.com/c/oidc
         claims_policies:
-          synapse:
-            custom_claims:
-              matrix-username: 
-                attribute: "matrix-displayname"
-              matrix-displayname: 
-                attribute: "matrix-displayname"
           grafana:
             id_token: ['email', 'name', 'groups', 'preferred_username']
           immichpolicy:
@@ -210,10 +204,6 @@ data:
           immichscope:
             claims:
               - 'immichquota'
-          synapse:
-            claims:
-              - "matrix-username"
-              - "matrix-displayname"
         jwks:
           - key: {{ secret "/secrets/authelia-oidc-issuer/tls.key" | mindent 10 "|" | msquote }}
         clients:
@@ -281,7 +271,6 @@ data:
             - "profile"
             - "groups"
             - "email"
-            - "synapse"
           response_types:
             - 'code'
           grant_types:
@@ -289,4 +278,3 @@ data:
           access_token_signed_response_alg: none
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: 'client_secret_basic'
-          claims_policy: 'synapse'
