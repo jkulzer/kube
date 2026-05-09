@@ -2,13 +2,30 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: element
+  name: element-external
   namespace: element
 spec:
   hosts:
-  - "element.jkulzer.dev"
+  - "element.justmeowing.net"
   gateways:
-  - istio-system/main-gateway
+  - istio-external-gateway/external-gateway
+  http:
+  - route:
+    - destination:
+        host: element
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: element-internal
+  namespace: element
+spec:
+  hosts:
+  - "element.justmeowing.net"
+  gateways:
+  - istio-internal-gateway/internal-gateway
   http:
   - route:
     - destination:

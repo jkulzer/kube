@@ -9,7 +9,7 @@ data:
     {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": "https://jkulzer.dev"
+            "base_url": "https://justmeowing.net"
         }
     }
     }
