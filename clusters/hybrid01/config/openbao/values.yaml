@@ -103,7 +103,6 @@ server:
         address = "[::]:8200"
         telemetry {
          unauthenticated_metrics_access = "true"
-         metrics_only = "true"
         }
       }
 
