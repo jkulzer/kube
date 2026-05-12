@@ -154,7 +154,7 @@ serverTelemetry:
   # Configuration for monitoring the OpenBao server.
   serviceMonitor:
     enabled: true
-    port: 8202
+    port: "8202"
 
   prometheusRules:
     # The Prometheus operator *must* be installed before enabling this feature,
