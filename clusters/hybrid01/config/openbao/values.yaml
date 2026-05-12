@@ -93,10 +93,11 @@ server:
         path = "/openbao/data"
       }
 
-      Example configuration for enabling Prometheus metrics in your config.
+      # Example configuration for enabling Prometheus metrics in your config.
       telemetry {
        prometheus_retention_time = "30s"
        disable_hostname = true
+       unauthenticated_metrics_access = "true"
       }
 
 # OpenBao UI
