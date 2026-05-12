@@ -36,13 +36,13 @@ server:
   service:
     enabled: true
     extraPorts:
-      - name: metrics
+      - name: server
         port: 8202
         targetPort: 8202
 
   extraPorts:
   - containerPort: 8202
-    name: metrics
+    name: server
 
   livenessProbe:
     enabled: false
@@ -54,7 +54,7 @@ server:
     # Path for the livenessProbe to use httpGet as the livenessProbe handler
     path: "/v1/sys/health?standbyok=true"
     # Port number on which livenessProbe will be checked if httpGet is used as the livenessProbe handler
-    port: 8200
+    port: 8202
     # When a probe fails, Kubernetes will try failureThreshold times before giving up
     failureThreshold: 2
     # Number of seconds after the container has started before probe initiates
@@ -93,14 +93,14 @@ server:
 
       listener "tcp" {
         tls_disable = 1
-        address = "[::]:8200"
+        address = "[::]:8202"
         cluster_address = "[::]:8201"
         # Enable unauthenticated metrics access (necessary for Prometheus Operator)
       }
 
       listener "tcp" {
         tls_disable = 1
-        address = "[::]:8202"
+        address = "[::]:8200"
         telemetry {
          unauthenticated_metrics_access = "true"
          metrics_only = "true"
@@ -161,7 +161,7 @@ serverTelemetry:
   # Configuration for monitoring the OpenBao server.
   serviceMonitor:
     enabled: true
-    port: ""
+    port: "metrics"
 
   prometheusRules:
     # The Prometheus operator *must* be installed before enabling this feature,
