@@ -91,7 +91,7 @@ server:
         # Enable unauthenticated metrics access (necessary for Prometheus Operator)
       }
 
-      listerner "tcp" {
+      listener "tcp" {
         tls_disable = 1
         address = "[::]:8202"
         telemetry {
