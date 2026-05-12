@@ -33,6 +33,10 @@ server:
   authDelegator:
     enabled: true
 
+  extraPorts:
+  - containerPort: 8202
+    name: metrics
+
   livenessProbe:
     enabled: false
     # Used to define a liveness exec command. If provided, exec is preferred to httpGet (path) as the livenessProbe handler.
