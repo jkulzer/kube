@@ -13,4 +13,4 @@ spec:
     rcloneDestPath: "prod-backup/openbao/data-openbao-0"
     rcloneConfig: "volsync-secret"
     copyMethod: Clone
-    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+    volumeSnapshotClassName: csi-rbdplugin-snapshotclass
