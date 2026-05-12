@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: openbao
+    releaseName: openbao
+    namespace: istio-system
+    repo: https://openbao.github.io/openbao-helm
+    version: 0.27.2
+    valuesFile: values.yaml
+
+resources:
+  - openbao-ns.yaml
+  - openbao-virtualservice.yaml

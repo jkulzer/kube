@@ -1,0 +1,34 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: openbao-external
+  namespace: openbao
+spec:
+  hosts:
+  - "openbao.jkulzer.dev"
+  gateways:
+  - istio-external-gateway/external-gateway
+  http:
+    - route:
+      - destination:
+          host: openbao-ui
+          port:
+            number: 8200
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: openbao-internal
+  namespace: openbao
+spec:
+  hosts:
+  - "openbao.jkulzer.dev"
+  gateways:
+  - istio-internal-gateway/internal-gateway
+  http:
+    - route:
+      - destination:
+          host: openbao-ui
+          port:
+            number: 8200
