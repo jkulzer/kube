@@ -33,6 +33,13 @@ server:
   authDelegator:
     enabled: true
 
+  service:
+    enabled: true
+    extraPorts:
+      - name: metrics
+        port: 8202
+        targetPort: 8202
+
   extraPorts:
   - containerPort: 8202
     name: metrics
@@ -154,7 +161,7 @@ serverTelemetry:
   # Configuration for monitoring the OpenBao server.
   serviceMonitor:
     enabled: true
-    port: "8202"
+    port: ""
 
   prometheusRules:
     # The Prometheus operator *must* be installed before enabling this feature,
