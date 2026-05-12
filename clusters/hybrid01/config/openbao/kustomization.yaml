@@ -13,3 +13,5 @@ helmCharts:
 resources:
   - openbao-ns.yaml
   - openbao-virtualservice.yaml
+  - openbao-backup.yaml
+  - volsync-secret.yaml

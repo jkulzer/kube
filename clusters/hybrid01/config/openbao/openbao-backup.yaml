@@ -1,0 +1,16 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: openbao
+  namespace: openbao
+spec:
+  sourcePVC: data-openbao-0
+  trigger:
+    schedule: "40 2 * * *" # at 3:40
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/openbao/data-openbao-0"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Clone
+    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
