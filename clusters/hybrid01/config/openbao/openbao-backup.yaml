@@ -12,5 +12,5 @@ spec:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/openbao/data-openbao-0"
     rcloneConfig: "volsync-secret"
-    copyMethod: Clone
+    copyMethod: Snapshot
     volumeSnapshotClassName: csi-rbdplugin-snapshotclass
