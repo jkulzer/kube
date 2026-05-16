@@ -79,6 +79,11 @@ data:
             subtitle: "Music"
             tag: "app"
             url: "https://musiclibrary.jkulzer.dev"
+          - name: "Element"
+            logo: "https://cdn.simpleicons.org/element"
+            subtitle: "Matrix frontend"
+            tag: "app"
+            url: "https://element.justmeowing.net"
       - name: "Infrastructure"
         icon: "fas fa-conveyor-belt"
         items:
