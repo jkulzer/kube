@@ -5,6 +5,9 @@ metadata:
   name: authelia
   labels: 
     app.kubernetes.io/name: authelia
+  annotations:
+    vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200" # optional, the address of the Vault service, default values is https://vault:8200
+    vault.security.banzaicloud.io/vault-role: "authelia" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
 data:
   configuration: |
     ---
@@ -266,6 +269,25 @@ data:
           authorization_policy: one_factor
           redirect_uris:
             - https://justmeowing.net/_synapse/client/oidc/callback
+          scopes:
+            - "openid"
+            - "profile"
+            - "groups"
+            - "email"
+          response_types:
+            - 'code'
+          grant_types:
+            - 'authorization_code'
+          access_token_signed_response_alg: none
+          userinfo_signed_response_alg: none
+          token_endpoint_auth_method: 'client_secret_basic'
+        - client_id: gotosocial
+          client_name: Gotosocial
+          client_secret: ${vault:secret/kvv2/data/gotosocial#hashed-client-secret}
+          public: false
+          authorization_policy: one_factor
+          redirect_uris:
+            - 'https://gotosocial.jkulzer.dev/auth/callback'
           scopes:
             - "openid"
             - "profile"
