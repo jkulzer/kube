@@ -15,3 +15,20 @@ spec:
         host: openspeedtest
         port:
           number: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: openspeedtest-internal
+  namespace: openspeedtest
+spec:
+  hosts:
+  - "speedtest.jkulzer.dev"
+  gateways:
+  - istio-internal-gateway/internal-gateway
+  http:
+  - route:
+    - destination:
+        host: openspeedtest
+        port:
+          number: 3000
