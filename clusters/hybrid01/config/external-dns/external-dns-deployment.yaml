@@ -28,6 +28,7 @@ spec:
         - --domain-filter=defenselessmoaningtwink.com
         - --domain-filter=justmeowing.net
         - --log-level=debug
+        - --exclude-target-net=192.168.0.0/16
         env:
         - name: CF_API_TOKEN
           valueFrom: 
