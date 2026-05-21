@@ -20,3 +20,4 @@ resources:
   - mas-cnpg.yaml
   - mas-cm.yaml
   - mas-svc.yaml
+  - cnpg-backup-secret.yaml
