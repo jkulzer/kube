@@ -8,7 +8,7 @@ spec:
   instances: 1
   backup:
     barmanObjectStore:
-      destinationPath: synapse/synapse-pg
+      destinationPath: s3://s3.eu-central-1.idrivee2.com/cnpg-prod/synapse/synapse-pg
       endpointURL: f6e4.fra1.idrivee2-87.com
       s3Credentials:
         accessKeyId:
