@@ -30,3 +30,13 @@ spec:
     rcloneConfig: "volsync-secret"
     copyMethod: Clone
     volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: synapse-pg-backup
+spec:
+  schedule: "30 3 * * *" # at 4:30
+  backupOwnerReference: self
+  cluster:
+    name: synapse-pg
