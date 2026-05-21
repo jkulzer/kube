@@ -8,8 +8,8 @@ spec:
   instances: 1
   backup:
     barmanObjectStore:
-      destinationPath: s3://s3.eu-central-1.idrivee2.com/cnpg-prod/synapse/synapse-pg
-      endpointURL: https://f6e4.fra1.idrivee2-87.com
+      destinationPath: s3://cnpg-prod/synapse/synapse-pg
+      endpointURL: https://s3.eu-central-1.idrivee2.com
       s3Credentials:
         accessKeyId:
           name: cnpg-backup-credentials
