@@ -8,7 +8,6 @@ resources:
   - synapse-cm.yaml
   - synapse-pvc.yaml
   - synapse-deployment.yaml
-  - synapse-oidc-secret.yaml
   - synapse-virtualservice.yaml
   - synapse-cnpg.yaml
   - well-known-cm.yaml
