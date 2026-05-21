@@ -262,25 +262,6 @@ data:
           claims_policy: 'immichpolicy'
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: client_secret_post
-        - client_id: synapse
-          client_name: Synapse (Matrix)
-          client_secret: '{{- fileContent "/secrets/synapse-oidc-secret/hashed-client-secret" }}'
-          public: false
-          authorization_policy: one_factor
-          redirect_uris:
-            - https://justmeowing.net/_synapse/client/oidc/callback
-          scopes:
-            - "openid"
-            - "profile"
-            - "groups"
-            - "email"
-          response_types:
-            - 'code'
-          grant_types:
-            - 'authorization_code'
-          access_token_signed_response_alg: none
-          userinfo_signed_response_alg: none
-          token_endpoint_auth_method: 'client_secret_basic'
         - client_id: gotosocial
           client_name: Gotosocial
           client_secret: ${vault:kvv2/data/gotosocial#hashed-client-secret}
@@ -297,6 +278,26 @@ data:
             - 'code'
           grant_types:
             - 'authorization_code'
+          access_token_signed_response_alg: none
+          userinfo_signed_response_alg: none
+          token_endpoint_auth_method: 'client_secret_basic'
+        - client_id: matrix-authentication-service
+          client_name: Matrix Authentication Service
+          client_secret: ${vault:kvv2/data/synapse#hashed-client-secret}
+          public: false
+          authorization_policy: one_factor
+          redirect_uris:
+            - https://matrixauth.justmeowing.net/upstream/callback/01KS5M5DG32WQFXKFZD65TFT1Y
+          scopes:
+            - "openid"
+            - "profile"
+            - "groups"
+            - "email"
+          response_types:
+            - 'code'
+          grant_types:
+            - 'authorization_code'
+            - 'refresh_token'
           access_token_signed_response_alg: none
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: 'client_secret_basic'
