@@ -2,13 +2,13 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: synapse-pg
+  name: mas-pg
   namespace: synapse
 spec:
   instances: 1
   bootstrap:
     initdb:
-      database: synapse
-      owner: synapse
+      database: mas
+      owner: mas_user
   storage:
-    size: 10Gi
+    size: 1Gi

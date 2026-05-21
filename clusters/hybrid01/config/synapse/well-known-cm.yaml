@@ -24,6 +24,6 @@ data:
         access_log off;
         add_header Access-Control-Allow-Origin *;
         default_type application/json;
-        return 200 '{"m.homeserver": {"base_url": "https://justmeowing.net"}}';
+        return 200 '{"m.homeserver": {"base_url": "https://justmeowing.net"}, "org.matrix.msc2965.authentication": {"issuer": "https://matrixauth.justmeowing.net", "account": "https://matrixauth.justmeowing.net"}}';
       }
     }

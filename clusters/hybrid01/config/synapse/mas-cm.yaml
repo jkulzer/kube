@@ -1,0 +1,76 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mas
+  namespace: synapse
+  annotations:
+    vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200" # optional, the address of the Vault service, default values is https://vault:8200
+    vault.security.banzaicloud.io/vault-role: "default" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
+data:
+  config.yaml: |-
+    http:
+      listeners:
+      - name: web
+        resources:
+        - name: discovery
+        - name: human
+        - name: oauth
+        - name: compat
+        - name: graphql
+        - name: assets
+        binds:
+        - address: '[::]:8080'
+        proxy_protocol: false
+      - name: internal
+        resources:
+        - name: health
+        binds:
+        - host: localhost
+          port: 8081
+        proxy_protocol: false
+      trusted_proxies:
+      - 192.168.0.0/16
+      - 172.16.0.0/12
+      - 10.0.0.0/10
+      - 127.0.0.1/8
+      - fd00::/8
+      - ::1/128
+      public_base: https://matrixauth.justmeowing.net
+      issuer: https://matrixauth.justmeowing.net
+    email:
+      from: '"Authentication Service" <root@localhost>'
+      reply_to: '"Authentication Service" <root@localhost>'
+      transport: blackhole
+    secrets:
+      encryption: ${vault:kvv2/data/synapse#mas-encryption-secret}
+      keys:
+      - key: |
+          ${vault:kvv2/data/synapse#mas-rsa-key}
+    passwords:
+      enabled: false
+    matrix:
+      kind: synapse
+      homeserver: justmeowing.net
+      secret: ${vault:kvv2/data/synapse#mas-secret}
+      endpoint: https://matrix.justmeowing.net
+    upstream_oauth2:
+      providers:
+        - id: 01KS5M5DG32WQFXKFZD65TFT1Y
+          issuer: https://auth.jkulzer.dev
+          client_id: matrix-authentication-service
+          client_secret: ${vault:kvv2/data/synapse#oauth-client-secret}
+          token_endpoint_auth_method: client_secret_basic
+          scope: "openid profile email"
+          discovery_mode: insecure
+          claims_imports:
+              localpart:
+                action: ignore
+                template: "{{ user.preferred_username }}"
+              displayname:
+                action: ignore
+                template: "{{ user.name }}"
+              email:
+                action: suggest
+                template: "{{ user.email }}"
+

@@ -17,3 +17,6 @@ resources:
   - well-known-virtualservice.yaml
   - synapse-backup.yaml
   - volsync-secret.yaml
+  - mas-cnpg.yaml
+  - mas-cm.yaml
+  - mas-svc.yaml

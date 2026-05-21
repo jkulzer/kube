@@ -4,6 +4,9 @@ kind: ConfigMap
 metadata:
   name: synapse
   namespace: synapse
+  annotations:
+    vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200" # optional, the address of the Vault service, default values is https://vault:8200
+    vault.security.banzaicloud.io/vault-role: "default" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
 data:
   homeserver.yaml: |-
     public_baseurl: "https://justmeowing.net"
@@ -25,6 +28,10 @@ data:
     enable_metrics: true
     password_config:
       enabled: false
+    matrix_authentication_service:
+      enabled: true
+      endpoint: https://matrixauth.justmeowing.net
+      secret: ${vault:kvv2/data/synapse#mas-secret}
   justmeowing.log.config: |-
     version: 1
     formatters:
