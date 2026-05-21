@@ -10,6 +10,10 @@ data:
     "default_server_config": {
         "m.homeserver": {
             "base_url": "https://justmeowing.net"
+        },  
+        "org.matrix.msc2965.authentication": {
+          "issuer": "https://matrixauth.justmeowing.net/",
+          "account": "https://matrixauth.justmeowing.net/account"
         }
     }
     }
