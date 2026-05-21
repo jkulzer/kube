@@ -46,7 +46,7 @@ spec:
             mountPath: /tmp
       containers:
       - name: synapse
-        image: matrixdotorg/synapse:v1.128.0
+        image: matrixdotorg/synapse:v1.153.0
         env:
         - name: SYNAPSE_CONFIG_DIR
           value: /data
@@ -59,11 +59,8 @@ spec:
           - -m
           - synapse.app.homeserver
           - --config-path=/data/homeserver.yaml
-          - --config-path=/secrets/oidc/client-secret
           - --config-path=/tmp/db.yaml
         volumeMounts:
-          - name: synapse-oidc-secret
-            mountPath: /secrets/oidc
           - name: synapse-cm
             mountPath: /data
           - name: synapse-data
@@ -84,6 +81,70 @@ spec:
         - name: synapse-keys
           persistentVolumeClaim:
             claimName: synapse-keys
-        - name: synapse-oidc-secret
-          secret:
-            secretName: synapse-oidc-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix-authentication-service
+  namespace: synapse
+  labels:
+    app: matrix-authentication-service
+  annotations:
+      configmap.reloader.stakater.com/reload: "mas"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matrix-authentication-service
+  template:
+    metadata:
+      labels:
+        app: matrix-authentication-service
+    spec:
+      initContainers:
+      - name: init-db-connection
+        image: busybox
+        env:
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: mas-pg-app
+              key: username
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mas-pg-app
+              key: password
+        - name: DBNAME
+          valueFrom:
+            secretKeyRef:
+              name: mas-pg-app
+              key: dbname
+        command: 
+          - "sh"
+          - "-c"
+          - "echo 'database:' > /tmp/db.yaml && echo '    username:  '$USER >> /tmp/db.yaml && echo '    'password: $PASSWORD >> /tmp/db.yaml && echo '    'database: $DBNAME >> /tmp/db.yaml && echo '    host: mas-pg-rw.synapse.svc.cluster.local' >> /tmp/db.yaml && echo '    port: 5432' >> /tmp/db.yaml"
+        volumeMounts:
+          - name: mas-tmp
+            mountPath: /tmp
+      containers:
+      - name: mas
+        image: ghcr.io/element-hq/matrix-authentication-service:1.17.0
+        ports:
+        - name: mas
+          protocol: TCP
+          containerPort: 8080
+        args:
+          - --config=/data/config.yaml
+          - --config=/tmp/db.yaml
+        volumeMounts:
+          - name: mas-cm
+            mountPath: /data
+          - name: mas-tmp
+            mountPath: /tmp
+      volumes:
+        - name: mas-cm
+          configMap:
+            name: mas
+        - name: mas-tmp
+          emptyDir: {}
