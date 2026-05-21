@@ -40,3 +40,13 @@ spec:
   backupOwnerReference: self
   cluster:
     name: synapse-pg
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: mas-pg-backup
+spec:
+  schedule: "30 3 * * *" # at 4:30
+  backupOwnerReference: self
+  cluster:
+    name: mas-pg
