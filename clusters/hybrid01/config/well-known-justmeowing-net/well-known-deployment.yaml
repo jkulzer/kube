@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: well-known
-  namespace: synapse
+  namespace: well-known-justmeowing-net
   annotations:
       configmap.reloader.stakater.com/reload: "well-known"
   labels:
