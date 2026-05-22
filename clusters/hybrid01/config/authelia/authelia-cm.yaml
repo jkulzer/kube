@@ -301,3 +301,22 @@ data:
           access_token_signed_response_alg: none
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: 'client_secret_basic'
+        - client_id: 'mastodon'
+          client_name: 'Mastodon'
+          client_secret: ${vault:kvv2/data/mastodon#hashed-client-secret}
+          public: false
+          authorization_policy: 'two_factor'
+          require_pkce: false
+          redirect_uris:
+            - 'https://mastodon.justmeowing.net/auth/auth/openid_connect/callback'
+          scopes:
+            - 'openid'
+            - 'profile'
+            - 'email'
+          response_types:
+            - 'code'
+          grant_types:
+            - 'authorization_code'
+          access_token_signed_response_alg: 'none'
+          userinfo_signed_response_alg: 'none'
+          token_endpoint_auth_method: 'client_secret_basic'
