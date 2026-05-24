@@ -83,12 +83,8 @@ data:
           group_name: cn
           display_name: displayName
           extra:
-            matrix-displayname: 
-              name: matrix-displayname
-              multi_valued: false
-              value_type: 'string'
-            matrix-username: 
-              name: matrix-username
+            mastodon-username: 
+              name: mastodon-username
               multi_valued: false
               value_type: 'string'
             immichquota: # The attribute name from LDAP
@@ -203,6 +199,12 @@ data:
             custom_claims:
               immichquota:
                 attribute: 'immichquota'
+          mastodon:
+            id_token:
+              - name: ['email', 'name', 'groups', 'mastodon-username']
+            custom_claims:
+              mastodon-username:
+                attribute: 'mastodon-username'
         scopes:
           immichscope:
             claims:
@@ -320,3 +322,4 @@ data:
           access_token_signed_response_alg: 'none'
           userinfo_signed_response_alg: 'none'
           token_endpoint_auth_method: 'client_secret_basic'
+          claims_policy: 'mastodon-username'
