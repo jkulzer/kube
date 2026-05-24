@@ -200,8 +200,7 @@ data:
               immichquota:
                 attribute: 'immichquota'
           mastodon:
-            id_token:
-              - name: ['email', 'name', 'groups', 'mastodon-username']
+            id_token: ['email', 'name', 'groups', 'mastodon-username']
             custom_claims:
               mastodon-username:
                 attribute: 'mastodon-username'
