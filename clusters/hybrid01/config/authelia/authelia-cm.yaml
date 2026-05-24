@@ -208,6 +208,9 @@ data:
           immichscope:
             claims:
               - 'immichquota'
+          mastodon-username:
+            claims:
+              - "mastodon-username"
         jwks:
           - key: {{ secret "/secrets/authelia-oidc-issuer/tls.key" | mindent 10 "|" | msquote }}
         clients:
@@ -314,6 +317,7 @@ data:
             - 'openid'
             - 'profile'
             - 'email'
+            - 'mastodon-username'
           response_types:
             - 'code'
           grant_types:
