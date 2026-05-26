@@ -33,7 +33,10 @@ spec:
               name: synapse-pg-app
               key: password
         - name: DBNAME
-          value: "synapse"
+          valueFrom:
+            secretKeyRef:
+              name: synapse-pg-app
+              key: dbname
         command: 
           - "sh"
           - "-c"
@@ -113,7 +116,10 @@ spec:
               name: mas-pg-app
               key: password
         - name: DBNAME
-          value: "mas"
+          valueFrom:
+            secretKeyRef:
+              name: mas-pg-app
+              key: dbname
         command: 
           - "sh"
           - "-c"
