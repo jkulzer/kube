@@ -1,0 +1,30 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: mas-pg
+  namespace: synapse
+spec:
+  instances: 1
+  bootstrap:
+    recovery:
+      database: mas
+      owner: mas_user
+      source: clusterBackup
+  storage:
+    size: 1Gi
+  externalClusters:
+  - name: clusterBackup
+    barmanObjectStore:
+      destinationPath: s3://cnpg-prod/synapse/mas-pg
+      endpointURL: https://s3.eu-central-1.idrivee2.com
+      serverName: mas-pg
+      s3Credentials:
+        accessKeyId:
+          name: cnpg-backup-credentials
+          key: access-key-id
+        secretAccessKey:
+          name: cnpg-backup-credentials
+          key: access-key-secret
+      wal:
+        maxParallel: 8

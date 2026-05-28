@@ -1,0 +1,21 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: synapse-pg-backup
+  namespace: synapse
+spec:
+  method: barmanObjectStore
+  cluster:
+    name: synapse-pg
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: mas-pg-backup
+  namespace: synapse
+spec:
+  method: barmanObjectStore
+  cluster:
+    name: mas-pg
+

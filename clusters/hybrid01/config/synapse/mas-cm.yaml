@@ -57,7 +57,7 @@ data:
     upstream_oauth2:
       providers:
         - id: 01KS5M5DG32WQFXKFZD65TFT1Y
-          issuer: https://auth.jkulzer.dev
+          issuer: https://auth.justmeowing.net
           client_id: matrix-authentication-service
           client_secret: ${vault:kvv2/data/synapse#oauth-client-secret}
           token_endpoint_auth_method: client_secret_basic

@@ -1,0 +1,30 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: synapse-pg
+  namespace: synapse
+spec:
+  instances: 1
+  bootstrap:
+    recovery:
+      database: synapse
+      owner: synapse
+      source: clusterBackup
+  storage:
+    size: 10Gi
+  externalClusters:
+    - name: clusterBackup
+      barmanObjectStore:
+        destinationPath: s3://cnpg-prod/synapse/synapse-pg
+        endpointURL: https://s3.eu-central-1.idrivee2.com
+        serverName: synapse-pg
+        s3Credentials:
+          accessKeyId:
+            name: cnpg-backup-credentials
+            key: access-key-id
+          secretAccessKey:
+            name: cnpg-backup-credentials
+            key: access-key-secret
+        wal:
+          maxParallel: 8
