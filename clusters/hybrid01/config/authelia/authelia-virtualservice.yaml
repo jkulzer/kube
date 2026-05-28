@@ -84,3 +84,37 @@ spec:
     - operation:
         hosts:
           - "ldap.jkulzer.dev"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: justmeowing-authelia-external
+  namespace: authelia
+spec:
+  hosts:
+  - "auth.justmeowing.net"
+  gateways:
+  - istio-external-gateway/external-gateway
+  http:
+  - route:
+    - destination:
+        host: authelia
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: justmeowing-authelia-internal
+  namespace: authelia
+spec:
+  hosts:
+  - "auth.justmeowing.net"
+  gateways:
+  - istio-internal-gateway/internal-gateway
+  http:
+  - route:
+    - destination:
+        host: authelia
+        port:
+          number: 80
