@@ -12,7 +12,6 @@ data:
   configuration: |
     ---
     theme: dark
-    default_redirection_url: https://jkulzer.dev
     server:
       address: 'tcp://0.0.0.0:9091'
       buffers:
@@ -109,12 +108,16 @@ data:
           expiration: 1h
           inactivity: 5m
           remember_me: 1M
+          default_redirection_url: https://jkulzer.dev
+          authelia_url: https://auth.jkulzer.dev
         - name: 'another_authelia_session'
           domain: 'justmeowing.net'
           same_site: 'lax'
           expiration: 1h
           inactivity: 5m
           remember_me: 1M
+          default_redirection_url: https://justmeowing.net
+          authelia_url: https://auth.justmeowing.net
     regulation: 
       ban_time: 5m
       find_time: 2m
