@@ -73,7 +73,6 @@ data:
         groups_filter: "(member={dn})"
         permit_referrals: false
         permit_unauthenticated_bind: false
-        permit_feature_detection_failure: false
         user: uid=admin,ou=people,dc=jkulzer,dc=dev
         additional_users_dn: ou=people
         additional_groups_dn: ou=groups
@@ -103,12 +102,19 @@ data:
       zxcvbn:
         enabled: false
     session:
-      name: 'authelia_session'
-      domain: 'jkulzer.dev'
-      same_site: 'lax'
-      expiration: 1h
-      inactivity: 5m
-      remember_me: 1M
+      cookies:
+        - name: 'authelia_session'
+          domain: 'jkulzer.dev'
+          same_site: 'lax'
+          expiration: 1h
+          inactivity: 5m
+          remember_me: 1M
+        - name: 'another_authelia_session'
+          domain: 'justmeowing.net'
+          same_site: 'lax'
+          expiration: 1h
+          inactivity: 5m
+          remember_me: 1M
     regulation: 
       ban_time: 5m
       find_time: 2m
