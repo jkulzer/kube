@@ -25,7 +25,7 @@ spec:
       serviceAccountName: mastodon-openbao
       initContainers:
       - name: init-db
-        image: ghcr.io/mastodon/mastodon:v4.5.9
+        image: ghcr.io/mastodon/mastodon:v4.5.10
         command: 
           - "/bin/bash"
         args: 
@@ -54,7 +54,7 @@ spec:
                 key: fqdn-uri
       containers:
       - name: mastodon
-        image: ghcr.io/mastodon/mastodon:v4.5.9
+        image: ghcr.io/mastodon/mastodon:v4.5.10
         command: 
         - "bundle"
         args:
