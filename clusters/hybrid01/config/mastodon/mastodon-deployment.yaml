@@ -111,6 +111,8 @@ spec:
             value: "justmeowing.net"
           - name: "WEB_DOMAIN"
             value: "mastodon.justmeowing.net"
+          - name: "SINGLE_USER_MODE"
+            value: "true"
         ports:
         - name: mastodon
           protocol: TCP
