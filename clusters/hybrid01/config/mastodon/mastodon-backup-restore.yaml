@@ -1,0 +1,16 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: mastodon-media
+  namespace: mastodon
+spec:
+  trigger:
+    manual: "1"
+  rclone:
+    rcloneConfigSection: "s3-bucket"
+    rcloneDestPath: "prod-backup/mastodon/mastodon-media"
+    rcloneConfig: "volsync-secret"
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-rbdplugin-snapshotclass
+    destinationPVC: mastodon-media

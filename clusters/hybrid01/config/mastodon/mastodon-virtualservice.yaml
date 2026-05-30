@@ -1,0 +1,34 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: mastodon-external
+  namespace: mastodon
+spec:
+  hosts:
+  - "mastodon.justmeowing.net"
+  gateways:
+  - istio-external-gateway/external-gateway
+  http:
+    - route:
+      - destination:
+          host: mastodon
+          port:
+            number: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: mastodon-internal
+  namespace: mastodon
+spec:
+  hosts:
+  - "mastodon.justmeowing.net"
+  gateways:
+  - istio-internal-gateway/internal-gateway
+  http:
+    - route:
+      - destination:
+          host: mastodon
+          port:
+            number: 3000

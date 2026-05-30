@@ -1,0 +1,27 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: mastodon-pg
+  namespace: mastodon
+spec:
+  bootstrap:
+    initdb:
+      database: mastodon
+      owner: mastodon
+      postInitSQL:
+        - ALTER USER mastodon WITH SUPERUSER
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://cnpg-prod/mastodon/mastodon-pg
+      endpointURL: https://s3.eu-central-1.idrivee2.com
+      s3Credentials:
+        accessKeyId:
+          name: cnpg-backup-credentials
+          key: access-key-id
+        secretAccessKey:
+          name: cnpg-backup-credentials
+          key: access-key-secret
+  instances: 1
+  storage:
+    size: 10Gi

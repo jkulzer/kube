@@ -1,0 +1,37 @@
+---
+apiVersion: dragonflydb.io/v1alpha1
+kind: Dragonfly
+metadata:
+  name: dragonfly-mastodon
+  namespace: mastodon
+spec:
+  replicas: 1
+  args:
+    - --maxmemory=1000M
+    - --proactor_threads=2
+    - --default_lua_flags=allow-undeclared-keys
+  annotations:
+    vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200"
+    vault.security.banzaicloud.io/vault-skip-verify: "false" 
+    vault.security.banzaicloud.io/vault-role: "mastodon"
+  serviceAccountName: mastodon-openbao
+  authentication:
+    passwordFromSecret:
+      name: mastodon-dragonfly-secret
+      key: password
+  resources:
+    requests:
+      cpu: 25m
+      memory: 1000Mi
+    limits:
+      memory: 1500Mi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mastodon-dragonfly-secret
+  namespace: mastodon
+type: Opaque
+data:
+  # base64-encoding of vault:kvv2/data/mastodon#dragonfly-password
+  password: dmF1bHQ6a3Z2Mi9kYXRhL21hc3RvZG9uI2RyYWdvbmZseS1wYXNzd29yZA==
