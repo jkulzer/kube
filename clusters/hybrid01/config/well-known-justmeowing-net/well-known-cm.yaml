@@ -31,4 +31,10 @@ data:
         add_header Access-Control-Allow-Origin '*';
         return 301 https://mastodon.justmeowing.net$request_uri;
       }
+      location /.well-known/host-meta {
+        access_log /dev/stdout;
+        add_header Access-Control-Allow-Origin '*';
+        default_type application/xrd+xml;
+        return 200 '<?xml version="1.0" encoding="UTF-8"?><XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0"><Link rel="lrdd" template="https://mastodon.justmeowing.net/.well-known/webfinger?resource={uri}"/></XRD>';
+      }
     }
