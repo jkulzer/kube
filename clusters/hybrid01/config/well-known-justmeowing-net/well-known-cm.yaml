@@ -14,19 +14,20 @@ data:
       }
 
       location /.well-known/matrix/server {
-        access_log off;
+        access_log /dev/stdout;
         add_header Access-Control-Allow-Origin *;
         default_type application/json;
         return 200 '{"m.server": "matrix.justmeowing.net:443"}';
       }
 
       location /.well-known/matrix/client {
-        access_log off;
+        access_log /dev/stdout;
         add_header Access-Control-Allow-Origin *;
         default_type application/json;
         return 200 '{"m.homeserver": {"base_url": "https://justmeowing.net"}, "org.matrix.msc2965.authentication": {"issuer": "https://matrixauth.justmeowing.net", "account": "https://matrixauth.justmeowing.net"}}';
       }
       location /.well-known/webfinger {
+        access_log /dev/stdout;
         add_header Access-Control-Allow-Origin '*';
         return 301 https://mastodon.justmeowing.net$request_uri;
       }
