@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata: 
+  name: ceph-health
+  namespace: rook-ceph
+spec:
+  groups:
+    - name: CustomRookCephRules
+      rules:
+        - alert: CephHealthWarn
+          expr: |- 
+            ceph_health_detail{severity="HEALTH_WARN"} != 0
+          labels:
+            severity: warning
+          annotations:
+            description: "Ceph Cluster has {{$labels.name}}"
+        - alert: CephHealthErr
+          expr: |- 
+            ceph_health_detail{severity="HEALTH_ERR"} != 0
+          labels:
+            severity: critical
+          annotations:
+            description: "Ceph Cluster has {{$labels.name}}"
