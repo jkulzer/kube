@@ -9,3 +9,4 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/managed-by: cloudnative-pg
+      app.kubernetes.io/component: database
