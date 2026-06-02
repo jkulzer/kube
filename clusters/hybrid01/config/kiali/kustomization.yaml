@@ -7,7 +7,7 @@ helmCharts:
     releaseName: kiali-server
     namespace: istio-system
     repo: https://kiali.org/helm-charts
-    version: 2.26.0
+    version: 2.27.0
     valuesFile: values.yaml
 
 resources:
