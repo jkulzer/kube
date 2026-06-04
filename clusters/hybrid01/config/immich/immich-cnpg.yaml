@@ -20,5 +20,16 @@ spec:
         - ALTER USER immich WITH SUPERUSER
   storage:
     size: 5Gi
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://cnpg-prod/immich/immich-pg
+      endpointURL: https://s3.eu-central-1.idrivee2.com
+      s3Credentials:
+        accessKeyId:
+          name: cnpg-backup-credentials
+          key: access-key-id
+        secretAccessKey:
+          name: cnpg-backup-credentials
+          key: access-key-secret
   monitoring:
     enablePodMonitor: true

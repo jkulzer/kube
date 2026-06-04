@@ -15,3 +15,4 @@ resources:
   - immich-initialize-admin.yaml
   - volsync-secret.yaml
   - immich-backup.yaml
+  - cnpg-backup-secret.yaml
