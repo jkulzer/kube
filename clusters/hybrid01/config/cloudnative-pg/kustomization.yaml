@@ -14,4 +14,3 @@ helmCharts:
 resources:
   - cnpg-ns.yaml
   - cnpg-backup-secret.yaml
-  - cnpg-db-pod-monitor.yaml
