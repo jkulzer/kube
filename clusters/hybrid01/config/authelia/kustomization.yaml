@@ -16,4 +16,4 @@ resources:
   - headscale-oidc-secret.yaml
   - immich-oidc-secret.yaml
   - synapse-oidc-secret.yaml
-
+  - cnpg-backup-secret.yaml
