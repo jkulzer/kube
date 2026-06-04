@@ -20,3 +20,5 @@ spec:
         - ALTER USER immich WITH SUPERUSER
   storage:
     size: 5Gi
+  monitoring:
+    enablePodMonitor: true
