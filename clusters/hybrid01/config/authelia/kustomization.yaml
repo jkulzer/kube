@@ -17,3 +17,4 @@ resources:
   - immich-oidc-secret.yaml
   - synapse-oidc-secret.yaml
   - cnpg-backup-secret.yaml
+  - volsync-secret.yaml

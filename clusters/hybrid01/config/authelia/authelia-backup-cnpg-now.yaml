@@ -1,0 +1,10 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: authelia-pg-backup
+  namespace: authelia
+spec:
+  method: barmanObjectStore
+  cluster:
+    name: authelia-pg
