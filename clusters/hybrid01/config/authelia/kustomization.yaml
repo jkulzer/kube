@@ -18,3 +18,4 @@ resources:
   - synapse-oidc-secret.yaml
   - cnpg-backup-secret.yaml
   - volsync-secret.yaml
+  - authelia-backup.yaml
