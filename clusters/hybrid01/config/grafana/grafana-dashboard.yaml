@@ -24,7 +24,7 @@ data:
           "grafana.app/message": "test",
           "grafana.app/saved-from-ui": "Grafana v13.0.2 (3fcdbc5a)",
           "grafana.app/updatedBy": "user:cfpj786jer8xsc",
-          "grafana.app/updatedTimestamp": "2026-06-18T19:49:09Z",
+          "grafana.app/updatedTimestamp": "2026-06-18T19:49:09Z"
         }
       },
       "spec": {
