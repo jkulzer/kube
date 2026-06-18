@@ -19,7 +19,7 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
         - ALTER USER immich WITH SUPERUSER
   storage:
-    size: 5Gi
+    size: 7Gi
   backup:
     barmanObjectStore:
       destinationPath: s3://cnpg-prod/immich/immich-pg
