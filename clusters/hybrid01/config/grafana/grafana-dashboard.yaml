@@ -10,25 +10,24 @@ data:
       "apiVersion": "dashboard.grafana.app/v2",
       "kind": "Dashboard",
       "metadata": {
-        "name": "17994e64-df21-4cf5-a7a7-95b4aa924238",
+        "name": "jknzl4h",
         "namespace": "default",
-        "uid": "c33ec988-d336-4365-8acc-9ddbdaa953d2",
-        "resourceVersion": "1781350668213983",
-        "generation": 1,
-        "creationTimestamp": "2026-06-13T11:37:48Z",
+        "uid": "18119d72-0650-4c6c-a044-99d0275639e0",
+        "resourceVersion": "1781812149666988",
+        "generation": 11,
+        "creationTimestamp": "2026-06-18T18:46:53Z",
         "labels": {
-          "grafana.app/deprecatedInternalID": "3111914190856192"
+          "grafana.app/deprecatedInternalID": "528235578306560"
         },
         "annotations": {
-          "grafana.app/createdBy": "access-policy:service",
-          "grafana.app/folder": "cfp0azwlexm2od",
-          "grafana.app/managedBy": "classic-file-provisioning",
-          "grafana.app/managerId": "dashboards",
-          "grafana.app/sourceChecksum": "7d2db79bfad3cd4ab31aa5356e679da6",
-          "grafana.app/sourcePath": "/dashboards/main/main.json",
-          "grafana.app/sourceTimestamp": "1781350636000",
+          "grafana.app/createdBy": "user:cfpj786jer8xsc",
+          "grafana.app/folder": "efpj77axbipdsb",
+          "grafana.app/message": "test",
+          "grafana.app/saved-from-ui": "Grafana v13.0.2 (3fcdbc5a)",
+          "grafana.app/updatedBy": "user:cfpj786jer8xsc",
+          "grafana.app/updatedTimestamp": "2026-06-18T19:49:09Z",
           "grafana.app/folderTitle": "main",
-          "grafana.app/folderUrl": "/dashboards/f/cfp0azwlexm2od/main"
+          "grafana.app/folderUrl": "/dashboards/f/efpj77axbipdsb/main"
         }
       },
       "spec": {
@@ -36,34 +35,33 @@ data:
           {
             "kind": "AnnotationQuery",
             "spec": {
-              "builtIn": true,
+              "query": {
+                "kind": "DataQuery",
+                "group": "grafana",
+                "version": "v0",
+                "datasource": {
+                  "name": "-- Grafana --"
+                },
+                "spec": {}
+              },
               "enable": true,
               "hide": true,
               "iconColor": "rgba(0, 211, 255, 1)",
               "name": "Annotations & Alerts",
-              "query": {
-                "datasource": {
-                  "name": "-- Grafana --"
-                },
-                "group": "grafana",
-                "kind": "DataQuery",
-                "spec": {
-                  "limit": 100,
-                  "matchAny": false,
-                  "tags": [],
-                  "type": "dashboard"
-                },
-                "version": "v0"
-              }
+              "builtIn": true
             }
           }
         ],
         "cursorSync": "Off",
         "editable": true,
         "elements": {
-          "panel-10": {
+          "panel-1": {
             "kind": "Panel",
             "spec": {
+              "id": 1,
+              "title": "Memory usage per container",
+              "description": "",
+              "links": [],
               "data": {
                 "kind": "QueryGroup",
                 "spec": {
@@ -71,128 +69,67 @@ data:
                     {
                       "kind": "PanelQuery",
                       "spec": {
-                        "hidden": false,
                         "query": {
+                          "kind": "DataQuery",
+                          "group": "prometheus",
+                          "version": "v0",
                           "datasource": {
                             "name": "main-prometheus"
                           },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
                           "spec": {
                             "editorMode": "code",
-                            "exemplar": false,
-                            "expr": "argocd_app_info{sync_status=\"OutOfSync\"}",
-                            "instant": false,
-                            "interval": "",
-                            "legendFormat": "{{name}}",
+                            "expr": "container_memory_usage_bytes{container!=\"\"}",
+                            "legendFormat": "{{pod}}/{{namespace}} ({{container}})",
                             "range": true
-                          },
-                          "version": "v0"
+                          }
                         },
-                        "refId": "A"
+                        "refId": "A",
+                        "hidden": false
                       }
                     }
                   ],
-                  "queryOptions": {
-                    "timeFrom": "1m"
-                  },
-                  "transformations": []
+                  "transformations": [],
+                  "queryOptions": {}
                 }
               },
-              "description": "",
-              "id": 10,
-              "links": [],
-              "title": "Out of Sync Apps",
               "vizConfig": {
-                "group": "stat",
                 "kind": "VizConfig",
+                "group": "timeseries",
+                "version": "13.0.2",
                 "spec": {
+                  "options": {
+                    "annotations": {
+                      "clustering": -1,
+                      "multiLane": false
+                    },
+                    "legend": {
+                      "calcs": [],
+                      "displayMode": "list",
+                      "placement": "bottom",
+                      "showLegend": false
+                    },
+                    "tooltip": {
+                      "hideZeros": false,
+                      "mode": "single",
+                      "sort": "none"
+                    }
+                  },
                   "fieldConfig": {
                     "defaults": {
-                      "color": {
-                        "mode": "thresholds"
-                      },
+                      "unit": "bytes",
                       "thresholds": {
                         "mode": "absolute",
                         "steps": [
                           {
-                            "color": "green",
-                            "value": 0
+                            "value": 0,
+                            "color": "green"
                           },
                           {
-                            "color": "red",
-                            "value": 1
+                            "value": 80,
+                            "color": "red"
                           }
                         ]
-                      }
-                    },
-                    "overrides": []
-                  },
-                  "options": {
-                    "colorMode": "value",
-                    "graphMode": "none",
-                    "justifyMode": "center",
-                    "orientation": "horizontal",
-                    "percentChangeColorMode": "standard",
-                    "reduceOptions": {
-                      "calcs": [
-                        "lastNotNull"
-                      ],
-                      "fields": "",
-                      "values": false
-                    },
-                    "showPercentChange": false,
-                    "textMode": "name",
-                    "wideLayout": true
-                  }
-                },
-                "version": "13.0.2"
-              }
-            }
-          },
-          "panel-11": {
-            "kind": "Panel",
-            "spec": {
-              "data": {
-                "kind": "QueryGroup",
-                "spec": {
-                  "queries": [
-                    {
-                      "kind": "PanelQuery",
-                      "spec": {
-                        "hidden": false,
-                        "query": {
-                          "datasource": {
-                            "name": "main-prometheus"
-                          },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
-                          "spec": {
-                            "editorMode": "code",
-                            "expr": "sum(kube_pod_container_status_running)",
-                            "legendFormat": "Containers",
-                            "range": true
-                          },
-                          "version": "v0"
-                        },
-                        "refId": "A"
-                      }
-                    }
-                  ],
-                  "queryOptions": {},
-                  "transformations": []
-                }
-              },
-              "description": "",
-              "id": 11,
-              "links": [],
-              "title": "Container Count",
-              "vizConfig": {
-                "group": "timeseries",
-                "kind": "VizConfig",
-                "spec": {
-                  "fieldConfig": {
-                    "defaults": {
+                      },
                       "color": {
                         "mode": "palette-classic"
                       },
@@ -205,8 +142,8 @@ data:
                         "barAlignment": 0,
                         "barWidthFactor": 0.6,
                         "drawStyle": "line",
-                        "fillOpacity": 15,
-                        "gradientMode": "opacity",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
                         "hideFrom": {
                           "legend": false,
                           "tooltip": false,
@@ -229,161 +166,21 @@ data:
                         "thresholdsStyle": {
                           "mode": "off"
                         }
-                      },
-                      "min": 0,
-                      "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "green",
-                            "value": 0
-                          },
-                          {
-                            "color": "red",
-                            "value": 80
-                          }
-                        ]
                       }
                     },
                     "overrides": []
-                  },
-                  "options": {
-                    "annotations": {
-                      "clustering": -1,
-                      "multiLane": false
-                    },
-                    "legend": {
-                      "calcs": [],
-                      "displayMode": "list",
-                      "placement": "bottom",
-                      "showLegend": false
-                    },
-                    "tooltip": {
-                      "hideZeros": false,
-                      "mode": "single",
-                      "sort": "none"
-                    }
                   }
-                },
-                "version": "13.0.2"
-              }
-            }
-          },
-          "panel-12": {
-            "kind": "Panel",
-            "spec": {
-              "data": {
-                "kind": "QueryGroup",
-                "spec": {
-                  "queries": [
-                    {
-                      "kind": "PanelQuery",
-                      "spec": {
-                        "hidden": false,
-                        "query": {
-                          "datasource": {
-                            "name": "main-prometheus"
-                          },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
-                          "spec": {
-                            "expr": "(ceph_cluster_total_bytes{}-ceph_cluster_total_used_bytes{})/ceph_cluster_total_bytes{}",
-                            "format": "time_series",
-                            "instant": true,
-                            "interval": "5s",
-                            "intervalFactor": 1,
-                            "step": 300
-                          },
-                          "version": "v0"
-                        },
-                        "refId": "A"
-                      }
-                    }
-                  ],
-                  "queryOptions": {},
-                  "transformations": []
                 }
-              },
-              "description": "",
-              "id": 12,
-              "links": [],
-              "title": "Free Storage",
-              "vizConfig": {
-                "group": "gauge",
-                "kind": "VizConfig",
-                "spec": {
-                  "fieldConfig": {
-                    "defaults": {
-                      "color": {
-                        "mode": "thresholds"
-                      },
-                      "max": 1,
-                      "min": 0,
-                      "thresholds": {
-                        "mode": "percentage",
-                        "steps": [
-                          {
-                            "color": "#220004",
-                            "value": 0
-                          },
-                          {
-                            "color": "dark-red",
-                            "value": 10
-                          },
-                          {
-                            "color": "dark-orange",
-                            "value": 20
-                          },
-                          {
-                            "color": "#EAB839",
-                            "value": 30
-                          },
-                          {
-                            "color": "dark-green",
-                            "value": 50
-                          }
-                        ]
-                      },
-                      "unit": "percentunit"
-                    },
-                    "overrides": []
-                  },
-                  "options": {
-                    "barShape": "flat",
-                    "barWidthFactor": 0.5,
-                    "effects": {
-                      "barGlow": false,
-                      "centerGlow": false,
-                      "gradient": false
-                    },
-                    "endpointMarker": "point",
-                    "minVizHeight": 75,
-                    "minVizWidth": 75,
-                    "orientation": "auto",
-                    "reduceOptions": {
-                      "calcs": [
-                        "lastNotNull"
-                      ],
-                      "fields": "",
-                      "values": false
-                    },
-                    "segmentCount": 1,
-                    "segmentSpacing": 0.3,
-                    "shape": "gauge",
-                    "showThresholdLabels": true,
-                    "showThresholdMarkers": true,
-                    "sizing": "auto",
-                    "sparkline": false,
-                    "textMode": "auto"
-                  }
-                },
-                "version": "13.0.2"
               }
             }
           },
           "panel-2": {
             "kind": "Panel",
             "spec": {
+              "id": 2,
+              "title": "Memory usage per namespace",
+              "description": "",
+              "links": [],
               "data": {
                 "kind": "QueryGroup",
                 "spec": {
@@ -391,42 +188,67 @@ data:
                     {
                       "kind": "PanelQuery",
                       "spec": {
-                        "hidden": false,
                         "query": {
+                          "kind": "DataQuery",
+                          "group": "prometheus",
+                          "version": "v0",
                           "datasource": {
                             "name": "main-prometheus"
                           },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
                           "spec": {
                             "editorMode": "code",
-                            "exemplar": false,
-                            "expr": "rate(container_cpu_usage_seconds_total{container!=\"\"}[$__rate_interval])",
-                            "instant": false,
-                            "interval": "",
-                            "legendFormat": "{{container}}",
+                            "expr": "sum by(namespace)(container_memory_usage_bytes{container=\"\"})",
+                            "legendFormat": "__auto",
                             "range": true
-                          },
-                          "version": "v0"
+                          }
                         },
-                        "refId": "A"
+                        "refId": "A",
+                        "hidden": false
                       }
                     }
                   ],
-                  "queryOptions": {},
-                  "transformations": []
+                  "transformations": [],
+                  "queryOptions": {}
                 }
               },
-              "description": "",
-              "id": 2,
-              "links": [],
-              "title": "CPU per Pod",
               "vizConfig": {
-                "group": "timeseries",
                 "kind": "VizConfig",
+                "group": "timeseries",
+                "version": "13.0.2",
                 "spec": {
+                  "options": {
+                    "annotations": {
+                      "clustering": -1,
+                      "multiLane": false
+                    },
+                    "legend": {
+                      "calcs": [],
+                      "displayMode": "list",
+                      "placement": "bottom",
+                      "showLegend": false
+                    },
+                    "tooltip": {
+                      "hideZeros": false,
+                      "mode": "single",
+                      "sort": "none"
+                    }
+                  },
                   "fieldConfig": {
                     "defaults": {
+                      "unit": "bytes",
+                      "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                          {
+                            "value": 0,
+                            "color": "green"
+                          },
+                          {
+                            "value": 80,
+                            "color": "red"
+                          }
+                        ]
+                      },
                       "color": {
                         "mode": "palette-classic"
                       },
@@ -463,346 +285,21 @@ data:
                         "thresholdsStyle": {
                           "mode": "off"
                         }
-                      },
-                      "min": 0,
-                      "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "green",
-                            "value": 0
-                          },
-                          {
-                            "color": "red",
-                            "value": 80
-                          }
-                        ]
                       }
                     },
                     "overrides": []
-                  },
-                  "options": {
-                    "annotations": {
-                      "clustering": -1,
-                      "multiLane": false
-                    },
-                    "legend": {
-                      "calcs": [],
-                      "displayMode": "list",
-                      "placement": "bottom",
-                      "showLegend": false
-                    },
-                    "tooltip": {
-                      "hideZeros": false,
-                      "mode": "single",
-                      "sort": "none"
-                    }
                   }
-                },
-                "version": "13.0.2"
-              }
-            }
-          },
-          "panel-29": {
-            "kind": "Panel",
-            "spec": {
-              "data": {
-                "kind": "QueryGroup",
-                "spec": {
-                  "queries": [
-                    {
-                      "kind": "PanelQuery",
-                      "spec": {
-                        "hidden": false,
-                        "query": {
-                          "datasource": {
-                            "name": "main-prometheus"
-                          },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
-                          "spec": {
-                            "expr": "ceph_cluster_total_bytes{}-ceph_cluster_total_used_bytes{}",
-                            "format": "time_series",
-                            "legendFormat": "Available",
-                            "step": 300
-                          },
-                          "version": "v0"
-                        },
-                        "refId": "A"
-                      }
-                    },
-                    {
-                      "kind": "PanelQuery",
-                      "spec": {
-                        "hidden": false,
-                        "query": {
-                          "datasource": {
-                            "name": "main-prometheus"
-                          },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
-                          "spec": {
-                            "expr": "ceph_cluster_total_used_bytes{}",
-                            "format": "time_series",
-                            "legendFormat": "Used",
-                            "step": 300
-                          },
-                          "version": "v0"
-                        },
-                        "refId": "B"
-                      }
-                    },
-                    {
-                      "kind": "PanelQuery",
-                      "spec": {
-                        "hidden": false,
-                        "query": {
-                          "datasource": {
-                            "name": "main-prometheus"
-                          },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
-                          "spec": {
-                            "expr": "ceph_cluster_total_bytes{}",
-                            "format": "time_series",
-                            "legendFormat": "Total Capacity",
-                            "step": 300
-                          },
-                          "version": "v0"
-                        },
-                        "refId": "C"
-                      }
-                    }
-                  ],
-                  "queryOptions": {},
-                  "transformations": []
                 }
-              },
-              "description": "",
-              "id": 29,
-              "links": [],
-              "title": "Capacity",
-              "vizConfig": {
-                "group": "timeseries",
-                "kind": "VizConfig",
-                "spec": {
-                  "fieldConfig": {
-                    "defaults": {
-                      "color": {
-                        "mode": "palette-classic"
-                      },
-                      "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "text",
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "barAlignment": 0,
-                        "barWidthFactor": 0.6,
-                        "drawStyle": "line",
-                        "fillOpacity": 40,
-                        "gradientMode": "none",
-                        "hideFrom": {
-                          "legend": false,
-                          "tooltip": false,
-                          "viz": false
-                        },
-                        "insertNulls": false,
-                        "lineInterpolation": "linear",
-                        "lineWidth": 0,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                          "type": "linear"
-                        },
-                        "showPoints": "never",
-                        "showValues": false,
-                        "spanNulls": true,
-                        "stacking": {
-                          "group": "A",
-                          "mode": "normal"
-                        },
-                        "thresholdsStyle": {
-                          "mode": "off"
-                        }
-                      },
-                      "decimals": 2,
-                      "min": 0,
-                      "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "green",
-                            "value": 0
-                          },
-                          {
-                            "color": "red",
-                            "value": 80
-                          }
-                        ]
-                      },
-                      "unit": "bytes"
-                    },
-                    "overrides": [
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "Available"
-                        },
-                        "properties": [
-                          {
-                            "id": "color",
-                            "value": {
-                              "fixedColor": "#EAB839",
-                              "mode": "fixed"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "Total Capacity"
-                        },
-                        "properties": [
-                          {
-                            "id": "color",
-                            "value": {
-                              "fixedColor": "#447EBC",
-                              "mode": "fixed"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "Used"
-                        },
-                        "properties": [
-                          {
-                            "id": "color",
-                            "value": {
-                              "fixedColor": "#BF1B00",
-                              "mode": "fixed"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "Used"
-                        },
-                        "properties": [
-                          {
-                            "id": "color",
-                            "value": {
-                              "fixedColor": "#BF1B00",
-                              "mode": "fixed"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "total_avail"
-                        },
-                        "properties": [
-                          {
-                            "id": "color",
-                            "value": {
-                              "fixedColor": "#6ED0E0",
-                              "mode": "fixed"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "total_space"
-                        },
-                        "properties": [
-                          {
-                            "id": "color",
-                            "value": {
-                              "fixedColor": "#7EB26D",
-                              "mode": "fixed"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "total_used"
-                        },
-                        "properties": [
-                          {
-                            "id": "color",
-                            "value": {
-                              "fixedColor": "#890F02",
-                              "mode": "fixed"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "matcher": {
-                          "id": "byName",
-                          "options": "Total Capacity"
-                        },
-                        "properties": [
-                          {
-                            "id": "custom.fillOpacity",
-                            "value": 0
-                          },
-                          {
-                            "id": "custom.lineWidth",
-                            "value": 3
-                          },
-                          {
-                            "id": "custom.stacking",
-                            "value": {
-                              "group": false,
-                              "mode": "normal"
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "options": {
-                    "annotations": {
-                      "clustering": -1,
-                      "multiLane": false
-                    },
-                    "legend": {
-                      "calcs": [
-                        "mean",
-                        "lastNotNull",
-                        "max",
-                        "min"
-                      ],
-                      "displayMode": "table",
-                      "placement": "bottom",
-                      "showLegend": true
-                    },
-                    "tooltip": {
-                      "hideZeros": false,
-                      "mode": "multi",
-                      "sort": "desc"
-                    }
-                  }
-                },
-                "version": "13.0.2"
               }
             }
           },
           "panel-3": {
             "kind": "Panel",
             "spec": {
+              "id": 3,
+              "title": "CPU Usage per container",
+              "description": "",
+              "links": [],
               "data": {
                 "kind": "QueryGroup",
                 "spec": {
@@ -810,93 +307,34 @@ data:
                     {
                       "kind": "PanelQuery",
                       "spec": {
-                        "hidden": false,
                         "query": {
+                          "kind": "DataQuery",
+                          "group": "prometheus",
+                          "version": "v0",
                           "datasource": {
                             "name": "main-prometheus"
                           },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
                           "spec": {
                             "editorMode": "code",
-                            "expr": "sum by(namespace)(container_memory_usage_bytes{container=\"\"})",
-                            "legendFormat": "{{namespace}}",
+                            "expr": "sum (rate (container_cpu_usage_seconds_total{image!=\"\"}[1m])) by (pod)",
+                            "legendFormat": "__auto",
                             "range": true
-                          },
-                          "version": "v0"
+                          }
                         },
-                        "refId": "A"
+                        "refId": "A",
+                        "hidden": false
                       }
                     }
                   ],
-                  "queryOptions": {},
-                  "transformations": []
+                  "transformations": [],
+                  "queryOptions": {}
                 }
               },
-              "description": "",
-              "id": 3,
-              "links": [],
-              "title": "Memory per Pod",
               "vizConfig": {
-                "group": "timeseries",
                 "kind": "VizConfig",
+                "group": "timeseries",
+                "version": "13.0.2",
                 "spec": {
-                  "fieldConfig": {
-                    "defaults": {
-                      "color": {
-                        "mode": "palette-classic"
-                      },
-                      "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "text",
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "barAlignment": 0,
-                        "barWidthFactor": 0.6,
-                        "drawStyle": "line",
-                        "fillOpacity": 0,
-                        "gradientMode": "none",
-                        "hideFrom": {
-                          "legend": false,
-                          "tooltip": false,
-                          "viz": false
-                        },
-                        "insertNulls": false,
-                        "lineInterpolation": "linear",
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                          "type": "linear"
-                        },
-                        "showPoints": "auto",
-                        "showValues": false,
-                        "spanNulls": false,
-                        "stacking": {
-                          "group": "A",
-                          "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                          "mode": "off"
-                        }
-                      },
-                      "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "green",
-                            "value": 0
-                          },
-                          {
-                            "color": "red",
-                            "value": 80
-                          }
-                        ]
-                      },
-                      "unit": "decbytes"
-                    },
-                    "overrides": []
-                  },
                   "options": {
                     "annotations": {
                       "clustering": -1,
@@ -913,55 +351,22 @@ data:
                       "mode": "single",
                       "sort": "none"
                     }
-                  }
-                },
-                "version": "13.0.2"
-              }
-            }
-          },
-          "panel-5": {
-            "kind": "Panel",
-            "spec": {
-              "data": {
-                "kind": "QueryGroup",
-                "spec": {
-                  "queries": [
-                    {
-                      "kind": "PanelQuery",
-                      "spec": {
-                        "hidden": false,
-                        "query": {
-                          "datasource": {
-                            "name": "main-prometheus"
-                          },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
-                          "spec": {
-                            "editorMode": "code",
-                            "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[10m]) * 100) * on(instance) group_left(nodename) (node_uname_info))",
-                            "legendFormat": "{{nodename}}",
-                            "range": true
-                          },
-                          "version": "v0"
-                        },
-                        "refId": "A"
-                      }
-                    }
-                  ],
-                  "queryOptions": {},
-                  "transformations": []
-                }
-              },
-              "description": "",
-              "id": 5,
-              "links": [],
-              "title": "CPU per Node",
-              "vizConfig": {
-                "group": "timeseries",
-                "kind": "VizConfig",
-                "spec": {
+                  },
                   "fieldConfig": {
                     "defaults": {
+                      "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                          {
+                            "value": 0,
+                            "color": "green"
+                          },
+                          {
+                            "value": 80,
+                            "color": "red"
+                          }
+                        ]
+                      },
                       "color": {
                         "mode": "palette-classic"
                       },
@@ -998,28 +403,56 @@ data:
                         "thresholdsStyle": {
                           "mode": "off"
                         }
-                      },
-                      "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "green",
-                            "value": 0
-                          },
-                          {
-                            "color": "#EAB839",
-                            "value": 80
-                          },
-                          {
-                            "color": "red",
-                            "value": 90
-                          }
-                        ]
-                      },
-                      "unit": "percent"
+                      }
                     },
                     "overrides": []
-                  },
+                  }
+                }
+              }
+            }
+          },
+          "panel-4": {
+            "kind": "Panel",
+            "spec": {
+              "id": 4,
+              "title": "PVC Usage",
+              "description": "",
+              "links": [],
+              "data": {
+                "kind": "QueryGroup",
+                "spec": {
+                  "queries": [
+                    {
+                      "kind": "PanelQuery",
+                      "spec": {
+                        "query": {
+                          "kind": "DataQuery",
+                          "group": "prometheus",
+                          "version": "v0",
+                          "datasource": {
+                            "name": "main-prometheus"
+                          },
+                          "spec": {
+                            "editorMode": "code",
+                            "expr": "kubelet_volume_stats_used_bytes",
+                            "legendFormat": "{{persistentvolumeclaim}}/{{namespace}}",
+                            "range": true
+                          }
+                        },
+                        "refId": "A",
+                        "hidden": false
+                      }
+                    }
+                  ],
+                  "transformations": [],
+                  "queryOptions": {}
+                }
+              },
+              "vizConfig": {
+                "kind": "VizConfig",
+                "group": "timeseries",
+                "version": "13.0.2",
+                "spec": {
                   "options": {
                     "annotations": {
                       "clustering": -1,
@@ -1029,62 +462,30 @@ data:
                       "calcs": [],
                       "displayMode": "list",
                       "placement": "bottom",
-                      "showLegend": true
+                      "showLegend": false
                     },
                     "tooltip": {
                       "hideZeros": false,
                       "mode": "single",
                       "sort": "none"
                     }
-                  }
-                },
-                "version": "13.0.2"
-              }
-            }
-          },
-          "panel-6": {
-            "kind": "Panel",
-            "spec": {
-              "data": {
-                "kind": "QueryGroup",
-                "spec": {
-                  "queries": [
-                    {
-                      "kind": "PanelQuery",
-                      "spec": {
-                        "hidden": false,
-                        "query": {
-                          "datasource": {
-                            "name": "main-prometheus"
-                          },
-                          "group": "prometheus",
-                          "kind": "DataQuery",
-                          "spec": {
-                            "editorMode": "code",
-                            "expr": "node_memory_MemAvailable_bytes * on(instance) group_left(nodename) (node_uname_info)",
-                            "legendFormat": "{{nodename}}",
-                            "range": true
-                          },
-                          "version": "v0"
-                        },
-                        "refId": "A"
-                      }
-                    }
-                  ],
-                  "queryOptions": {},
-                  "transformations": []
-                }
-              },
-              "description": "",
-              "id": 6,
-              "links": [],
-              "title": "Memory per Node",
-              "vizConfig": {
-                "group": "timeseries",
-                "kind": "VizConfig",
-                "spec": {
+                  },
                   "fieldConfig": {
                     "defaults": {
+                      "unit": "bytes",
+                      "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                          {
+                            "value": 0,
+                            "color": "green"
+                          },
+                          {
+                            "value": 80,
+                            "color": "red"
+                          }
+                        ]
+                      },
                       "color": {
                         "mode": "palette-classic"
                       },
@@ -1121,43 +522,11 @@ data:
                         "thresholdsStyle": {
                           "mode": "off"
                         }
-                      },
-                      "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "green",
-                            "value": 0
-                          },
-                          {
-                            "color": "red",
-                            "value": 80
-                          }
-                        ]
-                      },
-                      "unit": "bytes"
+                      }
                     },
                     "overrides": []
-                  },
-                  "options": {
-                    "annotations": {
-                      "clustering": -1,
-                      "multiLane": false
-                    },
-                    "legend": {
-                      "calcs": [],
-                      "displayMode": "list",
-                      "placement": "bottom",
-                      "showLegend": true
-                    },
-                    "tooltip": {
-                      "hideZeros": false,
-                      "mode": "single",
-                      "sort": "none"
-                    }
                   }
-                },
-                "version": "13.0.2"
+                }
               }
             }
           }
@@ -1169,115 +538,66 @@ data:
               {
                 "kind": "GridLayoutItem",
                 "spec": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 24,
+                  "height": 13,
+                  "element": {
+                    "kind": "ElementReference",
+                    "name": "panel-1"
+                  }
+                }
+              },
+              {
+                "kind": "GridLayoutItem",
+                "spec": {
+                  "x": 0,
+                  "y": 13,
+                  "width": 24,
+                  "height": 13,
                   "element": {
                     "kind": "ElementReference",
                     "name": "panel-2"
-                  },
-                  "height": 9,
-                  "width": 12,
-                  "x": 0,
-                  "y": 0
+                  }
                 }
               },
               {
                 "kind": "GridLayoutItem",
                 "spec": {
+                  "x": 0,
+                  "y": 26,
+                  "width": 24,
+                  "height": 12,
                   "element": {
                     "kind": "ElementReference",
                     "name": "panel-3"
-                  },
-                  "height": 9,
-                  "width": 12,
-                  "x": 12,
-                  "y": 0
+                  }
                 }
               },
               {
                 "kind": "GridLayoutItem",
                 "spec": {
-                  "element": {
-                    "kind": "ElementReference",
-                    "name": "panel-5"
-                  },
-                  "height": 8,
-                  "width": 12,
                   "x": 0,
-                  "y": 9
-                }
-              },
-              {
-                "kind": "GridLayoutItem",
-                "spec": {
+                  "y": 38,
+                  "width": 24,
+                  "height": 12,
                   "element": {
                     "kind": "ElementReference",
-                    "name": "panel-6"
-                  },
-                  "height": 8,
-                  "width": 12,
-                  "x": 12,
-                  "y": 9
-                }
-              },
-              {
-                "kind": "GridLayoutItem",
-                "spec": {
-                  "element": {
-                    "kind": "ElementReference",
-                    "name": "panel-12"
-                  },
-                  "height": 7,
-                  "width": 5,
-                  "x": 0,
-                  "y": 17
-                }
-              },
-              {
-                "kind": "GridLayoutItem",
-                "spec": {
-                  "element": {
-                    "kind": "ElementReference",
-                    "name": "panel-29"
-                  },
-                  "height": 7,
-                  "width": 8,
-                  "x": 5,
-                  "y": 17
-                }
-              },
-              {
-                "kind": "GridLayoutItem",
-                "spec": {
-                  "element": {
-                    "kind": "ElementReference",
-                    "name": "panel-10"
-                  },
-                  "height": 7,
-                  "width": 5,
-                  "x": 13,
-                  "y": 17
-                }
-              },
-              {
-                "kind": "GridLayoutItem",
-                "spec": {
-                  "element": {
-                    "kind": "ElementReference",
-                    "name": "panel-11"
-                  },
-                  "height": 7,
-                  "width": 6,
-                  "x": 18,
-                  "y": 17
+                    "name": "panel-4"
+                  }
                 }
               }
             ]
           }
         },
         "links": [],
-        "liveNow": true,
+        "liveNow": false,
         "preload": false,
         "tags": [],
         "timeSettings": {
+          "timezone": "browser",
+          "from": "now-6h",
+          "to": "now",
           "autoRefresh": "",
           "autoRefreshIntervals": [
             "5s",
@@ -1291,13 +611,37 @@ data:
             "2h",
             "1d"
           ],
-          "fiscalYearStartMonth": 0,
-          "from": "now-3h",
           "hideTimepicker": false,
-          "timezone": "browser",
-          "to": "now"
+          "fiscalYearStartMonth": 0
         },
-        "title": "Debugging",
-        "variables": []
+        "title": "New dashboard",
+        "variables": [
+          {
+            "kind": "AdhocVariable",
+            "group": "prometheus",
+            "datasource": {
+              "name": "main-prometheus"
+            },
+            "spec": {
+              "name": "namespace",
+              "baseFilters": [],
+              "filters": [],
+              "defaultKeys": [],
+              "label": "namespace",
+              "hide": "dontHide",
+              "skipUrlSync": false,
+              "allowCustomValue": false,
+              "enableGroupBy": false
+            }
+          }
+        ],
+        "preferences": {
+          "layout": {
+            "kind": "GridLayout",
+            "spec": {
+              "items": []
+            }
+          }
+        }
       }
     }
