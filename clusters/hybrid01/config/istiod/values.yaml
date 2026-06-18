@@ -3,6 +3,7 @@ pilot:
   env: 
     ENABLE_DEBUG_ON_HTTP: "true"
     PILOT_ENABLE_CROSS_NAMESPACE_GATEWAY: "true"
+    PILOT_ENABLE_AMBIENT: "true"
   autoscaleEnabled: false
   replicaCount: 3
   resources:
