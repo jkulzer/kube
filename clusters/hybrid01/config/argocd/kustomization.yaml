@@ -16,3 +16,4 @@ resources:
   - argocd-mtls.yaml
   - argocd-virtualservice.yaml
   - argocd-oidc-secret.yaml
+  - argocd-peerauth.yaml
