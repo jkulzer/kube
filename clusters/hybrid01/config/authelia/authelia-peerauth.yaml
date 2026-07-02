@@ -6,4 +6,4 @@ metadata:
   namespace: authelia
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE
