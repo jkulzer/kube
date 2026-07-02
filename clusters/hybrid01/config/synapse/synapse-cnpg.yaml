@@ -17,6 +17,7 @@ spec:
         secretAccessKey:
           name: cnpg-backup-credentials
           key: access-key-secret
+    retentionPolicy: "7d"
   bootstrap:
     initdb:
       database: synapse

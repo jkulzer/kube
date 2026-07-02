@@ -36,7 +36,7 @@ kind: ScheduledBackup
 metadata:
   name: synapse-pg-backup
 spec:
-  schedule: "30 3 * * *" # at 4:30
+  schedule: "30 3 * * * *" # at 4:30
   backupOwnerReference: self
   cluster:
     name: synapse-pg
@@ -46,7 +46,7 @@ kind: ScheduledBackup
 metadata:
   name: mas-pg-backup
 spec:
-  schedule: "30 3 * * *" # at 4:30
+  schedule: "30 3 * * * *" # at 4:30
   backupOwnerReference: self
   cluster:
     name: mas-pg

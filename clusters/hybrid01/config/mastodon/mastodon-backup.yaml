@@ -5,7 +5,7 @@ metadata:
   name: mastodon-pg-backup
   namespace: mastodon
 spec:
-  schedule: "30 2 * * *" # at 3:30
+  schedule: "30 2 * * * *" # at 3:30
   backupOwnerReference: self
   cluster:
     name: mastodon-pg
