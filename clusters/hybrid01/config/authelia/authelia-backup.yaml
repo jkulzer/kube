@@ -24,4 +24,4 @@ spec:
   schedule: "* 30 4 * * *" # at 5:30
   backupOwnerReference: self
   cluster:
-    name: immich-pg
+    name: authelia-pg
