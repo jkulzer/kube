@@ -21,7 +21,7 @@ metadata:
   name: authelia-pg-backup
   namespace: authelia
 spec:
-  schedule: "30 4 * * *" # at 5:30
+  schedule: "* 30 4 * * *" # at 5:30
   backupOwnerReference: self
   cluster:
     name: immich-pg

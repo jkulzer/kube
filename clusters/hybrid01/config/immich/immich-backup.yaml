@@ -21,7 +21,7 @@ metadata:
   name: immich-pg-backup
   namespace: immich
 spec:
-  schedule: "30 3 * * * *" # at 4:30
+  schedule: "* 30 3 * * *" # at 4:30
   backupOwnerReference: self
   cluster:
     name: immich-pg
