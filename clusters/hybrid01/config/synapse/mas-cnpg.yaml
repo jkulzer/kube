@@ -23,6 +23,6 @@ spec:
       database: mas
       owner: mas_user
   storage:
-    size: 5Gi
+    size: 10Gi
   monitoring:
     enablePodMonitor: true
