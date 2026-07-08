@@ -129,7 +129,7 @@ spec:
                   name: immich-dragonfly-secret
                   key: password
             - name: IMMICH_CONFIG_FILE
-              value: /config/immich
+              value: /config/immich.json
             - name: IMMICH_HELMET_FILE
               value: "true"
           ports:
