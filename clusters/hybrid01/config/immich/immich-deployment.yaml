@@ -163,4 +163,4 @@ spec:
             claimName: immich-media
         - name: config
           configMap:
-            secretName: immich
+            name: immich
