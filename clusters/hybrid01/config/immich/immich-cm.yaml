@@ -87,8 +87,6 @@ data:
       },
       "map": {
         "enabled": true,
-        "lightStyle": "",
-        "darkStyle": ""
       },
       "reverseGeocoding": {
         "enabled": true
