@@ -157,46 +157,10 @@ spec:
           #   initialDelaySeconds: 0
           #   periodSeconds: 10
           #   timeoutSeconds: 1
-        - name: immich-init
-          image: python:3.14
-          command:
-            - "python"
-          args:
-            - /script/immich-initialize-admin.py
-          env:
-            - name: IMMICH_URL
-              value: http://immich-server-internal.immich.svc.cluster.local:2883
-            - name: SERVER_PORT
-              value: "8080"
-            - name: EMAIL
-              value: mail@jkulzer.dev
-            - name: PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: immich-admin-password
-                  key: password
-          ports:
-            - name: http-init
-              containerPort: 8080
-              protocol: TCP
-          volumeMounts:
-            - name: init-script
-              mountPath: /script
-          # readinessProbe:
-            # failureThreshold: 300
-            # httpGet:
-            #   path: /
-            #   port: http-init
-            # initialDelaySeconds: 0
-            # periodSeconds: 1
-            # timeoutSeconds: 1
       volumes:
         - name: library
           persistentVolumeClaim:
             claimName: immich-media
         - name: config
-          secret:
-            secretName: immich-oidc-secret
-        - name: init-script
-          configMap: 
-            name: init-script
+          configMap:
+            secretName: immich

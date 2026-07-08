@@ -16,11 +16,6 @@ data:
           "h264"
         ],
         "targetAudioCodec": "aac",
-        "acceptedAudioCodecs": [
-          "aac",
-          "mp3",
-          "libopus"
-        ],
         "targetResolution": "720",
         "maxBitrate": "0",
         "bframes": -1,
@@ -97,11 +92,11 @@ data:
       "oauth": {
         "autoLaunch": false,
         "autoRegister": true,
-        "buttonText": "Login with OAuth",
-        "clientId": "",
-        "clientSecret": "",
-        "enabled": false,
-        "issuerUrl": "",
+        "buttonText": "Login with Authelia",
+        "clientId": "immich",
+        "clientSecret": "${vault:kvv2/data/immich#client-secret}",
+        "enabled": true,
+        "issuerUrl": "https://auth.jkulzer.dev",
         "mobileOverrideEnabled": false,
         "mobileRedirectUri": "",
         "scope": "openid email profile immichscope",
