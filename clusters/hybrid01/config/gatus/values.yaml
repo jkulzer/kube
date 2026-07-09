@@ -21,7 +21,7 @@ serviceMonitor:
 # Gatus configuration
 # ref: https://github.com/TwiN/gatus#configuration
 config:
-  # metrics: true
+  metrics: true
   endpoints:
     # - name: jkulzer.dev
     #   url: https://jkulzer.dev
