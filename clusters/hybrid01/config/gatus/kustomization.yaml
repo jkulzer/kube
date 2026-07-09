@@ -13,3 +13,5 @@ helmCharts:
 resources:
   - gatus-ns.yaml
   - gatus-virtualservice.yaml
+  - gatus-servicemonitor.yaml
+  - gatus-prometheusrule.yaml

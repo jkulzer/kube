@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata: 
+  name: gatus-status
+  namespace: gatus
+spec:
+  groups:
+    - name: CustomGatusRules
+      rules:
+        - alert: GatusTargetDown
+          expr: |- 
+            sum(rate(gatus_results_total{success="false"}[5m])*60) by (key)
+          labels:
+            severity: error
+          annotations:
+            description: "Target {{$labels.key}} is down"
