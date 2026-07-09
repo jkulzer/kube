@@ -41,3 +41,23 @@ config:
       interval: 60s
       conditions:
         - "[STATUS] == 200"
+    - name: Element
+      url: https://element.justmeowing.net
+      interval: 60s
+      conditions:
+        - "[STATUS] == 200"
+    - name: ArgoCD
+      url: https://argocd.jkulzer.dev
+      interval: 60s
+      conditions:
+        - "[STATUS] == 200"
+    - name: Openbao
+      url: https://openbao.jkulzer.dev
+      interval: 60s
+      conditions:
+        - "[STATUS] == 200"
+    - name: Openspeedtest
+      url: https://speedtest.jkulzer.dev
+      interval: 60s
+      conditions:
+        - "[STATUS] == 200"
