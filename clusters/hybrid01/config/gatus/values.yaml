@@ -47,7 +47,7 @@ config:
       conditions:
         - "[STATUS] == 200"
     - name: ArgoCD
-      url: https://argocd.jkulzer.dev
+      url: https://argo.jkulzer.dev
       interval: 60s
       conditions:
         - "[STATUS] == 200"
@@ -60,4 +60,4 @@ config:
       url: https://speedtest.jkulzer.dev
       interval: 60s
       conditions:
-        - "[STATUS] == 200"
+        - "[STATUS] == 304"
