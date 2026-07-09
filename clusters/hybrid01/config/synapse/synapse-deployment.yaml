@@ -54,6 +54,12 @@ spec:
         - name: synapse
           protocol: TCP
           containerPort: 8008
+        resources:
+          requests:
+            cpu: 20m
+            memory: 350M
+          limits:
+            memory: 750M
         command:
           - /usr/local/bin/python
           - -m
@@ -134,6 +140,12 @@ spec:
         - name: mas
           protocol: TCP
           containerPort: 8080
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100M
+          limits: 
+            memory: 250M
         args:
           - --config=/data/config.yaml
           - --config=/tmp/db.yaml

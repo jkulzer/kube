@@ -53,6 +53,12 @@ spec:
             - name: http
               containerPort: 3003
               protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 750M
+            limits:
+              memory: 1500M
           volumeMounts:
             - name: cache
               mountPath: /cache
@@ -138,6 +144,12 @@ spec:
             - name: http
               containerPort: 2283
               protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 1500M
+            limits:
+              memory: 2000M
           volumeMounts:
             - name: library
               mountPath: /usr/src/app/upload

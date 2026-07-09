@@ -6,8 +6,8 @@ global:
 controller:
   resources:
     requests:
-      cpu: 100m
-      memory: 750M
+      cpu: 200m
+      memory: 1000M
   metrics:
     enabled: true
     serviceMonitor:
@@ -93,7 +93,7 @@ repoServer:
   resources:
     requests:
       cpu: 50m
-      memory: 200M
+      memory: 500M
   metrics:
     enabled: true
     serviceMonitor:

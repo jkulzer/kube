@@ -175,6 +175,12 @@ spec:
         - name: mastodon
           protocol: TCP
           containerPort: 3000
+        resources:
+          requests:
+            cpu: 10m
+            memory: 900M
+          limits:
+            memory: 1500M
         volumeMounts:
         - name: mastodon-media
           mountPath: /opt/mastodon/public/system

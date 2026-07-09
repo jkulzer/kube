@@ -18,14 +18,12 @@ injector:
 
 server:
   enabled: true
-  resources: {}
-  # resources:
-  #   requests:
-  #     memory: 256Mi
-  #     cpu: 250m
-  #   limits:
-  #     memory: 256Mi
-  #     cpu: 250m
+  resources:
+    requests:
+      cpu: 50m
+      memory: 150M
+    limits:
+      memory: 500M
 
   # authDelegator enables a cluster role binding to be attached to the service
   # account.  This cluster role binding can be used to setup Kubernetes auth

@@ -74,16 +74,16 @@ service:
   name: cnpg-webhook-service
   port: 443
 
-resources: {}
+resources:
   # If you want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   #
   # limits:
   #   cpu: 100m
   #   memory: 200Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 100Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
 
 monitoring:
 

@@ -28,6 +28,11 @@ spec:
             - name: http
               containerPort: 3923
               protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 80M
+            limits: 200M
           volumeMounts:
             - name: ingest
               mountPath: /ingest

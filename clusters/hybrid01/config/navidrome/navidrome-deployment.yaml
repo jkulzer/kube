@@ -52,6 +52,12 @@ spec:
             - name: http
               containerPort: 4533
               protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 500M
+            limits:
+              memory: 1500M
           volumeMounts:
             - name: music-library
               mountPath: /music
