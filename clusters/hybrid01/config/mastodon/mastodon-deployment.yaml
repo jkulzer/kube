@@ -82,7 +82,7 @@ spec:
                 key: fqdn-uri
           - name: SKIP_POST_DEPLOYMENT_MIGRATIONS
             value: "true"
-      - name: migrate-db-predeployment-migrations
+      - name: migrate-db-postdeployment-migrations
         image: ghcr.io/mastodon/mastodon:v4.6.2
         command: 
           - "/bin/bash"
