@@ -14,7 +14,7 @@ resources:
     memory: 40M
 
 serviceMonitor:
-  enabled: false
+  enabled: true
   # interval: 1m
   # scrapeTimeout: 30s
 
@@ -33,13 +33,13 @@ config:
       interval: 60s
       conditions:
         - "[STATUS] == 200"
-    - name: Element
-      url: https://element.jkulzer.dev
+    - name: Immich
+      url: https://images.jkulzer.dev
       interval: 60s
       conditions:
         - "[STATUS] == 200"
-    - name: Immich
-      url: https://images.jkulzer.dev
+    - name: Mastodon
+      url: https://mastodon.justmeowing.net
       interval: 60s
       conditions:
         - "[STATUS] == 200"
