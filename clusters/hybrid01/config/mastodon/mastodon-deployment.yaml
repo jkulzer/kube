@@ -52,6 +52,64 @@ spec:
               secretKeyRef:
                 name: mastodon-pg-app
                 key: fqdn-uri
+      - name: migrate-db-predeployment-migrations
+        image: ghcr.io/mastodon/mastodon:v4.6.2
+        command: 
+          - "/bin/bash"
+        args: 
+          - "-c"
+          - "bundle exec rails db:migrate || true"
+        # redirecting failure to /dev/null because it's okay if the init container refuses to init an already existing db
+        env:
+          - name: ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
+            value: vault:kvv2/data/mastodon#ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
+          - name: ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
+            value: vault:kvv2/data/mastodon#ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
+          - name: ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
+            value: vault:kvv2/data/mastodon#ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
+          - name: SECRET_KEY_BASE
+            value: vault:kvv2/data/mastodon#SECRET_KEY_BASE
+          - name: REDIS_HOST
+            value: dragonfly-mastodon.mastodon.svc.cluster.local
+          - name: REDIS_PORT
+            value: "6379"
+          - name: REDIS_PASSWORD
+            value: vault:kvv2/data/mastodon#dragonfly-password
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: mastodon-pg-app
+                key: fqdn-uri
+          - name: SKIP_POST_DEPLOYMENT_MIGRATIONS
+            value: "true"
+      - name: migrate-db-predeployment-migrations
+        image: ghcr.io/mastodon/mastodon:v4.6.2
+        command: 
+          - "/bin/bash"
+        args: 
+          - "-c"
+          - "bundle exec rails db:migrate || true"
+        # redirecting failure to /dev/null because it's okay if the init container refuses to init an already existing db
+        env:
+          - name: ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
+            value: vault:kvv2/data/mastodon#ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
+          - name: ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
+            value: vault:kvv2/data/mastodon#ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
+          - name: ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
+            value: vault:kvv2/data/mastodon#ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
+          - name: SECRET_KEY_BASE
+            value: vault:kvv2/data/mastodon#SECRET_KEY_BASE
+          - name: REDIS_HOST
+            value: dragonfly-mastodon.mastodon.svc.cluster.local
+          - name: REDIS_PORT
+            value: "6379"
+          - name: REDIS_PASSWORD
+            value: vault:kvv2/data/mastodon#dragonfly-password
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: mastodon-pg-app
+                key: fqdn-uri
       containers:
       - name: mastodon
         image: ghcr.io/mastodon/mastodon:v4.6.2
