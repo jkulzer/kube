@@ -25,7 +25,7 @@ data:
           "grafana.app/managerId": "dashboards",
           "grafana.app/sourceChecksum": "e7028fd61ffd1ab44bb26a847221f0b9",
           "grafana.app/sourcePath": "/dashboards/main/main.json",
-          "grafana.app/sourceTimestamp": "1783535388000",
+          "grafana.app/sourceTimestamp": "1783535388000"
         }
       },
       "spec": {
