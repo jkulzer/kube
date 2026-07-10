@@ -3,6 +3,7 @@ namespaceOverride: "prometheus"
 crds:
   upgradeJob:
     enabled: true
+    forceConflicts: true
 
 alertmanager:
   enabled: true
