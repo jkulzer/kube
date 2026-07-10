@@ -4,8 +4,8 @@ kind: Kustomization
 namespace: rook-ceph
 
 helmCharts:
-  - name: ceph-csi-operator
-    releaseName: ceph-csi-operator
+  - name: ceph-csi-drivers
+    releaseName: ceph-csi-drivers
     namespace: rook-ceph
     repo: https://ceph.github.io/ceph-csi-operator
     version: 1.0.4
