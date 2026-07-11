@@ -55,8 +55,3 @@ config:
       interval: 60s
       conditions:
         - "[STATUS] == 200"
-    - name: Openspeedtest
-      url: https://speedtest.jkulzer.dev
-      interval: 60s
-      conditions:
-        - "[STATUS] == 304"
