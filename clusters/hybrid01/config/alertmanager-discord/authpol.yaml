@@ -1,0 +1,15 @@
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-alertmanager
+  namespace: alertmanager-discord
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/prometheus/sa/kube-prometheus-stack-alertmanager"]
+    to:
+    - operation:
+        methods: ["POST"]
