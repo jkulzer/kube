@@ -242,8 +242,6 @@ spec:
           name: grafana-oidc-secret
         - mountPath: /secrets/immich-oidc-secret
           name: immich-oidc-secret
-        - mountPath: /secrets/argocd-oidc-secret
-          name: argocd-oidc-secret
         - mountPath: /secrets/synapse-oidc-secret
           name: synapse-oidc-secret
         - mountPath: /secrets/authelia-oidc-issuer
@@ -292,12 +290,6 @@ spec:
             items:
               - key: GRAFANA_OAUTH_HASHED_KEY
                 path: GRAFANA_OAUTH_HASHED_KEY
-      - name: argocd-oidc-secret
-        secret:
-            secretName: argocd-oidc-secret
-            items:
-              - key: hashed-client-secret
-                path: hashed-client-secret
       - name: immich-oidc-secret
         secret:
             secretName: immich-oidc-secret
