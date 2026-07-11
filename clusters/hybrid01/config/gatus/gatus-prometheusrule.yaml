@@ -9,7 +9,7 @@ spec:
       rules:
         - alert: GatusTargetDown
           expr: |- 
-            sum(rate(gatus_results_total{success="false"}[5m])*60) by (key)
+            sum(rate(gatus_results_total{success="false"}[5m])*60) by (key) > 0
           labels:
             severity: error
           annotations:
