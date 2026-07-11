@@ -247,7 +247,7 @@ data:
           claims_policy: 'grafana'
         - client_id: argocd
           client_name: Argo CD
-          client_secret: '{{- fileContent "/secrets/argocd-oidc-secret/hashed-client-secret" }}'
+          client_secret: ${vault:kvv2/data/argocd#hashed-client-secret}
           public: false
           authorization_policy: one_factor
           redirect_uris:
@@ -275,25 +275,6 @@ data:
           claims_policy: 'immichpolicy'
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: client_secret_post
-        - client_id: gotosocial
-          client_name: Gotosocial
-          client_secret: ${vault:kvv2/data/gotosocial#hashed-client-secret}
-          public: false
-          authorization_policy: one_factor
-          redirect_uris:
-            - 'https://gtstest.justmeowing.net/auth/callback'
-          scopes:
-            - "openid"
-            - "profile"
-            - "groups"
-            - "email"
-          response_types:
-            - 'code'
-          grant_types:
-            - 'authorization_code'
-          access_token_signed_response_alg: none
-          userinfo_signed_response_alg: none
-          token_endpoint_auth_method: 'client_secret_basic'
         - client_id: matrix-authentication-service
           client_name: Matrix Authentication Service
           client_secret: ${vault:kvv2/data/synapse#hashed-client-secret}
