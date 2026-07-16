@@ -16,6 +16,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
       in {
         devShells.default = pkgs.mkShell {
+          VAULT_ADDR = "https://openbao.jkulzer.dev";
           packages = with pkgs; [
             kubectl
             kustomize
@@ -24,6 +25,9 @@
             kube-capacity
             opentofu
             jq
+            openbao
+            istioctl
+            authelia
           ];
         };
       }
