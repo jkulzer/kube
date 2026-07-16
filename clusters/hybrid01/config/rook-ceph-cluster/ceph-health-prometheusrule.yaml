@@ -9,14 +9,14 @@ spec:
       rules:
         - alert: CephHealthWarn
           expr: |- 
-            ceph_health_detail{severity="HEALTH_WARN"} != 0
+            ceph_health_detail{severity="HEALTH_WARN",container="mgr"} != 0
           labels:
             severity: warning
           annotations:
             description: "Ceph Cluster has {{$labels.name}}"
         - alert: CephHealthErr
           expr: |- 
-            ceph_health_detail{severity="HEALTH_ERR"} != 0
+            ceph_health_detail{severity="HEALTH_ERR",container="mgr"} != 0
           labels:
             severity: critical
           annotations:
