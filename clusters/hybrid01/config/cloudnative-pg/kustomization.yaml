@@ -14,3 +14,4 @@ helmCharts:
 resources:
   - cnpg-ns.yaml
   - cnpg-backup-secret.yaml
+  - backup-prometheusrule.yamtl

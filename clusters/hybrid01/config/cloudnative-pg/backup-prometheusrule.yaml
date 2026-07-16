@@ -1,0 +1,20 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cnpg-alert-backup
+  namespace: cnpg
+spec:
+  groups:
+    - name: cnpg
+      rules:
+        - alert: BackupFailed
+          annotations:
+            description: |
+              Last available backup for the CNPG cluster {{ $labels.pod }} in {{ $labels.namespace }} is older than 25 hours: {{ $value }} hours
+            summary: The last available backup is older than 25 hours.
+          expr: |
+            (time() - sum by (namespace) (cnpg_collector_last_available_backup_timestamp{})) / 3600 > 25
+          for: 0s
+          labels:
+            severity: warning
