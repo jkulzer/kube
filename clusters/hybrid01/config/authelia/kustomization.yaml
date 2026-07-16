@@ -19,3 +19,4 @@ resources:
   - volsync-secret.yaml
   - authelia-backup.yaml
   - authelia-peerauth.yaml
+  - authelia-sa.yaml
