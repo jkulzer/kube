@@ -10,6 +10,14 @@ spec:
     matchLabels: 
       app: ldap
   replicas: 1
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   template:
     metadata:
       labels:
@@ -17,7 +25,15 @@ spec:
     spec:
       containers:
       - name: lldap
-        image: nitnelave/lldap:stable
+        image: nitnelave/lldap:stable-alpine-rootless
+        imagePullPolicy: Always
+        securityContext: 
+          runAsNonRoot: true
+          runAsUser: 1000
+          runAsGroup: 1000
+          fsGroup: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
         resources: 
           requests:
             cpu: 15m

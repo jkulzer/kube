@@ -124,6 +124,13 @@ spec:
       - name: authelia
         image: ghcr.io/authelia/authelia:4.39.20
         imagePullPolicy: IfNotPresent
+        securityContext: 
+          runAsNonRoot: true
+          runAsUser: 8000
+          runAsGroup: 9000
+          fsGroup: 8000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
         command: ["authelia"]
         args:
         # - "config"
