@@ -1,5 +1,11 @@
 # config -- The [polaris configuration](https://github.com/FairwindsOps/polaris#configuration). If not provided then the [default](https://github.com/FairwindsOps/polaris/blob/master/examples/config.yaml) config from Polaris is used.
-config: null
+config: 
+  checks:
+    pullPolicyNotAlways: ignore
+    deploymentMissingReplicas: ignore
+    topologySpreadConstraint: ignore
+    cpuLimitsMissing: ignore
+    sensitiveContainerEnvVar: warning
 
 # additionalExemptions -- List of additional exemptions to append to the exemptions given in `config`
 additionalExemptions: null
