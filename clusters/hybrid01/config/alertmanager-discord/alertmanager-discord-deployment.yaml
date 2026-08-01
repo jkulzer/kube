@@ -6,6 +6,15 @@ metadata:
   namespace: alertmanager-discord
 spec:
   replicas: 1
+  priorityClassName: monitoring
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: alertmanager-discord
@@ -18,6 +27,7 @@ spec:
       containers:
         - name: alertmanager-discord
           image: ghcr.io/matthew-beckett/alertmanager-discord:master@sha256:26228db1833d7ff2f9153a5cee0b37d5441e4d1b602029581c9c656744597f0c
+          imagePullPolicy: Always
           resources:
             requests:
               cpu: 15m
