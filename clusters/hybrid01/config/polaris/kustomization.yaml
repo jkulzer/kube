@@ -13,3 +13,5 @@ helmCharts:
 
 resources:
  - polaris-ns.yaml
+ - polaris-virtualservice.yaml
+ - polaris-authpolicy.yaml

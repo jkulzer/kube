@@ -165,6 +165,10 @@ data:
         policy: one_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'polaris.jkulzer.dev'
+        policy: one_factor
+        subject:
+        - ['group:kubeadmin']
       - domain: 'grafana.jkulzer.dev'
         policy: one_factor
         subject:

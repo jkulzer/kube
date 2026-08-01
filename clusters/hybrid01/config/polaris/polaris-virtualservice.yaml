@@ -1,0 +1,34 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: polaris-external
+  namespace: polaris
+spec:
+  hosts:
+  - "polaris.jkulzer.dev"
+  gateways:
+  - istio-external-gateway/external-gateway
+  http:
+  - route:
+    - destination:
+        host: polaris-dashboard
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: polaris-internal
+  namespace: polaris
+spec:
+  hosts:
+  - "polaris.jkulzer.dev"
+  gateways:
+  - istio-internal-gateway/internal-gateway
+  http:
+  - route:
+    - destination:
+        host: polaris-dashboard
+        port:
+          number: 80
