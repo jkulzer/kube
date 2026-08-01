@@ -11,6 +11,16 @@ spec:
   - istio-internal-gateway/internal-gateway
   http:
   - match:
+    - headers:
+        upgrade:
+          exact: websocket
+    route:
+    - destination:
+        host: immich-server
+        port:
+          number: 2883
+    timeout: 0s
+  - match:
     route:
     - destination:
         host: immich-server
@@ -28,6 +38,16 @@ spec:
   gateways:
   - istio-internal-gateway/internal-gateway
   http:
+  - match:
+    - headers:
+        upgrade:
+          exact: websocket
+    route:
+    - destination:
+        host: immich-server
+        port:
+          number: 2883
+    timeout: 0s
   - match:
     route:
     - destination:
