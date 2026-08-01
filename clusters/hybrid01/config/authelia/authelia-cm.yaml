@@ -91,6 +91,10 @@ data:
               name: 'immichquota'
               multi_valued: false
               value_type: 'integer'
+            immichrole:
+              name: 'immichrole'
+              multi_valued: false
+              value_type: 'string'
     password_policy:
       standard:
         enabled: true
@@ -210,6 +214,8 @@ data:
             custom_claims:
               immichquota:
                 attribute: 'immichquota'
+              immichrole:
+                attribute: 'immichrole'
           mastodon:
             id_token: ['email', 'name', 'groups', 'mastodon-username']
             custom_claims:
@@ -219,6 +225,7 @@ data:
           immichscope:
             claims:
               - 'immichquota'
+              - 'immichrole'
           mastodon-username:
             claims:
               - "mastodon-username"

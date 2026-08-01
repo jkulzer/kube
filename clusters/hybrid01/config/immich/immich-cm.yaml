@@ -5,6 +5,7 @@ metadata:
   name: immich
   namespace: immich
   annotations:
+    reloader.stakater.com/auto: "true"
     vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200" # optional, the address of the Vault service, default values is https://vault:8200
     vault.security.banzaicloud.io/vault-role: "default" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
 
@@ -101,6 +102,7 @@ data:
         "issuerUrl": "https://auth.jkulzer.dev",
         "mobileOverrideEnabled": false,
         "mobileRedirectUri": "",
+        "roleClaim": "immichrole",
         "scope": "openid email profile immichscope",
         "signingAlgorithm": "RS256",
         "storageLabelClaim": "preferred_username",
