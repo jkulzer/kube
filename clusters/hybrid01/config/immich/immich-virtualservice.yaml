@@ -19,7 +19,6 @@ spec:
         host: immich-server
         port:
           number: 2883
-    timeout: 0s
   - match:
     route:
     - destination:
@@ -47,7 +46,6 @@ spec:
         host: immich-server
         port:
           number: 2883
-    timeout: 0s
   - match:
     route:
     - destination:
