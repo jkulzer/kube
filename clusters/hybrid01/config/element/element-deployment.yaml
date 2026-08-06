@@ -10,6 +10,15 @@ metadata:
     configmap.reloader.stakater.com/reload: "element"
 spec:
   replicas: 3
+  priorityClassName: matrix
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: element
@@ -21,6 +30,13 @@ spec:
       containers:
       - image: vectorim/element-web:v1.12.25
         name: element
+        securityContext: 
+          runAsNonRoot: true
+          runAsUser: 1000
+          runAsGroup: 1000
+          fsGroup: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
         ports:
           - name: element
             containerPort: 80
