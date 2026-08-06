@@ -12,6 +12,13 @@ resources:
   limits:
     memory: 40M
 
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 65534
+  runAsGroup: 65534
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+
 serviceMonitor:
   enabled: false
 
