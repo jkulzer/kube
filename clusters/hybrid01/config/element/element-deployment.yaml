@@ -18,7 +18,6 @@ spec:
     runAsGroup: 1000
     fsGroup: 1000
     allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: element
@@ -36,7 +35,6 @@ spec:
           runAsGroup: 1000
           fsGroup: 1000
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
         ports:
           - name: element
             containerPort: 80
