@@ -10,6 +10,15 @@ metadata:
     configmap.reloader.stakater.com/reload: "grafana-dashboards-json"
 spec:
   replicas: 1
+  priorityClassName: monitoring
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: grafana
@@ -26,6 +35,13 @@ spec:
       containers:
       - name: grafana
         image: grafana/grafana:13.1.2
+        securityContext: 
+          runAsNonRoot: true
+          runAsUser: 1000
+          runAsGroup: 1000
+          fsGroup: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
         env:
         - name: GF_SERVER_ROOT_URL
           value: "https://grafana.jkulzer.dev"
