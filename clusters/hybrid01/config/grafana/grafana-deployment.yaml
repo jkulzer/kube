@@ -16,7 +16,6 @@ spec:
   replicas: 1
   serviceAccountName: grafana
   priorityClassName: monitoring
-  automountServiceAccountToken: false
   securityContext: 
     runAsNonRoot: true
     runAsUser: 1000
