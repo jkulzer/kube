@@ -8,5 +8,5 @@ resources:
   - grafana-svc.yaml
   - grafana-deployment.yaml
   - grafana-dashboard.yaml
-  - grafana-oidc-secret.yaml
   - grafana-virtualservice.yaml
+  - grafana-sa.yaml

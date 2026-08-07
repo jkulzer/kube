@@ -11,7 +11,6 @@ resources:
   - ldap-pvc.yaml
   - authelia-oidc-issuer.yaml
   - authelia-virtualservice.yaml
-  - grafana-oidc-secret.yaml
   - headscale-oidc-secret.yaml
   - immich-oidc-secret.yaml
   - synapse-oidc-secret.yaml
