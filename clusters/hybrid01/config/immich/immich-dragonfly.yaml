@@ -31,4 +31,4 @@ metadata:
     vault.security.banzaicloud.io/vault-role: "default" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
 
 data:
-  password: dmF1bHQ6a3Z2Mi9kYXRhL2ltbWljaCNkcmFnb25mbHktcGFzc3dvcmQK
+  password: dmF1bHQ6a3Z2Mi9kYXRhL2ltbWljaCNkcmFnb25mbHktcGFzc3dvcmQ=
