@@ -103,6 +103,10 @@ spec:
     metadata:
       labels:
         app: server
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-skip-verify: "false" 
+        vault.security.banzaicloud.io/vault-role: "immich"
     spec:
       containers:
         - name: immich-server
