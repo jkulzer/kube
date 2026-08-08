@@ -9,7 +9,6 @@ resources:
   - immich-pvc.yaml
   - immich-deployment.yaml
   - immich-dragonfly.yaml
-  - immich-oidc-secret.yaml
   - immich-virtualservice.yaml
   - immich-cnpg.yaml
   - volsync-secret.yaml

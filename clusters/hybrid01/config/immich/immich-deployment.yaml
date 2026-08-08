@@ -16,6 +16,10 @@ spec:
     metadata:
       labels:
         app: machine-learning
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-skip-verify: "false" 
+        vault.security.banzaicloud.io/vault-role: "immich"
     spec:
       containers:
         - name: immich-machine-learning
@@ -43,10 +47,7 @@ spec:
             - name: REDIS_HOSTNAME
               value: dragonfly-immich
             - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: immich-dragonfly-secret
-                  key: password
+              value: vault:kvv2/data/immich#dragonfly-password
             - name: TRANSFORMERS_CACHE
               value: /cache
           ports:
@@ -132,10 +133,7 @@ spec:
             - name: REDIS_HOSTNAME
               value: dragonfly-immich
             - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: immich-dragonfly-secret
-                  key: password
+              value: vault:kvv2/data/immich#dragonfly-password
             - name: IMMICH_CONFIG_FILE
               value: /config/immich.json
             - name: IMMICH_HELMET_FILE
