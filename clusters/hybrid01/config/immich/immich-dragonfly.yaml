@@ -28,7 +28,7 @@ metadata:
   namespace: immich
   annotations:
     vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200" # optional, the address of the Vault service, default values is https://vault:8200
-    vault.security.banzaicloud.io/vault-role: "default" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
+    vault.security.banzaicloud.io/vault-role: "immich" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
 
 data:
   password: dmF1bHQ6a3Z2Mi9kYXRhL2ltbWljaCNkcmFnb25mbHktcGFzc3dvcmQK
