@@ -35,9 +35,12 @@ spec:
           runAsGroup: 1000
           fsGroup: 1000
           allowPrivilegeEscalation: false
+        env:
+          - name: ELEMENT_WEB_PORT
+            value: "8080"
         ports:
           - name: element
-            containerPort: 80
+            containerPort: 8080
             protocol: TCP
         volumeMounts:
         - name: element-config

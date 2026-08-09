@@ -14,7 +14,7 @@ spec:
     - destination:
         host: element
         port:
-          number: 80
+          number: 8080
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -31,4 +31,4 @@ spec:
     - destination:
         host: element
         port:
-          number: 80
+          number: 8080
