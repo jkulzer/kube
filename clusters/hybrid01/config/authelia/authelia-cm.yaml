@@ -38,6 +38,7 @@ data:
           read: 4096
           write: 4096
     storage:
+      encryption_key: ${vault:kvv2/data/authelia#storage-encryption-key}
       postgres:
         password: {{ env "AUTHELIA_STORAGE_POSTGRES_PASSWORD" }}
     totp:
@@ -69,6 +70,7 @@ data:
         address: ldap://ldap.authelia.svc.cluster.local:3890
         timeout: 5s
         start_tls: false
+        password: ${vault:kvv2/data/authelia#ldap-admin-password}
         base_dn: dc=jkulzer,dc=dev
         users_filter: (&({username_attribute}={input})(objectClass=person))
         groups_filter: "(member={dn})"
@@ -107,6 +109,7 @@ data:
       zxcvbn:
         enabled: false
     session:
+      secret: ${vault:kvv2/data/authelia#session-secret}
       cookies:
         - name: 'authelia_session'
           domain: 'jkulzer.dev'
@@ -203,6 +206,7 @@ data:
         - ['group:kubeadmin']
     identity_providers:
       oidc:
+        hmac_secret: ${vault:kvv2/data/authelia#hmac-secret}
         cors:
           endpoints:
             - "authorization"

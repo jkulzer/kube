@@ -22,6 +22,10 @@ spec:
     metadata:
       labels:
         app: ldap
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200"
+        vault.security.banzaicloud.io/vault-skip-verify: "false" 
+        vault.security.banzaicloud.io/vault-role: "authelia"
     spec:
       containers:
       - name: lldap
@@ -50,15 +54,9 @@ spec:
         - name: LLDAP_LDAP_BASE_DN
           value: "dc=jkulzer,dc=dev"
         - name: LLDAP_LDAP_USER_PASS
-          valueFrom:
-            secretKeyRef:
-              name: ldap-admin-user-pass
-              key: LLDAP_LDAP_USER_PASS
+          value: vault:kvv2/data/authelia#ldap-admin-password
         - name: LLDAP_JWT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: ldap-jwt-secret
-              key: LLDAP_JWT_SECRET
+          value: vault:kvv2/data/authelia#ldap-jwt
         ports:
         - name: ldap
           containerPort: 3890
@@ -90,37 +88,3 @@ spec:
     protocol: TCP
     port: 17170
     targetPort: ldap-ui
----
-apiVersion: secrets.esg.jkulzer.dev/v1alpha1
-kind: Secret
-metadata:
-  name: ldap-jwt-secret
-  namespace: authelia
-spec:
-  secret:
-    name: ldap-jwt-secret
-    namespace: authelia
-  keys:
-    - key: LLDAP_JWT_SECRET
-      templateString: "{{ SECRET }}"
-  generators:
-    - name: SECRET
-      type: string
-      length: 64
----
-apiVersion: secrets.esg.jkulzer.dev/v1alpha1
-kind: Secret
-metadata:
-  name: ldap-admin-user-pass
-  namespace: authelia
-spec:
-  secret:
-    name: ldap-admin-user-pass
-    namespace: authelia
-  keys:
-    - key: LLDAP_LDAP_USER_PASS
-      templateString: "{{ PASS }}"
-  generators:
-    - name: PASS
-      type: string
-      length: 64
