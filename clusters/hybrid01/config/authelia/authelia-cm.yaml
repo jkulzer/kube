@@ -64,7 +64,7 @@ data:
       disable_failure: false
     authentication_backend:
       password_reset:
-        disable: false
+        disable: true
       ldap:
         implementation: custom
         address: ldap://ldap.authelia.svc.cluster.local:3890
