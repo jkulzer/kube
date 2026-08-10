@@ -55,6 +55,8 @@ spec:
           value: "dc=jkulzer,dc=dev"
         - name: LLDAP_LDAP_USER_PASS
           value: vault:kvv2/data/authelia#ldap-admin-password
+        - name: LLDAP_FORCE_LDAP_USER_PASS_RESET
+          value: "always"
         - name: LLDAP_JWT_SECRET
           value: vault:kvv2/data/authelia#ldap-jwt
         ports:
