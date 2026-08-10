@@ -8,7 +8,7 @@ metadata:
   annotations:
     vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200" # optional, the address of the Vault service, default values is https://vault:8200
     vault.security.banzaicloud.io/vault-role: "authelia" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
-    vault.security.banzaicloud.io/vault-serviceaccount: "authelia"
+    vault.security.banzaicloud.io/vault-serviceaccount: "default"
     vault.security.banzaicloud.io/run-as-non-root: "true"
 data:
   configuration: |
@@ -207,6 +207,8 @@ data:
     identity_providers:
       oidc:
         hmac_secret: ${vault:kvv2/data/authelia#hmac-secret}
+        jwks:
+          - key: {{ secret "/secrets/authelia-oidc-issuer/tls.key" | mindent 10 "|" | msquote }}
         cors:
           endpoints:
             - "authorization"

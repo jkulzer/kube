@@ -81,8 +81,6 @@ spec:
           value: "template"
         - name: AUTHELIA_SERVER_DISABLE_HEALTHCHECK
           value: "true"
-        - name: AUTHELIA_JWT_SECRET_FILE
-          value: /secrets/jwt-token/JWT_TOKEN
         - name: AUTHELIA_STORAGE_POSTGRES_ADDRESS
           value: tcp://authelia-pg-rw.authelia.svc.cluster.local:5432
         - name: AUTHELIA_STORAGE_POSTGRES_DATABASE
