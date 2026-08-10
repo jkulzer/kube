@@ -237,8 +237,6 @@ data:
           mastodon-username:
             claims:
               - "mastodon-username"
-        jwks:
-          - key: {{ secret "/secrets/authelia-oidc-issuer/tls.key" | mindent 10 "|" | msquote }}
         clients:
         - client_id: grafana
           client_name: Grafana
@@ -281,7 +279,7 @@ data:
           token_endpoint_auth_method: 'client_secret_basic'
         - client_id: immich
           client_name: Immich
-          client_secret: '{{- fileContent "/secrets/immich-oidc-secret/hashed-client-secret" }}'
+          client_secret: ${vault:kvv2/data/immich#hashed-client-secret}
           public: false
           authorization_policy: 'one_factor'
           redirect_uris:
