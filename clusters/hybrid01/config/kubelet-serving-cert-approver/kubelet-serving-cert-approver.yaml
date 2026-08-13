@@ -152,6 +152,7 @@ spec:
               - key: node-role.kubernetes.io/control-plane
                 operator: DoesNotExist
             weight: 100
+      hostUsers: false
       containers:
       - args:
         - serve

@@ -20,6 +20,7 @@ spec:
         vault.security.banzaicloud.io/vault-skip-verify: "false" 
         vault.security.banzaicloud.io/vault-role: "mastodon"
     spec:
+      hostUsers: false
       securityContext:
         fsGroup: 991
       serviceAccountName: mastodon-openbao

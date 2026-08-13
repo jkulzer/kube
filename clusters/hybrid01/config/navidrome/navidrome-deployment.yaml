@@ -16,6 +16,7 @@ spec:
       labels:
         app: navidrome
     spec:
+      hostUsers: false
       containers:
         - name: navidrome
           image: deluan/navidrome:0.63.2

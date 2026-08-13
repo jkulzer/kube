@@ -16,6 +16,7 @@ spec:
       labels:
         app.kubernetes.io/name: sidecar-terminator
     spec:
+      hostUsers: false
       serviceAccountName: sidecar-terminator
       containers:
       - image: ghcr.io/jkulzer/kubernetes-sidecar-terminator:latest

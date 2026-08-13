@@ -16,6 +16,7 @@ spec:
       labels:
         app: openspeedtest
     spec:
+      hostUsers: false
       containers:
       - image: openspeedtest/latest:v2.0.6
         name: openspeedtest
