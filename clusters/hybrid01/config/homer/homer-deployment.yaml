@@ -10,6 +10,14 @@ metadata:
     configmap.reloader.stakater.com/reload: "homer-config"
 spec:
   replicas: 1
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: homer
@@ -22,6 +30,13 @@ spec:
       containers:
       - image: b4bz/homer:v26.4.2
         name: homer
+        securityContext: 
+          runAsNonRoot: true
+          runAsUser: 1000
+          runAsGroup: 1000
+          fsGroup: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
         volumeMounts:
           - name: homer-data
             mountPath: /www/assets

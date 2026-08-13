@@ -9,6 +9,14 @@ metadata:
 spec:
   revisionHistoryLimit: 3
   replicas: 1
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: machine-learning
@@ -21,9 +29,17 @@ spec:
         vault.security.banzaicloud.io/vault-skip-verify: "false" 
         vault.security.banzaicloud.io/vault-role: "immich"
     spec:
+      hostUsers: false
       containers:
         - name: immich-machine-learning
           image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
+          securityContext: 
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
           env:
             - name: DB_DATABASE_NAME
               valueFrom:
@@ -96,6 +112,14 @@ metadata:
 spec:
   revisionHistoryLimit: 3
   replicas: 1
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: server
@@ -108,10 +132,18 @@ spec:
         vault.security.banzaicloud.io/vault-skip-verify: "false" 
         vault.security.banzaicloud.io/vault-role: "immich"
     spec:
+      hostUsers: false
       containers:
         - name: immich-server
           image: ghcr.io/immich-app/immich-server:v3.1.0
           imagePullPolicy: IfNotPresent
+          securityContext: 
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
           env:
             - name: IMMICH_LOG_LEVEL
               value: log
