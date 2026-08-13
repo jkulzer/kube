@@ -18,6 +18,7 @@ spec:
       labels:
         app: well-known
     spec:
+      hostUsers: false
       containers:
       - name: well-known
         image: nginx:1.31.3
