@@ -8,7 +8,7 @@ helmCharts:
     releaseName: vpa
     namespace: goldilocks
     repo: https://charts.fairwinds.com/stable
-    version: 4.12.5
+    version: 5.0.0
     valuesFile: values.yaml
 
 resources:
