@@ -79,6 +79,8 @@ spec:
           volumeMounts:
             - name: cache
               mountPath: /cache
+            - name: tmp
+              mountPath: /tmp
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -99,6 +101,9 @@ spec:
         - name: cache
           emptyDir:
             {}
+        - name: tmp
+          emptyDir:
+            {}
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -114,10 +119,6 @@ spec:
   replicas: 1
   automountServiceAccountToken: false
   securityContext: 
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
     allowPrivilegeEscalation: false
     readOnlyRootFilesystem: true
   selector:
@@ -138,10 +139,6 @@ spec:
           image: ghcr.io/immich-app/immich-server:v3.1.0
           imagePullPolicy: IfNotPresent
           securityContext: 
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            fsGroup: 1000
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
           env:
