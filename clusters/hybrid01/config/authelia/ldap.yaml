@@ -27,6 +27,7 @@ spec:
         vault.security.banzaicloud.io/vault-skip-verify: "false" 
         vault.security.banzaicloud.io/vault-role: "authelia"
     spec:
+      hostUsers: false
       containers:
       - name: lldap
         image: nitnelave/lldap:stable-alpine-rootless

@@ -26,6 +26,7 @@ spec:
       labels:
         app: element
     spec:
+      hostUsers: false
       containers:
       - image: vectorim/element-web:v1.12.25
         name: element

@@ -46,6 +46,7 @@ spec:
     spec:
       hostNetwork: false
       hostPID: false
+      hostUsers: false
       hostIPC: false
       affinity: 
         nodeAffinity: {}

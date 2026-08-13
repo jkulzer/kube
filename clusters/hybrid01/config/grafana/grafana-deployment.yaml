@@ -17,6 +17,7 @@ spec:
     runAsGroup: 1000
     fsGroup: 1000
     allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: grafana
@@ -29,6 +30,7 @@ spec:
         vault.security.banzaicloud.io/vault-role: "grafana" # optional, the default value is the name of the ServiceAccount the Pod runs in, in case of Secrets and ConfigMaps it is "default"
         vault.security.banzaicloud.io/run-as-non-root: "true"
     spec:
+      hostUsers: false
       securityContext:
         fsGroup: 472
         runAsGroup: 472
@@ -43,6 +45,7 @@ spec:
           runAsGroup: 1000
           fsGroup: 1000
           allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
         env:
         - name: GF_SERVER_ROOT_URL
           value: "https://grafana.jkulzer.dev"
@@ -92,6 +95,8 @@ spec:
           mountPath: /etc/grafana/provisioning/dashboards
         - name: grafana-dashboards-json
           mountPath: /dashboards/main
+        - name: grafana-storage
+          mountPath: /var/lib/grafana
         ports:
           - name: grafana
             protocol: TCP
@@ -120,3 +125,5 @@ spec:
       - name: grafana-dashboards-json
         configMap:
           name: grafana-dashboards-json
+      - name: grafana-storage
+        emptyDir: {}

@@ -180,6 +180,7 @@ spec:
       labels:
         app: descheduler
     spec:
+      hostUsers: false
       containers:
       - args:
         - --policy-config-file

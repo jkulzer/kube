@@ -23,6 +23,7 @@ spec:
       labels:
         app: alertmanager-discord
     spec:
+      hostUsers: false
       serviceAccountName: alertmanager-discord
       containers:
         - name: alertmanager-discord
