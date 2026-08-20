@@ -26,7 +26,7 @@ spec:
       serviceAccountName: mastodon-openbao
       initContainers:
       - name: init-db
-        image: ghcr.io/mastodon/mastodon:v4.6.6
+        image: ghcr.io/mastodon/mastodon:v4.7.0
         command: 
           - "/bin/bash"
         args: 
@@ -54,7 +54,7 @@ spec:
                 name: mastodon-pg-app
                 key: fqdn-uri
       - name: migrate-db-predeployment-migrations
-        image: ghcr.io/mastodon/mastodon:v4.6.6
+        image: ghcr.io/mastodon/mastodon:v4.7.0
         command: 
           - "/bin/bash"
         args: 
@@ -84,7 +84,7 @@ spec:
           - name: SKIP_POST_DEPLOYMENT_MIGRATIONS
             value: "true"
       - name: migrate-db-postdeployment-migrations
-        image: ghcr.io/mastodon/mastodon:v4.6.6
+        image: ghcr.io/mastodon/mastodon:v4.7.0
         command: 
           - "/bin/bash"
         args: 
@@ -113,7 +113,7 @@ spec:
                 key: fqdn-uri
       containers:
       - name: mastodon
-        image: ghcr.io/mastodon/mastodon:v4.6.6
+        image: ghcr.io/mastodon/mastodon:v4.7.0
         command: 
         - "bundle"
         args:
@@ -186,7 +186,7 @@ spec:
         - name: mastodon-media
           mountPath: /opt/mastodon/public/system
       - name: sidekiq
-        image: ghcr.io/mastodon/mastodon:v4.6.6
+        image: ghcr.io/mastodon/mastodon:v4.7.0
         command:
         - "bundle"
         args:
