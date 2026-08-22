@@ -137,7 +137,7 @@ spec:
             mountPath: /tmp
       containers:
       - name: mas
-        image: ghcr.io/element-hq/matrix-authentication-service:1.22.0
+        image: ghcr.io/element-hq/matrix-authentication-service:1.23.0
         ports:
         - name: mas
           protocol: TCP
