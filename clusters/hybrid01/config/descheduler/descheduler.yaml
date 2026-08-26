@@ -156,12 +156,12 @@ data:
               "pods": 60
         plugins:
           balance:
-            enabled:
-              - "LowNodeUtilization"
-              - "RemoveDuplicates"
+            enabled: {}
+              # - "LowNodeUtilization"
+              # - "RemoveDuplicates"
           deschedule:
-            enabled:
-              - "RemovePodsViolatingInterPodAntiAffinity"
+            enabled: {}
+              # - "RemovePodsViolatingInterPodAntiAffinity"
 ---
 apiVersion: apps/v1
 kind: Deployment
