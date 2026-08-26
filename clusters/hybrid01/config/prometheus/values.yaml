@@ -125,7 +125,7 @@ prometheus:
     serviceMonitorSelector: {}
     serviceMonitorNamespaceSelector: {}
     retention: 7d
-    retentionSize: 15GiB
+    retentionSize: 24GiB
     replicas: 1
     resources:
       requests:
