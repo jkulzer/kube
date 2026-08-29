@@ -97,6 +97,10 @@ data:
               name: 'immichrole'
               multi_valued: false
               value_type: 'string'
+            matrix-username: 
+              name: matrix-username
+              multi_valued: false
+              value_type: 'string'
     password_policy:
       standard:
         enabled: true
