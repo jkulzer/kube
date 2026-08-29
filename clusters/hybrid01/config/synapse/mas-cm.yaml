@@ -65,8 +65,9 @@ data:
           discovery_mode: insecure
           claims_imports:
               localpart:
-                action: ignore
-                template: "{{ user.preferred_username }}"
+                action: require
+                template: "{{ user.matrix-username }}"
+                on_conflict: set
               displayname:
                 action: ignore
                 template: "{{ user.name }}"
