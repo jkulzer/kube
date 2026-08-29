@@ -98,7 +98,7 @@ data:
               multi_valued: false
               value_type: 'string'
             matrix-username: 
-              name: matrix_username
+              name: matrix-username
               multi_valued: false
               value_type: 'string'
     password_policy:
@@ -237,11 +237,11 @@ data:
                 attribute: 'mastodon-username'
           mas-policy:
             custom_claims:
-              matrix_username:
-                attribute: 'matrix_username'
+              matrix-username:
+                attribute: 'matrix-username'
             scopes:
               profile:
-                - matrix_username
+                - matrix-username
         scopes:
           immichscope:
             claims:
