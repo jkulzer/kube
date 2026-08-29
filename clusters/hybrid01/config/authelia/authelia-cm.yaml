@@ -249,7 +249,7 @@ data:
               - 'immichrole'
           mastodon-username:
             claims:
-              - "mastodon_username"
+              - "mastodon-username"
         clients:
         - client_id: grafana
           client_name: Grafana
