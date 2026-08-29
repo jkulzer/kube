@@ -241,6 +241,7 @@ data:
                 attribute: 'matrix-username'
             scopes:
               profile:
+                claims:
                 - matrix-username
         scopes:
           immichscope:
