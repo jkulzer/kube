@@ -98,7 +98,7 @@ data:
               multi_valued: false
               value_type: 'string'
             matrix-username: 
-              name: matrix-username
+              name: matrix_username
               multi_valued: false
               value_type: 'string'
     password_policy:
@@ -237,11 +237,11 @@ data:
                 attribute: 'mastodon-username'
           mas-policy:
             custom_claims:
-              matrix-username:
+              matrix_username:
                 attribute: 'matrix_username'
             scopes:
               profile:
-                - matrix-username
+                - matrix_username
         scopes:
           immichscope:
             claims:
@@ -249,7 +249,7 @@ data:
               - 'immichrole'
           mastodon-username:
             claims:
-              - "mastodon-username"
+              - "mastodon_username"
         clients:
         - client_id: grafana
           client_name: Grafana
