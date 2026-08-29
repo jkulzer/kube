@@ -238,7 +238,7 @@ data:
           mas-policy:
             custom_claims:
               matrix-username:
-                attribute: 'matrix-username'
+                attribute: 'matrix_username'
             scopes:
               profile:
                 - matrix-username

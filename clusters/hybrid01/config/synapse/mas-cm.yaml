@@ -66,7 +66,7 @@ data:
           claims_imports:
               localpart:
                 action: require
-                template: "{{ user.matrix-username }}"
+                template: "{{ user.matrix_username }}"
                 on_conflict: set
               displayname:
                 action: ignore
