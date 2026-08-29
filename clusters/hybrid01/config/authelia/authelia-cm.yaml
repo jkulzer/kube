@@ -27,7 +27,7 @@ data:
         enable_pprof: false
         enable_expvars: false
     log:
-      level: info
+      level: trace
       format: json
       keep_stdout: true
     telemetry:
