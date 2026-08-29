@@ -231,6 +231,13 @@ data:
             custom_claims:
               mastodon-username:
                 attribute: 'mastodon-username'
+          mas-policy:
+            custom_claims:
+              matrix-username:
+                attribute: 'matrix-username'
+            scopes:
+              profile:
+                - matrix-username
         scopes:
           immichscope:
             claims:
@@ -301,6 +308,7 @@ data:
           client_secret: ${vault:kvv2/data/synapse#hashed-client-secret}
           public: false
           authorization_policy: one_factor
+          claims_policy: mas-policy
           redirect_uris:
             - https://matrixauth.justmeowing.net/upstream/callback/01KS5M5DG32WQFXKFZD65TFT1Y
           scopes:
