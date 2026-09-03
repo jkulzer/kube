@@ -61,7 +61,7 @@ spec:
           runAsNonRoot: true
           runAsUser: 8000
           runAsGroup: 9000
-          fsGroup: 8000
+          # fsGroup: 8000
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
         command: ["authelia"]

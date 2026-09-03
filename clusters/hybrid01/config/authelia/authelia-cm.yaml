@@ -97,8 +97,8 @@ data:
               name: 'immichrole'
               multi_valued: false
               value_type: 'string'
-            matrix-username: 
-              name: matrix-username
+            matrixusername: 
+              name: matrixusername
               multi_valued: false
               value_type: 'string'
     password_policy:
@@ -237,12 +237,12 @@ data:
                 attribute: 'mastodon-username'
           mas-policy:
             custom_claims:
-              matrix-username:
-                attribute: 'matrix-username'
+              matrixusername:
+                attribute: 'matrixusername'
             scopes:
               profile:
                 claims:
-                - matrix-username
+                - matrixusername
         scopes:
           immichscope:
             claims:
