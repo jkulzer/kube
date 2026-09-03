@@ -67,7 +67,7 @@ data:
               localpart:
                 action: force
                 template: "{{ user.matrixusername }}"
-                on_conflict: set
+                on_conflict: replace
               displayname:
                 action: ignore
                 template: "{{ user.name }}"
