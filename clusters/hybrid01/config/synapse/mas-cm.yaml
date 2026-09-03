@@ -61,7 +61,7 @@ data:
           client_id: matrix-authentication-service
           client_secret: ${vault:kvv2/data/synapse#oauth-client-secret}
           token_endpoint_auth_method: client_secret_basic
-          scope: "openid profile email"
+          scope: "openid profile email matrixusername"
           discovery_mode: insecure
           claims_imports:
               localpart:
