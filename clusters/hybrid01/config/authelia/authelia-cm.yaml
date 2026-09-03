@@ -236,6 +236,7 @@ data:
               mastodon-username:
                 attribute: 'mastodon-username'
           mas-policy:
+            id_token: ['email', 'name', 'groups', 'profile', 'matrixusername']
             custom_claims:
               matrixusername:
                 attribute: 'matrixusername'
