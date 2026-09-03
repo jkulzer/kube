@@ -236,9 +236,6 @@ data:
               mastodon-username:
                 attribute: 'mastodon-username'
           mas-policy:
-            custom_claims:
-              matrixusername:
-                attribute: 'matrixusername'
             scopes:
               profile:
                 claims:
@@ -329,6 +326,7 @@ data:
           access_token_signed_response_alg: none
           userinfo_signed_response_alg: none
           token_endpoint_auth_method: 'client_secret_basic'
+          claims_policy: 'mas-policy'
         - client_id: 'mastodon'
           client_name: 'Mastodon'
           client_secret: ${vault:kvv2/data/mastodon#hashed-client-secret}
