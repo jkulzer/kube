@@ -324,6 +324,7 @@ data:
             - "profile"
             - "groups"
             - "email"
+            - "matrixusername"
           response_types:
             - 'code'
           grant_types:
