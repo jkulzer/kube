@@ -65,7 +65,7 @@ data:
           discovery_mode: insecure
           claims_imports:
               localpart:
-                action: require
+                action: force
                 template: "{{ user.matrixusername }}"
                 on_conflict: set
               displayname:
