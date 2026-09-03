@@ -140,6 +140,11 @@ spec:
     useAllDevices: true
     useAllNodes: true
   waitTimeoutForHealthyOSDInMinutes: 10
+  security:
+    cephx:
+      daemon:
+        keyRotationPolicy: KeyGeneration
+        keyGeneration: 2
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
