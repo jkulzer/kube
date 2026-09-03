@@ -28,7 +28,7 @@ spec:
     spec:
       hostUsers: false
       containers:
-      - image: b4bz/homer:v26.4.2
+      - image: b4bz/homer:v26.08.3
         name: homer
         securityContext: 
           runAsNonRoot: true
