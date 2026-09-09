@@ -55,7 +55,7 @@ spec:
       enableServiceLinks: false
       containers:
       - name: authelia
-        image: ghcr.io/authelia/authelia:4.39.23
+        image: ghcr.io/authelia/authelia:4.39.24
         imagePullPolicy: IfNotPresent
         securityContext: 
           runAsNonRoot: true
