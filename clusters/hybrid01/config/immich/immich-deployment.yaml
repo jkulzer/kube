@@ -32,7 +32,7 @@ spec:
       hostUsers: false
       containers:
         - name: immich-machine-learning
-          image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
+          image: ghcr.io/immich-app/immich-machine-learning:v3.2.0
           securityContext: 
             runAsNonRoot: true
             runAsUser: 1000
@@ -133,7 +133,7 @@ spec:
       hostUsers: false
       containers:
         - name: immich-server
-          image: ghcr.io/immich-app/immich-server:v3.1.0
+          image: ghcr.io/immich-app/immich-server:v3.2.0
           imagePullPolicy: IfNotPresent
           securityContext: 
             allowPrivilegeEscalation: false
