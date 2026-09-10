@@ -7,7 +7,7 @@ helmCharts:
     releaseName: secrets-store-csi-driver
     namespace: secrets-store-csi-driver
     repo: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
-    version: 1.6.0
+    version: 1.6.1
     valuesFile: values.yaml
 
 resources:
