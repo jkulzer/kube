@@ -21,7 +21,7 @@ spec:
       hostUsers: false
       containers:
       - name: well-known
-        image: nginx:1.31.5
+        image: nginx:1.31.6
         ports:
         - name: well-known
           protocol: TCP
