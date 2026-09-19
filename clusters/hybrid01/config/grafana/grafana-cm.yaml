@@ -10,7 +10,7 @@ data:
     apiVersion: 1
 
     datasources:
-      - name: Prometheus
+      - name: main-prometheus
         type: prometheus
         access: proxy
         url: http://kube-prometheus-stack-prometheus.prometheus.svc.cluster.local:9090
