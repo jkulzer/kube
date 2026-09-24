@@ -195,6 +195,7 @@ spec:
             runAsGroup: 10001
             fsGroup: 10001
             allowPrivilegeEscalation: false
+            fsGroupChangePolicy: "OnRootMismatch"
             readOnlyRootFilesystem: true
       terminationGracePeriodSeconds: 4800
       volumes:
