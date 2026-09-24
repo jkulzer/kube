@@ -19,7 +19,7 @@ spec:
       hostUsers: false
       containers:
         - name: navidrome
-          image: deluan/navidrome:0.64.0
+          image: deluan/navidrome:0.64.1
           env:
           - name: TZ
             value: Europe/Berlin
