@@ -127,6 +127,7 @@ spec:
     runAsGroup: 10001
     fsGroup: 10001
     allowPrivilegeEscalation: false
+    fsGroupChangePolicy: "OnRootMismatch"
     readOnlyRootFilesystem: true
   selector:
     matchLabels:
@@ -151,6 +152,7 @@ spec:
         runAsGroup: 10001
         runAsNonRoot: true
         runAsUser: 10001
+        fsGroupChangePolicy: "OnRootMismatch"
       initContainers:
         []
       containers:
