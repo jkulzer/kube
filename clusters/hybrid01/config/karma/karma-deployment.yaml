@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: karma
-        image: ghcr.io/prymitive/karma:v0.132
+        image: ghcr.io/prymitive/karma:v0.133
         securityContext: 
           runAsNonRoot: true
           runAsUser: 1000
