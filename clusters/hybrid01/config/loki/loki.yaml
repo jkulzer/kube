@@ -191,9 +191,9 @@ spec:
             initialDelaySeconds: 45
           securityContext:
             runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            fsGroup: 1000
+            runAsUser: 10001
+            runAsGroup: 10001
+            fsGroup: 10001
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
       terminationGracePeriodSeconds: 4800
