@@ -8,6 +8,13 @@ metadata:
     app: navidrome
 spec:
   replicas: 1
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: navidrome
@@ -20,6 +27,13 @@ spec:
       containers:
         - name: navidrome
           image: deluan/navidrome:0.64.1
+          securityContext: 
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
           env:
           - name: TZ
             value: Europe/Berlin
