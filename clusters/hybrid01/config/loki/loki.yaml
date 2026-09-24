@@ -119,6 +119,15 @@ metadata:
 spec:
   podManagementPolicy: OrderedReady
   replicas: 1
+  priorityClassName: monitoring
+  automountServiceAccountToken: false
+  securityContext: 
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
   selector:
     matchLabels:
       app: loki
@@ -181,6 +190,11 @@ spec:
               port: http-metrics
             initialDelaySeconds: 45
           securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
       terminationGracePeriodSeconds: 4800
       volumes:
