@@ -1,0 +1,13 @@
+---
+apiVersion: telemetry.istio.io/v1
+kind: Telemetry
+metadata:
+  name: gw-logs
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  accessLogging:
+  - providers:
+    - name: json-access

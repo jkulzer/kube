@@ -122,3 +122,23 @@ meshConfig:
         - 'Remote-Groups'
         - 'Remote-Name'
         - 'Remote-Email'
+  - name: json-access
+    envoyFileAccessLog:
+      path: /dev/stdout
+      logFormat:
+        labels:
+          ts: "%START_TIME%"
+          client_ip: "%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%"
+          xff: "%REQ(X-FORWARDED-FOR)%"
+          host: "%REQ(:AUTHORITY)%"
+          method: "%REQ(:METHOD)%"
+          path: "%REQ(X-ENVOY-ORIGINAL-PATH?:PATH)%"
+          status: "%RESPONSE_CODE%"
+          bytes: "%BYTES_SENT%"
+          duration_ms: "%DURATION%"
+          ua: "%REQ(USER-AGENT)%"
+          referer: "%REQ(REFERER)%"
+          accept_lang: "%REQ(ACCEPT-LANGUAGE)%"
+          req_id: "%REQ(X-REQUEST-ID)%"
+          tls_ver: "%DOWNSTREAM_TLS_VERSION%"
+          sni: "%REQUESTED_SERVER_NAME%"
