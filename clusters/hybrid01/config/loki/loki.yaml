@@ -48,6 +48,8 @@ data:
             period: 24h
     ruler:
       alertmanager_url: http://kube-prometheus-stack-alertmanager.prometheus.svc.cluster.local:9093
+    limits_config:
+      volume_enabled: true
 ---
 # Source: loki/templates/service-headless.yaml
 apiVersion: v1
