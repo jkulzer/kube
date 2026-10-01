@@ -163,6 +163,8 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
             - "-config.file=/etc/loki/loki.yaml"
+            # this is just an experiment uh idk
+            - "-auth.enabled=false"
           volumeMounts:
             - name: config
               mountPath: /etc/loki
