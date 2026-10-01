@@ -97,6 +97,8 @@ spec:
           mountPath: /dashboards/main
         - name: grafana-storage
           mountPath: /var/lib/grafana
+        - name: tmp
+          mountPath: /tmp
         ports:
           - name: grafana
             protocol: TCP
@@ -126,4 +128,6 @@ spec:
         configMap:
           name: grafana-dashboards-json
       - name: grafana-storage
+        emptyDir: {}
+      - name: tmp
         emptyDir: {}
