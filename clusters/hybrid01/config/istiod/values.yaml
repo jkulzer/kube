@@ -83,6 +83,7 @@ global:
         memory: 64Mi
 
 meshConfig:
+  accessLogEncoding: JSON
   defaultConfig:
     gatewayTopology:
       numTrustedProxies: 1
