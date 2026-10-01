@@ -99,6 +99,8 @@ spec:
           mountPath: /var/lib/grafana
         - name: tmp
           mountPath: /tmp
+        - name: grafana-data
+          mountPath: /usr/share/grafana/data
         ports:
           - name: grafana
             protocol: TCP
@@ -130,4 +132,6 @@ spec:
       - name: grafana-storage
         emptyDir: {}
       - name: tmp
+        emptyDir: {}
+      - name: grafana-data
         emptyDir: {}
