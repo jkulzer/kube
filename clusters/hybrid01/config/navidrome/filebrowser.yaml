@@ -32,7 +32,8 @@ spec:
             requests:
               cpu: 10m
               memory: 80M
-            limits: 200M
+            limits: 
+              memory: 200M
           volumeMounts:
             - name: ingest
               mountPath: /ingest
