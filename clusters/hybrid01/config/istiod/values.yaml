@@ -10,7 +10,6 @@ pilot:
       cpu: 20m
       memory: 150Mi
     limits:
-      cpu: 30m
       memory: 200Mi
 
 
