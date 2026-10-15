@@ -66,6 +66,8 @@ spec:
               value: vault:kvv2/data/immich#dragonfly-password
             - name: TRANSFORMERS_CACHE
               value: /cache
+            - name: MACHINE_LEARNING_MODEL_REVISION
+              value: "v2"
           ports:
             - name: http
               containerPort: 3003
