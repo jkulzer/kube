@@ -148,6 +148,7 @@ spec:
         keyRotationPolicy: KeyGeneration
         keyGeneration: 2
       allowedCiphers:
+        - aes
         - aes256k
 ---
 apiVersion: storage.k8s.io/v1
