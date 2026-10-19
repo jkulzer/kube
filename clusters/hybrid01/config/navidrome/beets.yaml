@@ -25,11 +25,11 @@ spec:
       initContainers:
         - name: plugins
           image: ghcr.io/frantathefranta/beets-custom:2.5.1
-          command: 
-          - /bin/sh
-          - -c
-          - | 
-            pip install "beets[lastgenre,lyrics,fetchart]"
+          command:
+            - /bin/sh
+            - -c
+            - |
+              pip install "beets[lastgenre,lyrics,fetchart]"
           # volumeMounts:
           #   - name: beets-config
           #     mountPath: "/config/config.yaml"
@@ -38,12 +38,12 @@ spec:
       containers:
         - name: beets
           image: ghcr.io/frantathefranta/beets-custom:2.5.1
-          command: 
-          # - /usr/local/bin/beet version
-          - /bin/sh
-          - -c
-          - |
-            while true; do sleep 2; done
+          command:
+            # - /usr/local/bin/beet version
+            - /bin/sh
+            - -c
+            - |
+              while true; do sleep 2; done
           ports:
             - name: http
               containerPort: 8337
@@ -66,18 +66,18 @@ spec:
               subPath: config.yaml
               readOnly: true
       volumes:
-      - name: ingest
-        persistentVolumeClaim:
-          claimName: ingest
-      - name: music-library
-        persistentVolumeClaim:
-          claimName: music-library
-      - name: beets-data
-        persistentVolumeClaim:
-          claimName: beets-data
-      - name: beets-config
-        configMap:
-          name: beets-config
+        - name: ingest
+          persistentVolumeClaim:
+            claimName: ingest
+        - name: music-library
+          persistentVolumeClaim:
+            claimName: music-library
+        - name: beets-data
+          persistentVolumeClaim:
+            claimName: beets-data
+        - name: beets-config
+          configMap:
+            name: beets-config
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -105,6 +105,8 @@ data:
       - musicbrainz
       - lastgenre
       - fetchart
+      - edit
+      - info
 ---
 apiVersion: v1
 kind: Service
