@@ -47,7 +47,7 @@ spec:
             mountPath: /tmp
       containers:
       - name: synapse
-        image: matrixdotorg/synapse:v1.163.2
+        image: matrixdotorg/synapse:v1.164.0
         env:
         - name: SYNAPSE_CONFIG_DIR
           value: /data
