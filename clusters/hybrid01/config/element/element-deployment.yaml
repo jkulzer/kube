@@ -28,7 +28,7 @@ spec:
     spec:
       hostUsers: false
       containers:
-      - image: vectorim/element-web:v1.12.32
+      - image: vectorim/element-web:v1.12.33
         name: element
         securityContext: 
           runAsNonRoot: true
