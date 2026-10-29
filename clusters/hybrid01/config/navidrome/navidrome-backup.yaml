@@ -29,7 +29,7 @@ spec:
     rcloneDestPath: "prod-backup/navidrome/navidrome-data"
     rcloneConfig: "volsync-secret"
     copyMethod: Clone
-    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+    volumeSnapshotClassName: csi-rbdplugin-snapshotclass
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
@@ -45,4 +45,4 @@ spec:
     rcloneDestPath: "prod-backup/navidrome/beets-data"
     rcloneConfig: "volsync-secret"
     copyMethod: Clone
-    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+    volumeSnapshotClassName: csi-rbdplugin-snapshotclass
