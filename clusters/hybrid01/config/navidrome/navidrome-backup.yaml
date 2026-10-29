@@ -12,7 +12,7 @@ spec:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/navidrome/music-library"
     rcloneConfig: "volsync-secret"
-    copyMethod: Clone
+    copyMethod: Snapshot
     volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -28,7 +28,7 @@ spec:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/navidrome/navidrome-data"
     rcloneConfig: "volsync-secret"
-    copyMethod: Clone
+    copyMethod: Snapshot
     volumeSnapshotClassName: csi-rbdplugin-snapshotclass
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -44,5 +44,5 @@ spec:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/navidrome/beets-data"
     rcloneConfig: "volsync-secret"
-    copyMethod: Clone
+    copyMethod: Snapshot
     volumeSnapshotClassName: csi-rbdplugin-snapshotclass
