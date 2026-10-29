@@ -25,6 +25,8 @@ spec:
   trigger:
     schedule: "30 2 * * *" # at 3:30
   rclone:
+    moverSecurityContext:
+      fsGroup: 1000
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/navidrome/navidrome-data"
     rcloneConfig: "volsync-secret"
