@@ -11,3 +11,16 @@ spec:
   accessLogging:
   - providers:
     - name: json-access
+---
+apiVersion: telemetry.istio.io/v1
+kind: Telemetry
+metadata:
+  name: gw-logs
+  namespace: istio-external-gateway
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  accessLogging:
+  - providers:
+    - name: json-access
