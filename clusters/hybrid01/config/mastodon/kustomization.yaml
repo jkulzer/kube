@@ -15,3 +15,5 @@ resources:
   - volsync-secret.yaml
   - cnpg-backup-secret.yaml
   - mastodon-backup.yaml
+  - mastodon-secret-store.yaml
+  - mastodon-restic-backup.yaml
