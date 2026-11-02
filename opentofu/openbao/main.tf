@@ -1,5 +1,5 @@
 provider "vault" {
-  address = "https://openbao.jkulzer.dev"
+  address = "http://localhost:8200"
 }
 
 resource "vault_auth_backend" "kubernetes" {
@@ -40,26 +40,6 @@ path "kvv2/data/mastodon" {
 EOT
 }
 
-resource "vault_kubernetes_auth_backend_role" "gotosocial" {
-  backend                          = vault_auth_backend.kubernetes.path
-  role_name                        = "gotosocial"
-  bound_service_account_names      = ["gotosocial-openbao"]
-  bound_service_account_namespaces = ["gotosocial"]
-  token_ttl                        = 3600
-  token_policies                   = ["gotosocial"]
-}
-
-resource "vault_policy" "gotosocial" {
-  name = "gotosocial"
-  policy = <<EOT
-path "kvv2/gotosocial" {
-  capabilities = ["read", "list"]
-}
-path "kvv2/data/gotosocial" {
-  capabilities = ["read", "list"]
-}
-EOT
-}
 
 resource "vault_kubernetes_auth_backend_role" "authelia" {
   backend                          = vault_auth_backend.kubernetes.path
@@ -79,13 +59,73 @@ resource "vault_kubernetes_auth_backend_role" "default" {
   token_policies                   = ["authelia"]
 }
 
+resource "vault_kubernetes_auth_backend_role" "volsync" {
+  backend                          = vault_auth_backend.kubernetes.path
+  role_name                        = "volsync"
+  bound_service_account_names      = ["default"]
+  bound_service_account_namespaces = ["*"]
+  token_ttl                        = 3600
+  token_policies                   = ["volsync"]
+}
+
+resource "vault_kubernetes_auth_backend_role" "argocd" {
+  backend                          = vault_auth_backend.kubernetes.path
+  role_name                        = "argocd"
+  bound_service_account_names      = ["default"]
+  bound_service_account_namespaces = ["argocd"]
+  token_ttl                        = 3600
+  token_policies                   = ["argocd"]
+}
+
+resource "vault_policy" "argocd" {
+  name = "argocd"
+  policy = <<EOT
+path "kvv2/argocd" {
+  capabilities = ["read", "list"]
+}
+path "kvv2/data/argocd" {
+  capabilities = ["read", "list"]
+}
+EOT
+}
+
+resource "vault_kubernetes_auth_backend_role" "immich" {
+  backend                          = vault_auth_backend.kubernetes.path
+  role_name                        = "immich"
+  bound_service_account_names      = ["default"]
+  bound_service_account_namespaces = ["immich"]
+  token_ttl                        = 3600
+  token_policies                   = ["immich"]
+}
+
+resource "vault_policy" "immich" {
+  name = "immich"
+  policy = <<EOT
+path "kvv2/immich" {
+  capabilities = ["read", "list"]
+}
+path "kvv2/data/immich" {
+  capabilities = ["read", "list"]
+}
+EOT
+}
+
+resource "vault_policy" "volsync" {
+  name = "volsync"
+  policy = <<EOT
+path "kvv2/volsync" {
+  capabilities = ["read", "list"]
+}
+EOT
+}
+
 resource "vault_policy" "authelia" {
   name = "authelia"
   policy = <<EOT
-path "kvv2/gotosocial" {
+path "kvv2/authelia" {
   capabilities = ["read", "list"]
 }
-path "kvv2/data/gotosocial" {
+path "kvv2/data/authelia" {
   capabilities = ["read", "list"]
 }
 path "kvv2/mastodon" {
@@ -104,6 +144,12 @@ path "kvv2/cnpg" {
   capabilities = ["read", "list"]
 }
 path "kvv2/data/cnpg" {
+  capabilities = ["read", "list"]
+}
+path "kvv2/grafana" {
+  capabilities = ["read", "list"]
+}
+path "kvv2/data/grafana" {
   capabilities = ["read", "list"]
 }
 EOT
