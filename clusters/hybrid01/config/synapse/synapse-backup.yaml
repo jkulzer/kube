@@ -12,8 +12,8 @@ spec:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/synapse/synapse-keys"
     rcloneConfig: "volsync-secret"
-    copyMethod: Clone
-    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-rbdplugin-snapshotclass
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
@@ -28,8 +28,8 @@ spec:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/synapse/synapse-media"
     rcloneConfig: "volsync-secret"
-    copyMethod: Clone
-    volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
+    copyMethod: Snapshot
+    volumeSnapshotClassName: csi-rbdplugin-snapshotclass
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup

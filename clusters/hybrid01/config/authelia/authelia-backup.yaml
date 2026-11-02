@@ -12,7 +12,7 @@ spec:
     rcloneConfigSection: "s3-bucket"
     rcloneDestPath: "prod-backup/authelia/ldap"
     rcloneConfig: "volsync-secret"
-    copyMethod: Clone
+    copyMethod: Snapshot
     volumeSnapshotClassName: csi-rbdplugin-snapshotclass
 ---
 apiVersion: postgresql.cnpg.io/v1
