@@ -14,3 +14,4 @@ resources:
   - volsync-secret.yaml
   - immich-backup.yaml
   - cnpg-backup-secret.yaml
+  - immich-secret-store.yaml
