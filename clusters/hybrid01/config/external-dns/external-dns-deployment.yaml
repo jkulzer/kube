@@ -17,41 +17,40 @@ spec:
       hostUsers: false
       serviceAccountName: external-dns
       containers:
-      - name: external-dns
-        image: registry.k8s.io/external-dns/external-dns:v0.24.0
-        securityContext: 
-          runAsNonRoot: true
-          runAsUser: 1000
-          runAsGroup: 1000
-          fsGroup: 1000
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-        args:
-        - --source=istio-virtualservice
-        - --registry=txt
-        - --txt-owner-id=my-identifier
-        - --provider=cloudflare
-        - --txt-prefix=external-dns
-        - --domain-filter=jkulzer.dev
-        - --domain-filter=defenselessmoaningtwink.com
-        - --domain-filter=justmeowing.net
-        - --log-level=debug
-        - --exclude-target-net=192.168.0.0/16
-        - --policy=sync
-        env:
-        - name: CF_API_TOKEN
-          valueFrom: 
-            secretKeyRef:
-              name: cloudflare-credentials
-              key: CF_API_TOKEN
-        - name: CF_API_EMAIL
-          valueFrom: 
-            secretKeyRef:
-              name: cloudflare-credentials
-              key: CF_API_EMAIL
-        resources:
-          requests:
-            cpu: 15m
-            memory: 25M
-          limits:
-            memory: 40M
+        - name: external-dns
+          image: registry.k8s.io/external-dns/external-dns:v0.24.0
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+          args:
+            - --source=istio-virtualservice
+            - --registry=txt
+            - --txt-owner-id=my-identifier
+            - --provider=cloudflare
+            - --txt-prefix=external-dns
+            - --domain-filter=jkulzer.dev
+            - --domain-filter=defenselessmoaningtwink.com
+            - --domain-filter=justmeowing.net
+            - --log-level=debug
+            - --exclude-target-net=192.168.0.0/16
+            - --policy=sync
+          env:
+            - name: CF_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-credentials
+                  key: CF_API_TOKEN
+            - name: CF_API_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-credentials
+                  key: CF_API_EMAIL
+          resources:
+            requests:
+              cpu: 15m
+              memory: 25M
+            limits:
+              memory: 40M
