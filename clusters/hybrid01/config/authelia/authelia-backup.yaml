@@ -2,18 +2,53 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: ldap
+  name: ldap-restic
   namespace: authelia
 spec:
   sourcePVC: ldap
   trigger:
-    schedule: "30 4 * * *" # at 5:30
-  rclone:
-    rcloneConfigSection: "s3-bucket"
-    rcloneDestPath: "prod-backup/authelia/ldap"
-    rcloneConfig: "volsync-secret"
-    copyMethod: Clone
-    volumeSnapshotClassName: csi-rbdplugin-snapshotclass
+    schedule: "30 * * * *"
+  restic:
+    pruneIntervalDays: 7
+    repository: authelia-restic
+    retain:
+      hourly: 6
+      daily: 5
+      weekly: 0
+      monthly: 0
+      yearly: 0
+    copyMethod: Snapshot
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: authelia-restic
+  namespace: authelia
+spec:
+  refreshInterval: 1h0m0s
+  secretStoreRef:
+    name: authelia
+    kind: SecretStore
+  target:
+    name: authelia-restic
+    creationPolicy: Owner
+  data:
+    - secretKey: RESTIC_PASSWORD
+      remoteRef:
+        key: authelia
+        property: restic-password
+    - secretKey: RESTIC_REPOSITORY
+      remoteRef:
+        key: authelia
+        property: restic-repository
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: authelia
+        property: restic-access-id
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: authelia
+        property: restic-access-secret
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
