@@ -12,22 +12,22 @@ alertmanager:
     global:
       resolve_timeout: 5m
     route:
-      group_by: ['alertname']
+      group_by: ["alertname"]
       group_wait: 20s
       group_interval: 5m
-      repeat_interval: 3h 
+      repeat_interval: 3h
       receiver: discord_webhook
       routes:
-      - receiver: 'null'
-        matchers:
-          - alertname =~ "InfoInhibitor|Watchdog"
+        - receiver: "null"
+          matchers:
+            - alertname =~ "InfoInhibitor|Watchdog"
     receivers:
-    - name: 'null'
-    - name: 'discord_webhook'
-      webhook_configs:
-      - url: 'http://alertmanager-discord.alertmanager-discord.svc.cluster.local:9094'
+      - name: "null"
+      - name: "discord_webhook"
+        webhook_configs:
+          - url: "http://alertmanager-discord.alertmanager-discord.svc.cluster.local:9094"
     templates:
-    - '/etc/alertmanager/config/*.tmpl'
+      - "/etc/alertmanager/config/*.tmpl"
   ingress:
     enabled: false
   service:
@@ -35,6 +35,15 @@ alertmanager:
   serviceMonitor:
     selfMonitor: true
   alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: ceph-block
+          accessModes:
+            - "ReadWriteOnce"
+          resources:
+            requests:
+              storage: 1Gi
     resources:
       requests:
         cpu: 25m
@@ -135,8 +144,8 @@ prometheus:
       volumeClaimTemplate:
         spec:
           storageClassName: ceph-block
-          accessModes: 
+          accessModes:
             - "ReadWriteOnce"
           resources:
             requests:
-                storage: 30Gi
+              storage: 30Gi
