@@ -1,5 +1,5 @@
 provider "vault" {
-  address = "https://openbao.jkulzer.dev"
+  address = "http://localhost:8200"
 }
 
 resource "vault_auth_backend" "kubernetes" {
@@ -40,27 +40,6 @@ path "kvv2/data/mastodon" {
 EOT
 }
 
-resource "vault_kubernetes_auth_backend_role" "gotosocial" {
-  backend                          = vault_auth_backend.kubernetes.path
-  role_name                        = "gotosocial"
-  bound_service_account_names      = ["gotosocial-openbao"]
-  bound_service_account_namespaces = ["gotosocial"]
-  token_ttl                        = 3600
-  token_policies                   = ["gotosocial"]
-}
-
-resource "vault_policy" "gotosocial" {
-  name = "gotosocial"
-  policy = <<EOT
-path "kvv2/gotosocial" {
-  capabilities = ["read", "list"]
-}
-path "kvv2/data/gotosocial" {
-  capabilities = ["read", "list"]
-}
-EOT
-}
-
 resource "vault_kubernetes_auth_backend_role" "authelia" {
   backend                          = vault_auth_backend.kubernetes.path
   role_name                        = "authelia"
@@ -82,12 +61,6 @@ resource "vault_kubernetes_auth_backend_role" "default" {
 resource "vault_policy" "authelia" {
   name = "authelia"
   policy = <<EOT
-path "kvv2/gotosocial" {
-  capabilities = ["read", "list"]
-}
-path "kvv2/data/gotosocial" {
-  capabilities = ["read", "list"]
-}
 path "kvv2/mastodon" {
   capabilities = ["read", "list"]
 }
@@ -104,6 +77,12 @@ path "kvv2/cnpg" {
   capabilities = ["read", "list"]
 }
 path "kvv2/data/cnpg" {
+  capabilities = ["read", "list"]
+}
+path "kvv2/authelia" {
+  capabilities = ["read", "list"]
+}
+path "kvv2/data/authelia" {
   capabilities = ["read", "list"]
 }
 EOT
