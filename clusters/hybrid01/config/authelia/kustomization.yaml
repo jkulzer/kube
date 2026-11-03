@@ -19,3 +19,4 @@ resources:
   - authelia-backup.yaml
   - authelia-peerauth.yaml
   - authelia-sa.yaml
+  - authelia-secret-store.yaml

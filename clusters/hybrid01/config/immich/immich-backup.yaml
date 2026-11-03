@@ -1,4 +1,35 @@
 ---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: immich-restic
+  namespace: immich
+spec:
+  refreshInterval: 1h0m0s
+  secretStoreRef:
+    name: immich
+    kind: SecretStore
+  target:
+    name: immich-restic
+    creationPolicy: Owner
+  data:
+    - secretKey: RESTIC_PASSWORD
+      remoteRef:
+        key: immich
+        property: restic-password
+    - secretKey: RESTIC_REPOSITORY
+      remoteRef:
+        key: immich
+        property: restic-repository
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: immich
+        property: restic-access-id
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: immich
+        property: restic-access-secret
+---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
