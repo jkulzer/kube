@@ -55,3 +55,4 @@ spec:
       monthly: 0
       yearly: 0
     copyMethod: Snapshot
+    cacheCapacity: 2Gi
