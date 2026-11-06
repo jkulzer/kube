@@ -6,5 +6,3 @@ resources:
   - alertmanager-discord-deployment.yaml
   - alertmanager-discord-svc.yaml
   - alertmanager-discord-sa.yaml
-  - alertmanager-discord-peerauth.yaml
-  - authpol.yaml

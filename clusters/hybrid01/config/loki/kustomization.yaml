@@ -6,4 +6,3 @@ resources:
   - loki.yaml
   - loki-ns.yaml
   - loki-cpurequest.yaml
-  - loki-mtls.yaml

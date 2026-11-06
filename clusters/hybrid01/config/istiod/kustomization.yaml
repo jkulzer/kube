@@ -11,7 +11,6 @@ helmCharts:
     valuesFile: values.yaml
 
 resources:
-  - istio-mtls.yaml
   - istio-servicemonitors.yaml
   - istio-privileged-pod-security-fix.yaml
   - istio-gateway-logs.yaml

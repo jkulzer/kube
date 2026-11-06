@@ -16,4 +16,3 @@ resources:
   - alertmanager-authpolicy.yaml
   - prometheus-virtualservice.yaml
   - prometheus-authpolicy.yaml
-  - prometheus-istio.yaml

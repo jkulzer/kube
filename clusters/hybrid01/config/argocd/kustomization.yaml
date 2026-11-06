@@ -13,7 +13,5 @@ helmCharts:
 
 resources:
   - argocd-ns.yaml
-  - argocd-mtls.yaml
   - argocd-virtualservice.yaml
   - argocd-oidc-secret.yaml
-  - argocd-peerauth.yaml
