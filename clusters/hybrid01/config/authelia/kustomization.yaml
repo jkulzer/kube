@@ -17,6 +17,5 @@ resources:
   - cnpg-backup-secret.yaml
   - volsync-secret.yaml
   - authelia-backup.yaml
-  - authelia-peerauth.yaml
   - authelia-sa.yaml
   - authelia-secret-store.yaml
