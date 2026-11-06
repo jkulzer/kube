@@ -16,7 +16,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
       in {
         devShells.default = pkgs.mkShell {
-          VAULT_ADDR = "https://openbao.jkulzer.dev";
+          BAO_ADDR = "http://localhost:8200";
           packages = with pkgs; [
             kubectl
             kustomize
@@ -28,6 +28,7 @@
             openbao
             istioctl
             authelia
+            cilium-cli
           ];
         };
       }
