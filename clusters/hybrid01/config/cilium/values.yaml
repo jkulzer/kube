@@ -1,0 +1,56 @@
+operator:
+  unmanagedPodWatcher:
+    restart: true
+cni:
+  customConf: false
+  uninstall: false
+routingMode: tunnel
+tunnelProtocol: vxlan
+tunnelPort: 8473
+policyEnforcementMode: default
+bpf:
+  hostLegacyRouting: true
+ipam:
+  mode: cluster-pool
+  operator:
+    clusterPoolIPv4PodCIDRList: ["10.245.0.0/16"]
+    clusterPoolIPv4MaskSize: 24
+
+# --- Required by Talos ---
+k8sServiceHost: localhost
+k8sServicePort: 7445
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+      - SYSLOG
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
+
+hubble:
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+  tls:
+    auto:
+      method: cronJob
+enableLBIPAM: false
+defaultLBServiceIPAM: none
+MTU: 1400
