@@ -33,17 +33,32 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: immich-media
+  name: immich-media-restic
   namespace: immich
 spec:
   sourcePVC: immich-media
   trigger:
-    schedule: "30 3 * * *" # at 4:30
-  rclone:
-    rcloneConfigSection: "s3-bucket"
-    rcloneDestPath: "prod-backup/immich/immich-media"
-    rcloneConfig: "volsync-secret"
+    schedule: "47 * * * *"
+  restic:
+    # moverSecurityContext:
+    #   fsGroup: 991
+    # Prune the repository (repack to free space) every 2 weeks
+    pruneIntervalDays: 7
+    # Name of the Secret with the connection information
+    repository: immich-restic
+    # Retention policy for backups
+    retain:
+      hourly: 6
+      daily: 5
+      weekly: 0
+      monthly: 0
+      yearly: 0
     copyMethod: Snapshot
+    accessModes:
+      - ReadOnlyMany
+    cacheCapacity: 2Gi
+    cacheAccessModes:
+      - ReadWriteOnce
     volumeSnapshotClassName: csi-cephfsplugin-snapshotclass
 ---
 apiVersion: postgresql.cnpg.io/v1

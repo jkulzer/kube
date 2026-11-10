@@ -6,15 +6,18 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    nixpkgs,
-    flake-utils,
-    ...
-  }:
+  outputs =
+    {
+      nixpkgs,
+      flake-utils,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystem (
-      system: let
+      system:
+      let
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      in {
+      in
+      {
         devShells.default = pkgs.mkShell {
           BAO_ADDR = "http://localhost:8200";
           packages = with pkgs; [
