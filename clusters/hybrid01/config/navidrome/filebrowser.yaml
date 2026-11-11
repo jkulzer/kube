@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: copyparty
-          image: ghcr.io/9001/copyparty-ac:1.20.26 
+          image: ghcr.io/9001/copyparty-ac:1.20.26
           env:
             - name: PRTY_NO_TLS
               value: "1"
@@ -32,7 +32,7 @@ spec:
             requests:
               cpu: 10m
               memory: 80M
-            limits: 
+            limits:
               memory: 200M
           volumeMounts:
             - name: ingest
@@ -42,15 +42,15 @@ spec:
             - name: config
               mountPath: /cfg
       volumes:
-      - name: ingest
-        persistentVolumeClaim:
-          claimName: ingest
-      - name: music-library
-        persistentVolumeClaim:
-          claimName: music-library
-      - name: config
-        configMap:
-          name: copyparty-config
+        - name: ingest
+          persistentVolumeClaim:
+            claimName: ingest
+        - name: music-library
+          persistentVolumeClaim:
+            claimName: music-library
+        - name: config
+          configMap:
+            name: copyparty-config
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -60,13 +60,14 @@ metadata:
   labels:
     app: music-filebrowser
 data:
-      # xf-host musiclibrary.jkulzer.dev
-    # [global]
+  # xf-host musiclibrary.jkulzer.dev
+  # [global]
   copyparty.conf: |
     rproxy: -1
     theme: 4
     idp-h-usr: remote-email
     idp-h-grp: remote-groups
+    xff-src: 10.245.0.0/16
     [/ingest]
       /ingest
       accs:
@@ -103,23 +104,23 @@ metadata:
   namespace: navidrome
 spec:
   hosts:
-  - "musiclibrary.jkulzer.dev"
+    - "musiclibrary.jkulzer.dev"
   gateways:
-  - istio-external-gateway/external-gateway
-  - istio-internal-gateway/internal-gateway
+    - istio-external-gateway/external-gateway
+    - istio-internal-gateway/internal-gateway
   http:
-  - match:
-    retries:
-      attempts: 0
-    headers:
-      request:
-        remove:
-        - TE
-    route:
-    - destination:
-        host: filebrowser
-        port:
-          number: 3923
+    - match:
+      retries:
+        attempts: 0
+      headers:
+        request:
+          remove:
+            - TE
+      route:
+        - destination:
+            host: filebrowser
+            port:
+              number: 3923
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
@@ -129,12 +130,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      istio: gateway 
+      istio: gateway
   action: CUSTOM
   provider:
     name: "authelia"
   rules:
-  - to:
-    - operation:
-        hosts:
-          - "musiclibrary.jkulzer.dev"
+    - to:
+        - operation:
+            hosts:
+              - "musiclibrary.jkulzer.dev"
