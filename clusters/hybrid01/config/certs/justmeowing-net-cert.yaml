@@ -8,10 +8,10 @@ spec:
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "istio-internal-gateway,istio-external-gateway"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "istio-internal-gateway,istio-external-gateway,envoy-gateway-system"
   secretName: justmeowing-net-tls
   issuerRef:
     name: letsencrypt-prod
   dnsNames:
-  - "justmeowing.net"
-  - "*.justmeowing.net"
+    - "justmeowing.net"
+    - "*.justmeowing.net"
