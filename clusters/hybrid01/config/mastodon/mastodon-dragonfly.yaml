@@ -12,7 +12,7 @@ spec:
     - --default_lua_flags=allow-undeclared-keys
   annotations:
     vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200"
-    vault.security.banzaicloud.io/vault-skip-verify: "false" 
+    vault.security.banzaicloud.io/vault-skip-verify: "false"
     vault.security.banzaicloud.io/vault-role: "mastodon"
   serviceAccountName: mastodon-openbao
   authentication:
@@ -29,17 +29,26 @@ spec:
     cron: "*/10 * * * *"
     persistentVolumeClaimSpec:
       accessModes:
-      - ReadWriteOnce
+        - ReadWriteOnce
       resources:
         requests:
           storage: 2Gi
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
 metadata:
   name: mastodon-dragonfly-secret
   namespace: mastodon
-type: Opaque
-data:
-  # base64-encoding of vault:kvv2/data/mastodon#dragonfly-password
-  password: dmF1bHQ6a3Z2Mi9kYXRhL21hc3RvZG9uI2RyYWdvbmZseS1wYXNzd29yZA==
+spec:
+  refreshInterval: 1h0m0s
+  secretStoreRef:
+    name: mastodon
+    kind: SecretStore
+  target:
+    name: mastodon-dragonfly-secret
+    creationPolicy: Owner
+  data:
+    - secretKey: password
+      remoteRef:
+        key: mastodon
+        property: dragonfly-password
