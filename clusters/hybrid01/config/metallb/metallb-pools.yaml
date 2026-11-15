@@ -6,7 +6,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 116.203.211.246/32
+    - 116.203.211.246/32
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
@@ -15,7 +15,7 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - default-pool
+    - default-pool
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -24,7 +24,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 192.168.42.128/26
+    - 192.168.42.128/26
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
@@ -33,4 +33,9 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - internal-pool
+    - internal-pool
+  nodeSelectors:
+    - matchLabels:
+        kubernetes.io/hostname: alpha
+    - matchLabels:
+        kubernetes.io/hostname: charlie
