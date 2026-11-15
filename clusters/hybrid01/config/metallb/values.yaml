@@ -20,8 +20,6 @@ controller:
 
 speaker:
   logLevel: debug
-  frr:
-    enabled: true
   reloader:
     resources:
       requests:
