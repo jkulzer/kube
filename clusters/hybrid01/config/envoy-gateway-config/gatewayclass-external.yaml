@@ -21,5 +21,11 @@ spec:
     kubernetes:
       envoyService:
         type: LoadBalancer
+        externalTrafficPolicy: Cluster
         annotations:
           metallb.universe.tf/loadBalancerIPs: "116.203.211.246"
+      envoyDeployment:
+        replicas: 1
+        pod:
+          nodeSelector:
+            kubernetes.io/hostname: hetzner-vps1

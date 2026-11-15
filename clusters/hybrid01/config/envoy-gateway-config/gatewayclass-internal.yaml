@@ -21,6 +21,7 @@ spec:
     kubernetes:
       envoyService:
         type: LoadBalancer
+        externalTrafficPolicy: Cluster
         annotations:
           # metallb.universe.tf/loadBalancerIPs: "192.168.42.131"
           metallb.universe.tf/loadBalancerIPs: "10.100.0.5"
