@@ -32,6 +32,7 @@
             istioctl
             authelia
             cilium-cli
+            k9s
           ];
         };
       }

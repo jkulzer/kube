@@ -2,11 +2,14 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: navidrome-internal
+  name: navidrome
   namespace: navidrome
 spec:
   parentRefs:
     - name: envoygateway-internal
+      namespace: envoy-gateway-system
+      sectionName: https-jkulzer-dev-wildcard
+    - name: envoygateway-external
       namespace: envoy-gateway-system
       sectionName: https-jkulzer-dev-wildcard
   hostnames:
@@ -24,6 +27,9 @@ metadata:
 spec:
   parentRefs:
     - name: envoygateway-internal
+      namespace: envoy-gateway-system
+      sectionName: https-jkulzer-dev-wildcard
+    - name: envoygateway-external
       namespace: envoy-gateway-system
       sectionName: https-jkulzer-dev-wildcard
   hostnames:
@@ -46,7 +52,7 @@ spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: navidrome-internal
+      name: navidrome
   extAuth:
     http:
       backendRefs:
@@ -72,11 +78,14 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: musiclibrary-internal
+  name: musiclibrary
   namespace: navidrome
 spec:
   parentRefs:
     - name: envoygateway-internal
+      namespace: envoy-gateway-system
+      sectionName: https-jkulzer-dev-wildcard
+    - name: envoygateway-external
       namespace: envoy-gateway-system
       sectionName: https-jkulzer-dev-wildcard
   hostnames:
@@ -95,7 +104,7 @@ spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: musiclibrary-internal
+      name: musiclibrary
   extAuth:
     http:
       backendRefs:

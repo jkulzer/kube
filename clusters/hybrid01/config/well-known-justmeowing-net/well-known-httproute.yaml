@@ -8,8 +8,10 @@ spec:
   parentRefs:
     - name: envoygateway-internal
       namespace: envoy-gateway-system
-  hostnames: 
-  - "justmeowing.net"
+    - name: envoygateway-external
+      namespace: envoy-gateway-system
+  hostnames:
+    - "justmeowing.net"
   rules:
     - matches:
         - path:

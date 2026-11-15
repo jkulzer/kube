@@ -8,6 +8,9 @@ spec:
     - name: envoygateway-internal
       namespace: envoy-gateway-system
       sectionName: https-jkulzer-dev-wildcard
+    - name: envoygateway-external
+      namespace: envoy-gateway-system
+      sectionName: https-jkulzer-dev-wildcard
   hostnames:
     - karma.jkulzer.dev
   rules:
