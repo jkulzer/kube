@@ -16,6 +16,9 @@ metadata:
 spec:
   ipAddressPools:
     - default-pool
+  nodeSelectors:
+    - matchLabels:
+        kubernetes.io/hostname: hetzner-vps1
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
