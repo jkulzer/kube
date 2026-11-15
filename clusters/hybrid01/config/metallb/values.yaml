@@ -19,7 +19,7 @@ controller:
     enabled: false
 
 speaker:
-  logLevel: debug
+  logLevel: info
   reloader:
     resources:
       requests:
