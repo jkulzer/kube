@@ -19,6 +19,7 @@ controller:
     enabled: false
 
 speaker:
+  ignoreExcludeLB: true
   logLevel: info
   reloader:
     resources:
