@@ -26,16 +26,17 @@ spec:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
           args:
-            - --source=istio-virtualservice
+            - --source=gateway-httproute
+            - --gateway-name=envoygateway-external
             - --registry=txt
             - --txt-owner-id=my-identifier
             - --provider=cloudflare
             - --txt-prefix=external-dns
             - --domain-filter=jkulzer.dev
-            - --domain-filter=defenselessmoaningtwink.com
             - --domain-filter=justmeowing.net
             - --log-level=debug
             - --exclude-target-net=192.168.0.0/16
+            - --exclude-target-net=10.100.0.0/24
             - --policy=sync
           env:
             - name: CF_API_TOKEN
