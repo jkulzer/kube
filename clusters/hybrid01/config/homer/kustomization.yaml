@@ -7,3 +7,4 @@ resources:
   - homer-cm.yaml
   - homer-virtualservice.yaml
   - homer-authpolicy.yaml
+  - homer-httproute.yaml

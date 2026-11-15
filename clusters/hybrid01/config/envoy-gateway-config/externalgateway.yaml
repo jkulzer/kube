@@ -1,0 +1,58 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: envoygateway-external
+  namespace: envoy-gateway-system
+spec:
+  gatewayClassName: envoygateway-external
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - name: https-jkulzer-dev
+      port: 443
+      protocol: HTTPS
+      hostname: jkulzer.dev
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: jkulzer-dev-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https-jkulzer-dev-wildcard
+      port: 443
+      protocol: HTTPS
+      hostname: "*.jkulzer.dev"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: jkulzer-dev-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https-justmeowing-net
+      port: 443
+      protocol: HTTPS
+      hostname: justmeowing.net
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: justmeowing-net-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https-justmeowing-net-wildcard
+      port: 443
+      protocol: HTTPS
+      hostname: "*.justmeowing.net"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: justmeowing-net-tls
+      allowedRoutes:
+        namespaces:
+          from: All

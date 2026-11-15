@@ -1,0 +1,16 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: mastodon-internal
+  namespace: mastodon
+spec:
+  parentRefs:
+    - name: envoygateway-internal
+      namespace: envoy-gateway-system
+      sectionName: https-justmeowing-net-wildcard
+  hostnames:
+    - mastodon.justmeowing.net
+  rules:
+    - backendRefs:
+        - name: mastodon
+          port: 3000

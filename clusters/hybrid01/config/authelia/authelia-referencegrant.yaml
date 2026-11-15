@@ -1,0 +1,38 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: allow-securitypolicy-to-authelia
+  namespace: authelia
+spec:
+  from:
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: gatus
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: goldilocks
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: goldpinger
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: homer
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: karma
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: navidrome
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: openspeedtest
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: polaris
+    - group: gateway.envoyproxy.io
+      kind: SecurityPolicy
+      namespace: prometheus
+  to:
+    - group: ""
+      kind: Service
+      name: authelia

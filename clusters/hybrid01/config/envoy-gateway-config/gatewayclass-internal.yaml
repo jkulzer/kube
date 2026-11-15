@@ -1,19 +1,19 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
 metadata:
-  name: envoygateway
+  name: envoygateway-internal
 spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
   parametersRef:
     group: gateway.envoyproxy.io
     kind: EnvoyProxy
-    name: envoy-custom-service
+    name: envoygateway-internal
     namespace: envoy-gateway-system
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyProxy
 metadata:
-  name: envoy-custom-service
+  name: envoygateway-internal
   namespace: envoy-gateway-system
 spec:
   provider:
@@ -22,4 +22,5 @@ spec:
       envoyService:
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: "192.168.42.131"
+          # metallb.universe.tf/loadBalancerIPs: "192.168.42.131"
+          metallb.universe.tf/loadBalancerIPs: "10.100.0.5"

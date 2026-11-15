@@ -1,19 +1,17 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: envoygateway-test
+  name: envoygateway-internal
   namespace: envoy-gateway-system
 spec:
-  gatewayClassName: envoygateway
+  gatewayClassName: envoygateway-internal
   listeners:
-    # --- HTTP: catch-all, only used for the redirect ---
     - name: http
       port: 80
       protocol: HTTP
       allowedRoutes:
         namespaces:
-          from: Same # only the redirect route lives here
-    # --- HTTPS: jkulzer.dev ---
+          from: Same
     - name: https-jkulzer-dev
       port: 443
       protocol: HTTPS
@@ -36,7 +34,6 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
-    # --- HTTPS: justmeowing.net ---
     - name: https-justmeowing-net
       port: 443
       protocol: HTTPS
@@ -62,16 +59,26 @@ spec:
 ---
 apiVersion: v1
 kind: Secret
+type: kubernetes.io/tls
 metadata:
   name: jkulzer-dev-tls
   namespace: envoy-gateway-system
   annotations:
     reflector.v1.k8s.emberstack.com/reflects: "cert-manager/jkulzer-dev-tls"
+# i can't set the type to tls without specifying these fields, but reflector should just override them
+data:
+  tls.key: "meow"
+  tls.crt: "meow"
 ---
 apiVersion: v1
 kind: Secret
+type: kubernetes.io/tls
 metadata:
   name: justmeowing-net-tls
   namespace: envoy-gateway-system
   annotations:
     reflector.v1.k8s.emberstack.com/reflects: "cert-manager/justmeowing-net-tls"
+# i can't set the type to tls without specifying these fields, but reflector should just override them
+data:
+  tls.key: "meow"
+  tls.crt: "meow"

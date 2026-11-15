@@ -15,3 +15,4 @@ resources:
   - gatus-virtualservice.yaml
   - gatus-servicemonitor.yaml
   - gatus-prometheusrule.yaml
+  - gatus-httproute.yaml

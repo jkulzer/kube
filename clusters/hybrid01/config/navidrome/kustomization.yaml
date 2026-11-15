@@ -13,3 +13,4 @@ resources:
   - beets.yaml
   - volsync-secret.yaml
   - navidrome-backup.yaml
+  - navidrome-httproute.yaml

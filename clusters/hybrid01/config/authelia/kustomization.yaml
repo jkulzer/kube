@@ -19,3 +19,5 @@ resources:
   - authelia-backup.yaml
   - authelia-sa.yaml
   - authelia-secret-store.yaml
+  - authelia-httproute.yaml
+  - authelia-referencegrant.yaml

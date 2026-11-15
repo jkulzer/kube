@@ -16,3 +16,4 @@ resources:
   - mas-cm.yaml
   - mas-svc.yaml
   - cnpg-backup-secret.yaml
+  - synapse-httproute.yaml

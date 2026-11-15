@@ -15,3 +15,4 @@ resources:
   - immich-backup.yaml
   - cnpg-backup-secret.yaml
   - immich-secret-store.yaml
+  - immich-httproute.yaml

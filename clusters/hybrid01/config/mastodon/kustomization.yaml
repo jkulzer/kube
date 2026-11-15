@@ -17,3 +17,4 @@ resources:
   - mastodon-backup.yaml
   - mastodon-secret-store.yaml
   - mastodon-restic-backup.yaml
+  - mastodon-httproute.yaml

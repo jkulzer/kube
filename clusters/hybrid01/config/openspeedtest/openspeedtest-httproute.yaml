@@ -1,0 +1,49 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: openspeedtest-internal
+  namespace: openspeedtest
+spec:
+  parentRefs:
+    - name: envoygateway-internal
+      namespace: envoy-gateway-system
+      sectionName: https-jkulzer-dev-wildcard
+  hostnames:
+    - speedtest.jkulzer.dev
+  rules:
+    - backendRefs:
+        - name: openspeedtest
+          port: 3000
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: authelia-auth-internal
+  namespace: openspeedtest
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: openspeedtest-internal
+  extAuth:
+    http:
+      backendRefs:
+        - name: authelia
+          namespace: authelia
+          port: 80
+      path: /api/authz/ext-authz/
+      headersToBackend:
+        - authorization
+        - proxy-authorization
+        - remote-user
+        - remote-groups
+        - remote-name
+        - remote-email
+    headersToExtAuth:
+      - accept
+      - cookie
+      - proxy-authorization
+      - x-forwarded-proto
+      - x-forwarded-host
+      - x-forwarded-for

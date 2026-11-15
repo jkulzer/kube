@@ -6,3 +6,4 @@ resources:
   - openspeedtest-deployment.yaml
   - openspeedtest-virtualservice.yaml
   - openspeedtest-authpolicy.yaml
+  - openspeedtest-httproute.yaml

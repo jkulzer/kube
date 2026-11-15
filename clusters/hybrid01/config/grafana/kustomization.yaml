@@ -10,3 +10,4 @@ resources:
   - grafana-dashboard.yaml
   - grafana-virtualservice.yaml
   - grafana-sa.yaml
+  - grafana-httproute.yaml
