@@ -154,3 +154,23 @@ path "kvv2/data/grafana" {
 EOT
 }
 
+resource "vault_kubernetes_auth_backend_role" "navidrome" {
+  backend                          = vault_auth_backend.kubernetes.path
+  role_name                        = "navidrome"
+  bound_service_account_names      = ["default"]
+  bound_service_account_namespaces = ["navidrome"]
+  token_ttl                        = 3600
+  token_policies                   = ["navidrome"]
+}
+
+resource "vault_policy" "navidrome" {
+  name = "navidrome"
+  policy = <<EOT
+path "kvv2/navidrome" {
+  capabilities = ["read"]
+}
+path "kvv2/data/navidrome" {
+  capabilities = ["read"]
+}
+EOT
+}
