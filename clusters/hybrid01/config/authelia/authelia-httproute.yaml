@@ -28,6 +28,9 @@ spec:
     - name: envoygateway-internal
       namespace: envoy-gateway-system
       sectionName: https-justmeowing-net-wildcard
+    - name: envoygateway-external
+      namespace: envoy-gateway-system
+      sectionName: https-justmeowing-net-wildcard
   hostnames:
     - auth.justmeowing.net
   rules:
