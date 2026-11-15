@@ -208,6 +208,10 @@ data:
         policy: two_factor
         subject:
         - ['group:kubeadmin']
+      - domain: 'status.jkulzer.dev'
+        policy: two_factor
+        subject:
+        - ['group:kubeadmin']
     identity_providers:
       oidc:
         hmac_secret: ${vault:kvv2/data/authelia#hmac-secret}
