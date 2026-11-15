@@ -19,10 +19,9 @@ controller:
     enabled: false
 
 speaker:
-  logLevel: info
-  # frr is probably needed for bgp, but gets deactivated for layer 2 usage
+  logLevel: debug
   frr:
-    enabled: false
+    enabled: true
   reloader:
     resources:
       requests:
