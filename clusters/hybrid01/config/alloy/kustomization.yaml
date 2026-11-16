@@ -12,3 +12,5 @@ helmCharts:
 
 resources:
   - alloy-ns.yaml
+  - alloy-secretstore.yaml
+  - alloy-externalsecret.yaml

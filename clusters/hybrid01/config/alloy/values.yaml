@@ -1,14 +1,11 @@
 crds:
-  # -- Whether to install CRDs for monitoring.
   create: true
 
 alloy:
   clustering:
-    # -- Deploy Alloy in a cluster to allow for load distribution.
     enabled: false
   enableReporting: false
 
-  # Needed so discovery.kubernetes only picks pods on the node this DaemonSet pod runs on
   extraEnv:
     - name: NODE_NAME
       valueFrom:
@@ -16,14 +13,14 @@ alloy:
           fieldPath: spec.nodeName
 
   mounts:
-    # -- Mount /var/log from the host (covers /var/log/pods and /var/log/journal)
     varlog: true
-    # -- Mount /var/lib/docker/containers from the host into the container for log
-    # collection.
     dockercontainers: false
     extra:
       - name: run-journal
         mountPath: /run/log/journal
+        readOnly: true
+      - name: geoip
+        mountPath: /etc/geoip
         readOnly: true
 
   configMap:
@@ -211,6 +208,29 @@ controller:
       - name: run-journal
         hostPath:
           path: /run/log/journal
+      - name: geoip
+        emptyDir: {}
+  initContainers:
+    - name: geoipupdate
+      image: ghcr.io/maxmind/geoipupdate:v7
+      env:
+        - name: GEOIPUPDATE_EDITION_IDS
+          value: GeoLite2-City
+        - name: GEOIPUPDATE_DB_DIR
+          value: /geoip
+        - name: GEOIPUPDATE_ACCOUNT_ID
+          valueFrom:
+            secretKeyRef:
+              name: alloy-maxmind
+              key: GEOIPUPDATE_ACCOUNT_ID
+        - name: GEOIPUPDATE_LICENSE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: alloy-maxmind
+              key: GEOIPUPDATE_LICENSE_KEY
+      volumeMounts:
+        - name: geoip
+          mountPath: /geoip
 
 networkPolicy:
   enabled: false
