@@ -21,7 +21,8 @@ spec:
     kubernetes:
       envoyService:
         type: LoadBalancer
-        externalTrafficPolicy: Cluster
+        name: envoy-gateway-external
+        externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/loadBalancerIPs: "116.203.211.246"
       envoyDeployment:
@@ -29,3 +30,25 @@ spec:
         pod:
           nodeSelector:
             kubernetes.io/hostname: hetzner-vps1
+  telemetry:
+    accessLog:
+      settings:
+        - format:
+            type: JSON
+            json:
+              ts: "%START_TIME%"
+              method: "%REQ(:METHOD)%"
+              host: "%REQ(:AUTHORITY)%"
+              path: "%REQ(X-ENVOY-ORIGINAL-PATH?:PATH)%"
+              status: "%RESPONSE_CODE%"
+              user_agent: "%REQ(USER-AGENT)%"
+              client_ip: "%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%"
+              xff: "%REQ(X-FORWARDED-FOR)%"
+              duration_ms: "%DURATION%"
+              bytes_sent: "%BYTES_SENT%"
+              flags: "%RESPONSE_FLAGS%"
+              upstream: "%UPSTREAM_CLUSTER%"
+          sinks:
+            - type: File
+              file:
+                path: /dev/stdout
