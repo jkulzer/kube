@@ -50,7 +50,7 @@ servers:
         parameters: :9153
 
       - name: rewrite
-        parameters: name regex (\.*)\.(jkulzer\.dev|justmeowing\.net) envoy-gateway-internal.envoy-gateway-system.svc.cluster.local
+        parameters: name regex (\.*)\.(jkulzer\.dev|justmeowing\.net) envoy-gateway-internal.envoy-gateway-system.svc.cluster.local answer auto
 
       - name: kubernetes
         parameters: cluster.local in-addr.arpa ip6.arpa
