@@ -212,7 +212,7 @@ controller:
         emptyDir: {}
   initContainers:
     - name: geoipupdate
-      image: ghcr.io/maxmind/geoipupdate:v7
+      image: ghcr.io/maxmind/geoipupdate:v8
       env:
         - name: GEOIPUPDATE_EDITION_IDS
           value: GeoLite2-City
