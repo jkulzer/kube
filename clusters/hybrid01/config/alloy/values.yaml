@@ -140,7 +140,7 @@ alloy:
           selector = `{container="envoy"} |= "client_ip"`
 
           stage.json {
-            expressions = { client_ip = "client_ip" }
+            expressions = { client_ip = "client_ip", route_name = "route_name" }
           }
 
           stage.geoip {
@@ -152,6 +152,7 @@ alloy:
           // low-cardinality fields become labels
           stage.labels {
             values = {
+              route                = "route_name",
               geoip_country_name   = "",
               geoip_country_code   = "",
               geoip_continent_name = "",
