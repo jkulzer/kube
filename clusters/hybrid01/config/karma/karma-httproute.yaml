@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: karma-internal
+  name: karma
   namespace: karma
 spec:
   parentRefs:
@@ -17,3 +17,35 @@ spec:
     - backendRefs:
         - name: karma
           port: 3000
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: authelia-auth-karma
+  namespace: karma
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: karma
+  extAuth:
+    http:
+      backendRefs:
+        - name: authelia
+          namespace: authelia
+          port: 80
+      path: /api/authz/ext-authz/
+      headersToBackend:
+        - authorization
+        - proxy-authorization
+        - remote-user
+        - remote-groups
+        - remote-name
+        - remote-email
+    headersToExtAuth:
+      - accept
+      - cookie
+      - proxy-authorization
+      - x-forwarded-proto
+      - x-forwarded-host
+      - x-forwarded-for
