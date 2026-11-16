@@ -1,0 +1,92 @@
+crds:
+  # -- Whether to install CRDs for monitoring.
+  create: true
+
+alloy:
+  clustering:
+    # -- Deploy Alloy in a cluster to allow for load distribution.
+    enabled: false
+  enableReporting: false
+
+  mounts:
+    # -- Mount /var/log from the host into the container for log collection.
+    varlog: false
+    # -- Mount /var/lib/docker/containers from the host into the container for log
+    # collection.
+    dockercontainers: false
+
+configReloader:
+  enabled: true
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "50Mi"
+  # -- Security context to apply to the Grafana configReloader container.
+  securityContext:
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+    capabilities:
+      drop:
+        - ALL
+    runAsNonRoot: true
+    runAsUser: 65534
+    runAsGroup: 65534
+    seccompProfile:
+      type: RuntimeDefault
+
+controller:
+  # -- Type of controller to use for deploying Grafana Alloy in the cluster.
+  # Must be one of 'daemonset', 'deployment', or 'statefulset'.
+  type: "daemonset"
+
+  # -- Number of pods to deploy. Ignored when controller.type is 'daemonset'.
+  replicas: 1
+
+  # -- Whether to enable automatic deletion of stale PVCs due to a scale down operation, when controller.type is 'statefulset'.
+  enableStatefulSetAutoDeletePVC: false
+
+networkPolicy:
+  enabled: false
+  flavor: kubernetes
+
+  policyTypes:
+    - Ingress
+    - Egress
+
+  # Default allow all traffic because Alloy is so configurable
+  # It is recommended to change this before deploying to production
+  # To disable each policyType, set value to `null`
+  ingress:
+    - {}
+  egress:
+    - {}
+
+service:
+  # -- Creates a Service for the controller's pods.
+  enabled: true
+
+serviceMonitor:
+  enabled: true
+  # -- Additional labels for the service monitor.
+  additionalLabels: {}
+  # -- Scrape interval. If not set, the Prometheus default scrape interval is used.
+  interval: ""
+  # -- MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
+  # ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
+  metricRelabelings: []
+  # - action: keep
+  #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
+  #   sourceLabels: [__name__]
+
+  # -- Customize tls parameters for the service monitor
+  tlsConfig: {}
+
+  # -- RelabelConfigs to apply to samples before scraping
+  # ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
+  relabelings: []
+  # - sourceLabels: [__meta_kubernetes_pod_node_name]
+  #   separator: ;
+  #   regex: ^(.*)$
+  #   targetLabel: nodename
+  #   replacement: $1
+  #   action: replace
