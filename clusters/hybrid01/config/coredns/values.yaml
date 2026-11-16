@@ -51,6 +51,8 @@ servers:
 
       - name: rewrite
         parameters: name exact auth.jkulzer.dev envoy-envoy-gateway-system-envoygateway-internal-333256b4.envoy-gateway-system.svc.cluster.local
+      - name: rewrite2
+        parameters: name exact auth.justmeowing.net envoy-envoy-gateway-system-envoygateway-internal-333256b4.envoy-gateway-system.svc.cluster.local
 
       - name: kubernetes
         parameters: cluster.local in-addr.arpa ip6.arpa
