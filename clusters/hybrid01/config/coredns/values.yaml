@@ -1,0 +1,72 @@
+fullnameOverride: coredns
+
+replicaCount: 3
+isClusterService: true
+k8sAppLabelOverride: kube-dns
+priorityClassName: system-cluster-critical
+
+service:
+  name: kube-dns
+  clusterIP: "10.96.0.10"
+
+podDisruptionBudget:
+  maxUnavailable: 1
+
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: ScheduleAnyway
+    labelSelector:
+      matchLabels:
+        k8s-app: kube-dns
+
+tolerations:
+  - key: node-role.kubernetes.io/control-plane
+    operator: Exists
+    effect: NoSchedule
+
+resources:
+  requests: { cpu: 100m, memory: 70Mi }
+  limits: { memory: 170Mi }
+
+# This list REPLACES the chart's default Corefile, so it must be complete.
+servers:
+  - zones:
+      - zone: .
+        scheme: dns://
+        use_tcp: true
+    port: 53
+    plugins:
+      - name: errors
+      - name: health
+        configBlock: |-
+          lameduck 5s
+      - name: ready
+      - name: log
+        parameters: .
+        configBlock: |-
+          class error
+      - name: prometheus
+        parameters: :9153
+
+      - name: rewrite
+        parameters: name exact auth.jkulzer.dev envoy-envoy-gateway-system-envoygateway-internal-333256b4.envoy-gateway-system.svc.cluster.local
+
+      - name: kubernetes
+        parameters: cluster.local in-addr.arpa ip6.arpa
+        configBlock: |-
+          pods insecure
+          fallthrough in-addr.arpa ip6.arpa
+          ttl 30
+      - name: forward
+        parameters: . /etc/resolv.conf
+        configBlock: |-
+          max_concurrent 1000
+      - name: cache
+        parameters: 30
+        configBlock: |-
+          disable success cluster.local
+          disable denial cluster.local
+      - name: loop
+      - name: reload
+      - name: loadbalance
