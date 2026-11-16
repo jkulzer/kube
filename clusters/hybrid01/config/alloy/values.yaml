@@ -134,6 +134,39 @@ alloy:
 
       loki.process "pods" {
         stage.cri {}
+
+        stage.match {
+          // only Envoy access log lines (JSON containing client_ip)
+          selector = `{container="envoy"} |= "client_ip"`
+
+          stage.json {
+            expressions = { client_ip = "client_ip" }
+          }
+
+          stage.geoip {
+            source  = "client_ip"
+            db      = "/etc/geoip/GeoLite2-City.mmdb"
+            db_type = "city"
+          }
+
+          // low-cardinality fields become labels
+          stage.labels {
+            values = {
+              geoip_country_name   = "",
+              geoip_continent_name = "",
+            }
+          }
+
+          // high-cardinality fields become structured metadata
+          stage.structured_metadata {
+            values = {
+              geoip_city_name          = "",
+              geoip_location_latitude  = "",
+              geoip_location_longitude = "",
+            }
+          }
+        }
+
         forward_to = [loki.write.default.receiver]
       }
 
@@ -163,34 +196,6 @@ alloy:
         labels        = { job = "systemd-journal" }
         relabel_rules = loki.relabel.journal.rules
         forward_to    = [loki.write.default.receiver]
-      }
-
-      loki.process "envoy" {
-        forward_to = [loki.write.default.receiver]
-
-        stage.json {
-          expressions = { client_ip = "client_ip" }
-        }
-
-        stage.geoip {
-          source  = "client_ip"
-          db      = "/etc/geoip/GeoLite2-City.mmdb"
-          db_type = "city"
-        }
-
-        // low-cardinality fields only
-        stage.labels {
-          values = { geoip_country_name = "", geoip_continent_name = "" }
-        }
-
-        // high-cardinality fields go here, not in labels
-        stage.structured_metadata {
-          values = {
-            geoip_city_name          = "",
-            geoip_location_latitude  = "",
-            geoip_location_longitude = "",
-          }
-        }
       }
 
       // ---------- output ----------
