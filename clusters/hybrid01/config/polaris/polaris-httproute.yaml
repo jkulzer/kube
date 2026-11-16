@@ -2,30 +2,33 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: polaris-internal
+  name: polaris
   namespace: polaris
 spec:
   parentRefs:
     - name: envoygateway-internal
       namespace: envoy-gateway-system
       sectionName: https-jkulzer-dev-wildcard
+    - name: envoygateway-external
+      namespace: envoy-gateway-system
+      sectionName: https-jkulzer-dev-wildcard
   hostnames:
     - polaris.jkulzer.dev
   rules:
     - backendRefs:
-        - name: polaris-dashbaord
+        - name: polaris-dashboard
           port: 80
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: authelia-auth-internal
+  name: authelia-auth-polaris
   namespace: polaris
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: polaris-internal
+      name: polaris
   extAuth:
     http:
       backendRefs:
