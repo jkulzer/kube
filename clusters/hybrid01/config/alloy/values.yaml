@@ -153,6 +153,7 @@ alloy:
           stage.labels {
             values = {
               geoip_country_name   = "",
+              geoip_country_code   = "",
               geoip_continent_name = "",
             }
           }
