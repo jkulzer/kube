@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: dragonfly-operator-system
 
 resources:
-  - "https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/refs/tags/v1.5.0/manifests/dragonfly-operator.yaml"
+  - "https://raw.githubusercontent.com/dragonflydb/dragonfly-operator/refs/tags/v1.8.0/manifests/dragonfly-operator.yaml"
