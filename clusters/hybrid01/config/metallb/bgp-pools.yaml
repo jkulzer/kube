@@ -1,0 +1,43 @@
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: mikrotik
+  namespace: metallb-system
+spec:
+  myASN: 64512
+  peerASN: 64513
+  peerAddress: 192.168.42.1
+  # peer only from nodes on the LAN (skip remote/KubeSpan nodes)
+  nodeSelectors:
+    - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+            - alpha
+            - charlie
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: bgp-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.100.0.0/24
+  autoAssign: true
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: default
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - bgp-pool
+  nodeSelectors:
+    - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+            - alpha
+            - charlie
