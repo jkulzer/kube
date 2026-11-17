@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: grocy
+  namespace: grocy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grocy
+  template:
+    metadata:
+      labels:
+        app: grocy
+    spec:
+      hostUsers: false
+      automountServiceAccountToken: false
+      containers:
+        - name: grocy
+          image: ghcr.io/jkulzer/grocy:4.7.1
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: config
+              mountPath: /app/data/config.php
+              subPath: config.php
+              readOnly: true
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: config
+          configMap:
+            name: grocy-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grocy-config
+  namespace: grocy
+data:
+  config.php: |
+    <?php
+
+    // Production mode (anything else disables auth and loads demo data)
+    Setting('MODE', 'production');
+    Setting('BASE_URL', 'http://localhost:8080');
+
+    Setting('CULTURE', 'en');
+    Setting('CURRENCY', 'EUR');
+    Setting('ENTRY_PAGE', 'stock');
+
+
+    // Permissions given to users auto-created on first login.
+    // Check the constant names in controllers/Users/User.php before relying on these.
+    Setting('DEFAULT_PERMISSIONS', ['SHOPPINGLIST', 'STOCK']);
