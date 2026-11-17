@@ -68,6 +68,8 @@ data:
     idp-h-usr: remote-email
     idp-h-grp: remote-groups
     xff-src: 10.245.0.0/16
+    [global]
+      no-hash: .
     [/ingest]
       /ingest
       accs:
