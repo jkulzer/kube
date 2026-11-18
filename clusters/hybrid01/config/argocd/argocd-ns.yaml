@@ -4,7 +4,7 @@ kind: Namespace
 metadata:
   name: argocd
   labels:
-    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce: baseline
     goldilocks.fairwinds.com/enabled: "true"
   annotations:
     traffic.sidecar.istio.io/excludeOutboundIPRanges: 172.43.0.1/32

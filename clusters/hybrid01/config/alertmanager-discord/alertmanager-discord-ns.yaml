@@ -5,5 +5,5 @@ metadata:
   name: alertmanager-discord
   labels:
     app: alertmanager-discord
-    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce: baseline
     goldilocks.fairwinds.com/enabled: "true"
