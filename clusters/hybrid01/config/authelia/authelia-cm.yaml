@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: authelia
-  labels: 
+  labels:
     app.kubernetes.io/name: authelia
   annotations:
     vault.security.banzaicloud.io/vault-addr: "http://openbao.openbao.svc.cluster.local:8200" # optional, the address of the Vault service, default values is https://vault:8200
@@ -27,7 +27,7 @@ data:
         enable_pprof: false
         enable_expvars: false
     log:
-      level: info
+      level: debug
       format: json
       keep_stdout: true
     telemetry:
