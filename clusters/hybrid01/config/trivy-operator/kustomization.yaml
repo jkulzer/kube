@@ -12,3 +12,15 @@ helmCharts:
 
 resources:
   - trivy-ns.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_clustercompliancereports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_clusterconfigauditreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_clusterinfraassessmentreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_clusterrbacassessmentreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_clustersbomreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_clustervulnerabilityreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_configauditreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_exposedsecretreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_infraassessmentreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_rbacassessmentreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_sbomreports.yaml
+  - https://raw.githubusercontent.com/aquasecurity/trivy-operator/refs/heads/main/deploy/helm/crds/aquasecurity.github.io_vulnerabilityreports.yaml
