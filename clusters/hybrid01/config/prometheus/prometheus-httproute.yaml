@@ -9,9 +9,6 @@ spec:
     - name: envoygateway-internal
       namespace: envoy-gateway-system
       sectionName: https-jkulzer-dev-wildcard
-    - name: envoygateway-external
-      namespace: envoy-gateway-system
-      sectionName: https-jkulzer-dev-wildcard
   hostnames:
     - prometheus.jkulzer.dev
   rules:
@@ -59,9 +56,6 @@ metadata:
 spec:
   parentRefs:
     - name: envoygateway-internal
-      namespace: envoy-gateway-system
-      sectionName: https-jkulzer-dev-wildcard
-    - name: envoygateway-external
       namespace: envoy-gateway-system
       sectionName: https-jkulzer-dev-wildcard
   hostnames:
