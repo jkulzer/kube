@@ -130,7 +130,7 @@ trivy:
   image:
     registry: mirror.gcr.io
     repository: aquasec/trivy
-    tag: 0.76.1
+    tag: 0.76.2
 
   # -- includeDevDeps include development dependencies in the report (supported: npm, yarn) (default: false)
   # note: this flag is only applicable when trivy.command is set to filesystem
