@@ -33,6 +33,7 @@
             authelia
             cilium-cli
             k9s
+            trivy
           ];
         };
       }
