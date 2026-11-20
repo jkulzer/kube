@@ -7,8 +7,6 @@ resources:
   - navidrome-svc.yaml
   - navidrome-pvc.yaml
   - navidrome-deployment.yaml
-  - navidrome-virtualservice.yaml
-  - navidrome-authpolicy.yaml
   - filebrowser.yaml
   - beets.yaml
   - volsync-secret.yaml
