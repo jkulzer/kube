@@ -13,6 +13,5 @@ helmCharts:
 
 resources:
   - argocd-ns.yaml
-  - argocd-virtualservice.yaml
   - argocd-oidc-secret.yaml
   - argocd-httproute.yaml

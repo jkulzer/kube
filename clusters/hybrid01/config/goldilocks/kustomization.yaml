@@ -12,6 +12,5 @@ helmCharts:
 
 resources:
   - goldilocks-ns.yaml
-  - goldilocks-virtualservice.yaml
   - goldilocks-authpolicy.yaml
   - goldilocks-httproute.yaml

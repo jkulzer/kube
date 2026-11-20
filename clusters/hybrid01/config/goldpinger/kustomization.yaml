@@ -6,6 +6,5 @@ resources:
   - goldpinger-clusterrolebinding.yaml
   - goldpinger-daemonset.yaml
   - goldpinger-svc.yaml
-  - goldpinger-virtualservice.yaml
   - goldpinger-authpolicy.yaml
   - goldpinger-httproute.yaml

@@ -10,7 +10,6 @@ resources:
   - mastodon-sa.yaml
   - mastodon-dragonfly.yaml
   - mastodon-cnpg.yaml
-  - mastodon-virtualservice.yaml
   - mastodon-secret.yaml
   - volsync-secret.yaml
   - cnpg-backup-secret.yaml

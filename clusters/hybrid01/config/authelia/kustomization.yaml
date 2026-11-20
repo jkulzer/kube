@@ -10,7 +10,6 @@ resources:
   - ldap.yaml
   - ldap-pvc.yaml
   - authelia-oidc-issuer.yaml
-  - authelia-virtualservice.yaml
   - headscale-oidc-secret.yaml
   - immich-oidc-secret.yaml
   - synapse-oidc-secret.yaml

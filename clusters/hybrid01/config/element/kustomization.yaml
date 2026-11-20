@@ -6,5 +6,4 @@ resources:
   - element-deployment.yaml
   - element-svc.yaml
   - element-cm.yaml
-  - element-virtualservice.yaml
   - element-httproute.yaml

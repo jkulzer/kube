@@ -6,6 +6,4 @@ resources:
   - karma-ns.yaml
   - karma-svc.yaml
   - karma-deployment.yaml
-  - karma-virtualservice.yaml
-  - karma-authpolicy.yaml
   - karma-httproute.yaml
