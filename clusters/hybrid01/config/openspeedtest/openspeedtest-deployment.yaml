@@ -18,7 +18,7 @@ spec:
     spec:
       hostUsers: false
       containers:
-      - image: openspeedtest/latest:v2.0.8
+      - image: openspeedtest/latest:v2.0.9
         name: openspeedtest
         ports:
           - containerPort: 3000
