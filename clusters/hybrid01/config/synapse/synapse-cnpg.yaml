@@ -26,3 +26,18 @@ spec:
     size: 10Gi
   monitoring:
     enablePodMonitor: true
+  affinity:
+    enablePodAntiAffinity: true
+    podAntiAffinityType: preferred
+    topologyKey: kubernetes.io/hostname
+    # preferrably schedule on nodes with an osd so storage is more local
+    additionalPodAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            topologyKey: kubernetes.io/hostname
+            namespaces: ["rook-ceph"]
+            labelSelector:
+              matchLabels:
+                app: rook-ceph-osd
+
